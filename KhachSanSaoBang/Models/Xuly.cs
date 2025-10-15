@@ -12,6 +12,8 @@ namespace KhachSanSaoBang.Models
     {
         SQLDataDataContext db = new SQLDataDataContext();
         public Xuly() { }
+        //Xu ly đăng ký
+
         //Xử lý đăng nhập và lưu session
         public bool Dangnhap(tblNhanVien nv)
         {

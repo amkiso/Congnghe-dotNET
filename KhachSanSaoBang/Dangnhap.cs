@@ -19,7 +19,15 @@ namespace KhachSanSaoBang
             InitializeComponent();
             btn_dangnhap.Click += Btn_dangnhap_Click;
             lbl_quenmatkhau.Click += Lbl_quenmatkhau_Click;
+            lb_Register.Click += Lb_Register_Click;
             
+        }
+
+        private void Lb_Register_Click(object sender, EventArgs e)
+        {
+            Dangky  dk = new Dangky();
+            dk.ShowDialog();
+            MessageBox.Show("Cảm ơn bạn đã đăng ký ! ");
         }
 
         private void Lbl_quenmatkhau_Click(object sender, EventArgs e)
