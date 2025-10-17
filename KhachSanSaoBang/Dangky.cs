@@ -24,9 +24,9 @@ namespace KhachSanSaoBang
 
         private void Lb_Home_Click(object sender, EventArgs e)
         {
-            Dangky dk = new Dangky();
-            dk.ShowDialog();
-            MessageBox.Show("Cảm ơn bạn đã đăng ký ! ");
+            Dangnhap dn = new Dangnhap();
+            dn.ShowDialog();
+            MessageBox.Show("Cảm ơn bạn đã đăng nhap ! ");
         }
 
         private void Btn_Register_Click(object sender, EventArgs e)

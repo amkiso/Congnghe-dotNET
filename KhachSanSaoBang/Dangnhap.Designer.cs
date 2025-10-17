@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dangnhap));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lb_Register = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_quenmatkhau = new System.Windows.Forms.Label();
@@ -39,13 +40,12 @@
             this.txt_taikhoan = new System.Windows.Forms.TextBox();
             this.btn_dangnhap = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.lb_Register = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.lb_Register);
             this.panel1.Controls.Add(this.label1);
@@ -62,12 +62,23 @@
             this.panel1.Size = new System.Drawing.Size(745, 435);
             this.panel1.TabIndex = 2;
             // 
+            // lb_Register
+            // 
+            this.lb_Register.AutoSize = true;
+            this.lb_Register.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.lb_Register.Location = new System.Drawing.Point(291, 394);
+            this.lb_Register.Name = "lb_Register";
+            this.lb_Register.Size = new System.Drawing.Size(173, 16);
+            this.lb_Register.TabIndex = 11;
+            this.lb_Register.TabStop = true;
+            this.lb_Register.Text = "Chưa có tài khoản? Đăng Ký";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label1.ForeColor = System.Drawing.Color.Khaki;
             this.label1.Location = new System.Drawing.Point(127, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -156,17 +167,6 @@
             this.label2.Size = new System.Drawing.Size(101, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên đăng nhập:";
-            // 
-            // lb_Register
-            // 
-            this.lb_Register.AutoSize = true;
-            this.lb_Register.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.lb_Register.Location = new System.Drawing.Point(291, 394);
-            this.lb_Register.Name = "lb_Register";
-            this.lb_Register.Size = new System.Drawing.Size(173, 16);
-            this.lb_Register.TabIndex = 11;
-            this.lb_Register.TabStop = true;
-            this.lb_Register.Text = "Chưa có tài khoản? Đăng Ký";
             // 
             // Dangnhap
             // 

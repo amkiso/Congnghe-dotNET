@@ -15,8 +15,34 @@ namespace KhachSanSaoBang
         public TrangChu()
         {
             InitializeComponent();
+            this.Click += TrangChu_Click;
         }
-        
+
+        //tạo 1  form cha 
+        public  void TrangChu_Click(object sender, EventArgs e)
+        {
+            ShowFormNhanVien();
+
+            
+        }
+
+        //phương thức public để gọi form Nhân Viên
+        public void ShowFormNhanVien()
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.GetType() == typeof(TrangChu))
+                {
+                    // Thì kích hoạt (focus) nó lên và không làm gì nữa
+                    frm.Activate();
+                    return; // Thoát khỏi hàm
+                }
+            }
+            TrangChu frmTrangChu = new TrangChu();
+            frmTrangChu.MdiParent = this;
+            frmTrangChu.Show();
+        }
+
         private void ToggleSubMenu(Panel submenu)
         {
             if (!submenu.Visible)

@@ -1,0 +1,14 @@
+﻿Ví dụ: Bạn đang ở form Danh sách Sản phẩm (con A) và muốn nhấn nút "Thêm mới" để mở ra form Thêm sản phẩm (con B).
+
+Bạn không thể mở B trực tiếp từ A như một MDI child. Quy tắc là: chỉ có Form Cha (MainForm) mới có quyền "sinh" ra các Form Con.
+
+Vì vậy, Form con A phải "nhờ" Form Cha mở giúp Form con B.
+--------------------------------------------------------------------------------------------
+
+Ứng dụng chạy, Form Dangnhap hiện ra đầu tiên dưới dạng modal (ShowDialog()).
+
+Nếu người dùng nhấn nút "Đăng ký", Form Dangnhap sẽ mở Form Dangky (cũng bằng ShowDialog()).
+
+Khi người dùng đăng nhập thành công, Form Dangnhap sẽ tự đóng lại.
+
+Ngay sau đó, Form TrangChu (Form Cha) mới được tạo và hiển thị ra.

@@ -44,12 +44,11 @@ namespace KhachSanSaoBang
             else
             {
                 MessageBox.Show("Đăng nhập thành công, Chào mừng "+ Session.UserName+"!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
-                this.Hide();
-                Mainform mainform = new Mainform();
-                mainform.ShowDialog();
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
            
+
         }
 
         private void Dangnhap_Load(object sender, EventArgs e)

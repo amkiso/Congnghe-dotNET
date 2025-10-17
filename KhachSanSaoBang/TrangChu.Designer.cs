@@ -44,13 +44,13 @@
             this.btnQLKhachHang = new System.Windows.Forms.Button();
             this.pnlKhachhang = new System.Windows.Forms.Button();
             this.pnlDichVuSub = new System.Windows.Forms.Panel();
+            this.btnQLTienIch = new System.Windows.Forms.Button();
             this.btnQLDichVu = new System.Windows.Forms.Button();
             this.btnDichVu = new System.Windows.Forms.Button();
             this.pnlKhachSanSub = new System.Windows.Forms.Panel();
             this.btnQLThietBi = new System.Windows.Forms.Button();
             this.btnQLPhong = new System.Windows.Forms.Button();
             this.btnKhachSan = new System.Windows.Forms.Button();
-            this.btnQLTienIch = new System.Windows.Forms.Button();
             this.pnl_menu.SuspendLayout();
             this.pnlNhanVienSub.SuspendLayout();
             this.pnlThongKeSub.SuspendLayout();
@@ -64,7 +64,7 @@
             // 
             this.pnl_main.Location = new System.Drawing.Point(301, 0);
             this.pnl_main.Name = "pnl_main";
-            this.pnl_main.Size = new System.Drawing.Size(780, 656);
+            this.pnl_main.Size = new System.Drawing.Size(780, 677);
             this.pnl_main.TabIndex = 3;
             // 
             // pnl_menu
@@ -288,6 +288,22 @@
             this.pnlDichVuSub.TabIndex = 3;
             this.pnlDichVuSub.Visible = false;
             // 
+            // btnQLTienIch
+            // 
+            this.btnQLTienIch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnQLTienIch.FlatAppearance.BorderSize = 0;
+            this.btnQLTienIch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQLTienIch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnQLTienIch.ForeColor = System.Drawing.Color.White;
+            this.btnQLTienIch.Location = new System.Drawing.Point(0, 40);
+            this.btnQLTienIch.Name = "btnQLTienIch";
+            this.btnQLTienIch.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btnQLTienIch.Size = new System.Drawing.Size(294, 40);
+            this.btnQLTienIch.TabIndex = 1;
+            this.btnQLTienIch.Text = "Quản lý Tiện Ích";
+            this.btnQLTienIch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnQLTienIch.UseVisualStyleBackColor = true;
+            // 
             // btnQLDichVu
             // 
             this.btnQLDichVu.Dock = System.Windows.Forms.DockStyle.Top;
@@ -382,22 +398,6 @@
             this.btnKhachSan.UseVisualStyleBackColor = true;
             this.btnKhachSan.Click += new System.EventHandler(this.btnKhachSan_Click);
             // 
-            // btnQLTienIch
-            // 
-            this.btnQLTienIch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnQLTienIch.FlatAppearance.BorderSize = 0;
-            this.btnQLTienIch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQLTienIch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnQLTienIch.ForeColor = System.Drawing.Color.White;
-            this.btnQLTienIch.Location = new System.Drawing.Point(0, 40);
-            this.btnQLTienIch.Name = "btnQLTienIch";
-            this.btnQLTienIch.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLTienIch.Size = new System.Drawing.Size(294, 40);
-            this.btnQLTienIch.TabIndex = 1;
-            this.btnQLTienIch.Text = "Quản lý Tiện Ích";
-            this.btnQLTienIch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnQLTienIch.UseVisualStyleBackColor = true;
-            // 
             // TrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -405,6 +405,7 @@
             this.ClientSize = new System.Drawing.Size(1093, 769);
             this.Controls.Add(this.pnl_main);
             this.Controls.Add(this.pnl_menu);
+            this.IsMdiContainer = true;
             this.Name = "TrangChu";
             this.Text = "TrangChu";
             this.pnl_menu.ResumeLayout(false);
