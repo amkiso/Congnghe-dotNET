@@ -31,7 +31,7 @@
             this.pnl_main = new System.Windows.Forms.Panel();
             this.pnl_menu = new System.Windows.Forms.Panel();
             this.pnlNhanVienSub = new System.Windows.Forms.Panel();
-            this.btnQLNhanVien = new System.Windows.Forms.Button();
+            this.btn_QLNhanVien = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlThongKeSub = new System.Windows.Forms.Panel();
             this.btnBaoCao = new System.Windows.Forms.Button();
@@ -62,9 +62,9 @@
             // 
             // pnl_main
             // 
-            this.pnl_main.Location = new System.Drawing.Point(301, 0);
+            this.pnl_main.Location = new System.Drawing.Point(294, 0);
             this.pnl_main.Name = "pnl_main";
-            this.pnl_main.Size = new System.Drawing.Size(780, 677);
+            this.pnl_main.Size = new System.Drawing.Size(1576, 677);
             this.pnl_main.TabIndex = 3;
             // 
             // pnl_menu
@@ -90,7 +90,7 @@
             // 
             // pnlNhanVienSub
             // 
-            this.pnlNhanVienSub.Controls.Add(this.btnQLNhanVien);
+            this.pnlNhanVienSub.Controls.Add(this.btn_QLNhanVien);
             this.pnlNhanVienSub.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlNhanVienSub.Location = new System.Drawing.Point(0, 620);
             this.pnlNhanVienSub.Name = "pnlNhanVienSub";
@@ -98,21 +98,21 @@
             this.pnlNhanVienSub.TabIndex = 11;
             this.pnlNhanVienSub.Visible = false;
             // 
-            // btnQLNhanVien
+            // btn_QLNhanVien
             // 
-            this.btnQLNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnQLNhanVien.FlatAppearance.BorderSize = 0;
-            this.btnQLNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQLNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnQLNhanVien.ForeColor = System.Drawing.Color.White;
-            this.btnQLNhanVien.Location = new System.Drawing.Point(0, 0);
-            this.btnQLNhanVien.Name = "btnQLNhanVien";
-            this.btnQLNhanVien.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLNhanVien.Size = new System.Drawing.Size(294, 40);
-            this.btnQLNhanVien.TabIndex = 3;
-            this.btnQLNhanVien.Text = "Quản Lý Nhân Viên";
-            this.btnQLNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnQLNhanVien.UseVisualStyleBackColor = true;
+            this.btn_QLNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_QLNhanVien.FlatAppearance.BorderSize = 0;
+            this.btn_QLNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_QLNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btn_QLNhanVien.ForeColor = System.Drawing.Color.White;
+            this.btn_QLNhanVien.Location = new System.Drawing.Point(0, 0);
+            this.btn_QLNhanVien.Name = "btn_QLNhanVien";
+            this.btn_QLNhanVien.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
+            this.btn_QLNhanVien.Size = new System.Drawing.Size(294, 40);
+            this.btn_QLNhanVien.TabIndex = 3;
+            this.btn_QLNhanVien.Text = "Quản Lý Nhân Viên";
+            this.btn_QLNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_QLNhanVien.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -402,12 +402,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 769);
+            this.ClientSize = new System.Drawing.Size(1882, 1023);
             this.Controls.Add(this.pnl_main);
             this.Controls.Add(this.pnl_menu);
-            this.IsMdiContainer = true;
             this.Name = "TrangChu";
             this.Text = "TrangChu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnl_menu.ResumeLayout(false);
             this.pnlNhanVienSub.ResumeLayout(false);
             this.pnlThongKeSub.ResumeLayout(false);
@@ -439,7 +439,7 @@
         private System.Windows.Forms.Button btnKhachSan;
         private System.Windows.Forms.Button btnThongKe;
         private System.Windows.Forms.Panel pnlNhanVienSub;
-        private System.Windows.Forms.Button btnQLNhanVien;
+        private System.Windows.Forms.Button btn_QLNhanVien;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel pnlThongKeSub;
         private System.Windows.Forms.Button btnBaoCao;

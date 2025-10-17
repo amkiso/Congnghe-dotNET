@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KhachSanSaoBang.NhanVien;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,35 +16,29 @@ namespace KhachSanSaoBang
         public TrangChu()
         {
             InitializeComponent();
-            this.Click += TrangChu_Click;
+            this.btn_QLNhanVien.Click += Btn_QLNhanVien_Click;
         }
 
-        //tạo 1  form cha 
-        public  void TrangChu_Click(object sender, EventArgs e)
+        private void Btn_QLNhanVien_Click(object sender, EventArgs e)
         {
-            ShowFormNhanVien();
+            ucNhanVien userControlNV = new ucNhanVien();
 
-            
+            LoadControlVaoPanel(userControlNV);
         }
 
-        //phương thức public để gọi form Nhân Viên
-        public void ShowFormNhanVien()
+        private void LoadControlVaoPanel(Control control)
         {
-            foreach (Form frm in this.MdiChildren)
-            {
-                if (frm.GetType() == typeof(TrangChu))
-                {
-                    // Thì kích hoạt (focus) nó lên và không làm gì nữa
-                    frm.Activate();
-                    return; // Thoát khỏi hàm
-                }
-            }
-            TrangChu frmTrangChu = new TrangChu();
-            frmTrangChu.MdiParent = this;
-            frmTrangChu.Show();
-        }
+            // Xóa mọi control đang có trên "sân khấu"
+            pnl_main.Controls.Clear();
 
-        private void ToggleSubMenu(Panel submenu)
+            // Thêm control mới vào và cho nó lấp đầy "sân khấu"
+            control.Dock = DockStyle.Fill;
+            pnl_main.Controls.Add(control);
+        }
+        
+
+
+        public void ToggleSubMenu(Panel submenu)
         {
             if (!submenu.Visible)
             {
@@ -83,6 +78,8 @@ namespace KhachSanSaoBang
         private void button1_Click(object sender, EventArgs e)
         {
             ToggleSubMenu(pnlNhanVienSub);
+            
+           
         }
     }
 }

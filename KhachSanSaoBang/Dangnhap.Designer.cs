@@ -178,6 +178,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Dangnhap";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Dangnhap_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

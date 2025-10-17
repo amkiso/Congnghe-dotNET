@@ -74,11 +74,11 @@
     </Compile>
     <Compile Include="Models\Thongtinchung.cs" />
     <Compile Include="Models\Xuly.cs" />
-    <Compile Include="NhanVien\NhanVien.cs">
-      <SubType>Form</SubType>
+    <Compile Include="NhanVien\ucNhanVien.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NhanVien\NhanVien.Designer.cs">
-      <DependentUpon>NhanVien.cs</DependentUpon>
+    <Compile Include="NhanVien\ucNhanVien.Designer.cs">
+      <DependentUpon>ucNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NhanVien\NhanVien.resx">
-      <DependentUpon>NhanVien.cs</DependentUpon>
+    <EmbeddedResource Include="NhanVien\ucNhanVien.resx">
+      <DependentUpon>ucNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
