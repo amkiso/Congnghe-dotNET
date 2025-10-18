@@ -62,9 +62,10 @@
             // 
             // pnl_main
             // 
-            this.pnl_main.Location = new System.Drawing.Point(294, 0);
+            this.pnl_main.Location = new System.Drawing.Point(220, 0);
+            this.pnl_main.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnl_main.Name = "pnl_main";
-            this.pnl_main.Size = new System.Drawing.Size(1576, 677);
+            this.pnl_main.Size = new System.Drawing.Size(1663, 1080);
             this.pnl_main.TabIndex = 3;
             // 
             // pnl_menu
@@ -84,17 +85,19 @@
             this.pnl_menu.Controls.Add(this.pnlKhachSanSub);
             this.pnl_menu.Controls.Add(this.btnKhachSan);
             this.pnl_menu.Location = new System.Drawing.Point(1, 0);
+            this.pnl_menu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnl_menu.Name = "pnl_menu";
-            this.pnl_menu.Size = new System.Drawing.Size(294, 677);
+            this.pnl_menu.Size = new System.Drawing.Size(220, 1910);
             this.pnl_menu.TabIndex = 2;
             // 
             // pnlNhanVienSub
             // 
             this.pnlNhanVienSub.Controls.Add(this.btn_QLNhanVien);
             this.pnlNhanVienSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlNhanVienSub.Location = new System.Drawing.Point(0, 620);
+            this.pnlNhanVienSub.Location = new System.Drawing.Point(0, 505);
+            this.pnlNhanVienSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlNhanVienSub.Name = "pnlNhanVienSub";
-            this.pnlNhanVienSub.Size = new System.Drawing.Size(294, 40);
+            this.pnlNhanVienSub.Size = new System.Drawing.Size(220, 32);
             this.pnlNhanVienSub.TabIndex = 11;
             this.pnlNhanVienSub.Visible = false;
             // 
@@ -106,9 +109,10 @@
             this.btn_QLNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btn_QLNhanVien.ForeColor = System.Drawing.Color.White;
             this.btn_QLNhanVien.Location = new System.Drawing.Point(0, 0);
+            this.btn_QLNhanVien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_QLNhanVien.Name = "btn_QLNhanVien";
-            this.btn_QLNhanVien.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btn_QLNhanVien.Size = new System.Drawing.Size(294, 40);
+            this.btn_QLNhanVien.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btn_QLNhanVien.Size = new System.Drawing.Size(220, 32);
             this.btn_QLNhanVien.TabIndex = 3;
             this.btn_QLNhanVien.Text = "Quản Lý Nhân Viên";
             this.btn_QLNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -121,10 +125,11 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 570);
+            this.button1.Location = new System.Drawing.Point(0, 464);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(294, 50);
+            this.button1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(220, 41);
             this.button1.TabIndex = 10;
             this.button1.Text = "Nhân Viên";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,9 +141,10 @@
             this.pnlThongKeSub.Controls.Add(this.btnBaoCao);
             this.pnlThongKeSub.Controls.Add(this.btnDanhSachHoaDon);
             this.pnlThongKeSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlThongKeSub.Location = new System.Drawing.Point(0, 490);
+            this.pnlThongKeSub.Location = new System.Drawing.Point(0, 399);
+            this.pnlThongKeSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlThongKeSub.Name = "pnlThongKeSub";
-            this.pnlThongKeSub.Size = new System.Drawing.Size(294, 80);
+            this.pnlThongKeSub.Size = new System.Drawing.Size(220, 65);
             this.pnlThongKeSub.TabIndex = 9;
             this.pnlThongKeSub.Visible = false;
             // 
@@ -149,10 +155,11 @@
             this.btnBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBaoCao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnBaoCao.ForeColor = System.Drawing.Color.White;
-            this.btnBaoCao.Location = new System.Drawing.Point(0, 40);
+            this.btnBaoCao.Location = new System.Drawing.Point(0, 32);
+            this.btnBaoCao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBaoCao.Name = "btnBaoCao";
-            this.btnBaoCao.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnBaoCao.Size = new System.Drawing.Size(294, 40);
+            this.btnBaoCao.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnBaoCao.Size = new System.Drawing.Size(220, 32);
             this.btnBaoCao.TabIndex = 2;
             this.btnBaoCao.Text = "Báo cáo";
             this.btnBaoCao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,9 +173,10 @@
             this.btnDanhSachHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnDanhSachHoaDon.ForeColor = System.Drawing.Color.White;
             this.btnDanhSachHoaDon.Location = new System.Drawing.Point(0, 0);
+            this.btnDanhSachHoaDon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDanhSachHoaDon.Name = "btnDanhSachHoaDon";
-            this.btnDanhSachHoaDon.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnDanhSachHoaDon.Size = new System.Drawing.Size(294, 40);
+            this.btnDanhSachHoaDon.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnDanhSachHoaDon.Size = new System.Drawing.Size(220, 32);
             this.btnDanhSachHoaDon.TabIndex = 1;
             this.btnDanhSachHoaDon.Text = "Danh sách hóa đơn";
             this.btnDanhSachHoaDon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -181,10 +189,11 @@
             this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThongKe.ForeColor = System.Drawing.Color.White;
-            this.btnThongKe.Location = new System.Drawing.Point(0, 440);
+            this.btnThongKe.Location = new System.Drawing.Point(0, 358);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnThongKe.Size = new System.Drawing.Size(294, 50);
+            this.btnThongKe.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btnThongKe.Size = new System.Drawing.Size(220, 41);
             this.btnThongKe.TabIndex = 8;
             this.btnThongKe.Text = "Thống Kê";
             this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -195,9 +204,10 @@
             // 
             this.pnlDoanhThuSub.Controls.Add(this.btnQLDoanhThu);
             this.pnlDoanhThuSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDoanhThuSub.Location = new System.Drawing.Point(0, 400);
+            this.pnlDoanhThuSub.Location = new System.Drawing.Point(0, 326);
+            this.pnlDoanhThuSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlDoanhThuSub.Name = "pnlDoanhThuSub";
-            this.pnlDoanhThuSub.Size = new System.Drawing.Size(294, 40);
+            this.pnlDoanhThuSub.Size = new System.Drawing.Size(220, 32);
             this.pnlDoanhThuSub.TabIndex = 7;
             this.pnlDoanhThuSub.Visible = false;
             // 
@@ -209,9 +219,10 @@
             this.btnQLDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLDoanhThu.ForeColor = System.Drawing.Color.White;
             this.btnQLDoanhThu.Location = new System.Drawing.Point(0, 0);
+            this.btnQLDoanhThu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLDoanhThu.Name = "btnQLDoanhThu";
-            this.btnQLDoanhThu.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLDoanhThu.Size = new System.Drawing.Size(294, 40);
+            this.btnQLDoanhThu.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLDoanhThu.Size = new System.Drawing.Size(220, 32);
             this.btnQLDoanhThu.TabIndex = 0;
             this.btnQLDoanhThu.Text = "Quản lý Doanh Thu";
             this.btnQLDoanhThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,10 +235,11 @@
             this.btnDoanhThu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDoanhThu.ForeColor = System.Drawing.Color.White;
-            this.btnDoanhThu.Location = new System.Drawing.Point(0, 350);
+            this.btnDoanhThu.Location = new System.Drawing.Point(0, 285);
+            this.btnDoanhThu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDoanhThu.Name = "btnDoanhThu";
-            this.btnDoanhThu.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnDoanhThu.Size = new System.Drawing.Size(294, 50);
+            this.btnDoanhThu.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btnDoanhThu.Size = new System.Drawing.Size(220, 41);
             this.btnDoanhThu.TabIndex = 6;
             this.btnDoanhThu.Text = "Doanh Thu";
             this.btnDoanhThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,9 +250,10 @@
             // 
             this.pnlKhachHangSub.Controls.Add(this.btnQLKhachHang);
             this.pnlKhachHangSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlKhachHangSub.Location = new System.Drawing.Point(0, 310);
+            this.pnlKhachHangSub.Location = new System.Drawing.Point(0, 253);
+            this.pnlKhachHangSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlKhachHangSub.Name = "pnlKhachHangSub";
-            this.pnlKhachHangSub.Size = new System.Drawing.Size(294, 40);
+            this.pnlKhachHangSub.Size = new System.Drawing.Size(220, 32);
             this.pnlKhachHangSub.TabIndex = 5;
             this.pnlKhachHangSub.Visible = false;
             // 
@@ -252,9 +265,10 @@
             this.btnQLKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLKhachHang.ForeColor = System.Drawing.Color.White;
             this.btnQLKhachHang.Location = new System.Drawing.Point(0, 0);
+            this.btnQLKhachHang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLKhachHang.Name = "btnQLKhachHang";
-            this.btnQLKhachHang.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLKhachHang.Size = new System.Drawing.Size(294, 40);
+            this.btnQLKhachHang.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLKhachHang.Size = new System.Drawing.Size(220, 32);
             this.btnQLKhachHang.TabIndex = 0;
             this.btnQLKhachHang.Text = "Quản lý Khách Hàng";
             this.btnQLKhachHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -267,10 +281,11 @@
             this.pnlKhachhang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pnlKhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlKhachhang.ForeColor = System.Drawing.Color.White;
-            this.pnlKhachhang.Location = new System.Drawing.Point(0, 260);
+            this.pnlKhachhang.Location = new System.Drawing.Point(0, 212);
+            this.pnlKhachhang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlKhachhang.Name = "pnlKhachhang";
-            this.pnlKhachhang.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.pnlKhachhang.Size = new System.Drawing.Size(294, 50);
+            this.pnlKhachhang.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.pnlKhachhang.Size = new System.Drawing.Size(220, 41);
             this.pnlKhachhang.TabIndex = 4;
             this.pnlKhachhang.Text = "Khách hàng";
             this.pnlKhachhang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -282,9 +297,10 @@
             this.pnlDichVuSub.Controls.Add(this.btnQLTienIch);
             this.pnlDichVuSub.Controls.Add(this.btnQLDichVu);
             this.pnlDichVuSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlDichVuSub.Location = new System.Drawing.Point(0, 180);
+            this.pnlDichVuSub.Location = new System.Drawing.Point(0, 147);
+            this.pnlDichVuSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlDichVuSub.Name = "pnlDichVuSub";
-            this.pnlDichVuSub.Size = new System.Drawing.Size(294, 80);
+            this.pnlDichVuSub.Size = new System.Drawing.Size(220, 65);
             this.pnlDichVuSub.TabIndex = 3;
             this.pnlDichVuSub.Visible = false;
             // 
@@ -295,10 +311,11 @@
             this.btnQLTienIch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQLTienIch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLTienIch.ForeColor = System.Drawing.Color.White;
-            this.btnQLTienIch.Location = new System.Drawing.Point(0, 40);
+            this.btnQLTienIch.Location = new System.Drawing.Point(0, 32);
+            this.btnQLTienIch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLTienIch.Name = "btnQLTienIch";
-            this.btnQLTienIch.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLTienIch.Size = new System.Drawing.Size(294, 40);
+            this.btnQLTienIch.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLTienIch.Size = new System.Drawing.Size(220, 32);
             this.btnQLTienIch.TabIndex = 1;
             this.btnQLTienIch.Text = "Quản lý Tiện Ích";
             this.btnQLTienIch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,9 +329,10 @@
             this.btnQLDichVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLDichVu.ForeColor = System.Drawing.Color.White;
             this.btnQLDichVu.Location = new System.Drawing.Point(0, 0);
+            this.btnQLDichVu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLDichVu.Name = "btnQLDichVu";
-            this.btnQLDichVu.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLDichVu.Size = new System.Drawing.Size(294, 40);
+            this.btnQLDichVu.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLDichVu.Size = new System.Drawing.Size(220, 32);
             this.btnQLDichVu.TabIndex = 0;
             this.btnQLDichVu.Text = "Quản lý Dịch Vụ";
             this.btnQLDichVu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -327,10 +345,11 @@
             this.btnDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDichVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDichVu.ForeColor = System.Drawing.Color.White;
-            this.btnDichVu.Location = new System.Drawing.Point(0, 130);
+            this.btnDichVu.Location = new System.Drawing.Point(0, 106);
+            this.btnDichVu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDichVu.Name = "btnDichVu";
-            this.btnDichVu.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnDichVu.Size = new System.Drawing.Size(294, 50);
+            this.btnDichVu.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btnDichVu.Size = new System.Drawing.Size(220, 41);
             this.btnDichVu.TabIndex = 2;
             this.btnDichVu.Text = "Dịch vụ";
             this.btnDichVu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -343,9 +362,10 @@
             this.pnlKhachSanSub.Controls.Add(this.btnQLThietBi);
             this.pnlKhachSanSub.Controls.Add(this.btnQLPhong);
             this.pnlKhachSanSub.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlKhachSanSub.Location = new System.Drawing.Point(0, 50);
+            this.pnlKhachSanSub.Location = new System.Drawing.Point(0, 41);
+            this.pnlKhachSanSub.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlKhachSanSub.Name = "pnlKhachSanSub";
-            this.pnlKhachSanSub.Size = new System.Drawing.Size(294, 80);
+            this.pnlKhachSanSub.Size = new System.Drawing.Size(220, 65);
             this.pnlKhachSanSub.TabIndex = 1;
             this.pnlKhachSanSub.Visible = false;
             // 
@@ -356,10 +376,11 @@
             this.btnQLThietBi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQLThietBi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLThietBi.ForeColor = System.Drawing.Color.White;
-            this.btnQLThietBi.Location = new System.Drawing.Point(0, 40);
+            this.btnQLThietBi.Location = new System.Drawing.Point(0, 32);
+            this.btnQLThietBi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLThietBi.Name = "btnQLThietBi";
-            this.btnQLThietBi.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLThietBi.Size = new System.Drawing.Size(294, 40);
+            this.btnQLThietBi.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLThietBi.Size = new System.Drawing.Size(220, 32);
             this.btnQLThietBi.TabIndex = 1;
             this.btnQLThietBi.Text = "Quản lý Thiết bị";
             this.btnQLThietBi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -373,9 +394,10 @@
             this.btnQLPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnQLPhong.ForeColor = System.Drawing.Color.White;
             this.btnQLPhong.Location = new System.Drawing.Point(0, 0);
+            this.btnQLPhong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQLPhong.Name = "btnQLPhong";
-            this.btnQLPhong.Padding = new System.Windows.Forms.Padding(40, 0, 0, 0);
-            this.btnQLPhong.Size = new System.Drawing.Size(294, 40);
+            this.btnQLPhong.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.btnQLPhong.Size = new System.Drawing.Size(220, 32);
             this.btnQLPhong.TabIndex = 0;
             this.btnQLPhong.Text = "Quản lý Phòng";
             this.btnQLPhong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -389,9 +411,10 @@
             this.btnKhachSan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKhachSan.ForeColor = System.Drawing.Color.White;
             this.btnKhachSan.Location = new System.Drawing.Point(0, 0);
+            this.btnKhachSan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnKhachSan.Name = "btnKhachSan";
-            this.btnKhachSan.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnKhachSan.Size = new System.Drawing.Size(294, 50);
+            this.btnKhachSan.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.btnKhachSan.Size = new System.Drawing.Size(220, 41);
             this.btnKhachSan.TabIndex = 0;
             this.btnKhachSan.Text = "Khách sạn";
             this.btnKhachSan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -400,11 +423,12 @@
             // 
             // TrangChu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1882, 1023);
+            this.ClientSize = new System.Drawing.Size(1894, 1041);
             this.Controls.Add(this.pnl_main);
             this.Controls.Add(this.pnl_menu);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TrangChu";
             this.Text = "TrangChu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

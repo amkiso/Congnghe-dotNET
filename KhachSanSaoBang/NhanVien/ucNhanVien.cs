@@ -15,9 +15,11 @@ namespace KhachSanSaoBang.NhanVien
         public ucNhanVien()
         {
             InitializeComponent();
-            //this.btn_Them.Click += Btn_Them_Click;
+          
+            
         }
 
+       
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
