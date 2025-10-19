@@ -26,11 +26,22 @@ namespace KhachSanSaoBang.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Enc" +
-            "rypt=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-65Q6L55;Initial Catalog=QLKS;Integrated Security=True;Encrypt" +
+            "=True;TrustServerCertificate=True")]
         public string dataQLKSConnectionString {
             get {
                 return ((string)(this["dataQLKSConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-65Q6L55;Initial Catalog=dataQLKS;Integrated Security=True;Enc" +
+            "rypt=True;TrustServerCertificate=True")]
+        public string dataQLKSConnectionString1 {
+            get {
+                return ((string)(this["dataQLKSConnectionString1"]));
             }
         }
     }

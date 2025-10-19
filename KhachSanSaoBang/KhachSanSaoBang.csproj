@@ -63,6 +63,11 @@
     <Compile Include="Dangnhap.Designer.cs">
       <DependentUpon>Dangnhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="dataQLKSDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +83,13 @@
     </Compile>
     <Compile Include="Models\Thongtinchung.cs" />
     <Compile Include="Models\Xuly.cs" />
+    <Compile Include="Models\XuLyNV.cs" />
+    <Compile Include="NhanVien\FormThemSuaNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhanVien\FormThemSuaNhanVien.Designer.cs">
+      <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="NhanVien\ucNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +118,9 @@
     <EmbeddedResource Include="Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
+      <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\ucNhanVien.resx">
       <DependentUpon>ucNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +132,17 @@
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="dataQLKSDataSet.xsc">
+      <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dataQLKSDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dataQLKSDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dataQLKSDataSet.xss">
+      <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Models\SQLData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SQLData.designer.cs</LastGenOutput>

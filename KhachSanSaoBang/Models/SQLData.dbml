@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dataQLKS" Class="SQLDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="KhachSanSaoBang.Properties.Settings" SettingsPropertyName="dataQLKSConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-65Q6L55;Initial Catalog=dataQLKS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="KhachSanSaoBang.Properties.Settings" SettingsPropertyName="dataQLKSConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblChucVu" Member="tblChucVus">
     <Type Name="tblChucVu">
       <Column Name="ma_chuc_vu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -53,9 +53,9 @@
       <Column Name="tong_tien" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="tblHoaDon_tblDichVuDaDat" Member="tblDichVuDaDats" ThisKey="ma_hd" OtherKey="ma_hd" Type="tblDichVuDaDat" />
       <Association Name="tblKhuyenmai_tblHoaDon" Member="tblKhuyenmai" ThisKey="ma_khuyenmai" OtherKey="ma_khuyenmai" Type="tblKhuyenmai" IsForeignKey="true" />
-      <Association Name="tblNhanVien_tblHoaDon" Member="tblNhanVien" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblNhanVien" IsForeignKey="true" />
       <Association Name="tblPhieuDatPhong_tblHoaDon" Member="tblPhieuDatPhong" ThisKey="ma_pdp" OtherKey="ma_pdp" Type="tblPhieuDatPhong" IsForeignKey="true" />
       <Association Name="tblTinhTrangHoaDon_tblHoaDon" Member="tblTinhTrangHoaDon" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblTinhTrangHoaDon" IsForeignKey="true" />
+      <Association Name="tblNhanVien_tblHoaDon" Member="tblNhanVien" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblNhanVien" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblKhachHang" Member="tblKhachHangs">
@@ -91,20 +91,6 @@
       <Column Name="ti_le_phu_thu" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="anh" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Association Name="tblLoaiPhong_tblPhong" Member="tblPhongs" ThisKey="loai_phong" OtherKey="loai_phong" Type="tblPhong" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblNhanVien" Member="tblNhanViens">
-    <Type Name="tblNhanVien">
-      <Column Name="ma_nv" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ho_ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ngay_sinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="dia_chi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="sdt" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="tai_khoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="mat_khau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ma_chuc_vu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblNhanVien_tblHoaDon" Member="tblHoaDons" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblHoaDon" />
-      <Association Name="tblChucVu_tblNhanVien" Member="tblChucVu" ThisKey="ma_chuc_vu" OtherKey="ma_chuc_vu" Type="tblChucVu" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblPhieuDatPhong" Member="tblPhieuDatPhongs">
@@ -171,6 +157,24 @@
       <Column Name="ma_tinh_trang" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="mo_ta" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="tblTinhTrangPhong_tblPhong" Member="tblPhongs" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblPhong" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblNhanVien" Member="tblNhanViens">
+    <Type Name="tblNhanVien">
+      <Column Name="ma_nv" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ho_ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngay_sinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dia_chi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="tai_khoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mat_khau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ma_chuc_vu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gioi_tinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="que_quan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="nam_bd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="luong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblNhanVien_tblHoaDon" Member="tblHoaDons" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblHoaDon" />
+      <Association Name="tblChucVu_tblNhanVien" Member="tblChucVu" ThisKey="ma_chuc_vu" OtherKey="ma_chuc_vu" Type="tblChucVu" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
