@@ -24,12 +24,104 @@ namespace KhachSanSaoBang.NhanVien
             this.btn_SuaNV.Click += Btn_SuaNV_Click;
             this.Load += UcNhanVien_Load;
             this.btn_VoHieuHoaTK.Click += Btn_VoHieuHoaTK_Click;
+            this.btn_KhoiPhuc.Click += Btn_KhoiPhuc_Click;
+            this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
             
         }
 
+        private void Btn_KhoiPhuc_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int maNV = (int)dataGridView1.SelectedRows[0].Cells["ma_nv"].Value;
+
+                // Lấy trạng thái hiện tại để kiểm tra
+                // Giả sử cột trạng thái có DataPropertyName là "trang_thai"
+                bool trangThaiHienTai = (bool)dataGridView1.SelectedRows[0].Cells["trang_thai"].Value;
+
+                // Chỉ cho phép kích hoạt nếu tài khoản đang bị vô hiệu
+                if (trangThaiHienTai == true)
+                {
+                    MessageBox.Show("Tài khoản này đã ở trạng thái hoạt động!", "Thông báo");
+                    return;
+                }
+
+                var confirmResult = MessageBox.Show("Bạn có muốn kích hoạt lại tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Gọi lại hàm cũ nhưng truyền vào giá trị 'true'
+                    if (xl_nv.CapNhatTrangThai(maNV, true))
+                    {
+                        MessageBox.Show("Kích hoạt tài khoản thành công!");
+                        LoadData(); // Tải lại để gridview bỏ tô màu xám
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thao tác thất bại!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một nhân viên để kích hoạt.");
+            }
+        }
+
+        private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Chỉ thực hiện khi có dữ liệu trong dòng
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].DataBoundItem != null)
+            {
+                // Lấy ra đối tượng nhân viên của dòng hiện tại
+                var nv = dataGridView1.Rows[e.RowIndex].DataBoundItem as tblNhanVien;
+
+                // Kiểm tra trạng thái
+                if (nv != null && nv.trang_thai == false) // Nếu trạng thái là false (bị vô hiệu)
+                {
+                    // Đổi màu nền và màu chữ của cả dòng
+                    e.CellStyle.BackColor = Color.LightGray;
+                    e.CellStyle.ForeColor = Color.DimGray;
+                }
+            }
+        }
+
+      
+
         private void Btn_VoHieuHoaTK_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int maNV = (int)dataGridView1.SelectedRows[0].Cells["ma_nv"].Value;
+                string taiKhoan = dataGridView1.SelectedRows[0].Cells["tai_khoan"].Value.ToString();
+
+                // Không cho phép vô hiệu hóa admin
+                if (taiKhoan.ToLower() == "admin")
+                {
+                    MessageBox.Show("Không thể vô hiệu hóa tài khoản Quản trị viên!", "Lỗi");
+                    return;
+                }
+
+                var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn vô hiệu hóa tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // Gọi hàm xử lý với trạng thái mới là 'false' (vô hiệu)
+                    if (xl_nv.CapNhatTrangThai(maNV, false))
+                    {
+                        MessageBox.Show("Vô hiệu hóa thành công!");
+                        LoadData(); // Tải lại để thấy sự thay đổi
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thao tác thất bại!");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một nhân viên.");
+            }
         }
 
         private void UcNhanVien_Load(object sender, EventArgs e)

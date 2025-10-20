@@ -3509,6 +3509,8 @@ namespace KhachSanSaoBang.Models
 		
 		private System.Nullable<int> _luong;
 		
+		private bool _trang_thai;
+		
 		private EntitySet<tblHoaDon> _tblHoaDons;
 		
 		private EntityRef<tblChucVu> _tblChucVu;
@@ -3541,6 +3543,8 @@ namespace KhachSanSaoBang.Models
     partial void Onnam_bdChanged();
     partial void OnluongChanging(System.Nullable<int> value);
     partial void OnluongChanged();
+    partial void Ontrang_thaiChanging(bool value);
+    partial void Ontrang_thaiChanged();
     #endregion
 		
 		public tblNhanVien()
@@ -3790,6 +3794,26 @@ namespace KhachSanSaoBang.Models
 					this._luong = value;
 					this.SendPropertyChanged("luong");
 					this.OnluongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai", DbType="Bit NOT NULL")]
+		public bool trang_thai
+		{
+			get
+			{
+				return this._trang_thai;
+			}
+			set
+			{
+				if ((this._trang_thai != value))
+				{
+					this.Ontrang_thaiChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai = value;
+					this.SendPropertyChanged("trang_thai");
+					this.Ontrang_thaiChanged();
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 ﻿using KhachSanSaoBang.NhanVien;
+using KhachSanSaoBang.ThongKe;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +14,42 @@ namespace KhachSanSaoBang
 {
     public partial class TrangChu : Form
     {
+        ucNhanVien userControlNV;
+        ucHoaDon userControlHD;
+        ucBaoCao userControlBC;
         public TrangChu()
         {
             InitializeComponent();
             this.btn_QLNhanVien.Click += Btn_QLNhanVien_Click;
+            this.btn_DSHoaDon.Click += Btn_DSHoaDon_Click;
+            this.btn_BaoCao.Click += Btn_BaoCao_Click;
+        }
+
+        private void Btn_BaoCao_Click(object sender, EventArgs e)
+        {
+            LoadControlVaoPanel(userControlBC);
+        }
+
+        private void Btn_DSHoaDon_Click(object sender, EventArgs e)
+        {
+            LoadControlVaoPanel(userControlHD);
         }
 
         private void Btn_QLNhanVien_Click(object sender, EventArgs e)
         {
-            ucNhanVien userControlNV = new ucNhanVien();
+             userControlNV = new ucNhanVien();
+             userControlHD = new ucHoaDon();
+            userControlBC = new ucBaoCao();
 
+            userControlNV.Dock = DockStyle.Fill;
+            userControlHD.Dock = DockStyle.Fill;
+            userControlBC.Dock = DockStyle.Fill;
+
+            // Hiển thị một control mặc định khi chương trình mới chạy (nếu muốn)
+            pnl_main.Controls.Add(userControlNV);
             LoadControlVaoPanel(userControlNV);
         }
+
 
         private void LoadControlVaoPanel(Control control)
         {
@@ -32,7 +57,6 @@ namespace KhachSanSaoBang
             pnl_main.Controls.Clear();
 
             // Thêm control mới vào và cho nó lấp đầy "sân khấu"
-            control.Dock = DockStyle.Fill;
             pnl_main.Controls.Add(control);
         }
         
@@ -72,7 +96,7 @@ namespace KhachSanSaoBang
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            ToggleSubMenu(pnlThongKeSub);
+             ToggleSubMenu(pnlThongKeSub);
         }
 
         private void button1_Click(object sender, EventArgs e)

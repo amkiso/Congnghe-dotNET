@@ -89,13 +89,30 @@ namespace KhachSanSaoBang.Models
                 tblNhanVien nv = db.tblNhanViens.FirstOrDefault(n => n.ma_nv == maNV);
                 if (nv == null) return false;
 
-                // nv.trang_thai = kichHoat; // Cập nhật trạng thái
+                 nv.trang_thai = kichHoat; // Cập nhật trạng thái
                 db.SubmitChanges();
                 return true;
             }
             catch { return false; }
         }
 
-        
+        //trạng thái nhân viên 
+        public bool CapNhatTrangThai(int maNV, bool trangThaiMoi)
+        {
+            try
+            {
+                tblNhanVien nv = db.tblNhanViens.FirstOrDefault(n => n.ma_nv == maNV);
+                if (nv == null) return false;
+
+                // Cập nhật trạng thái
+                nv.trang_thai = trangThaiMoi;
+
+                db.SubmitChanges();
+                return true;
+            }
+            catch { return false; }
+        }
+
+
     }
 }

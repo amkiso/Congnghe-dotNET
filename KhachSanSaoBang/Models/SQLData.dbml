@@ -173,6 +173,7 @@
       <Column Name="que_quan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="nam_bd" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="luong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="trang_thai" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="tblNhanVien_tblHoaDon" Member="tblHoaDons" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblHoaDon" />
       <Association Name="tblChucVu_tblNhanVien" Member="tblChucVu" ThisKey="ma_chuc_vu" OtherKey="ma_chuc_vu" Type="tblChucVu" IsForeignKey="true" />
     </Type>

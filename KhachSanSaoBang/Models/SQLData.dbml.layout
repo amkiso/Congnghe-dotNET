@@ -92,7 +92,7 @@
         <elementListCompartment Id="1f693437-6205-4f50-9aa2-d6d064a92b3f" absoluteBounds="0.765, 6.71, 1.9700000000000002, 0.67278647919495893" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 6.35659912109375); (12.75 : 6.35659912109375); (12.75 : 3.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11 : 6.35659912109375); (11.2604191666667 : 6.35659912109375 : JumpStart); (11.4270858333333 : 6.35659912109375 : JumpEnd); (12.75 : 6.35659912109375); (12.75 : 3.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblDichVu/tblDichVu_tblDichVuDaDat" />
       <nodes>
         <classShapeMoniker Id="0c305825-c85f-4e96-b13b-bdc58ee063b1" />
@@ -113,7 +113,7 @@
         <classShapeMoniker Id="5b2ed87e-a8dc-4e14-b0de-0901d8545219" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 6.25); (8.625 : 5.875); (8.625 : 2.429934930106); (8.76427275076664 : 2.429934930106 : JumpStart); (8.93093941743331 : 2.429934930106 : JumpEnd); (9 : 2.429934930106)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.25 : 6.25); (8.625 : 5.875); (8.625 : 2.429934930106); (8.76427275076665 : 2.429934930106 : JumpStart); (8.93093941743331 : 2.429934930106 : JumpEnd); (9 : 2.429934930106)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblKhuyenmai/tblKhuyenmai_tblHoaDon" />
       <nodes>
         <classShapeMoniker Id="109a01ec-3e08-4f49-bc26-b47dc4fec0d9" />
@@ -134,7 +134,7 @@
         <classShapeMoniker Id="0bb386db-0de2-440e-bfe0-60fa67744143" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.88104939778646); (5.79166666666667 : 2.88104939778646 : JumpStart); (6.11458333333333 : 2.88104939778646 : JumpEnd); (6.25 : 2.88104939778646)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 2.88104939778646); (5.79166666666667 : 2.88104939778646 : JumpStart); (5.95833333333333 : 2.88104939778646 : JumpEnd); (6.25 : 2.88104939778646)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblPhong/tblPhong_tblPhieuDatPhong" />
       <nodes>
         <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
@@ -162,7 +162,7 @@
         <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 4.28214495227364); (8.40625 : 3.875); (8.40625 : 4.32615397135417); (8.60610865180698 : 3.46749178277824 : JumpStart); (8.64389134819302 : 3.30516419537679 : JumpEnd); (8.73110865180698 : 2.93044836433445 : JumpStart); (8.76889134819302 : 2.76812077693299 : JumpEnd); (9 : 1.77519773374613)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.25 : 4.28214495227364); (8.40625 : 3.875); (8.40625 : 4.32615397135417); (8.60610865180698 : 3.46749178277825 : JumpStart); (8.64389134819302 : 3.30516419537679 : JumpEnd); (9 : 1.77519773374613)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblTinhTrangHoaDon/tblTinhTrangHoaDon_tblHoaDon" />
       <nodes>
         <classShapeMoniker Id="8d719f06-129a-48b3-a1ae-2b7eca766f7a" />
@@ -183,24 +183,24 @@
         <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
       </nodes>
     </associationConnector>
-    <classShape Id="2ae5ebc5-df27-4e32-9c6d-2a5cfce7342e" absoluteBounds="8.625, 8.875, 2, 3.2666407054662705">
+    <classShape Id="2e5fb6a6-7f80-4397-8639-9633c8d88d00" absoluteBounds="9.625, 9, 2, 3.4700261280934015">
       <DataClassMoniker Name="/SQLDataDataContext/tblNhanVien" />
       <nestedChildShapes>
-        <elementListCompartment Id="d7515756-d1fb-4d76-9cb3-675e305740d8" absoluteBounds="8.64, 9.335, 1.9700000000000002, 2.7066407054662704" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="93803f64-817b-4220-af66-91aeea454271" absoluteBounds="9.64, 9.46, 1.9700000000000002, 2.9100261280934014" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.625 : 8.875); (9.625 : 7.67132816970348); (8.75 : 7.67132816970348); (8.75 : 2.429934930106); (8.76427275076664 : 2.429934930106 : JumpStart); (8.93093941743331 : 2.429934930106 : JumpEnd); (9 : 2.429934930106)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.3437525 : 9); (11.3437525 : 3.10583627450704); (11 : 3.10583627450704)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblNhanVien/tblNhanVien_tblHoaDon" />
       <nodes>
-        <classShapeMoniker Id="2ae5ebc5-df27-4e32-9c6d-2a5cfce7342e" />
+        <classShapeMoniker Id="2e5fb6a6-7f80-4397-8639-9633c8d88d00" />
         <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 10.3663932395975); (5.79166666666667 : 10.3663932395975 : JumpStart); (5.95833333333333 : 10.3663932395975 : JumpEnd); (8.625 : 10.3663932395975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 10.3663932395975); (5.79166666666667 : 10.3663932395975 : JumpStart); (5.95833333333333 : 10.3663932395975 : JumpEnd); (9.625 : 10.3663932395975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblChucVu/tblChucVu_tblNhanVien" />
       <nodes>
         <classShapeMoniker Id="8a3b460b-e515-4189-94da-a55b4b819265" />
-        <classShapeMoniker Id="2ae5ebc5-df27-4e32-9c6d-2a5cfce7342e" />
+        <classShapeMoniker Id="2e5fb6a6-7f80-4397-8639-9633c8d88d00" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
