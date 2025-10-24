@@ -68,6 +68,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DoanhThu\DBDoanhThu.cs" />
+    <Compile Include="DoanhThu\ThongTinHoaDon.cs" />
+    <Compile Include="KhachHang\DanhSachKhachHang.cs" />
+    <Compile Include="KhachHang\ThongTinKhachHang.cs" />
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,11 +113,26 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="KhachHang\ucKhachHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhachHang\ucKhachHang.Designer.cs">
+      <DependentUpon>ucKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoanhThu\ucDoanhThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoanhThu\ucDoanhThu.Designer.cs">
+      <DependentUpon>ucDoanhThu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dangnhap.resx">
       <DependentUpon>Dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
+      <DependentUpon>ucKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
@@ -131,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoanhThu\ucDoanhThu.resx">
+      <DependentUpon>ucDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dataQLKSDataSet.xsc">
       <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>

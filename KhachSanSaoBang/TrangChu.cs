@@ -17,6 +17,22 @@ namespace KhachSanSaoBang
         {
             InitializeComponent();
             this.btn_QLNhanVien.Click += Btn_QLNhanVien_Click;
+            this.btnQLKhachHang.Click += BtnQLKhachHang_Click;
+            this.btnQLDoanhThu.Click += BtnQLDoanhThu_Click;
+        }
+
+        private void BtnQLDoanhThu_Click(object sender, EventArgs e)
+        {
+            ucDoanhThu userControlDT = new ucDoanhThu();
+
+            LoadControlVaoPanel(userControlDT);
+        }
+
+        private void BtnQLKhachHang_Click(object sender, EventArgs e)
+        {
+            ucKhachHang userControlNV = new ucKhachHang();
+
+            LoadControlVaoPanel(userControlNV);
         }
 
         private void Btn_QLNhanVien_Click(object sender, EventArgs e)
