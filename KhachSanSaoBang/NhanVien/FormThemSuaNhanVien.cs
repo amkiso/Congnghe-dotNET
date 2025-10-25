@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KhachSanSaoBang.Models.Data;
 using System.Windows.Forms;
 
 namespace KhachSanSaoBang.NhanVien
@@ -69,7 +70,7 @@ namespace KhachSanSaoBang.NhanVien
                 return;
             }
 
-            Models.tblNhanVien nv = new Models.tblNhanVien();
+            tblNhanVien nv = new tblNhanVien();
             nv.ho_ten = txt_HoTen.Text;
             nv.gioi_tinh = cbo_GioiTinh.Text;
             nv.que_quan = txt_QueQuan.Text;

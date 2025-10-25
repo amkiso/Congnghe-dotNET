@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KhachSanSaoBang.Models
+namespace KhachSanSaoBang.Models.Data
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -18,6 +18,7 @@ namespace KhachSanSaoBang.Models
 	using System.Reflection;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using System.Data.SqlClient;
 	using System.ComponentModel;
 	using System;
 	
@@ -81,7 +82,7 @@ namespace KhachSanSaoBang.Models
     #endregion
 		
 		public SQLDataDataContext() : 
-				base(global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1, mappingSource)
+				base(global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

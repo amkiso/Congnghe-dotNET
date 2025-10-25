@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using KhachSanSaoBang.Models.Data;
+using Newtonsoft.Json.Linq;
 namespace KhachSanSaoBang.Models
 {
     public class Xuly
     {
         SQLDataDataContext db = new SQLDataDataContext();
-        public Xuly() { }
-        //Xu ly đăng ký
+        public Xuly()
+        {
 
+        }
         //Xử lý đăng nhập và lưu session
         public bool Dangnhap(tblNhanVien nv)
         {
@@ -25,44 +28,518 @@ namespace KhachSanSaoBang.Models
             else
             {
                 var obj = (from u in db.tblNhanViens
-                          join cv in db.tblChucVus on u.ma_chuc_vu equals cv.ma_chuc_vu
-                          where u.tai_khoan == nv.tai_khoan && u.mat_khau == nv.mat_khau
-                          select new { u.ho_ten, u.ma_nv, cv.chuc_vu }).FirstOrDefault();
+                           join cv in db.tblChucVus on u.ma_chuc_vu equals cv.ma_chuc_vu
+                           where u.tai_khoan == nv.tai_khoan && u.mat_khau == nv.mat_khau
+                           select new { u.ho_ten, u.ma_nv, cv.chuc_vu }).FirstOrDefault();
                 Session.Role = obj.chuc_vu;
                 Session.UserId = obj.ma_nv;
                 Session.UserName = obj.ho_ten;
                 return true;
             }
         }
-        //Lấy toàn bộ thông tin tình trạng phòng
+        //Lấy list toàn bộ thông tin dịch vụ hiện có
+        public List<tblDichVu> dsDichVu()
+        {
+            return (from u in db.tblDichVus select u).ToList();
+        }
+        //Lấy list toàn bộ thông tin tình trạng phòng
         public List<tblTinhTrangPhong> tinhtrangp()
         {
             return (from u in db.tblTinhTrangPhongs select u).ToList();
         }
+        //Lấy thông tin dịch vụ khách đã sử dụng của phòng hiện tại
+        public List<DichVuDaDung> listdichvup(int ma)
+        {
+            List<DichVuDaDung> list = new List<DichVuDaDung>();
+            var query = from dvd in db.tblDichVuDaDats
+                        join hd in db.tblHoaDons on dvd.ma_hd equals hd.ma_hd
+                        join pdp in db.tblPhieuDatPhongs on hd.ma_pdp equals pdp.ma_pdp
+                        join dv in db.tblDichVus on dvd.ma_dv equals dv.ma_dv
+                        where pdp.ma_phong == ma && hd.ma_tinh_trang == 1
+                        select new
+                        {
+                            dv.ten_dv,
+                            dv.gia,
+                            dv.don_vi,
+                            dvd.so_luong
+                        };
+            foreach (var item in query)
+            {
+                list.Add(new DichVuDaDung
+                {
+                    Tendv = item.ten_dv,
+                    Donvi = item.don_vi,
+                    Soluong = (int)item.so_luong,
+                    Giaban = (float)item.gia
+                });
+            }
+            return list;
+        }
+        //tính toán số lượng khách dự vào tính hợp lệ của chuỗi json từ db
+        public int Soluongkhach(string ttkhachtheo)
+        {
+            try
+            {
+                // Phân tích chuỗi JSON thành JArray
+                JArray arr = JArray.Parse(ttkhachtheo);
+                int count = 1;
+
+                foreach (var item in arr)
+                {
+                    string hoten = (string)item["hoten"];
+                    string tuoi = (string)item["tuoi"];
+
+                    // Kiểm tra điều kiện hợp lệ: hoten và tuoi không rỗng hoặc null
+                    if (!string.IsNullOrWhiteSpace(hoten) && !string.IsNullOrWhiteSpace(tuoi))
+                    {
+                        count++;
+                    }
+                }
+
+                return count;
+            }
+            catch (Exception ex)
+            {
+
+                return 1;
+            }
+        }
+        //Lấy thông tin phòng cho giao diện
         public List<tblPhong> tomau()
         {
             return (from u in db.tblPhongs select u).ToList();
         }
+        //Lấy thông tin tất cả các phòng
+        public List<Thongtinchung> GetAllThongtinphong()
+        {
+            List<Thongtinchung> list = new List<Thongtinchung>();
+
+            // Lấy toàn bộ danh sách phòng
+            var dsPhong = from u in db.tblPhongs
+                          join lp in db.tblLoaiPhongs on u.loai_phong equals lp.loai_phong
+                          select new
+                          {
+                              u.ma_phong,
+                              u.ma_tinh_trang,
+                              lp.mo_ta,
+                              u.so_phong,
+                              u.ma_tang,
+                              lp.gia,
+                              lp.ti_le_phu_thu
+                          };
+
+            // Lặp qua từng phòng và lấy thông tin chi tiết
+            foreach (var phong in dsPhong)
+            {
+                Thongtinchung tt = new Thongtinchung();
+                tt.Trangthai = (int)phong.ma_tinh_trang;
+                tt.Loaiphong = phong.mo_ta;
+                tt.Maphong = phong.ma_phong;
+                tt.Tenphong = phong.so_phong;
+                tt.Matang = (int)phong.ma_tang;
+                tt.Giathue = (int)phong.gia;
+                tt.Phuthu = (int)phong.ti_le_phu_thu;
+
+                // Nếu phòng đang có người (không phải trống)
+                if (phong.ma_tinh_trang != 1)
+                {
+                    var phongp = (from u in db.tblPhieuDatPhongs
+                                  join k in db.tblKhachHangs on u.ma_kh equals k.ma_kh
+                                  where u.ma_phong == phong.ma_phong && (u.ma_tinh_trang == 1 || u.ma_tinh_trang == 2)
+                                  select new
+                                  {
+                                      u.ngay_dat,
+                                      u.ngay_ra,
+                                      u.ngay_vao,
+                                      u.ma_tinh_trang,
+                                      k.ho_ten,
+                                      u.thong_tin_khach_thue
+                                  }).FirstOrDefault();
+
+                    if (phongp != null)
+                    {
+                        tt.Thoigian_nhanphong = phongp.ngay_vao.ToString();
+                        tt.Ngayra = phongp.ngay_ra.ToString();
+                        tt.Ngayvao = phongp.ngay_dat.ToString();
+                        tt.Khachhang = phongp.ho_ten;
+                        tt.Sokhach = Soluongkhach(phongp.thong_tin_khach_thue);
+                    }
+                    else
+                    {
+                        tt.Thoigian_nhanphong = "-";
+                        tt.Ngayra = "-";
+                        tt.Ngayvao = "-";
+                        tt.Khachhang = "-";
+                        tt.Sokhach = 0;
+                    }
+                }
+                else
+                {
+                    tt.Thoigian_nhanphong = "-";
+                    tt.Ngayra = "-";
+                    tt.Ngayvao = "-";
+                    tt.Khachhang = "-";
+                    tt.Sokhach = 0;
+                }
+
+                // Thêm vào danh sách
+                list.Add(tt);
+            }
+
+            return list;
+        }
+
         //Lấy thông tin theo phòng
-        public Thongtinchung GetThongtinphong(int ma) { 
-        Thongtinchung tt = new Thongtinchung();
-           var phong = (from u in db.tblPhongs
-                        join lp in db.tblLoaiPhongs
-                        on u.loai_phong equals lp.loai_phong
-                        where u.ma_phong == ma select new
-                        {
-                            u.ma_phong,u.ma_tinh_trang,lp.mo_ta, u.so_phong,u.ma_tang,lp.gia
-                        }).FirstOrDefault();
-            tt.Trangthai = (int) phong.ma_tinh_trang;
+        public Thongtinchung GetThongtinphong(int ma)
+        {
+            Thongtinchung tt = new Thongtinchung();
+            var phong = (from u in db.tblPhongs
+                         join lp in db.tblLoaiPhongs
+                         on u.loai_phong equals lp.loai_phong
+                         where u.ma_phong == ma
+                         select new
+                         {
+                             u.ma_phong,
+                             u.ma_tinh_trang,
+                             lp.mo_ta,
+                             u.so_phong,
+                             u.ma_tang,
+                             lp.gia,
+                             lp.ti_le_phu_thu
+                         }).FirstOrDefault();
+            tt.Trangthai = (int)phong.ma_tinh_trang;
             tt.Loaiphong = phong.mo_ta;
             tt.Maphong = phong.ma_phong;
             tt.Tenphong = phong.so_phong;
             tt.Matang = (int)phong.ma_tang;
             tt.Giathue = (int)phong.gia;
+            tt.Phuthu = (int)phong.ti_le_phu_thu;
+            if (phong.ma_tinh_trang != 1)
+            {
+                var phongp = (from u in db.tblPhieuDatPhongs
+                              join k in db.tblKhachHangs
+                              on u.ma_kh equals k.ma_kh
+                              where u.ma_phong == ma && (u.ma_tinh_trang == 1 || u.ma_tinh_trang == 2)
+                              select new { u.ngay_dat, u.ngay_ra, u.ngay_vao, u.ma_tinh_trang, k.ho_ten, u.thong_tin_khach_thue }).FirstOrDefault();
+                if (phongp != null)
+                {
+                    tt.Thoigian_nhanphong = phongp.ngay_vao.ToString();
+                    tt.Ngayra = phongp.ngay_ra.ToString();
+                    tt.Ngayvao = phongp.ngay_dat.ToString();
+                    tt.Khachhang = phongp.ho_ten;
+                    tt.Sokhach = Soluongkhach(phongp.thong_tin_khach_thue);
+                }
+                else
+                {
+
+                    tt.Thoigian_nhanphong = "-";
+                    tt.Ngayra = "-";
+                    tt.Ngayvao = "-";
+                    tt.Khachhang = "-";
+                    tt.Sokhach = 0;
+                }
+            }
+            else
+            {
+                tt.Thoigian_nhanphong = "-";
+                tt.Ngayra = "-";
+                tt.Ngayvao = "-";
+                tt.Khachhang = "-";
+                tt.Sokhach = 0;
+            }
+
             Session.maphonghientai = tt.Maphong;
             return tt;
-        
+
         }
-        
+        //Trả hàng
+        public bool Tradichvu(int ma_p, int madv, int soluong)
+        {
+            //Dịch vụ trả phải tương ứng với số phòng và hóa đơn chưa thanh toán tương ứng
+            try
+            {
+                // 1. Lấy mã hóa đơn
+                int current_ma_hd = (from u in db.tblHoaDons
+                                     join p in db.tblPhieuDatPhongs on u.ma_pdp equals p.ma_pdp
+                                     where p.ma_phong == ma_p && u.ma_tinh_trang == 1 // 1 = chưa thanh toán
+                                     select u.ma_hd).FirstOrDefault();
+
+                if (current_ma_hd == 0)
+                {
+                    return false;
+                }
+
+                // 2. Tìm dịch vụ đã gọi trong hóa đơn đó
+                var existingService = db.tblDichVuDaDats.FirstOrDefault(d => d.ma_hd == current_ma_hd && d.ma_dv == madv);
+
+                if (existingService == null)
+                {
+                    return false;
+                }
+
+                if (soluong < existingService.so_luong)
+                {
+                    // Trả một phần -> Cập nhật (giảm) số lượng
+                    existingService.so_luong -= soluong;
+                }
+                else
+                {
+                    // Trả hết (hoặc lỡ nhập số > số đã gọi -> Xóa
+                    db.tblDichVuDaDats.DeleteOnSubmit(existingService);
+                }
+                // 4. Lưu thay đổi
+                // TRIGGER 'trg_Update_TonKho_DichVu' trong CSDL sẽ tự động kích hoạt
+                // và cộng trả lại 'soluongTra' vào tblDichVu.ton_kho
+                db.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        //Gọi dịch vụ
+        public bool GoiDichVu(int ma_p, int madv, int soluong)
+        {
+            try
+            {   //Lấy mã hóa đơn của phòng
+                int current_ma_hd = (from u in db.tblHoaDons
+                                     join p in db.tblPhieuDatPhongs on u.ma_pdp equals p.ma_pdp
+                                     where p.ma_phong == ma_p && u.ma_tinh_trang == 1
+                                     select u.ma_hd).FirstOrDefault();
+
+                if (current_ma_hd == 0)
+                {
+                    return false;
+                }
+                //Nếu dịch vụ đã có gọi từ trước thì tăng thêm số lượng
+                var existingService = db.tblDichVuDaDats.FirstOrDefault(d => d.ma_hd == current_ma_hd && d.ma_dv == madv);
+
+                if (existingService != null)
+                {
+                    existingService.so_luong += soluong;
+                }
+                else // chưa có thì thêm mới vào bảng dichvudatat
+                {
+                    var dv = new tblDichVuDaDat();
+                    dv.ma_hd = current_ma_hd;
+                    dv.ma_dv = madv;
+                    dv.so_luong = soluong;
+
+                    db.tblDichVuDaDats.InsertOnSubmit(dv);
+                }
+                //lưu
+                db.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        //Tính tiền tạm tính
+        public string TienTamTinh(int ma)
+        {
+
+            //Tiền tạm tính được tính bằng: số tiền dịch vụ đã dùng + ( tiền phòng * số ngày đặt ) + ( %phụ thu tiền phòng * Số ngày ở thêm )
+            Thongtinchung tt = GetThongtinphong(ma);
+            if (tt.Trangthai == 1) return "0 VNĐ";
+            else
+            {
+                //Nếu trạng thái là đang sử dụng (2) thì mới tính tiền
+                if (tt.Trangthai == 2)
+                {
+                    List<DichVuDaDung> dv = listdichvup(ma);
+                    float tiendv = dv.Sum(t => t.Giaban * t.Soluong);
+                    //tính số ngày ở
+                    float tongngayo = (float)(DateTime.Now - DateTime.Parse(tt.Ngayvao)).TotalDays; //dùng now để cập nhật số tiền ở đến hiện tại ( tạm tính )
+                    //Tính số ngay đặt và ngày ở thêm
+                    int sngaydat = (int)(DateTime.Parse(tt.Ngayra) - DateTime.Parse(tt.Ngayvao)).TotalDays;
+                    float thoigianthem = tongngayo - sngaydat;
+                    //Tiến hành tính tiền
+                    //Tiền tạm tính được tính bằng: số tiền dịch vụ đã dùng + ( tiền phòng * số ngày đặt ) + ( %phụ thu tiền phòng * Số ngày ở thêm )
+                    return (tiendv + (tt.Giathue * sngaydat) + ((tt.Giathue / 100) * tt.Phuthu * thoigianthem)).ToString() + " VNĐ";
+                }
+
+            }
+            return "0 VNĐ";
+        }
+        public int GetCodeRoomStatus(int ma_p)
+        {
+            return (int)db.tblPhongs.Where(t => t.ma_phong == ma_p).FirstOrDefault().ma_tinh_trang;
+        }
+        public string GetStringRoomStatus(int ma_tinh_trang)
+        {
+            return db.tblTinhTrangPhongs.FirstOrDefault(t => t.ma_tinh_trang == ma_tinh_trang).mo_ta;
+        }
+        //Kiểm tra tình trạng phòng đã được thanh toán hay chưa ?
+        public bool CheckHoaDon(int ma_p)
+        {
+            try
+            {
+                return true;
+            }
+            catch (Exception ex) { return false; }
+        }
+        //Đổi trạng thái phòng
+        public bool ChangeRoomStatus(int maphong, int matrangthai)
+        {
+            try { return true; }
+            catch (Exception ex) { return false; }
+        }
+        //Tra cứu thông tin dựa vào số điện thoại hoặc CCCD của khách hàng
+        public ThongtinTracuu Tracuuthongtin(string _input)
+        {
+            ThongtinTracuu data = new ThongtinTracuu();
+            string makh = GetMaKH(_input);
+            if (makh == null) { return null; }
+            else
+            {
+                try
+                {
+                    //Lấy thông tin khách hàng
+                    var datakh = (from u in db.tblKhachHangs where u.ma_kh == makh select new { u.ma_kh, u.ho_ten, u.mail, u.cmt, u.sdt, u.diem }).FirstOrDefault();
+                    //Lấy thông tin đặt phòng
+                    data.So_Phong_chua_Xac_nhan = GetSoPhongChoXacNhan(makh);//chờ xác nhận(trạng thái phiếu = 1)
+                    data.So_phong_dang_dat = GetSoPhongDangDat(makh);//đã đặt và chờ ckecin(trạng thái phiếu = 2)
+                    data.Phong_cho_xac_nhan = GetlistPhongTrangThai(makh, 1);//chờ xác nhận(trạng thái phiếu = 1)
+                    data.Phong_dang_dat = GetlistPhongTrangThai(makh, 2);//đã đặt và chờ ckecin(trạng thái phiếu = 2)
+                    data.Cccd = datakh.cmt;
+                    data.So_phong_da_dat = GetSoPhongDaDat(makh);
+                    data.Hoten = datakh.ho_ten;
+                    data.Diem_tich_luy = (int)datakh.diem;
+                    data.Sdt = datakh.sdt;
+                    data.Phong_da_dat = GetSoPhongDaDat(makh);//đã đặt(trạng thái phiếu = 4)
+                    return data;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+        //GET Mã khách hàng
+        public string GetMaKH(string _input)
+        {
+            if (!ChecKH(_input)) { return null; }
+            else
+            {
+                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input);
+                return kh.ma_kh;
+            }
+        }
+        //Kiểm tra khách hàng có tài khoản hay chưa dựa vào sdt hoặc cccd
+        public bool ChecKH(string _input)
+        {
+            try
+            {
+                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input);
+                if (kh == null) return false;
+                else return true;
+
+            }
+            catch (Exception e) { return false; }
+
+        }
+        public int CheckTrungKhachHang(tblKhachHang kh)
+        {
+
+            //kiểm tra trùng tên tài khoản
+            if (db.tblKhachHangs.Where(t => t.ma_kh == kh.ma_kh) != null)
+            {
+                return 1;
+            }
+            //kiểm tra trùng cccd
+            else if (db.tblKhachHangs.Where(t => t.cmt == kh.cmt) != null)
+            {
+                return 2;
+            }
+            //kiểm tra trùng sdt
+            else if (db.tblKhachHangs.Where(t => t.sdt == kh.sdt) != null)
+            {
+                return 3;
+            }
+            //kiểm tra trùng email
+            else if (db.tblKhachHangs.Where(t => t.mail == kh.mail) != null)
+            {
+                return 4;
+            }
+            else return 0;
+        }
+        //Đăng ký tài khoản cho khách hàng mới
+        public bool DangkyKH(tblKhachHang khach)
+        {
+            try
+
+            {
+                db.tblKhachHangs.InsertOnSubmit(khach);
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+        //Lấy danh sách tên phòng theo trạng thái
+        public List<string> GetlistPhongTrangThai(string _input, int trangthai)
+        {
+            try
+            {
+                /*Lấy danh sách tên của các phòng mà khách hàng nay đã đặt
+                Cách làm: Lấy danh sách mã phòng của khách hàng tương ứng trong phiếu đặt phòng có trạng thái  tương ứng
+                Sau đó có được mã phòng để tra cứu tên phòng và lưu vào list*/
+
+                List<int> sophong = getlistmaphongtrangthai(_input, trangthai);
+                List<string> tenp = new List<string>();
+                foreach (int i in sophong)
+                {
+                    var phong = db.tblPhongs.FirstOrDefault(t => t.ma_phong == i);
+                    string room_name = phong.so_phong;
+                    tenp.Add(room_name);
+                }
+
+                return tenp;
+            }
+            catch (Exception e) { return null; }
+        }
+        //Lấy danh sách mã phòng theo trạng thái
+        public List<int> getlistmaphongtrangthai(string _input, int trangthai)
+        {
+            try
+            {
+                List<int> sophong = new List<int>();
+                var phongkh = db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == trangthai).ToList();
+                foreach (var item in phongkh)
+                {
+                    int sop = (int)item.ma_phong;
+                    sophong.Add(sop);
+                }
+
+                return sophong;
+            }
+            catch (Exception e) { return null; }
+        }
+
+        //Lấy số phòng dựa theo trạng thái muốn tra cứu và khách hàng tương ứng
+        public int GetSoPhongKH_TrangThai(string _input, int trangthai)
+        {
+            return db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == trangthai).Count();
+        }
+        //Lấy số phòng đang chờ check-in của khách hàng(mã)
+        public int GetSoPhongDangDat(string _input)
+        {
+            //Số phòng đang đặt và chờ checkin = count* số phiếu đặt phòng của khách hàng tương ứng && trạng thái = 2(Đã xong-> có nghĩa là đã được nhân viên xác nhận)
+            return db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == 2).Count();
+        }
+        //Lấy số phòng đang chờ xác nhận của khách hàng(mã)
+        public int GetSoPhongChoXacNhan(string _input)
+        {
+            return db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == 1).Count();
+        }
+        //Lấy số phòng đã đặt tại khách sạn của khách hàng(mã)
+        public int GetSoPhongDaDat(string _input)
+        {
+            //Số phòng đã đặt  = count* số phiếu đặt phòng của khách hàng tương ứng && trạng thái = 4(Đã thanh toán)
+            return db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == 4).Count();
+        }
     }
 }

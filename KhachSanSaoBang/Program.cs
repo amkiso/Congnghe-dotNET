@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KhachSanSaoBang
 {
@@ -17,7 +18,7 @@ namespace KhachSanSaoBang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TrangChu());
+            Application.Run(new Dangnhap());
 
             //Dangnhap frm = new Dangnhap();
 

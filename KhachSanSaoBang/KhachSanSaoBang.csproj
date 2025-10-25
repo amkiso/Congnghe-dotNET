@@ -37,6 +37,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -72,6 +75,12 @@
     <Compile Include="DoanhThu\ThongTinHoaDon.cs" />
     <Compile Include="KhachHang\DanhSachKhachHang.cs" />
     <Compile Include="KhachHang\ThongTinKhachHang.cs" />
+    <Compile Include="Layout.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Layout.Designer.cs">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,13 +88,20 @@
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Dataloader.cs" />
-    <Compile Include="Models\Session.cs" />
-    <Compile Include="Models\SQLData.designer.cs">
+    <Compile Include="Models\Data\DichVuDaDung.cs" />
+    <Compile Include="Models\Data\dsDichVu.cs" />
+    <Compile Include="Models\Data\Session.cs" />
+    <Compile Include="Models\Data\SQLData.cs">
+      <DependentUpon>SQLData.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Data\SQLData1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SQLData.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Thongtinchung.cs" />
+    <Compile Include="Models\Data\Thongtinchung.cs" />
+    <Compile Include="Models\Data\ThongtinTracuu.cs" />
+    <Compile Include="Models\Data\ttDichVu.cs" />
     <Compile Include="Models\Xuly.cs" />
     <Compile Include="Models\XuLyNV.cs" />
     <Compile Include="NhanVien\FormThemSuaNhanVien.cs">
@@ -106,6 +122,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="TraCuuKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraCuuKhachHang.Designer.cs">
+      <DependentUpon>TraCuuKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="TrangChu.cs">
       <SubType>Form</SubType>
@@ -134,8 +157,8 @@
     <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
       <DependentUpon>ucKhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mainform.resx">
-      <DependentUpon>Mainform.cs</DependentUpon>
+    <EmbeddedResource Include="Layout.resx">
+      <DependentUpon>Layout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
@@ -165,14 +188,15 @@
     <None Include="dataQLKSDataSet.xss">
       <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Models\SQLData.dbml">
+    <None Include="Models\Data\SQLData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>SQLData.designer.cs</LastGenOutput>
+      <LastGenOutput>SQLData1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Models\SQLData.dbml.layout">
+    <None Include="Models\Data\SQLData.dbml.layout">
       <DependentUpon>SQLData.dbml</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
