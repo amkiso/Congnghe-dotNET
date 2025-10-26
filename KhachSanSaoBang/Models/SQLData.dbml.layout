@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 14.5" name="SQLData">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.75, 14.5" name="SQLData">
   <DataContextMoniker Name="/SQLDataDataContext" />
   <nestedChildShapes>
     <classShape Id="8a3b460b-e515-4189-94da-a55b4b819265" absoluteBounds="3.5, 9.75, 2, 1.23278647919496">
@@ -20,10 +20,10 @@
         <elementListCompartment Id="67cd435f-f681-42f2-b381-d7cce05262f4" absoluteBounds="9.015, 5.835, 1.9700000000000002, 1.4863281697034836" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2d8fbfd8-acd6-4111-aa87-1bdfd2d16a05" absoluteBounds="11.75, 1.5, 2, 1.6395573244492212">
+    <classShape Id="2d8fbfd8-acd6-4111-aa87-1bdfd2d16a05" absoluteBounds="12.5, 1.5, 2, 1.6395573244492212">
       <DataClassMoniker Name="/SQLDataDataContext/tblDichVuDaDat" />
       <nestedChildShapes>
-        <elementListCompartment Id="e8610226-64b6-4c6b-a0dd-31e336e4fd44" absoluteBounds="11.765, 1.96, 1.9700000000000002, 1.0795573244492211" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e8610226-64b6-4c6b-a0dd-31e336e4fd44" absoluteBounds="12.515, 1.96, 1.9700000000000002, 1.0795573244492211" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="fd264760-195b-4414-99e5-de9c6e05344d" absoluteBounds="9, 1, 2, 2.8598698602120081">
@@ -48,12 +48,6 @@
       <DataClassMoniker Name="/SQLDataDataContext/tblLoaiPhong" />
       <nestedChildShapes>
         <elementListCompartment Id="e33d2f55-473e-44f9-86a9-c764396916d0" absoluteBounds="0.765, 8.585, 1.9700000000000002, 1.2829427470763524" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="0bb386db-0de2-440e-bfe0-60fa67744143" absoluteBounds="6.25, 1.125, 2, 2.4530990149577461">
-      <DataClassMoniker Name="/SQLDataDataContext/tblPhieuDatPhong" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2cbf32fe-8c0d-4623-9dcc-1660e5fc65d6" absoluteBounds="6.265, 1.585, 1.9700000000000002, 1.8930990149577458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="0901d358-4056-4257-9339-55c2d5e1e21f" absoluteBounds="3.5, 1.375, 2, 2.0463281697034836">
@@ -92,53 +86,32 @@
         <elementListCompartment Id="1f693437-6205-4f50-9aa2-d6d064a92b3f" absoluteBounds="0.765, 6.71, 1.9700000000000002, 0.67278647919495893" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 6.35659912109375); (11.2604191666667 : 6.35659912109375 : JumpStart); (11.4270858333333 : 6.35659912109375 : JumpEnd); (12.75 : 6.35659912109375); (12.75 : 3.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11 : 6.39816408485174); (11.2604191666667 : 6.39816408485174 : JumpStart); (11.4270858333333 : 6.39816408485174 : JumpEnd); (13.5 : 6.39816408485174); (13.5 : 3.13955732444922)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblDichVu/tblDichVu_tblDichVuDaDat" />
       <nodes>
         <classShapeMoniker Id="0c305825-c85f-4e96-b13b-bdc58ee063b1" />
         <classShapeMoniker Id="2d8fbfd8-acd6-4111-aa87-1bdfd2d16a05" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 2.28929768880208); (11.75 : 2.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11 : 2.31977866222461); (12.5 : 2.31977866222461)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblHoaDon/tblHoaDon_tblDichVuDaDat" />
       <nodes>
         <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
         <classShapeMoniker Id="2d8fbfd8-acd6-4111-aa87-1bdfd2d16a05" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 8.49971359233061); (5.875 : 8.87471359233061); (5.875 : 13.2731640848517); (6.25 : 13.2731640848517)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 7.04374921586575); (5.875 : 8.87471359233061); (5.875 : 13.2731640848517); (6.25 : 13.2731640848517)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblKhachHang/tblKhachHang_tblTinNhan" />
       <nodes>
         <classShapeMoniker Id="efbd07db-f4a5-4b8a-8eb2-1948c44c540c" />
         <classShapeMoniker Id="5b2ed87e-a8dc-4e14-b0de-0901d8545219" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 6.25); (8.625 : 5.875); (8.625 : 2.429934930106); (8.76427275076665 : 2.429934930106 : JumpStart); (8.93093941743331 : 2.429934930106 : JumpEnd); (9 : 2.429934930106)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.25 : 6.25); (8.625 : 5.875); (8.625 : 4.23486986021201); (9 : 3.85986986021201)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblKhuyenmai/tblKhuyenmai_tblHoaDon" />
       <nodes>
         <classShapeMoniker Id="109a01ec-3e08-4f49-bc26-b47dc4fec0d9" />
         <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 1.68310099283854); (9 : 1.68310099283854)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SQLDataDataContext/tblPhieuDatPhong/tblPhieuDatPhong_tblHoaDon" />
-      <nodes>
-        <classShapeMoniker Id="0bb386db-0de2-440e-bfe0-60fa67744143" />
-        <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.25); (5.875 : 5.875); (5.875 : 2.29890055338542); (6.25 : 2.29890055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SQLDataDataContext/tblKhachHang/tblKhachHang_tblPhieuDatPhong" />
-      <nodes>
-        <classShapeMoniker Id="efbd07db-f4a5-4b8a-8eb2-1948c44c540c" />
-        <classShapeMoniker Id="0bb386db-0de2-440e-bfe0-60fa67744143" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.88104939778646); (5.79166666666667 : 2.88104939778646 : JumpStart); (5.95833333333333 : 2.88104939778646 : JumpEnd); (6.25 : 2.88104939778646)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SQLDataDataContext/tblPhong/tblPhong_tblPhieuDatPhong" />
-      <nodes>
-        <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
-        <classShapeMoniker Id="0bb386db-0de2-440e-bfe0-60fa67744143" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 8.125); (3.125 : 7.75); (3.125 : 2.39816408485174); (3.13541666666667 : 2.39816408485174 : JumpStart); (3.30208333333333 : 2.39816408485174 : JumpEnd); (3.5 : 2.39816408485174)]" fixedFrom="NotFixed" fixedTo="Algorithm">
@@ -162,18 +135,11 @@
         <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 4.28214495227364); (8.40625 : 3.875); (8.40625 : 4.32615397135417); (8.60610865180698 : 3.46749178277825 : JumpStart); (8.64389134819302 : 3.30516419537679 : JumpEnd); (9 : 1.77519773374613)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.34375 : 4.25); (6.34375 : 3.50817464889844); (9 : 3.50817464889844)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblTinhTrangHoaDon/tblTinhTrangHoaDon_tblHoaDon" />
       <nodes>
         <classShapeMoniker Id="8d719f06-129a-48b3-a1ae-2b7eca766f7a" />
         <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 4.28122649649439); (5.81607443490112 : 3.96515206159327 : JumpStart); (5.93392556509888 : 3.84730093139551 : JumpEnd); (6.03125 : 3.74997649649439); (6.03125 : 1.68069827669271); (6.25 : 1.68069827669271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SQLDataDataContext/tblTinhTrangPhieuDatPhong/tblTinhTrangPhieuDatPhong_tblPhieuDatPhong" />
-      <nodes>
-        <classShapeMoniker Id="4eaefa42-eba6-488b-b61a-fb3f3554b904" />
-        <classShapeMoniker Id="0bb386db-0de2-440e-bfe0-60fa67744143" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 6.28129281062572); (3.06607443490112 : 5.9652183757246 : JumpStart); (3.18392556509888 : 5.84736724552684 : JumpEnd); (3.21875 : 5.81254281062572); (3.21875 : 1.66203902121294); (3.5 : 1.66203902121294)]" fixedFrom="NotFixed" fixedTo="Algorithm">
@@ -189,18 +155,52 @@
         <elementListCompartment Id="93803f64-817b-4220-af66-91aeea454271" absoluteBounds="9.64, 9.46, 1.9700000000000002, 2.9100261280934014" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11.3437525 : 9); (11.3437525 : 3.10583627450704); (11 : 3.10583627450704)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.3437525 : 9); (11.3437525 : 3.12107676121831); (11 : 3.12107676121831)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SQLDataDataContext/tblNhanVien/tblNhanVien_tblHoaDon" />
       <nodes>
         <classShapeMoniker Id="2e5fb6a6-7f80-4397-8639-9633c8d88d00" />
         <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 10.3663932395975); (5.79166666666667 : 10.3663932395975 : JumpStart); (5.95833333333333 : 10.3663932395975 : JumpEnd); (9.625 : 10.3663932395975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 10.3663932395975); (5.79166666666667 : 10.3663932395975 : JumpStart); (5.95833333333333 : 10.3663932395975 : JumpEnd); (9.625 : 10.3663932395975)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SQLDataDataContext/tblChucVu/tblChucVu_tblNhanVien" />
       <nodes>
         <classShapeMoniker Id="8a3b460b-e515-4189-94da-a55b4b819265" />
         <classShapeMoniker Id="2e5fb6a6-7f80-4397-8639-9633c8d88d00" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6d0c132d-1570-4f3c-a76c-c1d15fbe62d7" absoluteBounds="6.5, 0.5, 2, 2.6564844375848771">
+      <DataClassMoniker Name="/SQLDataDataContext/tblPhieuDatPhong" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3060a87a-2ae9-4c9e-a087-d82d045fd2da" absoluteBounds="6.515, 0.96, 1.9700000000000002, 2.096484437584877" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.5 : 2.07824221879244); (9 : 2.07824221879244)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLDataDataContext/tblPhieuDatPhong/tblPhieuDatPhong_tblHoaDon" />
+      <nodes>
+        <classShapeMoniker Id="6d0c132d-1570-4f3c-a76c-c1d15fbe62d7" />
+        <classShapeMoniker Id="fd264760-195b-4414-99e5-de9c6e05344d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.25); (5.875 : 5.875); (5.875 : 1.82824221879244); (5.94791666666667 : 1.82824221879244 : JumpStart); (6.11458333333333 : 1.82824221879244 : JumpEnd); (6.5 : 1.82824221879244)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLDataDataContext/tblKhachHang/tblKhachHang_tblPhieuDatPhong" />
+      <nodes>
+        <classShapeMoniker Id="efbd07db-f4a5-4b8a-8eb2-1948c44c540c" />
+        <classShapeMoniker Id="6d0c132d-1570-4f3c-a76c-c1d15fbe62d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.55486332818866); (5.79166666666667 : 2.55486332818866 : JumpStart); (6.11458333333333 : 2.55486332818866 : JumpEnd); (6.5 : 2.55486332818866)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLDataDataContext/tblPhong/tblPhong_tblPhieuDatPhong" />
+      <nodes>
+        <classShapeMoniker Id="0901d358-4056-4257-9339-55c2d5e1e21f" />
+        <classShapeMoniker Id="6d0c132d-1570-4f3c-a76c-c1d15fbe62d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.28034451333403); (5.81607443490112 : 3.96427007843291 : JumpStart); (5.93392556509888 : 3.84641894823515 : JumpEnd); (6.03125 : 3.74909451333403); (6.03125 : 1.13286910939622); (6.5 : 1.13286910939622)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SQLDataDataContext/tblTinhTrangPhieuDatPhong/tblTinhTrangPhieuDatPhong_tblPhieuDatPhong" />
+      <nodes>
+        <classShapeMoniker Id="4eaefa42-eba6-488b-b61a-fb3f3554b904" />
+        <classShapeMoniker Id="6d0c132d-1570-4f3c-a76c-c1d15fbe62d7" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

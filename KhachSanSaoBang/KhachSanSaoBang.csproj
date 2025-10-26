@@ -108,6 +108,7 @@
     <Compile Include="Mainform.Designer.cs">
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaoCaoDoanhThu.cs" />
     <Compile Include="Models\Dataloader.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\SQLData.cs">
@@ -122,6 +123,7 @@
     <Compile Include="Models\Xuly.cs" />
     <Compile Include="Models\XuLyHoaDon.cs" />
     <Compile Include="Models\XuLyNV.cs" />
+    <Compile Include="Models\XuLyBaoCao.cs" />
     <Compile Include="NhanVien\FormThemSuaNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +156,6 @@
     <Compile Include="ThongKe\ucHoaDon.Designer.cs">
       <DependentUpon>ucHoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThongKe\XuLyThongKe.cs" />
     <Compile Include="TrangChu.cs">
       <SubType>Form</SubType>
     </Compile>

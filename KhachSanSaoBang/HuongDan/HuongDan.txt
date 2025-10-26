@@ -14,3 +14,5 @@ Khi người dùng đăng nhập thành công, Form Dangnhap sẽ tự đóng l�
 Ngay sau đó, Form TrangChu (Form Cha) mới được tạo và hiển thị ra.
 --------------------------------------------------------------------------------------------
 thêm 1 cột trong table nhân viên nhớ chỉnh lại file dbml, xsd.
+
+chart doanh thu hóa đơn lấy ngày trả phòng của tblHoaDons 

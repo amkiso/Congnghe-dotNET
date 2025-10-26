@@ -53,9 +53,9 @@
       <Column Name="tong_tien" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="tblHoaDon_tblDichVuDaDat" Member="tblDichVuDaDats" ThisKey="ma_hd" OtherKey="ma_hd" Type="tblDichVuDaDat" />
       <Association Name="tblKhuyenmai_tblHoaDon" Member="tblKhuyenmai" ThisKey="ma_khuyenmai" OtherKey="ma_khuyenmai" Type="tblKhuyenmai" IsForeignKey="true" />
-      <Association Name="tblPhieuDatPhong_tblHoaDon" Member="tblPhieuDatPhong" ThisKey="ma_pdp" OtherKey="ma_pdp" Type="tblPhieuDatPhong" IsForeignKey="true" />
       <Association Name="tblTinhTrangHoaDon_tblHoaDon" Member="tblTinhTrangHoaDon" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblTinhTrangHoaDon" IsForeignKey="true" />
       <Association Name="tblNhanVien_tblHoaDon" Member="tblNhanVien" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblNhanVien" IsForeignKey="true" />
+      <Association Name="tblPhieuDatPhong_tblHoaDon" Member="tblPhieuDatPhong" ThisKey="ma_pdp" OtherKey="ma_pdp" Type="tblPhieuDatPhong" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblKhachHang" Member="tblKhachHangs">
@@ -91,22 +91,6 @@
       <Column Name="ti_le_phu_thu" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="anh" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
       <Association Name="tblLoaiPhong_tblPhong" Member="tblPhongs" ThisKey="loai_phong" OtherKey="loai_phong" Type="tblPhong" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblPhieuDatPhong" Member="tblPhieuDatPhongs">
-    <Type Name="tblPhieuDatPhong">
-      <Column Name="ma_pdp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ma_kh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ngay_dat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ngay_vao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ngay_ra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ma_phong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="thong_tin_khach_thue" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
-      <Column Name="ma_tinh_trang" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblPhieuDatPhong_tblHoaDon" Member="tblHoaDons" ThisKey="ma_pdp" OtherKey="ma_pdp" Type="tblHoaDon" />
-      <Association Name="tblKhachHang_tblPhieuDatPhong" Member="tblKhachHang" ThisKey="ma_kh" OtherKey="ma_kh" Type="tblKhachHang" IsForeignKey="true" />
-      <Association Name="tblPhong_tblPhieuDatPhong" Member="tblPhong" ThisKey="ma_phong" OtherKey="ma_phong" Type="tblPhong" IsForeignKey="true" />
-      <Association Name="tblTinhTrangPhieuDatPhong_tblPhieuDatPhong" Member="tblTinhTrangPhieuDatPhong" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblTinhTrangPhieuDatPhong" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblPhong" Member="tblPhongs">
@@ -176,6 +160,23 @@
       <Column Name="trang_thai" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="tblNhanVien_tblHoaDon" Member="tblHoaDons" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblHoaDon" />
       <Association Name="tblChucVu_tblNhanVien" Member="tblChucVu" ThisKey="ma_chuc_vu" OtherKey="ma_chuc_vu" Type="tblChucVu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblPhieuDatPhong" Member="tblPhieuDatPhongs">
+    <Type Name="tblPhieuDatPhong">
+      <Column Name="ma_pdp" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ma_kh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ngay_dat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngay_vao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngay_ra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ma_phong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thong_tin_khach_thue" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="ma_tinh_trang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="so_luong_khach" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblPhieuDatPhong_tblHoaDon" Member="tblHoaDons" ThisKey="ma_pdp" OtherKey="ma_pdp" Type="tblHoaDon" />
+      <Association Name="tblKhachHang_tblPhieuDatPhong" Member="tblKhachHang" ThisKey="ma_kh" OtherKey="ma_kh" Type="tblKhachHang" IsForeignKey="true" />
+      <Association Name="tblPhong_tblPhieuDatPhong" Member="tblPhong" ThisKey="ma_phong" OtherKey="ma_phong" Type="tblPhong" IsForeignKey="true" />
+      <Association Name="tblTinhTrangPhieuDatPhong_tblPhieuDatPhong" Member="tblTinhTrangPhieuDatPhong" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblTinhTrangPhieuDatPhong" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
