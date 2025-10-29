@@ -49,9 +49,10 @@
             this.chartDichVuPhoBien = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartDatPhongLoaiPhong = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnLamMoi = new System.Windows.Forms.Button();
-            this.radTheoNgay = new System.Windows.Forms.RadioButton();
-            this.radTheoThang = new System.Windows.Forms.RadioButton();
-            this.radTheoNam = new System.Windows.Forms.RadioButton();
+            this.cboNam = new System.Windows.Forms.ComboBox();
+            this.cboThang = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuThang)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuNhanVien)).BeginInit();
@@ -74,6 +75,7 @@
             series1.ChartArea = "ChartArea1";
             series1.Color = System.Drawing.Color.DarkGoldenrod;
             series1.IsValueShownAsLabel = true;
+            series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartDoanhThuThang.Series.Add(series1);
@@ -118,6 +120,7 @@
             series2.ChartArea = "ChartArea1";
             series2.Color = System.Drawing.Color.DarkGoldenrod;
             series2.IsValueShownAsLabel = true;
+            series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartDoanhThuNhanVien.Series.Add(series2);
@@ -162,6 +165,8 @@
             series4.ChartArea = "ChartArea1";
             series4.Color = System.Drawing.Color.DarkGoldenrod;
             series4.IsValueShownAsLabel = true;
+            series4.IsVisibleInLegend = false;
+            series4.IsXValueIndexed = true;
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.chartDatPhongLoaiPhong.Series.Add(series4);
@@ -189,46 +194,56 @@
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.UseVisualStyleBackColor = false;
             // 
-            // radTheoNgay
+            // cboNam
             // 
-            this.radTheoNgay.AutoSize = true;
-            this.radTheoNgay.Location = new System.Drawing.Point(498, 98);
-            this.radTheoNgay.Name = "radTheoNgay";
-            this.radTheoNgay.Size = new System.Drawing.Size(103, 20);
-            this.radTheoNgay.TabIndex = 9;
-            this.radTheoNgay.TabStop = true;
-            this.radTheoNgay.Text = "radioButton1";
-            this.radTheoNgay.UseVisualStyleBackColor = true;
+            this.cboNam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.cboNam.FormattingEnabled = true;
+            this.cboNam.Location = new System.Drawing.Point(848, 92);
+            this.cboNam.Name = "cboNam";
+            this.cboNam.Size = new System.Drawing.Size(177, 34);
+            this.cboNam.TabIndex = 9;
             // 
-            // radTheoThang
+            // cboThang
             // 
-            this.radTheoThang.AutoSize = true;
-            this.radTheoThang.Location = new System.Drawing.Point(679, 98);
-            this.radTheoThang.Name = "radTheoThang";
-            this.radTheoThang.Size = new System.Drawing.Size(103, 20);
-            this.radTheoThang.TabIndex = 10;
-            this.radTheoThang.TabStop = true;
-            this.radTheoThang.Text = "radioButton1";
-            this.radTheoThang.UseVisualStyleBackColor = true;
+            this.cboThang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.cboThang.FormattingEnabled = true;
+            this.cboThang.Location = new System.Drawing.Point(536, 89);
+            this.cboThang.Name = "cboThang";
+            this.cboThang.Size = new System.Drawing.Size(177, 34);
+            this.cboThang.TabIndex = 10;
             // 
-            // radTheoNam
+            // label1
             // 
-            this.radTheoNam.AutoSize = true;
-            this.radTheoNam.Location = new System.Drawing.Point(865, 98);
-            this.radTheoNam.Name = "radTheoNam";
-            this.radTheoNam.Size = new System.Drawing.Size(103, 20);
-            this.radTheoNam.TabIndex = 11;
-            this.radTheoNam.TabStop = true;
-            this.radTheoNam.Text = "radioButton1";
-            this.radTheoNam.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label1.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label1.Location = new System.Drawing.Point(439, 92);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 26);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Tháng";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.label2.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.label2.Location = new System.Drawing.Point(759, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 26);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Năm";
             // 
             // ucBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radTheoNam);
-            this.Controls.Add(this.radTheoThang);
-            this.Controls.Add(this.radTheoNgay);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboThang);
+            this.Controls.Add(this.cboNam);
             this.Controls.Add(this.btnLamMoi);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ucBaoCao";
@@ -251,8 +266,9 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThuNhanVien;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDatPhongLoaiPhong;
-        private System.Windows.Forms.RadioButton radTheoNgay;
-        private System.Windows.Forms.RadioButton radTheoThang;
-        private System.Windows.Forms.RadioButton radTheoNam;
+        private System.Windows.Forms.ComboBox cboNam;
+        private System.Windows.Forms.ComboBox cboThang;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
