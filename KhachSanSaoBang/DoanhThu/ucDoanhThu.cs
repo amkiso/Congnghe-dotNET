@@ -19,52 +19,78 @@ namespace KhachSanSaoBang
         {
             InitializeComponent();
             this.Load += UcDoanhThu_Load;
-            this.btnThongKe.Click += BtnThongKe_Click;
-        }
-
-        private void BtnThongKe_Click(object sender, EventArgs e)
-        {
-            HienThiTheoThoiGian();
-        }
-        private void LoadNhanVien()
-        {
-            DataTable tblNV = dsDoanhThu.LoadNhanVien();
-            cboNhanVien.DataSource = tblNV;
-            cboNhanVien.DisplayMember = "ho_ten";
-            cboNhanVien.ValueMember = "ma_nv";
-            cboNhanVien.SelectedIndex = -1; // Không chọn mặc định
+            this.btnThongKe.Click += btnThongKe_Click;
         }
 
         private void UcDoanhThu_Load(object sender, EventArgs e)
         {
-            dtpTuNgay.Value = DateTime.Now.AddMonths(-1);
-            dtpDenNgay.Value = DateTime.Now;
-            HienThiTatCa();
+            // Không ẩn mà chỉ vô hiệu hóa DateTimePicker
+            dtpTuNgay.Enabled = false;
+            dtpDenNgay.Enabled = false;
+
+            // Không cho người dùng nhập tổng doanh thu
+            textBox1.ReadOnly = true;
+            textBox1.BackColor = System.Drawing.Color.White;
+
+            // Load danh sách nhân viên
             LoadNhanVien();
+
+            // Gắn sự kiện
+            ckLocTheoNgay.CheckedChanged += ckLocTheoNgay_CheckedChanged;
+            cboNhanVien.SelectedIndexChanged += cboNhanVien_SelectedIndexChanged;
         }
 
-        // ✅ Hiển thị toàn bộ doanh thu
-        private void HienThiTatCa()
+        // Khi tick "Lọc theo ngày" → bật / tắt DateTimePicker
+        private void ckLocTheoNgay_CheckedChanged(object sender, EventArgs e)
         {
-            DataTable tbl = dsDoanhThu.LoadDoanhThu();
+            bool choPhep = ckLocTheoNgay.Checked;
+            dtpTuNgay.Enabled = choPhep;
+            dtpDenNgay.Enabled = choPhep;
+        }
+
+        private void LoadNhanVien()
+        {
+            DataTable tbl = dsDoanhThu.LoadNhanVien();
+            cboNhanVien.DataSource = tbl;
+            cboNhanVien.DisplayMember = "ten_nv"; // alias trong DBDoanhThu
+            cboNhanVien.ValueMember = "ma_nv";
+            cboNhanVien.SelectedIndex = -1;
+        }
+
+        // Khi chọn nhân viên (KHÔNG lọc theo ngày)
+        private void cboNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ckLocTheoNgay.Checked || cboNhanVien.SelectedValue == null)
+                return;
+
+            string maNV = cboNhanVien.SelectedValue.ToString();
+
+            // Không lọc theo ngày => truyền false
+            DataTable tbl = dsDoanhThu.LayDoanhThu(DateTime.Now, DateTime.Now, maNV, false);
             dataGridView1.DataSource = tbl;
+
             textBox1.Text = dsDoanhThu.TinhTongDoanhThu(tbl).ToString("N0") + " VNĐ";
         }
 
-        // ✅ Hiển thị theo khoảng thời gian
-        private void HienThiTheoThoiGian()
+        // Khi nhấn "Thống kê" (lọc theo ngày)
+        private void btnThongKe_Click(object sender, EventArgs e)
         {
-            DateTime tu = dtpTuNgay.Value;
-            DateTime den = dtpDenNgay.Value;
+            bool locTheoNgay = ckLocTheoNgay.Checked;
+
             string maNV = "";
             if (cboNhanVien.SelectedValue != null)
             {
                 maNV = cboNhanVien.SelectedValue.ToString();
             }
 
-            DataTable tbl = dsDoanhThu.LayDoanhThuTheoNgay(tu, den, maNV);
+            DateTime tu = dtpTuNgay.Value;
+            DateTime den = dtpDenNgay.Value;
+
+            DataTable tbl = dsDoanhThu.LayDoanhThu(tu, den, maNV, locTheoNgay);
             dataGridView1.DataSource = tbl;
+
             textBox1.Text = dsDoanhThu.TinhTongDoanhThu(tbl).ToString("N0") + " VNĐ";
         }
+
     }
 }

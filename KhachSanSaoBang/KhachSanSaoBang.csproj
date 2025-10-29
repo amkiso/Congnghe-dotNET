@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -124,6 +125,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="ThongKe\BaoCao\DBBaoCao.cs" />
+    <Compile Include="ThongKe\BaoCao\ucBaoCao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="TraCuuKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +178,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKe\BaoCao\ucBaoCao.resx">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>

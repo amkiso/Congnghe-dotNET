@@ -14,92 +14,71 @@ namespace KhachSanSaoBang.DoanhThu
         string _cnn = "Data Source=LAPTOP-MOJM17CB\\SQLEXPRESS02;Initial Catalog=dataQLKS;Integrated Security=True";
         SqlConnection sqlcnn;
         DataSet dataQLKS;
-        SqlDataAdapter daDoanhThu;
+        SqlDataAdapter da;
 
         public DBDoanhThu()
         {
             sqlcnn = new SqlConnection(_cnn);
             dataQLKS = new DataSet();
-            LoadDoanhThu();
         }
 
-        // ✅ Nạp dữ liệu doanh thu
-        public DataTable LoadDoanhThu()
+        // 🔸 1. Lấy danh sách hóa đơn (lọc theo ngày và nhân viên)
+        public DataTable LayDoanhThu(DateTime tuNgay, DateTime denNgay, string maNV, bool locTheoNgay)
         {
-            string query = "SELECT * FROM tblHoaDon";
-            daDoanhThu = new SqlDataAdapter(query, sqlcnn);
-            dataQLKS.Tables.Clear();
-            daDoanhThu.Fill(dataQLKS, "tblHoaDon");
+            string sql = "SELECT * FROM tblHoaDon";
+            bool coDieuKien = false;
 
-            DataColumn[] key = new DataColumn[1];
-            key[0] = dataQLKS.Tables["tblHoaDon"].Columns["ma_hd"];
-            dataQLKS.Tables["tblHoaDon"].PrimaryKey = key;
+            // Nếu lọc theo ngày
+            if (locTheoNgay)
+            {
+                sql += " WHERE ngay_tra_phong BETWEEN @tuNgay AND @denNgay";
+                coDieuKien = true;
+            }
 
-            return dataQLKS.Tables["tblHoaDon"];
-        }
-
-        // ✅ Lấy doanh thu theo thời gian (và có thể theo nhân viên)
-        public DataTable LayDoanhThuTheoNgay(DateTime tuNgay, DateTime denNgay, string maNV = "")
-        {
-            string query = "SELECT * FROM tblHoaDon WHERE ngay_tra_phong BETWEEN @tuNgay AND @denNgay";
+            // Nếu có lọc theo nhân viên
             if (!string.IsNullOrEmpty(maNV))
-                query += " AND ma_nv = @maNV";
+            {
+                if (coDieuKien)
+                    sql += " AND ma_nv = @maNV";
+                else
+                    sql += " WHERE ma_nv = @maNV";
+            }
 
-            SqlCommand cmd = new SqlCommand(query, sqlcnn);
-            cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
-            cmd.Parameters.AddWithValue("@denNgay", denNgay);
-            cmd.Parameters.AddWithValue("@maNV", maNV);
+            SqlCommand cmd = new SqlCommand(sql, sqlcnn);
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            // Gán giá trị tham số
+            if (locTheoNgay)
+            {
+                cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
+                cmd.Parameters.AddWithValue("@denNgay", denNgay);
+            }
+
+            if (!string.IsNullOrEmpty(maNV))
+                cmd.Parameters.AddWithValue("@maNV", maNV);
+
+            da = new SqlDataAdapter(cmd);
             DataTable tbl = new DataTable();
             da.Fill(tbl);
             return tbl;
         }
 
-        // ✅ Tính tổng doanh thu từ DataTable
+        // 🔸 2. Tính tổng doanh thu
         public decimal TinhTongDoanhThu(DataTable tbl)
         {
             decimal tong = 0;
-            foreach (DataRow row in tbl.Rows)
+            foreach (DataRow r in tbl.Rows)
             {
-                if (row["tong_tien"] != DBNull.Value)
-                    tong += Convert.ToDecimal(row["tong_tien"]);
+                if (r["tong_tien"] != DBNull.Value)
+                    tong += Convert.ToDecimal(r["tong_tien"]);
             }
             return tong;
         }
 
+        // 🔸 3. Load danh sách nhân viên
         public DataTable LoadNhanVien()
         {
-            string query = "SELECT ma_nv, ho_ten FROM tblNhanVien";
+            string query = "SELECT ma_nv, ho_ten AS ten_nv FROM tblNhanVien";
             SqlDataAdapter da = new SqlDataAdapter(query, sqlcnn);
-            DataTable tbl = new DataTable();
-            da.Fill(tbl);
-            return tbl;
-        }
-
-        public DataTable LayDoanhThuTheoNhanVien(string maNV)
-        {
-            string query = "SELECT * FROM tblHoaDon WHERE ma_nv = @maNV";
-            SqlCommand cmd = new SqlCommand(query, sqlcnn);
-            cmd.Parameters.AddWithValue("@maNV", maNV);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable tbl = new DataTable();
-            da.Fill(tbl);
-            return tbl;
-        }
-
-        public DataTable LayDoanhThuTheoLoaiPhong(string maLoaiPhong)
-        {
-            string query = @"SELECT * FROM tblHoaDon 
-                     WHERE ma_pdp IN (
-                         SELECT ma_pdp 
-                         FROM tblPhieuDatPhong 
-                         WHERE ma_loai_phong = @maLoaiPhong)";
-            SqlCommand cmd = new SqlCommand(query, sqlcnn);
-            cmd.Parameters.AddWithValue("@maLoaiPhong", maLoaiPhong);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tbl = new DataTable();
             da.Fill(tbl);
             return tbl;

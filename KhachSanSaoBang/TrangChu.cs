@@ -1,4 +1,5 @@
 ﻿using KhachSanSaoBang.NhanVien;
+using KhachSanSaoBang.ThongKe.BaoCao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,14 @@ namespace KhachSanSaoBang
             this.btn_QLNhanVien.Click += Btn_QLNhanVien_Click;
             this.btnQLKhachHang.Click += BtnQLKhachHang_Click;
             this.btnQLDoanhThu.Click += BtnQLDoanhThu_Click;
+            this.btnBaoCao.Click += BtnBaoCao_Click;
+        }
+
+        private void BtnBaoCao_Click(object sender, EventArgs e)
+        {
+            ucBaoCao userControlBC = new ucBaoCao();
+
+            LoadControlVaoPanel(userControlBC);
         }
 
         private void BtnQLDoanhThu_Click(object sender, EventArgs e)
