@@ -32,27 +32,30 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chartDoanhThuThang = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chartDichVuPhoBien = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartDoanhThuNhanVien = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.chartDichVuPhoBien = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartDatPhongLoaiPhong = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnLamMoi = new System.Windows.Forms.Button();
+            this.radTheoNgay = new System.Windows.Forms.RadioButton();
+            this.radTheoThang = new System.Windows.Forms.RadioButton();
+            this.radTheoNam = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuThang)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartDichVuPhoBien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuNhanVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartDichVuPhoBien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDatPhongLoaiPhong)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,23 +103,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1249, 694);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // chartDichVuPhoBien
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.chartDichVuPhoBien.ChartAreas.Add(chartArea3);
-            this.chartDichVuPhoBien.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Name = "Legend1";
-            this.chartDichVuPhoBien.Legends.Add(legend3);
-            this.chartDichVuPhoBien.Location = new System.Drawing.Point(3, 350);
-            this.chartDichVuPhoBien.Name = "chartDichVuPhoBien";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartDichVuPhoBien.Series.Add(series3);
-            this.chartDichVuPhoBien.Size = new System.Drawing.Size(618, 341);
-            this.chartDichVuPhoBien.TabIndex = 2;
-            this.chartDichVuPhoBien.Text = "chart2";
-            // 
             // chartDoanhThuNhanVien
             // 
             chartArea2.Name = "ChartArea1";
@@ -144,20 +130,22 @@
             title2.Text = "Biểu đồ Doanh thu theo Nhân viên";
             this.chartDoanhThuNhanVien.Titles.Add(title2);
             // 
-            // btnLamMoi
+            // chartDichVuPhoBien
             // 
-            this.btnLamMoi.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnLamMoi.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLamMoi.FlatAppearance.BorderSize = 0;
-            this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamMoi.ForeColor = System.Drawing.Color.White;
-            this.btnLamMoi.Location = new System.Drawing.Point(196, 78);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(196, 54);
-            this.btnLamMoi.TabIndex = 8;
-            this.btnLamMoi.Text = "Làm mới";
-            this.btnLamMoi.UseVisualStyleBackColor = false;
+            chartArea3.Name = "ChartArea1";
+            this.chartDichVuPhoBien.ChartAreas.Add(chartArea3);
+            this.chartDichVuPhoBien.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend3.Name = "Legend1";
+            this.chartDichVuPhoBien.Legends.Add(legend3);
+            this.chartDichVuPhoBien.Location = new System.Drawing.Point(3, 350);
+            this.chartDichVuPhoBien.Name = "chartDichVuPhoBien";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartDichVuPhoBien.Series.Add(series3);
+            this.chartDichVuPhoBien.Size = new System.Drawing.Size(618, 341);
+            this.chartDichVuPhoBien.TabIndex = 2;
+            this.chartDichVuPhoBien.Text = "chart2";
             // 
             // chartDatPhongLoaiPhong
             // 
@@ -186,20 +174,72 @@
             title3.Text = "Biểu đồ Số lượt đặt phòng theo Loại phòng";
             this.chartDatPhongLoaiPhong.Titles.Add(title3);
             // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnLamMoi.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLamMoi.FlatAppearance.BorderSize = 0;
+            this.btnLamMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLamMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLamMoi.ForeColor = System.Drawing.Color.White;
+            this.btnLamMoi.Location = new System.Drawing.Point(196, 78);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(196, 54);
+            this.btnLamMoi.TabIndex = 8;
+            this.btnLamMoi.Text = "Làm mới";
+            this.btnLamMoi.UseVisualStyleBackColor = false;
+            // 
+            // radTheoNgay
+            // 
+            this.radTheoNgay.AutoSize = true;
+            this.radTheoNgay.Location = new System.Drawing.Point(498, 98);
+            this.radTheoNgay.Name = "radTheoNgay";
+            this.radTheoNgay.Size = new System.Drawing.Size(103, 20);
+            this.radTheoNgay.TabIndex = 9;
+            this.radTheoNgay.TabStop = true;
+            this.radTheoNgay.Text = "radioButton1";
+            this.radTheoNgay.UseVisualStyleBackColor = true;
+            // 
+            // radTheoThang
+            // 
+            this.radTheoThang.AutoSize = true;
+            this.radTheoThang.Location = new System.Drawing.Point(679, 98);
+            this.radTheoThang.Name = "radTheoThang";
+            this.radTheoThang.Size = new System.Drawing.Size(103, 20);
+            this.radTheoThang.TabIndex = 10;
+            this.radTheoThang.TabStop = true;
+            this.radTheoThang.Text = "radioButton1";
+            this.radTheoThang.UseVisualStyleBackColor = true;
+            // 
+            // radTheoNam
+            // 
+            this.radTheoNam.AutoSize = true;
+            this.radTheoNam.Location = new System.Drawing.Point(865, 98);
+            this.radTheoNam.Name = "radTheoNam";
+            this.radTheoNam.Size = new System.Drawing.Size(103, 20);
+            this.radTheoNam.TabIndex = 11;
+            this.radTheoNam.TabStop = true;
+            this.radTheoNam.Text = "radioButton1";
+            this.radTheoNam.UseVisualStyleBackColor = true;
+            // 
             // ucBaoCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radTheoNam);
+            this.Controls.Add(this.radTheoThang);
+            this.Controls.Add(this.radTheoNgay);
             this.Controls.Add(this.btnLamMoi);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ucBaoCao";
             this.Size = new System.Drawing.Size(1500, 907);
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuThang)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartDichVuPhoBien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThuNhanVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartDichVuPhoBien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDatPhongLoaiPhong)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -211,5 +251,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDoanhThuNhanVien;
         private System.Windows.Forms.Button btnLamMoi;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartDatPhongLoaiPhong;
+        private System.Windows.Forms.RadioButton radTheoNgay;
+        private System.Windows.Forms.RadioButton radTheoThang;
+        private System.Windows.Forms.RadioButton radTheoNam;
     }
 }

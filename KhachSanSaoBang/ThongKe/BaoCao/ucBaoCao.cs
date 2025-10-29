@@ -25,12 +25,12 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
         private void BtnLamMoi_Click(object sender, EventArgs e)
         {
             VeBieuDoDoanhThuThang();
-    VeBieuDoNhanVien();
-    VeBieuDoDichVuPhoBien();
+            VeBieuDoNhanVien();
+            VeBieuDoDichVuPhoBien();
             VeBieuDoDatPhongTheoLoaiPhong();
 
             MessageBox.Show("Biểu đồ đã được cập nhật!", "Cập nhật thành công",
-        MessageBoxButtons.OK, MessageBoxIcon.Information);;
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ucBaoCao_Load(object sender, EventArgs e)
@@ -41,12 +41,10 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
             VeBieuDoDatPhongTheoLoaiPhong();
         }
 
-        // 🔸 1. Biểu đồ doanh thu theo tháng
         // 🔸 1. Biểu đồ Doanh thu theo Tháng
         private void VeBieuDoDoanhThuThang()
         {
             DataTable tbl = dbBaoCao.LayDoanhThuTheoThang();
-
             chartDoanhThuThang.Series[0].Points.Clear();
 
             foreach (DataRow r in tbl.Rows)
@@ -60,7 +58,6 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
         private void VeBieuDoNhanVien()
         {
             DataTable tbl = dbBaoCao.LayDoanhThuTheoNhanVien();
-
             chartDoanhThuNhanVien.Series[0].Points.Clear();
 
             foreach (DataRow r in tbl.Rows)
@@ -69,8 +66,6 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
                     r["TenNhanVien"].ToString(), Convert.ToDecimal(r["TongDoanhThu"]));
             }
         }
-
-
 
         // 🔸 3. Biểu đồ dịch vụ được sử dụng nhiều nhất
         private void VeBieuDoDichVuPhoBien()
@@ -110,7 +105,6 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
         private void VeBieuDoDatPhongTheoLoaiPhong()
         {
             DataTable tbl = dbBaoCao.LaySoLuotDatPhongTheoLoaiPhong();
-
             chartDatPhongLoaiPhong.Series[0].Points.Clear();
 
             foreach (DataRow r in tbl.Rows)
