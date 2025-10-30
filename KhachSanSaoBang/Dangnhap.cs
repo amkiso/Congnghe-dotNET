@@ -46,6 +46,9 @@ namespace KhachSanSaoBang
             {
                 MessageBox.Show("Đăng nhập thành công, Chào mừng "+ Session.UserName+"!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
+                this.Hide();
+                Mainform main = new Mainform();
+                main.ShowDialog();
                 this.Close();
             }
            
@@ -58,5 +61,7 @@ namespace KhachSanSaoBang
             txt_matkhau.UseSystemPasswordChar = true;
             panel1.Visible = true;
         }
+
+        
     }
 }

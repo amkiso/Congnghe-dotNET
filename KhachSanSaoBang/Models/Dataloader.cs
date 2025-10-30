@@ -6,19 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KhachSanSaoBang.Models.Data;
-
 namespace KhachSanSaoBang.Models
 {
     public class Dataloader
     {
+        
         public static bool loaddulieu(Thongtinchung tt, Form f)
         {
             try
             {
-                f.Controls["panel1"].Controls["txt_tenphong"].Text = tt.Tenphong;
-                f.Controls["panel1"].Controls["txt_loaiphong"].Text = tt.Loaiphong;
-                f.Controls["panel1"].Controls["txt_giathue"].Text = tt.Giathue.ToString();
-                f.Controls["panel1"].Controls["txt_sotang"].Text = tt.Matang.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_tenphong"].Text = tt.Tenphong;
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_loaiphong"].Text = tt.Loaiphong;
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_giathue"].Text = tt.Giathue.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_sotang"].Text = tt.Matang.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_ngayra"].Text = tt.Ngayra.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_ngaydatphong"].Text = tt.Ngayvao.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_gionhanphong"].Text = tt.Thoigian_nhanphong.ToString();
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_tenkhach"].Text = tt.Khachhang;
+                f.Controls["panel2"].Controls["panel1"].Controls["txt_sokhachthue"].Text = tt.Sokhach.ToString();
+                
                 return true;
             }
             catch (Exception e) { return false; }
@@ -68,8 +74,10 @@ namespace KhachSanSaoBang.Models
                 return Color.Red;
             else if ((ma == 3))
                 return Color.Yellow;
-            else if ((ma == 4)) return Color.Orange;
+            else if ((ma == 6)) return Color.Orange;
+            else if (ma == 7) return Color.LightPink;
             else if ((ma == 5)) return Color.Gray;
+            else if(ma==4) return Color.DarkOrange;
             else return SystemColors.Control;
         }
     }

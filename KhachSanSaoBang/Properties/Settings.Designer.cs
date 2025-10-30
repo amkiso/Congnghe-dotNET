@@ -28,9 +28,9 @@ namespace KhachSanSaoBang.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Tru" +
             "stServerCertificate=True;")]
-        public string dataQLKSConnectionString1 {
+        public string dataQLKSConnectionString {
             get {
-                return ((string)(this["dataQLKSConnectionString1"]));
+                return ((string)(this["dataQLKSConnectionString"]));
             }
         }
         
@@ -39,9 +39,9 @@ namespace KhachSanSaoBang.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Tru" +
             "stServerCertificate=True;")]
-        public string dataQLKSConnectionString {
+        public string dataQLKSConnectionString1 {
             get {
-                return ((string)(this["dataQLKSConnectionString"]));
+                return ((string)(this["dataQLKSConnectionString1"]));
             }
         }
     }
