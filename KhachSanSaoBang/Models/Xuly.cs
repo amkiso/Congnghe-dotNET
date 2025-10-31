@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KhachSanSaoBang.Models.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,8 +9,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KhachSanSaoBang.Models.Data;
-using Newtonsoft.Json.Linq;
 namespace KhachSanSaoBang.Models
 {
     public class Xuly
@@ -108,6 +109,63 @@ namespace KhachSanSaoBang.Models
         public List<tblPhong> tomau()
         {
             return (from u in db.tblPhongs select u).ToList();
+        }
+        /// <summary>
+        /// truyền vào giá trị mới/cũ của trạng thái phòng sau đó trả về số nguyên cho case
+        /// từ 1-2: return 1 ; 7-2: return 6
+        /// 2-3: return 2 ; 6-7: return 5
+        /// 3-1:return 3 ; 1-6: return 4
+        /// bảo trì phòng: 1-4 hoặc 1-5: return 0;
+        /// Ngoại lệ: return -1;
+        /// </summary>
+        /// <param name="old"></param>
+        /// <param name="pnew"></param>
+        /// <returns></returns>
+        public int GetRoomCase(int old, int pnew)
+        {
+            /*Sơ đồ hoạt động: 
+                        nếu thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
+                        Nếu thay đổi từ 2-3: Kiểm tra xem phòng có được thanh toán hay chưa, 
+                                             nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
+                                             Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)
+                                             Yes: mở thêm cửa sổ thanh toán, tiến hành nhập thông tin thanh toán và thanh toán hóa đơn
+                                             No: return và không cho phép thay đổi
+                        Nếu thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
+                        Nếu thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
+                        Nếu thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
+                        Thay đổi từ 7-2: Hiện cửa sổ nhập thông tin khách nhận phòng,Ghi lại ngày vào (ngay_vao) trong database thành ngày giờ hiện tại, Cập nhật dữ liệu trên db
+                        Các trạng thái 4,5 của phòng chỉ có thể thay đổi khi phòng trống(1)
+                        Ngoài ra không chấp nhận thay đổi khác với luồng này*/
+            if (old == 1 && pnew == 2)
+            {
+                return 1;
+            }
+            else if (old == 2 && pnew == 3)
+            {
+                return 2;
+            }
+            else if (old == 3 && pnew == 1)
+            {
+                return 3;
+            }
+            else if(old == 1 && pnew == 6)
+            {
+                return 4;
+            }
+            else if(old == 6 && pnew == 7)
+            {
+                return 5;
+            }
+            else if(old == 7 && pnew == 2)
+            {
+                return 6;
+            }
+            else if (old == 1 && (pnew == 4 || pnew == 5))
+            {
+                return 0;
+            }
+            else return -1;
+            
         }
         //Lấy thông tin tất cả các phòng
         public List<Thongtinchung> GetAllThongtinphong()
@@ -366,10 +424,12 @@ namespace KhachSanSaoBang.Models
             }
             return "0 VNĐ";
         }
+        //Lấy mã trạng thái phòng
         public int GetCodeRoomStatus(int ma_p)
         {
             return (int)db.tblPhongs.Where(t => t.ma_phong == ma_p).FirstOrDefault().ma_tinh_trang;
         }
+        //Lấy tên trạng thái phòng
         public string GetStringRoomStatus(int ma_tinh_trang)
         {
             return db.tblTinhTrangPhongs.FirstOrDefault(t => t.ma_tinh_trang == ma_tinh_trang).mo_ta;
@@ -386,11 +446,34 @@ namespace KhachSanSaoBang.Models
         //Đổi trạng thái phòng
         public bool ChangeRoomStatus(int maphong, int matrangthai)
         {
-            try { return true; }
-            catch (Exception ex) { return false; }
+            try
+            {
+                {
+                    // Tìm phòng theo mã phòng
+                    var phong = db.tblPhongs.SingleOrDefault(p => p.ma_phong == maphong);
+
+                    if (phong == null)
+                        return false; // Không tìm thấy phòng
+
+                    // Cập nhật trạng thái
+                    phong.ma_tinh_trang = matrangthai;
+
+                    // Lưu thay đổi xuống database
+                    db.SubmitChanges();
+                }
+
+                return true; // Thành công
+            }
+            catch (Exception ex)
+            {
+                // Ghi log nếu cần, ví dụ:
+                // MessageBox.Show("Lỗi khi cập nhật trạng thái phòng: " + ex.Message);
+                return false;
+            }
         }
+
         //Tra cứu thông tin dựa vào số điện thoại hoặc CCCD của khách hàng
-        public ThongtinTracuu Tracuuthongtin(string _input)
+        public ThongtinTracuu GetThongtinKH(string _input)
         {
             ThongtinTracuu data = new ThongtinTracuu();
             string makh = GetMaKH(_input);
@@ -412,6 +495,7 @@ namespace KhachSanSaoBang.Models
                     data.Diem_tich_luy = (int)datakh.diem;
                     data.Sdt = datakh.sdt;
                     data.Phong_da_dat = GetSoPhongDaDat(makh);//đã đặt(trạng thái phiếu = 4)
+                    data.Makh = makh;
                     return data;
                 }
                 catch
@@ -443,6 +527,7 @@ namespace KhachSanSaoBang.Models
             catch (Exception e) { return false; }
 
         }
+        //Kiểm tra khách hàng có trùng thông tin hay không
         public int CheckTrungKhachHang(tblKhachHang kh)
         {
 
@@ -488,7 +573,7 @@ namespace KhachSanSaoBang.Models
                 Cách làm: Lấy danh sách mã phòng của khách hàng tương ứng trong phiếu đặt phòng có trạng thái  tương ứng
                 Sau đó có được mã phòng để tra cứu tên phòng và lưu vào list*/
 
-                List<int> sophong = getlistmaphongtrangthai(_input, trangthai);
+            List<int> sophong = getlistmaphongtrangthai(_input, trangthai);
                 List<string> tenp = new List<string>();
                 foreach (int i in sophong)
                 {
@@ -540,6 +625,44 @@ namespace KhachSanSaoBang.Models
         {
             //Số phòng đã đặt  = count* số phiếu đặt phòng của khách hàng tương ứng && trạng thái = 4(Đã thanh toán)
             return db.tblPhieuDatPhongs.Where(t => t.ma_kh == _input && t.ma_tinh_trang == 4).Count();
+        }
+        //chuyển thông tin căn cước công dân khách hàng sang định dạng json
+        public string ThongtinKH_To_Json(List<KhachThue> kht)
+        {
+            if (kht == null || kht.Count == 0)
+            {
+                return "[]"; // Trả về mảng JSON rỗng nếu danh sách trống
+            }
+            else
+            {
+                var thongTinList = kht.Select(kh => new
+                {
+                    hoten = kh.Tenkh,
+                    socmt = kh.Cccd,
+                    tuoi = kh.Tuoi
+                }).ToList();
+                return JsonConvert.SerializeObject(thongTinList);
+            }
+        }
+        public bool CreateNewPhieuDatPhong(tblPhieuDatPhong p)
+        {
+            try
+            {
+                {
+                    // Thêm đối tượng mới vào bảng
+                    db.tblPhieuDatPhongs.InsertOnSubmit(p);
+                    if (p.ngay_dat == p.ngay_vao)
+                    {
+                        ChangeRoomStatus((int)p.ma_phong, 2);
+                    }
+                    else
+                    { ChangeRoomStatus((int)p.ma_phong, 6); }    
+                    // Lưu thay đổi xuống database
+                    db.SubmitChanges();
+                }
+                return true;
+            }
+            catch (Exception e) { return false; }
         }
     }
 }

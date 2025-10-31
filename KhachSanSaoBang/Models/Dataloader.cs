@@ -51,7 +51,7 @@ namespace KhachSanSaoBang.Models
             catch { return false; }
         }
 
-        private static Button TimButtonTheoTen(Control parent, string ten)
+        public static Button TimButtonTheoTen(Control parent, string ten)
         {
             foreach (Control c in parent.Controls)
             {
@@ -66,7 +66,7 @@ namespace KhachSanSaoBang.Models
             return null;
         }
 
-        private static Color LayMauTheoTinhTrang(int ma)
+        public static Color LayMauTheoTinhTrang(int ma)
         {
             if (ma == 1)
                 return Color.LightGreen;

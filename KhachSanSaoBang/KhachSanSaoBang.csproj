@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BieuMauThuePhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BieuMauThuePhong.Designer.cs">
+      <DependentUpon>BieuMauThuePhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dangky.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,7 @@
     <Compile Include="Models\Dataloader.cs" />
     <Compile Include="Models\Data\DichVuDaDung.cs" />
     <Compile Include="Models\Data\dsDichVu.cs" />
+    <Compile Include="Models\Data\KhachThue.cs" />
     <Compile Include="Models\Data\Session.cs" />
     <Compile Include="Models\Data\SQLData.cs">
       <DependentUpon>SQLData.dbml</DependentUpon>
@@ -156,6 +163,9 @@
     <Compile Include="DoanhThu\ucDoanhThu.Designer.cs">
       <DependentUpon>ucDoanhThu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BieuMauThuePhong.resx">
+      <DependentUpon>BieuMauThuePhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
