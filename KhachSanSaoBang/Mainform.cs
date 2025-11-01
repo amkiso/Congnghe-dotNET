@@ -106,16 +106,7 @@ namespace KhachSanSaoBang
                                 
                                 if (Session.golbal_Status)
                                 {
-                                    Thongtinchung ntt = xl.GetThongtinphong(Session.maphonghientai);
-                                    string thisbutton = "btn_p"+ntt.Tenphong;
-                                    Button btn = Dataloader.TimButtonTheoTen(this, thisbutton);
-
-                                    if (btn != null)
-                                    {
-                                        btn.BackColor = Dataloader.LayMauTheoTinhTrang(ntt.Trangthai);
-                                    }
-                                    
-                                    loadingroom(Session.maphonghientai);
+                                    Mainform_Load(this, EventArgs.Empty);
                                     MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo");
                                 }
                                 else
@@ -130,7 +121,20 @@ namespace KhachSanSaoBang
                                          nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
                                          Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, 
                                          bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)*/
-                                break;
+                                if (xl.CheckHoaDon(Session.maphonghientai))
+                                {
+                                    if (xl.ChangeRoomStatus(Session.maphonghientai, new_values)) { MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo"); }
+                                    else
+                                    {
+                                        MessageBox.Show("Thay đổi trạng thái phòng thất bại, có lỗi xảy ra khi đổi trạng thái phòng !", "THông báo");
+                                    }
+                                }
+                                else
+                                {
+                                    //Truyền thông tin phòng hiện tại và mở cửa sổ thanh toán
+                                }
+
+                                    break;
                             }
                         case 3:
                             {
@@ -439,7 +443,6 @@ namespace KhachSanSaoBang
             cbo_tinhtrang.ValueMember = "ma_tinh_trang";
             cbo_tinhtrang.DisplayMember = "mo_ta";
             Tomauphong();
-            //this.WindowState = FormWindowState.Maximized;
         }
         private void Tomauphong()
         {

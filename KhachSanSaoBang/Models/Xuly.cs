@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 namespace KhachSanSaoBang.Models
 {
@@ -651,6 +652,7 @@ namespace KhachSanSaoBang.Models
                 {
                     // Thêm đối tượng mới vào bảng
                     db.tblPhieuDatPhongs.InsertOnSubmit(p);
+                    //thêm hóa đơn
                     if (p.ngay_dat == p.ngay_vao)
                     {
                         ChangeRoomStatus((int)p.ma_phong, 2);
@@ -664,5 +666,6 @@ namespace KhachSanSaoBang.Models
             }
             catch (Exception e) { return false; }
         }
+
     }
 }

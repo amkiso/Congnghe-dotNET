@@ -44,5 +44,23 @@ namespace KhachSanSaoBang.Properties {
                 return ((string)(this["dataQLKSConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MySuperSecretKey!")]
+        public string AES_Key {
+            get {
+                return ((string)(this["AES_Key"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MyInitVector12345")]
+        public string AES_IV {
+            get {
+                return ((string)(this["AES_IV"]));
+            }
+        }
     }
 }

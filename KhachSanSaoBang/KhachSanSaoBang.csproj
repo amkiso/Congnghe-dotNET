@@ -110,6 +110,7 @@
     <Compile Include="Models\Data\Thongtinchung.cs" />
     <Compile Include="Models\Data\ThongtinTracuu.cs" />
     <Compile Include="Models\Data\ttDichVu.cs" />
+    <Compile Include="Models\Remember_Me.cs" />
     <Compile Include="Models\Xuly.cs" />
     <Compile Include="Models\XuLyNV.cs" />
     <Compile Include="NhanVien\FormThemSuaNhanVien.cs">

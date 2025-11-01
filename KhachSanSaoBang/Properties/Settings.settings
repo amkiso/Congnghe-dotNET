@@ -18,5 +18,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;TrustServerCertificate=True;</Value>
     </Setting>
+    <Setting Name="AES_Key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MySuperSecretKey!</Value>
+    </Setting>
+    <Setting Name="AES_IV" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MyInitVector12345</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
