@@ -645,6 +645,43 @@ namespace KhachSanSaoBang.Models
                 return JsonConvert.SerializeObject(thongTinList);
             }
         }
+        public int AutoRoomBook(tblPhieuDatPhong pdp)
+        {
+            try
+            {
+                if (!CreateNewPhieuDatPhong(pdp)){
+                    return 1;
+                }
+                else
+                {
+                    //Lấy mã phiếu đặt phòng mói tạo có trạng thái  = 1
+                    int mapdp = (from u in db.tblPhieuDatPhongs
+                                 where u.ma_tinh_trang == 1 && u.ma_phong == pdp.ma_phong && u.ma_kh==pdp.ma_kh
+                                 select u.ma_pdp).FirstOrDefault();
+                    //sau đó tạo hóa đơn
+                    tblHoaDon hd = new tblHoaDon();
+                    hd.ma_pdp = mapdp;
+                    hd.ma_tinh_trang = 1; //Chưa thanh toán
+                    db.tblHoaDons.InsertOnSubmit(hd);
+                    //đặt trạng thái phiếu đặt phòng về thành 2(đã xong->đã được xác nhận và đang sử dụng phòng)
+                    var phieu = db.tblPhieuDatPhongs.SingleOrDefault(p => p.ma_pdp == mapdp);
+                    if (phieu != null)
+                    {
+                        phieu.ma_tinh_trang = 2;
+                    }
+                    else return 2;//Đặt trạng thái thất bại vì không tìm thấy phiếu đặt phòng tương ứng
+                    //Đổi trạng thái phòng thành 2( đang sử dụng)
+                    
+                    if(!ChangeRoomStatus((int)pdp.ma_phong,2))
+                    {
+                        return 3;//không thể cập nhật trạng thái phòng
+                    }
+                    db.SubmitChanges();
+                }
+                return 0;//Không có lỗi
+            }
+            catch (Exception e) { return -1; }//Lỗi không xác định
+        }
         public bool CreateNewPhieuDatPhong(tblPhieuDatPhong p)
         {
             try
@@ -652,13 +689,7 @@ namespace KhachSanSaoBang.Models
                 {
                     // Thêm đối tượng mới vào bảng
                     db.tblPhieuDatPhongs.InsertOnSubmit(p);
-                    //thêm hóa đơn
-                    if (p.ngay_dat == p.ngay_vao)
-                    {
-                        ChangeRoomStatus((int)p.ma_phong, 2);
-                    }
-                    else
-                    { ChangeRoomStatus((int)p.ma_phong, 6); }    
+                    ChangeRoomStatus((int)p.ma_phong, 6); 
                     // Lưu thay đổi xuống database
                     db.SubmitChanges();
                 }

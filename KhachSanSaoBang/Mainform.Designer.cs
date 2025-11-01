@@ -30,6 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tab_cactang = new System.Windows.Forms.TabControl();
+            this.tab_tang1 = new System.Windows.Forms.TabPage();
+            this.btn_p106 = new System.Windows.Forms.Button();
+            this.btn_p105 = new System.Windows.Forms.Button();
+            this.btn_p104 = new System.Windows.Forms.Button();
+            this.btn_p103 = new System.Windows.Forms.Button();
+            this.btn_p102 = new System.Windows.Forms.Button();
+            this.btn_p101 = new System.Windows.Forms.Button();
+            this.tab_tang2 = new System.Windows.Forms.TabPage();
+            this.btn_p206 = new System.Windows.Forms.Button();
+            this.btn_p205 = new System.Windows.Forms.Button();
+            this.btn_p204 = new System.Windows.Forms.Button();
+            this.btn_p203 = new System.Windows.Forms.Button();
+            this.btn_p202 = new System.Windows.Forms.Button();
+            this.btn_p201 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btn_p306 = new System.Windows.Forms.Button();
             this.btn_p305 = new System.Windows.Forms.Button();
@@ -91,29 +105,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.layout2 = new KhachSanSaoBang.Layout();
-            this.btn_p101 = new System.Windows.Forms.Button();
-            this.btn_p102 = new System.Windows.Forms.Button();
-            this.btn_p103 = new System.Windows.Forms.Button();
-            this.btn_p104 = new System.Windows.Forms.Button();
-            this.btn_p105 = new System.Windows.Forms.Button();
-            this.btn_p106 = new System.Windows.Forms.Button();
-            this.tab_tang1 = new System.Windows.Forms.TabPage();
-            this.btn_p201 = new System.Windows.Forms.Button();
-            this.btn_p202 = new System.Windows.Forms.Button();
-            this.btn_p203 = new System.Windows.Forms.Button();
-            this.btn_p204 = new System.Windows.Forms.Button();
-            this.btn_p205 = new System.Windows.Forms.Button();
-            this.btn_p206 = new System.Windows.Forms.Button();
-            this.tab_tang2 = new System.Windows.Forms.TabPage();
             this.tab_cactang.SuspendLayout();
+            this.tab_tang1.SuspendLayout();
+            this.tab_tang2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.da_dv_su_dung)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tab_tang1.SuspendLayout();
-            this.tab_tang2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab_cactang
@@ -127,6 +127,146 @@
             this.tab_cactang.SelectedIndex = 0;
             this.tab_cactang.Size = new System.Drawing.Size(1170, 610);
             this.tab_cactang.TabIndex = 0;
+            // 
+            // tab_tang1
+            // 
+            this.tab_tang1.Controls.Add(this.btn_p106);
+            this.tab_tang1.Controls.Add(this.btn_p105);
+            this.tab_tang1.Controls.Add(this.btn_p104);
+            this.tab_tang1.Controls.Add(this.btn_p103);
+            this.tab_tang1.Controls.Add(this.btn_p102);
+            this.tab_tang1.Controls.Add(this.btn_p101);
+            this.tab_tang1.Location = new System.Drawing.Point(8, 43);
+            this.tab_tang1.Name = "tab_tang1";
+            this.tab_tang1.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_tang1.Size = new System.Drawing.Size(1154, 559);
+            this.tab_tang1.TabIndex = 0;
+            this.tab_tang1.Text = "Tầng 1";
+            this.tab_tang1.UseVisualStyleBackColor = true;
+            // 
+            // btn_p106
+            // 
+            this.btn_p106.Location = new System.Drawing.Point(809, 337);
+            this.btn_p106.Name = "btn_p106";
+            this.btn_p106.Size = new System.Drawing.Size(300, 204);
+            this.btn_p106.TabIndex = 11;
+            this.btn_p106.Text = "Phòng 106";
+            this.btn_p106.UseVisualStyleBackColor = true;
+            // 
+            // btn_p105
+            // 
+            this.btn_p105.Location = new System.Drawing.Point(432, 337);
+            this.btn_p105.Name = "btn_p105";
+            this.btn_p105.Size = new System.Drawing.Size(300, 204);
+            this.btn_p105.TabIndex = 10;
+            this.btn_p105.Text = "Phòng 105";
+            this.btn_p105.UseVisualStyleBackColor = true;
+            // 
+            // btn_p104
+            // 
+            this.btn_p104.Location = new System.Drawing.Point(35, 337);
+            this.btn_p104.Name = "btn_p104";
+            this.btn_p104.Size = new System.Drawing.Size(300, 204);
+            this.btn_p104.TabIndex = 9;
+            this.btn_p104.Text = "Phòng 104";
+            this.btn_p104.UseVisualStyleBackColor = true;
+            // 
+            // btn_p103
+            // 
+            this.btn_p103.Location = new System.Drawing.Point(809, 23);
+            this.btn_p103.Name = "btn_p103";
+            this.btn_p103.Size = new System.Drawing.Size(300, 204);
+            this.btn_p103.TabIndex = 8;
+            this.btn_p103.Text = "Phòng 103";
+            this.btn_p103.UseVisualStyleBackColor = true;
+            // 
+            // btn_p102
+            // 
+            this.btn_p102.Location = new System.Drawing.Point(432, 23);
+            this.btn_p102.Name = "btn_p102";
+            this.btn_p102.Size = new System.Drawing.Size(300, 204);
+            this.btn_p102.TabIndex = 7;
+            this.btn_p102.Text = "Phòng 102";
+            this.btn_p102.UseVisualStyleBackColor = true;
+            // 
+            // btn_p101
+            // 
+            this.btn_p101.Location = new System.Drawing.Point(35, 23);
+            this.btn_p101.Name = "btn_p101";
+            this.btn_p101.Size = new System.Drawing.Size(300, 204);
+            this.btn_p101.TabIndex = 6;
+            this.btn_p101.Text = "Phòng 101";
+            this.btn_p101.UseVisualStyleBackColor = true;
+            // 
+            // tab_tang2
+            // 
+            this.tab_tang2.Controls.Add(this.btn_p206);
+            this.tab_tang2.Controls.Add(this.btn_p205);
+            this.tab_tang2.Controls.Add(this.btn_p204);
+            this.tab_tang2.Controls.Add(this.btn_p203);
+            this.tab_tang2.Controls.Add(this.btn_p202);
+            this.tab_tang2.Controls.Add(this.btn_p201);
+            this.tab_tang2.Location = new System.Drawing.Point(8, 43);
+            this.tab_tang2.Name = "tab_tang2";
+            this.tab_tang2.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_tang2.Size = new System.Drawing.Size(1154, 559);
+            this.tab_tang2.TabIndex = 1;
+            this.tab_tang2.Text = "Tầng 2";
+            this.tab_tang2.UseVisualStyleBackColor = true;
+            // 
+            // btn_p206
+            // 
+            this.btn_p206.Location = new System.Drawing.Point(809, 337);
+            this.btn_p206.Name = "btn_p206";
+            this.btn_p206.Size = new System.Drawing.Size(300, 204);
+            this.btn_p206.TabIndex = 11;
+            this.btn_p206.Text = "Phòng 206";
+            this.btn_p206.UseVisualStyleBackColor = true;
+            // 
+            // btn_p205
+            // 
+            this.btn_p205.Location = new System.Drawing.Point(427, 337);
+            this.btn_p205.Name = "btn_p205";
+            this.btn_p205.Size = new System.Drawing.Size(300, 204);
+            this.btn_p205.TabIndex = 10;
+            this.btn_p205.Text = "Phòng 205";
+            this.btn_p205.UseVisualStyleBackColor = true;
+            // 
+            // btn_p204
+            // 
+            this.btn_p204.Location = new System.Drawing.Point(35, 337);
+            this.btn_p204.Name = "btn_p204";
+            this.btn_p204.Size = new System.Drawing.Size(300, 204);
+            this.btn_p204.TabIndex = 9;
+            this.btn_p204.Text = "Phòng 204";
+            this.btn_p204.UseVisualStyleBackColor = true;
+            // 
+            // btn_p203
+            // 
+            this.btn_p203.Location = new System.Drawing.Point(809, 19);
+            this.btn_p203.Name = "btn_p203";
+            this.btn_p203.Size = new System.Drawing.Size(300, 204);
+            this.btn_p203.TabIndex = 8;
+            this.btn_p203.Text = "Phòng 203";
+            this.btn_p203.UseVisualStyleBackColor = true;
+            // 
+            // btn_p202
+            // 
+            this.btn_p202.Location = new System.Drawing.Point(427, 19);
+            this.btn_p202.Name = "btn_p202";
+            this.btn_p202.Size = new System.Drawing.Size(300, 204);
+            this.btn_p202.TabIndex = 7;
+            this.btn_p202.Text = "Phòng 202";
+            this.btn_p202.UseVisualStyleBackColor = true;
+            // 
+            // btn_p201
+            // 
+            this.btn_p201.Location = new System.Drawing.Point(35, 19);
+            this.btn_p201.Name = "btn_p201";
+            this.btn_p201.Size = new System.Drawing.Size(300, 204);
+            this.btn_p201.TabIndex = 6;
+            this.btn_p201.Text = "Phòng 201";
+            this.btn_p201.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -749,146 +889,6 @@
             this.layout2.Size = new System.Drawing.Size(2884, 1635);
             this.layout2.TabIndex = 35;
             // 
-            // btn_p101
-            // 
-            this.btn_p101.Location = new System.Drawing.Point(35, 23);
-            this.btn_p101.Name = "btn_p101";
-            this.btn_p101.Size = new System.Drawing.Size(300, 204);
-            this.btn_p101.TabIndex = 6;
-            this.btn_p101.Text = "Phòng 101";
-            this.btn_p101.UseVisualStyleBackColor = true;
-            // 
-            // btn_p102
-            // 
-            this.btn_p102.Location = new System.Drawing.Point(432, 23);
-            this.btn_p102.Name = "btn_p102";
-            this.btn_p102.Size = new System.Drawing.Size(300, 204);
-            this.btn_p102.TabIndex = 7;
-            this.btn_p102.Text = "Phòng 102";
-            this.btn_p102.UseVisualStyleBackColor = true;
-            // 
-            // btn_p103
-            // 
-            this.btn_p103.Location = new System.Drawing.Point(809, 23);
-            this.btn_p103.Name = "btn_p103";
-            this.btn_p103.Size = new System.Drawing.Size(300, 204);
-            this.btn_p103.TabIndex = 8;
-            this.btn_p103.Text = "Phòng 103";
-            this.btn_p103.UseVisualStyleBackColor = true;
-            // 
-            // btn_p104
-            // 
-            this.btn_p104.Location = new System.Drawing.Point(35, 337);
-            this.btn_p104.Name = "btn_p104";
-            this.btn_p104.Size = new System.Drawing.Size(300, 204);
-            this.btn_p104.TabIndex = 9;
-            this.btn_p104.Text = "Phòng 104";
-            this.btn_p104.UseVisualStyleBackColor = true;
-            // 
-            // btn_p105
-            // 
-            this.btn_p105.Location = new System.Drawing.Point(432, 337);
-            this.btn_p105.Name = "btn_p105";
-            this.btn_p105.Size = new System.Drawing.Size(300, 204);
-            this.btn_p105.TabIndex = 10;
-            this.btn_p105.Text = "Phòng 105";
-            this.btn_p105.UseVisualStyleBackColor = true;
-            // 
-            // btn_p106
-            // 
-            this.btn_p106.Location = new System.Drawing.Point(809, 337);
-            this.btn_p106.Name = "btn_p106";
-            this.btn_p106.Size = new System.Drawing.Size(300, 204);
-            this.btn_p106.TabIndex = 11;
-            this.btn_p106.Text = "Phòng 106";
-            this.btn_p106.UseVisualStyleBackColor = true;
-            // 
-            // tab_tang1
-            // 
-            this.tab_tang1.Controls.Add(this.btn_p106);
-            this.tab_tang1.Controls.Add(this.btn_p105);
-            this.tab_tang1.Controls.Add(this.btn_p104);
-            this.tab_tang1.Controls.Add(this.btn_p103);
-            this.tab_tang1.Controls.Add(this.btn_p102);
-            this.tab_tang1.Controls.Add(this.btn_p101);
-            this.tab_tang1.Location = new System.Drawing.Point(8, 43);
-            this.tab_tang1.Name = "tab_tang1";
-            this.tab_tang1.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_tang1.Size = new System.Drawing.Size(1154, 559);
-            this.tab_tang1.TabIndex = 0;
-            this.tab_tang1.Text = "Tầng 1";
-            this.tab_tang1.UseVisualStyleBackColor = true;
-            // 
-            // btn_p201
-            // 
-            this.btn_p201.Location = new System.Drawing.Point(35, 19);
-            this.btn_p201.Name = "btn_p201";
-            this.btn_p201.Size = new System.Drawing.Size(300, 204);
-            this.btn_p201.TabIndex = 6;
-            this.btn_p201.Text = "Phòng 201";
-            this.btn_p201.UseVisualStyleBackColor = true;
-            // 
-            // btn_p202
-            // 
-            this.btn_p202.Location = new System.Drawing.Point(427, 19);
-            this.btn_p202.Name = "btn_p202";
-            this.btn_p202.Size = new System.Drawing.Size(300, 204);
-            this.btn_p202.TabIndex = 7;
-            this.btn_p202.Text = "Phòng 202";
-            this.btn_p202.UseVisualStyleBackColor = true;
-            // 
-            // btn_p203
-            // 
-            this.btn_p203.Location = new System.Drawing.Point(809, 19);
-            this.btn_p203.Name = "btn_p203";
-            this.btn_p203.Size = new System.Drawing.Size(300, 204);
-            this.btn_p203.TabIndex = 8;
-            this.btn_p203.Text = "Phòng 203";
-            this.btn_p203.UseVisualStyleBackColor = true;
-            // 
-            // btn_p204
-            // 
-            this.btn_p204.Location = new System.Drawing.Point(35, 337);
-            this.btn_p204.Name = "btn_p204";
-            this.btn_p204.Size = new System.Drawing.Size(300, 204);
-            this.btn_p204.TabIndex = 9;
-            this.btn_p204.Text = "Phòng 204";
-            this.btn_p204.UseVisualStyleBackColor = true;
-            // 
-            // btn_p205
-            // 
-            this.btn_p205.Location = new System.Drawing.Point(427, 337);
-            this.btn_p205.Name = "btn_p205";
-            this.btn_p205.Size = new System.Drawing.Size(300, 204);
-            this.btn_p205.TabIndex = 10;
-            this.btn_p205.Text = "Phòng 205";
-            this.btn_p205.UseVisualStyleBackColor = true;
-            // 
-            // btn_p206
-            // 
-            this.btn_p206.Location = new System.Drawing.Point(809, 337);
-            this.btn_p206.Name = "btn_p206";
-            this.btn_p206.Size = new System.Drawing.Size(300, 204);
-            this.btn_p206.TabIndex = 11;
-            this.btn_p206.Text = "Phòng 206";
-            this.btn_p206.UseVisualStyleBackColor = true;
-            // 
-            // tab_tang2
-            // 
-            this.tab_tang2.Controls.Add(this.btn_p206);
-            this.tab_tang2.Controls.Add(this.btn_p205);
-            this.tab_tang2.Controls.Add(this.btn_p204);
-            this.tab_tang2.Controls.Add(this.btn_p203);
-            this.tab_tang2.Controls.Add(this.btn_p202);
-            this.tab_tang2.Controls.Add(this.btn_p201);
-            this.tab_tang2.Location = new System.Drawing.Point(8, 43);
-            this.tab_tang2.Name = "tab_tang2";
-            this.tab_tang2.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_tang2.Size = new System.Drawing.Size(1154, 559);
-            this.tab_tang2.TabIndex = 1;
-            this.tab_tang2.Text = "Tầng 2";
-            this.tab_tang2.UseVisualStyleBackColor = true;
-            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -903,6 +903,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.tab_cactang.ResumeLayout(false);
+            this.tab_tang1.ResumeLayout(false);
+            this.tab_tang2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -913,8 +915,6 @@
             this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tab_tang1.ResumeLayout(false);
-            this.tab_tang2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

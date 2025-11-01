@@ -142,17 +142,37 @@ namespace KhachSanSaoBang
                 pdp.ngay_ra = dt_ngayra.Value;
                 pdp.ma_phong = tt.Maphong;
                 pdp.thong_tin_khach_thue = xl.ThongtinKH_To_Json(kt);
-                pdp.ma_tinh_trang = 1;
-                if (xl.CreateNewPhieuDatPhong(pdp)){
-                    MessageBox.Show("Tạo phiếu thuê phòng thành công !","Thông báo");
-                    Session.golbal_Status = true;
-                    pstatus = true;
-                    this.Close();
+                pdp.ma_tinh_trang = 1;// tình trạng 1: đang đặt -> có nghĩa là đang chờ nhân viên xác nhận phòng
+                if (cb_nhanphong.Checked) //Khách thuê ngay thì sẽ tạo luôn hóa đơn
+                {
+                    if (xl.AutoRoomBook(pdp)==0)
+                    {
+                        MessageBox.Show("Tạo phiếu thuê phòng thành công !", "Thông báo");
+                        Session.golbal_Status = true;
+                        pstatus = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra khi tạo mới phiếu đặt phòng !", "Thông báo");
+                        return;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Có lỗi xảy ra khi tạo mới phiếu đặt phòng !", "Thông báo");
-                    return;
+                    if (xl.CreateNewPhieuDatPhong(pdp))
+                    {
+                        MessageBox.Show("Tạo phiếu thuê phòng thành công !", "Thông báo");
+                        Session.golbal_Status = true;
+                        pstatus = true;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Có lỗi xảy ra khi tạo mới phiếu đặt phòng !", "Thông báo");
+                        return;
+                    }
+
                 }
                 
             }
