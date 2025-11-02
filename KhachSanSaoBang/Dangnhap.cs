@@ -96,8 +96,9 @@ namespace KhachSanSaoBang
         }
         private void Dangnhap_Load(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
+            
             txt_matkhau.UseSystemPasswordChar = true;
+            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
             panel1.Visible = true;
             TaiThongTinDaLuu();
         }

@@ -80,6 +80,8 @@ namespace KhachSanSaoBang.Models
             else if(ma==4) return Color.DarkOrange;
             else return SystemColors.Control;
         }
+        
+
     }
 }
 

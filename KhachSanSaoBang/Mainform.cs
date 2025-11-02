@@ -185,7 +185,15 @@ namespace KhachSanSaoBang
         private void Btn_thanhtoan_Click(object sender, EventArgs e)
         {
             //ẩn cửa sổ này và gọi cửa sổ thanh toán tại đây
-            MessageBox.Show("Chức năng này đang được phát triền !", "Thông báo");
+           DialogResult rls = MessageBox.Show("THanh toán phòng ? !", "Thông báo", MessageBoxButtons.YesNo);
+            if (rls == DialogResult.Yes)
+            {   
+                ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
+                pm.ShowDialog();
+                pm.Select();
+            }
+            else return;
+
         }
         private void Btn_trahang_Click(object sender, EventArgs e)
         {

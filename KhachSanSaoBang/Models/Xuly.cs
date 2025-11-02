@@ -279,7 +279,7 @@ namespace KhachSanSaoBang.Models
                               join k in db.tblKhachHangs
                               on u.ma_kh equals k.ma_kh
                               where u.ma_phong == ma && (u.ma_tinh_trang == 1 || u.ma_tinh_trang == 2)
-                              select new { u.ngay_dat, u.ngay_ra, u.ngay_vao, u.ma_tinh_trang, k.ho_ten, u.thong_tin_khach_thue }).FirstOrDefault();
+                              select new { u.ngay_dat, u.ngay_ra, u.ngay_vao, u.ma_tinh_trang, k.ho_ten, u.thong_tin_khach_thue,u.ma_pdp }).FirstOrDefault();
                 if (phongp != null)
                 {
                     tt.Thoigian_nhanphong = phongp.ngay_vao.ToString();
@@ -287,6 +287,7 @@ namespace KhachSanSaoBang.Models
                     tt.Ngayvao = phongp.ngay_dat.ToString();
                     tt.Khachhang = phongp.ho_ten;
                     tt.Sokhach = Soluongkhach(phongp.thong_tin_khach_thue);
+                    tt.Maphieudp = phongp.ma_pdp;
                 }
                 else
                 {
@@ -697,6 +698,30 @@ namespace KhachSanSaoBang.Models
             }
             catch (Exception e) { return false; }
         }
-
+        //Lấy thông tin thanh toán
+        public ThongtinThanhToan GetThongtinThanhToan(int ma_p) {
+            try
+            {
+                ThongtinThanhToan data = new ThongtinThanhToan();
+                //Lấy thông tin phòng hiện tại
+                Thongtinchung ttp = GetThongtinphong(ma_p);
+                data.Dichvusudung = listdichvup(ma_p);
+                data.Tenkh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ttp.Khachhang).ho_ten;
+                data.Makh = ttp.Khachhang;
+                data.Sophong = ttp.Tenphong;
+                data.Giaphong = ttp.Giathue;
+                data.Ngayvao = DateTime.Parse(ttp.Ngayvao);
+                data.Ngaydukienra = DateTime.Parse(ttp.Ngayra);
+                data.Ngayra = DateTime.Now;
+                data.Mahd = ttp.Maphieudp;
+                data.Tilephuthu = ttp.Phuthu;
+                data.sokhach = ttp.Sokhach;
+                data.Tongtien = data.Thanhtien + data.Thanhtienphuthu;
+                return data;
+            }
+            catch { return null; }
+            
+        }
+        
     }
 }
