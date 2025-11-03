@@ -131,7 +131,14 @@ namespace KhachSanSaoBang
                                 }
                                 else
                                 {
-                                    //Truyền thông tin phòng hiện tại và mở cửa sổ thanh toán
+                                    DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {tt.Tenphong} ?", "Thông báo", MessageBoxButtons.YesNo);
+                                    if (rls == DialogResult.Yes)
+                                    {
+                                        ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
+                                        pm.Show();
+
+                                    }
+                                    else return;
                                 }
 
                                     break;
@@ -139,18 +146,32 @@ namespace KhachSanSaoBang
                         case 3:
                             {
                                 //thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
-
+                                DialogResult rls = MessageBox.Show("Xác nhận đã dọn phòng xong ?", "Thông báo", MessageBoxButtons.YesNo);
+                                if (rls == DialogResult.Yes)
+                                {
+                                    xl.ChangeRoomStatus(Session.maphonghientai, 1);//Chuyển thành trống
+                                }
                                 break;
                             }
                         case 4:
                             {
                                 //thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
+                                MessageBox.Show("Trạng thái phòng không hợp lệ !","Lỗi");
                                 break;
                             }
                         case 5:
                             {
                                 //thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
-
+                                DialogResult rel =  MessageBox.Show("Xác nhận nhận phòng khách đặt ?","Thông báo",MessageBoxButtons.YesNo);
+                                if(rel == DialogResult.Yes)
+                                {
+                                    //Đổi trạng thái phòng, trạng thái phiếu đặt, tạo hóa đơn mới
+                                    
+                                }
+                                else
+                                {
+                                    return;
+                                }
                                 break;
                             }
                         case 6:
@@ -189,8 +210,8 @@ namespace KhachSanSaoBang
             if (rls == DialogResult.Yes)
             {   
                 ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
-                pm.ShowDialog();
-                pm.Select();
+                pm.Show();
+                
             }
             else return;
 

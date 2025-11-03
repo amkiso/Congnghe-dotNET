@@ -10,11 +10,13 @@ namespace KhachSanSaoBang.Models.Data
 {
     public class ThongtinThanhToan
     {
-        int _giaphong, _mahd,   _tilephuthu,  _tongtien;
-        string _makh, _sophong, tenkh;
+        int _giaphong, _mahd,   _tilephuthu  ;
+        string _makh, _sophong, tenkh,_tennv;
         DateTime ngayvao, ngayra, ngaydukienra;
         int khachdicung;
-        float tienchietkhau;
+        float tienchietkhau, _tongtien;
+        int _tilechietkhau;
+        string makm;
         public List<DichVuDaDung> Dichvusudung { get; set; } = new List<DichVuDaDung>();
         public string Makh { get => _makh; set => _makh = value; }
         public string Sophong { get => _sophong; set => _sophong = value; }
@@ -52,26 +54,33 @@ namespace KhachSanSaoBang.Models.Data
             }
         }
 
-        public int Songayphuthu {
+        public float Songayphuthu {
             get
             {
-                if (Ngayra == default || Ngaydukienra == default)
+                if (Ngayvao == default || Ngaydukienra == default)
                     return 0;
-                var days = (Ngayra.Date - Ngaydukienra.Date).Days;
-                return Math.Max(0, days);
-            } }
-        public int Tilephuthu { get => _tilephuthu; set => _tilephuthu = value; }
-        public int Thanhtienphuthu {
-            get
-            {
-                return Giaphong * Songayphuthu * Tilephuthu;
+
+                TimeSpan thoiGianSuDung = Ngaydukienra - Ngayvao;
+
+                float soNgay = (float)Math.Round(thoiGianSuDung.TotalDays,2);
+                return Math.Max(0, soNgay);
             }
         }
-        public int Tongtien { get => _tongtien; set => _tongtien = value; }
+        public int Tilephuthu { get => _tilephuthu; set => _tilephuthu = value; }
+        public float Thanhtienphuthu {
+            get
+            {
+                return (Songayphuthu * Giaphong * Tilephuthu) / 100;
+            }
+        }
+        public float Tongtien { get => _tongtien; set => _tongtien = value; }
         public DateTime Ngayvao { get => ngayvao; set => ngayvao = value; }
         public DateTime Ngayra { get => ngayra; set => ngayra = value; }
         public DateTime Ngaydukienra { get => ngaydukienra; set => ngaydukienra = value; }
         public int sokhach { get => khachdicung; set => khachdicung = value; }
         public float Tienchietkhau { get => tienchietkhau; set => tienchietkhau = value; }
+        public string Tennv { get => _tennv; set => _tennv = value; }
+        public int Tilechietkhau { get => _tilechietkhau; set => _tilechietkhau = value; }
+        public string Makm { get => makm; set => makm = value; }
     }
 }

@@ -149,15 +149,15 @@ namespace KhachSanSaoBang.Models
             {
                 return 3;
             }
-            else if(old == 1 && pnew == 6)
+            else if (old == 1 && pnew == 6)
             {
                 return 4;
             }
-            else if(old == 6 && pnew == 7)
+            else if (old == 6 && pnew == 7)
             {
                 return 5;
             }
-            else if(old == 7 && pnew == 2)
+            else if (old == 7 && pnew == 2)
             {
                 return 6;
             }
@@ -166,7 +166,7 @@ namespace KhachSanSaoBang.Models
                 return 0;
             }
             else return -1;
-            
+
         }
         //Lấy thông tin tất cả các phòng
         public List<Thongtinchung> GetAllThongtinphong()
@@ -279,7 +279,7 @@ namespace KhachSanSaoBang.Models
                               join k in db.tblKhachHangs
                               on u.ma_kh equals k.ma_kh
                               where u.ma_phong == ma && (u.ma_tinh_trang == 1 || u.ma_tinh_trang == 2)
-                              select new { u.ngay_dat, u.ngay_ra, u.ngay_vao, u.ma_tinh_trang, k.ho_ten, u.thong_tin_khach_thue,u.ma_pdp }).FirstOrDefault();
+                              select new { u.ngay_dat, u.ngay_ra, u.ngay_vao, u.ma_tinh_trang, k.ho_ten, u.thong_tin_khach_thue, u.ma_pdp }).FirstOrDefault();
                 if (phongp != null)
                 {
                     tt.Thoigian_nhanphong = phongp.ngay_vao.ToString();
@@ -575,7 +575,7 @@ namespace KhachSanSaoBang.Models
                 Cách làm: Lấy danh sách mã phòng của khách hàng tương ứng trong phiếu đặt phòng có trạng thái  tương ứng
                 Sau đó có được mã phòng để tra cứu tên phòng và lưu vào list*/
 
-            List<int> sophong = getlistmaphongtrangthai(_input, trangthai);
+                List<int> sophong = getlistmaphongtrangthai(_input, trangthai);
                 List<string> tenp = new List<string>();
                 foreach (int i in sophong)
                 {
@@ -650,14 +650,15 @@ namespace KhachSanSaoBang.Models
         {
             try
             {
-                if (!CreateNewPhieuDatPhong(pdp)){
+                if (!CreateNewPhieuDatPhong(pdp))
+                {
                     return 1;
                 }
                 else
                 {
                     //Lấy mã phiếu đặt phòng mói tạo có trạng thái  = 1
                     int mapdp = (from u in db.tblPhieuDatPhongs
-                                 where u.ma_tinh_trang == 1 && u.ma_phong == pdp.ma_phong && u.ma_kh==pdp.ma_kh
+                                 where u.ma_tinh_trang == 1 && u.ma_phong == pdp.ma_phong && u.ma_kh == pdp.ma_kh
                                  select u.ma_pdp).FirstOrDefault();
                     //sau đó tạo hóa đơn
                     tblHoaDon hd = new tblHoaDon();
@@ -671,9 +672,9 @@ namespace KhachSanSaoBang.Models
                         phieu.ma_tinh_trang = 2;
                     }
                     else return 2;//Đặt trạng thái thất bại vì không tìm thấy phiếu đặt phòng tương ứng
-                    //Đổi trạng thái phòng thành 2( đang sử dụng)
-                    
-                    if(!ChangeRoomStatus((int)pdp.ma_phong,2))
+                                  //Đổi trạng thái phòng thành 2( đang sử dụng)
+
+                    if (!ChangeRoomStatus((int)pdp.ma_phong, 2))
                     {
                         return 3;//không thể cập nhật trạng thái phòng
                     }
@@ -690,7 +691,7 @@ namespace KhachSanSaoBang.Models
                 {
                     // Thêm đối tượng mới vào bảng
                     db.tblPhieuDatPhongs.InsertOnSubmit(p);
-                    ChangeRoomStatus((int)p.ma_phong, 6); 
+                    ChangeRoomStatus((int)p.ma_phong, 6);
                     // Lưu thay đổi xuống database
                     db.SubmitChanges();
                 }
@@ -699,7 +700,8 @@ namespace KhachSanSaoBang.Models
             catch (Exception e) { return false; }
         }
         //Lấy thông tin thanh toán
-        public ThongtinThanhToan GetThongtinThanhToan(int ma_p) {
+        public ThongtinThanhToan GetThongtinThanhToan(int ma_p)
+        {
             try
             {
                 ThongtinThanhToan data = new ThongtinThanhToan();
@@ -716,12 +718,88 @@ namespace KhachSanSaoBang.Models
                 data.Mahd = ttp.Maphieudp;
                 data.Tilephuthu = ttp.Phuthu;
                 data.sokhach = ttp.Sokhach;
-                data.Tongtien = data.Thanhtien + data.Thanhtienphuthu;
+
                 return data;
             }
             catch { return null; }
-            
+
         }
-        
-    }
-}
+        //Đổi trạng thái phiếu đặt phòng
+        public bool ChangeRoomForm(int mapdp, int trangthai)
+        {
+            var pdp = db.tblPhieuDatPhongs.FirstOrDefault(t => t.ma_pdp == mapdp);
+            if (pdp != null)
+            {
+                pdp.ma_tinh_trang = trangthai;
+                db.SubmitChanges();
+                return true;
+            }
+            else return false;
+        }
+        //Thanh toán
+        public bool ThanhToanHoaDon(tblHoaDon hd)
+        {
+            try
+            {
+                var hoadon = db.tblHoaDons.FirstOrDefault(t => t.ma_hd == hd.ma_hd);
+                if (hoadon != null)
+                {
+                    hoadon.ngay_tra_phong = DateTime.Now;
+                    hoadon.tien_dich_vu = hd.tien_dich_vu;
+                    hoadon.tien_phong = hd.tien_phong;
+                    hoadon.phu_thu = hd.phu_thu;
+                    hoadon.tong_tien = hd.tong_tien;
+                    hoadon.ma_thanh_toan = hd.ma_thanh_toan;
+                    hoadon.ma_khuyenmai = hd.ma_khuyenmai;
+                    hoadon.ma_nv = hd.ma_nv;
+                    hoadon.ma_tinh_trang = 2; //Đã thanh toán
+                    ChangeRoomForm((int)hd.ma_pdp, 4);//Đã xong
+                    db.SubmitChanges();
+                    return true;
+                }
+                else return false;
+            }
+            catch { return false; }
+        }
+        //Kiểm tra mã khuyến mãi
+        public bool CheckMaKM(string makm)
+        {
+            var km = db.tblKhuyenmais.FirstOrDefault(t => t.ma_khuyenmai == makm && t.ngayketthuc >= DateTime.Now && t.ngaybatdau <= DateTime.Now);
+            if (km != null) return true;
+            else return false;
+        }
+        //Lấy số tiền chiết khấu của khuyến mãi
+        public float GetTienChietKhau(string makm, float tongtien)
+        {
+            var km = db.tblKhuyenmais.FirstOrDefault(t => t.ma_khuyenmai == makm);
+            if (km != null)
+            {
+                if (km.loai_km == true) //Giảm theo %
+                {
+                    return (tongtien / 100) * (float)km.giatri;
+                }
+                else //Giảm theo tiền
+                {
+                    return (float)km.giatri;
+                }
+            }
+            else return 0;
+        }
+        public int GetTileChietKhau(string makm)
+        {
+            var km = db.tblKhuyenmais.FirstOrDefault(t => t.ma_khuyenmai == makm);
+            if (km != null)
+            {
+                if (km.loai_km == true) //Giảm theo %
+                {
+                    return (int)km.giatri;
+                }
+                else //Giảm theo tiền
+                {
+                    return 0;
+                }
+            }
+            
+            else return 0;
+        }
+    }  }

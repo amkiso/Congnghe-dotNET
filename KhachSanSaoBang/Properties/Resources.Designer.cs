@@ -83,6 +83,26 @@ namespace KhachSanSaoBang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_invoice_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-invoice-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_payment_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-payment-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap user_add {
             get {
                 object obj = ResourceManager.GetObject("user-add", resourceCulture);

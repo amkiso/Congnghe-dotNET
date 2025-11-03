@@ -9,17 +9,51 @@ using System.Threading.Tasks;
 using KhachSanSaoBang.Models;
 using System.Windows.Forms;
 using KhachSanSaoBang.Models.Data;
+using System.Drawing.Printing;
+using System.Xml;
 
 namespace KhachSanSaoBang
 {
     public partial class ThanhToan : Form
     {
         ThongtinThanhToan data = new ThongtinThanhToan();
+        Xuly xl = new Xuly();
         public ThanhToan(ThongtinThanhToan dt)
         {
             InitializeComponent();
             data = dt;
+            data.Tongtien = dt.Thanhtien + dt.Thanhtienphuthu;
+            data.Tennv = Session.UserName;
             this.Load += ThanhToan_Load;
+            btn_apdungvoucher.Click += Btn_apdungvoucher_Click;
+            btn_inhoadon.Click += Btn_inhoadon_Click;
+        }
+
+        private void Btn_apdungvoucher_Click(object sender, EventArgs e)
+        {
+            string makm = txt_mavoucher.Text.Trim();
+            if (xl.CheckMaKM(makm))
+            {
+                float newtongtien = xl.GetTienChietKhau(makm, data.Tongtien);
+                data.Tongtien = data.Tongtien - newtongtien;
+                data.Tienchietkhau = newtongtien;
+                txt_tongtien.Text = data.Tongtien.ToString("N0") + "VNĐ";
+                
+                MessageBox.Show($"Đã áp dụng voucher, đã giảm {newtongtien}Đ !", "Thông báo");
+                data.Tilechietkhau = xl.GetTileChietKhau(makm);
+            }
+            else { 
+                MessageBox.Show("Mã voucher không hợp lệ hoặc đã hết hạn!");
+                return;
+            }
+        }
+
+        private void Btn_inhoadon_Click(object sender, EventArgs e)
+        {
+           MauInHoaDon printer = new MauInHoaDon(data, "~/icon/gui_cancel.png", 0);
+
+            printer.PrintPreview();
+            printer.Dispose();
         }
 
         private void ThanhToan_Load(object sender, EventArgs e)
@@ -71,7 +105,7 @@ namespace KhachSanSaoBang
                 data_tienphong.Rows[0].Cells["col_ngaythue"].Value = data.Songaythue.ToString("N0");
                 data_phuthu.Rows[0].Cells["col_tienphuthu"].Value = data.Thanhtienphuthu.ToString("N0");
                 data_phuthu.Rows[0].Cells["col_tilephuthu"].Value = data.Tilephuthu.ToString("N0")+"%";
-                data_phuthu.Rows[0].Cells["col_ngayphuthu"].Value = data.Songayphuthu.ToString("N0");
+                data_phuthu.Rows[0].Cells["col_ngayphuthu"].Value = data.Songayphuthu.ToString();
                 txt_tongtien.SelectionAlignment = HorizontalAlignment.Right;
                 lbl_header_phai.TextAlign = ContentAlignment.MiddleCenter;
             }

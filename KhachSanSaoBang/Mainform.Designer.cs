@@ -191,6 +191,7 @@
             // 
             // btn_p101
             // 
+            this.btn_p101.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_p101.Location = new System.Drawing.Point(35, 23);
             this.btn_p101.Name = "btn_p101";
             this.btn_p101.Size = new System.Drawing.Size(300, 204);
