@@ -8,235 +8,114 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
 {
     public partial class ucBaoCao : UserControl
     {
-        DBBaoCao dbBaoCao = new DBBaoCao();
+        DBBaoCao db = new DBBaoCao();
 
         public ucBaoCao()
         {
             InitializeComponent();
             this.Load += ucBaoCao_Load;
-            this.btnLamMoi.Click += BtnLamMoi_Click;
-            this.cboNam.SelectedIndexChanged += CboNam_SelectedIndexChanged;
-            this.cboThang.SelectedIndexChanged += CboThang_SelectedIndexChanged;
+            btnLamMoi.Click += BtnLamMoi_Click;
         }
 
         private void ucBaoCao_Load(object sender, EventArgs e)
         {
-            LoadNam();
+            DataTable tblNam = db.LayDanhSachNam();
+            cboNam.DataSource = tblNam;
+            cboNam.DisplayMember = "Nam";
+            cboNam.ValueMember = "Nam";
+            cboNam.SelectedIndex = tblNam.Rows.Count > 0 ? 0 : -1;
 
-            // Thêm tháng 1–12
-            cboThang.Items.Clear();
-            for (int i = 1; i <= 12; i++)
-                cboThang.Items.Add(i);
+            for (int i = 1; i <= 12; i++) cboThang.Items.Add(i);
             cboThang.SelectedIndex = -1;
 
-            VeTatCaBieuDo();
+            dtpTuNgay.Format = DateTimePickerFormat.Short;
+            dtpDenNgay.Format = DateTimePickerFormat.Short;
         }
 
         private void BtnLamMoi_Click(object sender, EventArgs e)
         {
-            VeTatCaBieuDo();
-            MessageBox.Show("Biểu đồ đã được cập nhật!", "Cập nhật thành công",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void VeTatCaBieuDo()
-        {
-            VeBieuDoDoanhThuThang();
-            VeBieuDoNhanVien();
-            VeBieuDoDichVuPhoBien();
-            VeBieuDoDatPhongTheoLoaiPhong();
-        }
-
-        private void LoadNam()
-        {
-            DataTable tbl = dbBaoCao.LayDanhSachNam();
-            cboNam.DataSource = tbl;
-            cboNam.DisplayMember = "Nam";
-            cboNam.ValueMember = "Nam";
-            cboNam.SelectedIndex = -1;
-        }
-
-        // Khi chọn năm → vẽ lại toàn bộ biểu đồ
-        private void CboNam_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboNam.SelectedValue is DataRowView) return;
-            VeTatCaBieuDo();
-        }
-
-        // Khi chọn tháng → chỉ vẽ lại biểu đồ dịch vụ
-        private void CboThang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            VeBieuDoDichVuPhoBien();
-        }
-
-        // 🔸 1. Biểu đồ Doanh thu theo Tháng (hoặc theo Năm nếu chưa chọn)
-        private void VeBieuDoDoanhThuThang()
-        {
-            int nam = 0;
-            if (cboNam.SelectedValue != null && int.TryParse(cboNam.SelectedValue.ToString(), out int n))
-                nam = n;
-
-            DataTable tbl;
-
-            if (nam == 0)
-                tbl = dbBaoCao.LayDoanhThuTheoNam();  // nếu chưa chọn năm -> theo năm
-            else
-                tbl = dbBaoCao.LayDoanhThuTheoThang(nam); // chọn năm -> theo tháng
-
-            chartDoanhThuThang.Series[0].Points.Clear();
-            chartDoanhThuThang.Titles.Clear();
-
-            string tieuDe = nam == 0
-                ? "Biểu đồ Doanh thu theo Năm"
-                : $"Biểu đồ Doanh thu theo Tháng (Năm {nam})";
-
-            chartDoanhThuThang.Titles.Add(tieuDe);
-            chartDoanhThuThang.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            chartDoanhThuThang.Titles[0].ForeColor = Color.DarkGoldenrod;
-
-            foreach (DataRow r in tbl.Rows)
+            try
             {
-                if (nam == 0)
-                {
-                    chartDoanhThuThang.Series[0].Points.AddXY(
-                        "Năm " + r["Nam"], r["TongDoanhThu"]);
-                }
-                else
-                {
-                    chartDoanhThuThang.Series[0].Points.AddXY(
-                        "Tháng " + r["Thang"], r["TongDoanhThu"]);
-                }
+                int nam = cboNam.SelectedValue != null ? Convert.ToInt32(cboNam.SelectedValue) : DateTime.Now.Year;
+                DateTime tuNgay = dtpTuNgay.Value.Date;
+                DateTime denNgay = dtpDenNgay.Value.Date;
+
+                // Doanh thu
+                DoChart(chartDoanhThuNgay, db.LayDoanhThuTheoNgay(tuNgay, denNgay), "Ngay", "TongDoanhThu", "Doanh thu theo ngày", SeriesChartType.Line);
+                DoChart(chartDoanhThuThang, db.LayDoanhThuTheoThang(nam), "Thang", "TongDoanhThu", "Doanh thu theo tháng", SeriesChartType.Column);
+                DoChart(chartDoanhThuNam, db.LayDoanhThu3NamGanNhat(), "Nam", "TongDoanhThu", "Doanh thu 3 năm gần nhất", SeriesChartType.Column);
+
+                // Nhân viên
+                DoChart(chartNVNgay, db.LayDoanhThuTheoNgay(tuNgay, denNgay), "Ngay", "TongDoanhThu", "Doanh thu nhân viên theo ngày", SeriesChartType.Line);
+                DoChart(chartNVThang, db.LayDoanhThuTheoThang(nam), "Thang", "TongDoanhThu", "Doanh thu nhân viên theo tháng", SeriesChartType.Column);
+                DoChart(chartNVNam, db.LayDoanhThuNhanVienTheoNam(nam), "TenNV", "TongDoanhThu", "Doanh thu nhân viên theo năm", SeriesChartType.Column);
+
+                // Dịch vụ
+                DoChart(chartDVNgay, db.LayDichVuPhoBienTheoNgay(tuNgay, denNgay), "TenDV", "SoLanDung", "Dịch vụ phổ biến (Từ - Đến)", SeriesChartType.Pie);
+                DoChart(chartDVNam, db.LayDichVuPhoBienTheoNgay(new DateTime(nam, 1, 1), new DateTime(nam, 12, 31)), "TenDV", "SoLanDung", "Dịch vụ phổ biến trong năm", SeriesChartType.Pie);
+
+                // Phòng
+                DoChart(chartPhongNgay, db.LayDoanhThuTheoNgay(tuNgay, denNgay), "Ngay", "TongDoanhThu", "Doanh thu phòng theo ngày", SeriesChartType.Column);
+                DoChart(chartPhongThang, db.LaySoLuotDatPhongTheoLoaiPhong(nam), "LoaiPhong", "SoLuotDat", "Số lượt đặt phòng theo loại phòng", SeriesChartType.Column);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải biểu đồ: " + ex.Message);
             }
         }
 
-        // 🔸 2. Biểu đồ Doanh thu theo Nhân viên (lọc theo năm)
-        private void VeBieuDoNhanVien()
+        private void DoChart(Chart chart, DataTable tbl, string xCol, string yCol, string title, SeriesChartType type)
         {
-            int nam = 0;
-            if (cboNam.SelectedValue != null && int.TryParse(cboNam.SelectedValue.ToString(), out int n))
-                nam = n;
-
-            DataTable tbl = dbBaoCao.LayDoanhThuTheoNhanVienTheoNam(nam);
-
-            chartDoanhThuNhanVien.Series[0].Points.Clear();
-            chartDoanhThuNhanVien.Titles.Clear();
-
-            string tieuDe = nam == 0
-                ? "Biểu đồ Doanh thu theo Nhân viên (Tất cả năm)"
-                : $"Biểu đồ Doanh thu theo Nhân viên - Năm {nam}";
-
-            chartDoanhThuNhanVien.Titles.Add(tieuDe);
-            chartDoanhThuNhanVien.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            chartDoanhThuNhanVien.Titles[0].ForeColor = Color.DarkGoldenrod;
-
-            foreach (DataRow r in tbl.Rows)
-            {
-                chartDoanhThuNhanVien.Series[0].Points.AddXY(
-                    r["TenNhanVien"].ToString(),
-                    Convert.ToDecimal(r["TongDoanhThu"]));
-            }
-        }
-
-        // 🔸 3. Biểu đồ Dịch vụ phổ biến (ảnh hưởng bởi năm + tháng)
-        private void VeBieuDoDichVuPhoBien()
-        {
-            // Nếu chưa chọn hoặc chọn 1 trong 2 thì không vẽ
-            if (cboNam.SelectedIndex < 0 || cboThang.SelectedIndex < 0)
-            {
-                chartDichVuPhoBien.Series.Clear();
-                chartDichVuPhoBien.Titles.Clear();
-                chartDichVuPhoBien.ChartAreas.Clear();
-                chartDichVuPhoBien.Titles.Add("⚠ Vui lòng chọn CẢ Năm và Tháng để xem biểu đồ dịch vụ");
-                chartDichVuPhoBien.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-                chartDichVuPhoBien.Titles[0].ForeColor = Color.DarkGoldenrod;
-                return;
-            }
-
-            // Lấy giá trị năm & tháng
-            if (!int.TryParse(cboNam.SelectedValue.ToString(), out int nam) || nam == 0 ||
-                !int.TryParse(cboThang.SelectedItem.ToString(), out int thang) || thang == 0)
-            {
-                chartDichVuPhoBien.Series.Clear();
-                chartDichVuPhoBien.Titles.Clear();
-                chartDichVuPhoBien.ChartAreas.Clear();
-                chartDichVuPhoBien.Titles.Add("⚠ Vui lòng chọn CẢ Năm và Tháng hợp lệ");
-                chartDichVuPhoBien.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-                chartDichVuPhoBien.Titles[0].ForeColor = Color.DarkGoldenrod;
-                return;
-            }
-
-            // Lấy dữ liệu
-            DataTable tbl = dbBaoCao.LayDichVuPhoBienTheoNamThang(nam, thang);
-
-            if (tbl.Rows.Count == 0)
-            {
-                chartDichVuPhoBien.Series.Clear();
-                chartDichVuPhoBien.Titles.Clear();
-                chartDichVuPhoBien.ChartAreas.Clear();
-                chartDichVuPhoBien.Titles.Add($"Không có dữ liệu cho Tháng {thang}/{nam}");
-                chartDichVuPhoBien.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-                chartDichVuPhoBien.Titles[0].ForeColor = Color.DarkGoldenrod;
-                return;
-            }
-
-            // Vẽ biểu đồ
-            chartDichVuPhoBien.Series.Clear();
-            chartDichVuPhoBien.Titles.Clear();
-            chartDichVuPhoBien.ChartAreas.Clear();
+            chart.Series.Clear();
+            chart.Titles.Clear();
+            chart.ChartAreas.Clear();
+            chart.Legends.Clear();
 
             ChartArea area = new ChartArea();
-            area.BackColor = Color.WhiteSmoke;
-            chartDichVuPhoBien.ChartAreas.Add(area);
+            chart.ChartAreas.Add(area);
 
-            chartDichVuPhoBien.Titles.Add($"Top Dịch vụ được sử dụng nhiều nhất (Tháng {thang}/{nam})");
-            chartDichVuPhoBien.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            chartDichVuPhoBien.Titles[0].ForeColor = Color.DarkGoldenrod;
-
-            Series s = chartDichVuPhoBien.Series.Add("Dịch vụ");
-            s.ChartType = SeriesChartType.Pie;
+            Series s = new Series("Dữ liệu");
+            s.ChartType = type;
             s.IsValueShownAsLabel = true;
-            s.Label = "#VALX\n#PERCENT{P0}";
+            s.LabelForeColor = Color.Black;
             s.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-            s["PieLabelStyle"] = "Outside";
-            s["PieLineColor"] = "Gray";
-            chartDichVuPhoBien.ChartAreas[0].Area3DStyle.Enable3D = true;
 
             foreach (DataRow r in tbl.Rows)
-            {
-                s.Points.AddXY(r["TenDichVu"], r["SoLanDung"]);
-            }
+                s.Points.AddXY(r[xCol].ToString(), Convert.ToDouble(r[yCol]));
 
-            chartDichVuPhoBien.Legends[0].Docking = Docking.Right;
-            chartDichVuPhoBien.Legends[0].Font = new Font("Segoe UI", 9);
-            chartDichVuPhoBien.Legends[0].ForeColor = Color.DarkGoldenrod;
+            chart.Series.Add(s);
+            chart.Titles.Add(title);
+            chart.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
+            chart.Titles[0].ForeColor = Color.FromArgb(180, 120, 0);
+
+            SetChartStyle(chart, type);
         }
 
-
-        // 🔸 4. Biểu đồ Số lượt đặt phòng theo loại phòng (lọc theo năm)
-        private void VeBieuDoDatPhongTheoLoaiPhong()
+        private void SetChartStyle(Chart chart, SeriesChartType type)
         {
-            int nam = 0;
-            if (cboNam.SelectedValue != null && int.TryParse(cboNam.SelectedValue.ToString(), out int n))
-                nam = n;
+            chart.BackColor = Color.WhiteSmoke;
+            chart.ChartAreas[0].BackColor = Color.White;
+            chart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Segoe UI", 9);
+            chart.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Segoe UI", 9);
+            chart.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.Gainsboro;
+            chart.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.Gainsboro;
+            chart.ChartAreas[0].InnerPlotPosition = new ElementPosition(5, 5, 90, 85);
 
-            DataTable tbl = dbBaoCao.LaySoLuotDatPhongTheoLoaiPhongTheoNam(nam);
-
-            chartDatPhongLoaiPhong.Series[0].Points.Clear();
-            chartDatPhongLoaiPhong.Titles.Clear();
-
-            string tieuDe = nam == 0
-                ? "Biểu đồ Số lượt đặt phòng theo Loại phòng (Tất cả năm)"
-                : $"Biểu đồ Số lượt đặt phòng theo Loại phòng - Năm {nam}";
-
-            chartDatPhongLoaiPhong.Titles.Add(tieuDe);
-            chartDatPhongLoaiPhong.Titles[0].Font = new Font("Segoe UI", 11, FontStyle.Bold);
-            chartDatPhongLoaiPhong.Titles[0].ForeColor = Color.DarkGoldenrod;
-
-            foreach (DataRow r in tbl.Rows)
+            Legend legend = new Legend()
             {
-                chartDatPhongLoaiPhong.Series[0].Points.AddXY(
-                    r["LoaiPhong"].ToString(),
-                    Convert.ToInt32(r["SoLuotDat"]));
+                Docking = Docking.Right,
+                Font = new Font("Segoe UI", 9),
+                ForeColor = Color.Black,
+            };
+            chart.Legends.Add(legend);
+
+            if (type == SeriesChartType.Pie)
+            {
+                chart.Series[0]["PieLabelStyle"] = "Outside";
+                chart.Series[0]["PieLineColor"] = "Gray";
+                chart.Series[0].Label = "#VALX\n#PERCENT{P0}";
+                chart.ChartAreas[0].Area3DStyle.Enable3D = true;
+                chart.Legends[0].Docking = Docking.Right;
             }
         }
     }
