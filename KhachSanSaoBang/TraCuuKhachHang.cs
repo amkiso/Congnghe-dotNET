@@ -34,7 +34,7 @@ namespace KhachSanSaoBang
             if (xl.ChecKH(txt_input.Text))
             {
                 string listChoXN, listchk;
-                ThongtinTracuu kh = xl.Tracuuthongtin(txt_input.Text);
+                ThongtinTracuu kh = xl.GetThongtinKH(txt_input.Text);
                 if (kh != null)
                 {
                     if (kh.Phong_cho_xac_nhan == null) { listChoXN = "0"; }

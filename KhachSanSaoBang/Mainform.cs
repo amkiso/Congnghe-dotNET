@@ -1,14 +1,16 @@
 ﻿using KhachSanSaoBang.Models;
+using KhachSanSaoBang.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KhachSanSaoBang.Models.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace KhachSanSaoBang
 {
@@ -75,60 +77,144 @@ namespace KhachSanSaoBang
         }
         private void Cbo_tinhtrang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int new_values, old_values;
-
-
+            
             if (isLoading) return; //bỏ qua sự kiện nếu đang load thông tin phòng khác
             if (Session.maphonghientai != 0)
             {
+                int new_values, old_values;
                 old_values = xl.GetCodeRoomStatus(Session.maphonghientai);
                 string trangthai_new = null, trangthai_old;
+                new_values = (int) cbo_tinhtrang.SelectedValue;
                 trangthai_old = xl.GetStringRoomStatus(old_values);
                 if (cbo_tinhtrang.SelectedItem is tblTinhTrangPhong ttr)
                 {
                     trangthai_new = ttr.mo_ta;
+                    
                 }
 
                 Thongtinchung tt = xl.GetThongtinphong(Session.maphonghientai);
                 DialogResult result = MessageBox.Show($"Bạn có chắc muốn thay đổi trạng thái của phòng {tt.Tenphong} \n từ '{trangthai_old}' thành '{trangthai_new}' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    //Kiểm tra đầu vào và điều hướng đến hành động phù hợp
-                    //Trạng thái thay đổi theo sơ đồ:
-                    //Mỗi trạng thái có thể có hoặc không có hành động thêm
-                    //Nếu có hành động thêm thì thực hiện hành động theo yêu cầu
-                    //nếu không có hành động thêm thì chỉ việc thay đổi trạng thái phòng
-                    /*Danh sách trạng thái (value-text):
-                        1.Trống
-                        2.Đang sử dụng
-                        3.Đang dọn
-                        4.Đang bảo trì
-                        5.Dừng sử dụng
-                        6.Chờ xác nhận
-                        7.Chờ check-in
-                     */
-                    /*Sơ đồ hoạt động: 
-                        nếu thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
-                        Nếu thay đổi từ 2-3: Kiểm tra xem phòng có được thanh toán hay chưa, 
-                                             nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
-                                             Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)
-                                             Yes: mở thêm cửa sổ thanh toán, tiến hành nhập thông tin thanh toán và thanh toán hóa đơn
-                                             No: return và không cho phép thay đổi
-                        Nếu thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
-                        Nếu thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
-                        Nếu thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
-                        Thay đổi từ 7-2: Hiện cửa sổ nhập thông tin khách nhận phòng,Ghi lại ngày vào (ngay_vao) trong database thành ngày giờ hiện tại, Cập nhật dữ liệu trên db
-                        Các trạng thái 4,5 của phòng chỉ có thể thay đổi khi phòng trống(1)
-                        Ngoài ra không chấp nhận thay đổi khác với luồng này
-                     */
+                    switch (xl.GetRoomCase(old_values, new_values))
+                    {
+                        case 1:
+                            {
+                                //thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
+                                BieuMauThuePhong thuep = new BieuMauThuePhong(tt);
+                                thuep.ShowDialog();
+                                
+                                if (Session.golbal_Status)
+                                {
+                                    Mainform_Load(this, EventArgs.Empty);
+                                    MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Thay đổi trạng thái phòng thất bại, bạn đã hủy thuê phòng !", "THông báo");
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                /*thay đổi từ 2-3: Kiểm tra xem phòng có được thanh toán hay chưa, 
+                                         nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
+                                         Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, 
+                                         bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)*/
+                                if (xl.CheckHoaDon(Session.maphonghientai))
+                                {
+                                    if (xl.ChangeRoomStatus(Session.maphonghientai, new_values)) { MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo"); }
+                                    else
+                                    {
+                                        MessageBox.Show("Thay đổi trạng thái phòng thất bại, có lỗi xảy ra khi đổi trạng thái phòng !", "THông báo");
+                                    }
+                                }
+                                else
+                                {
+                                    DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {tt.Tenphong} ?", "Thông báo", MessageBoxButtons.YesNo);
+                                    if (rls == DialogResult.Yes)
+                                    {
+                                        ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
+                                        pm.Show();
+
+                                    }
+                                    else return;
+                                }
+
+                                    break;
+                            }
+                        case 3:
+                            {
+                                //thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
+                                DialogResult rls = MessageBox.Show("Xác nhận đã dọn phòng xong ?", "Thông báo", MessageBoxButtons.YesNo);
+                                if (rls == DialogResult.Yes)
+                                {
+                                    xl.ChangeRoomStatus(Session.maphonghientai, 1);//Chuyển thành trống
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                //thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
+                                MessageBox.Show("Trạng thái phòng không hợp lệ !","Lỗi");
+                                break;
+                            }
+                        case 5:
+                            {
+                                //thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
+                                DialogResult rel =  MessageBox.Show("Xác nhận nhận phòng khách đặt ?","Thông báo",MessageBoxButtons.YesNo);
+                                if(rel == DialogResult.Yes)
+                                {
+                                    //Đổi trạng thái phòng, trạng thái phiếu đặt, tạo hóa đơn mới
+                                    
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                //đổi từ 7-2: Hiện cửa sổ nhập thông tin khách nhận phòng,Ghi lại ngày vào (ngay_vao) trong database thành ngày giờ hiện tại, Cập nhật dữ liệu trên db
+                                break;
+                            }
+                        case 0:
+                            {
+                                //Các trạng thái 4,5 của phòng chỉ có thể thay đổi khi phòng trống(1)
+
+
+                                break;
+                            }
+                        case -1:
+                            {
+                                // Ngoài ra không chấp nhận thay đổi khác với luồng này
+                                MessageBox.Show($"Không thể thay đổi trạng thái {tt.Tenphong} \n từ '{trangthai_old}' thành '{trangthai_new}' vì không hợp lệ !");
+                                return;
+                            }
+                    }
+                    
                 }
-                else return;
+                
+                else {
+                    isLoading = true;
+                    cbo_tinhtrang.SelectedValue = old_values;
+                    return; }
+                
             }
         }
         private void Btn_thanhtoan_Click(object sender, EventArgs e)
         {
             //ẩn cửa sổ này và gọi cửa sổ thanh toán tại đây
-            MessageBox.Show("Chức năng này đang được phát triền !", "Thông báo");
+           DialogResult rls = MessageBox.Show("THanh toán phòng ? !", "Thông báo", MessageBoxButtons.YesNo);
+            if (rls == DialogResult.Yes)
+            {   
+                ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
+                pm.Show();
+                
+            }
+            else return;
+
         }
         private void Btn_trahang_Click(object sender, EventArgs e)
         {
@@ -377,7 +463,6 @@ namespace KhachSanSaoBang
         private void Mainform_Load(object sender, EventArgs e)
         {
             dsDichVu.loaddata();
-
             timer1.Start();
             list_dichvu.DataSource = dsDichVu.dsDichVus;
             list_dichvu.ValueMember = "ma_dv";
@@ -386,8 +471,11 @@ namespace KhachSanSaoBang
             cbo_tinhtrang.DataSource = ttp;
             cbo_tinhtrang.ValueMember = "ma_tinh_trang";
             cbo_tinhtrang.DisplayMember = "mo_ta";
+            Tomauphong();
+        }
+        private void Tomauphong()
+        {
             if (!Dataloader.ToMauPhong(this, xl.tomau())) MessageBox.Show("Lấy thông tin các phòng thất bại", "Thông báo");
-            //this.WindowState = FormWindowState.Maximized;
         }
         private void list_dichvu_SelectedIndexChanged(object sender, EventArgs e)
         {

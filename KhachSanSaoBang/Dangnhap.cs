@@ -1,19 +1,23 @@
 ﻿using KhachSanSaoBang.Models;
+using KhachSanSaoBang.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KhachSanSaoBang.Models.Data;
 
 namespace KhachSanSaoBang
 {
     public partial class Dangnhap : Form
-    { 
+
+    {
+        private readonly string rememberFile = Path.Combine(Application.StartupPath, "remember.dat");
+
         Xuly xl = new Xuly();
         public Dangnhap()
         {
@@ -44,19 +48,61 @@ namespace KhachSanSaoBang
             if (!xl.Dangnhap(nv)) { MessageBox.Show("Tài khoản hoặc mật khẩu không đúng!", "Thông báo"); }
             else
             {
+                if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text,txt_matkhau.Text); }
                 MessageBox.Show("Đăng nhập thành công, Chào mừng "+ Session.UserName+"!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
+                this.Hide();
+                Mainform main = new Mainform();
+                main.ShowDialog();
                 this.Close();
             }
            
 
         }
-
+        private void TaiThongTinDaLuu()
+        {
+            if (File.Exists(rememberFile))
+            {
+                try
+                {
+                    string data = File.ReadAllText(rememberFile);
+                    var parts = data.Split('|');
+                    if (parts.Length == 2)
+                    {
+                        txt_taikhoan.Text = Remember_Me.GiaiMaThongTin(parts[0]);
+                        txt_matkhau.Text = Remember_Me.GiaiMaThongTin(parts[1]);
+                        cb_ghinho.Checked = true;
+                    }
+                }
+                catch
+                {
+                    // file bị hỏng => bỏ qua
+                }
+            }
+        }
+        private void LuuThongTinDangNhap(string username, string password)
+        {
+            if (cb_ghinho.Checked)
+            {
+                string encUser = Remember_Me.MaHoaThongTin(username);
+                string encPass = Remember_Me.MaHoaThongTin(password);
+                File.WriteAllText(rememberFile, $"{encUser}|{encPass}");
+            }
+            else
+            {
+                if (File.Exists(rememberFile))
+                    File.Delete(rememberFile);
+            }
+        }
         private void Dangnhap_Load(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
+            
             txt_matkhau.UseSystemPasswordChar = true;
+            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
             panel1.Visible = true;
+            TaiThongTinDaLuu();
         }
+
+        
     }
 }

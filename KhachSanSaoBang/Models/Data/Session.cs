@@ -13,5 +13,6 @@ namespace KhachSanSaoBang.Models
         public static string Role { get; set; }
         public static string UserEmail { get; set; }
         public static int maphonghientai { get; set; } 
+        public static bool golbal_Status { get; set; }
     }
 }

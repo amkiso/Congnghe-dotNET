@@ -15,6 +15,7 @@ namespace KhachSanSaoBang.Models
         string ngayvao, ngayra, thoigian_nhanphong;
         DateTime ngay_o_thuc_te;
         int phuthu;
+        int maphieudp;
         public string Tenphong { get => tenphong; set => tenphong = value; }
         public string Loaiphong { get => loaiphong; set => loaiphong = value; }
         public string Khachhang { get => khachhang; set => khachhang = value; }
@@ -28,5 +29,6 @@ namespace KhachSanSaoBang.Models
         public int Maphong { get => maphong; set => maphong = value; }
         public DateTime Ngay_o_thuc_te { get => ngay_o_thuc_te; set => ngay_o_thuc_te = value; }
         public int Phuthu { get => phuthu; set => phuthu = value; }
+        public int Maphieudp { get => maphieudp; set => maphieudp = value; }
     }
 }
