@@ -71,18 +71,18 @@
             this.txt_tongtien = new System.Windows.Forms.RichTextBox();
             this.tbl_phai = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.hoadon = new System.Drawing.Printing.PrintDocument();
+            this.prt_mayin = new System.Windows.Forms.PrintDialog();
+            this.lbl_header_phai = new KhachSanSaoBang.CustomLabel_Image();
+            this.btn_huy = new ImageButton();
+            this.btn_inhoadon = new ImageButton();
+            this.btn_thanhtoan = new ImageButton();
             this.da_dv_su_dung = new System.Windows.Forms.DataGridView();
             this.col_Ten_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_gia_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_donvi_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_SL_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbl_header_phai = new KhachSanSaoBang.CustomLabel_Image();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_huy = new ImageButton();
-            this.btn_inhoadon = new ImageButton();
-            this.btn_thanhtoan = new ImageButton();
-            this.hoadon = new System.Drawing.Printing.PrintDocument();
-            this.prt_mayin = new System.Windows.Forms.PrintDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.container_left.SuspendLayout();
             this.tbl_topleft.SuspendLayout();
@@ -92,8 +92,8 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tbl_phai.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.da_dv_su_dung)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.da_dv_su_dung)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -649,8 +649,8 @@
             this.tbl_phai.BackColor = System.Drawing.Color.Transparent;
             this.tbl_phai.ColumnCount = 1;
             this.tbl_phai.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbl_phai.Controls.Add(this.richTextBox1, 0, 2);
             this.tbl_phai.Controls.Add(this.da_dv_su_dung, 0, 1);
+            this.tbl_phai.Controls.Add(this.richTextBox1, 0, 2);
             this.tbl_phai.Controls.Add(this.lbl_header_phai, 0, 0);
             this.tbl_phai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbl_phai.Location = new System.Drawing.Point(885, 134);
@@ -675,75 +675,6 @@
             this.richTextBox1.Text = "Công thức tính tiền phòng:\nTổng tiền = (ngày vào -  ngày ra ) * giá phòng + tỉ lệ" +
     " phụ thu *Thời gian phát sinh - chiết khấu của voucher(nếu có)";
             // 
-            // da_dv_su_dung
-            // 
-            this.da_dv_su_dung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.da_dv_su_dung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.da_dv_su_dung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_Ten_dv,
-            this.col_gia_dv,
-            this.col_donvi_dv,
-            this.col_SL_dv});
-            this.da_dv_su_dung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.da_dv_su_dung.Location = new System.Drawing.Point(3, 103);
-            this.da_dv_su_dung.Name = "da_dv_su_dung";
-            this.da_dv_su_dung.RowHeadersVisible = false;
-            this.da_dv_su_dung.RowHeadersWidth = 82;
-            this.da_dv_su_dung.RowTemplate.Height = 33;
-            this.da_dv_su_dung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.da_dv_su_dung.Size = new System.Drawing.Size(821, 749);
-            this.da_dv_su_dung.TabIndex = 42;
-            // 
-            // col_Ten_dv
-            // 
-            this.col_Ten_dv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.col_Ten_dv.DataPropertyName = "Tendv";
-            this.col_Ten_dv.HeaderText = "Tên dịch vụ";
-            this.col_Ten_dv.MinimumWidth = 10;
-            this.col_Ten_dv.Name = "col_Ten_dv";
-            this.col_Ten_dv.Width = 125;
-            // 
-            // col_gia_dv
-            // 
-            this.col_gia_dv.DataPropertyName = "Giaban";
-            this.col_gia_dv.HeaderText = "Giá dịch vụ";
-            this.col_gia_dv.MinimumWidth = 10;
-            this.col_gia_dv.Name = "col_gia_dv";
-            // 
-            // col_donvi_dv
-            // 
-            this.col_donvi_dv.DataPropertyName = "Donvi";
-            this.col_donvi_dv.HeaderText = "Đơn vị tính";
-            this.col_donvi_dv.MinimumWidth = 10;
-            this.col_donvi_dv.Name = "col_donvi_dv";
-            // 
-            // col_SL_dv
-            // 
-            this.col_SL_dv.DataPropertyName = "Soluong";
-            this.col_SL_dv.HeaderText = "Số lượng";
-            this.col_SL_dv.MinimumWidth = 10;
-            this.col_SL_dv.Name = "col_SL_dv";
-            // 
-            // lbl_header_phai
-            // 
-            this.lbl_header_phai.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_header_phai.BorderColor = System.Drawing.Color.Transparent;
-            this.lbl_header_phai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_header_phai.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.lbl_header_phai.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lbl_header_phai.Image = ((System.Drawing.Image)(resources.GetObject("lbl_header_phai.Image")));
-            this.lbl_header_phai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_header_phai.ImagePadding = 4;
-            this.lbl_header_phai.ImageScaleFactor = 0.4F;
-            this.lbl_header_phai.ImageSize = new System.Drawing.Size(20, 20);
-            this.lbl_header_phai.Location = new System.Drawing.Point(3, 3);
-            this.lbl_header_phai.Name = "lbl_header_phai";
-            this.lbl_header_phai.Size = new System.Drawing.Size(821, 94);
-            this.lbl_header_phai.TabIndex = 43;
-            this.lbl_header_phai.Text = "Danh sách dịch vụ đã dùng";
-            this.lbl_header_phai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_header_phai.TextPadding = 4;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
@@ -767,6 +698,30 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1709, 80);
             this.tableLayoutPanel2.TabIndex = 49;
             // 
+            // prt_mayin
+            // 
+            this.prt_mayin.UseEXDialog = true;
+            // 
+            // lbl_header_phai
+            // 
+            this.lbl_header_phai.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_header_phai.BorderColor = System.Drawing.Color.Transparent;
+            this.lbl_header_phai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_header_phai.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lbl_header_phai.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lbl_header_phai.Image = ((System.Drawing.Image)(resources.GetObject("lbl_header_phai.Image")));
+            this.lbl_header_phai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_header_phai.ImagePadding = 4;
+            this.lbl_header_phai.ImageScaleFactor = 0.4F;
+            this.lbl_header_phai.ImageSize = new System.Drawing.Size(20, 20);
+            this.lbl_header_phai.Location = new System.Drawing.Point(3, 3);
+            this.lbl_header_phai.Name = "lbl_header_phai";
+            this.lbl_header_phai.Size = new System.Drawing.Size(821, 94);
+            this.lbl_header_phai.TabIndex = 43;
+            this.lbl_header_phai.Text = "Danh sách dịch vụ đã dùng";
+            this.lbl_header_phai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_header_phai.TextPadding = 4;
+            // 
             // btn_huy
             // 
             this.btn_huy.BackColor = System.Drawing.Color.White;
@@ -774,10 +729,14 @@
             this.btn_huy.BorderWidth = 1;
             this.btn_huy.CornerRadius = 8;
             this.btn_huy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_huy.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_huy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_huy.EnableShadow = false;
             this.btn_huy.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btn_huy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_huy.GradientColor1 = System.Drawing.Color.White;
+            this.btn_huy.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_huy.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.btn_huy.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btn_huy.Image = global::KhachSanSaoBang.Properties.Resources.gui_cancel;
             this.btn_huy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -786,12 +745,14 @@
             this.btn_huy.ImageSize = new System.Drawing.Size(20, 20);
             this.btn_huy.Location = new System.Drawing.Point(1129, 3);
             this.btn_huy.Name = "btn_huy";
+            this.btn_huy.NormalBackColor = System.Drawing.Color.White;
             this.btn_huy.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btn_huy.Size = new System.Drawing.Size(404, 74);
             this.btn_huy.TabIndex = 0;
             this.btn_huy.Text = "Hủy";
             this.btn_huy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_huy.TextPadding = 8;
+            this.btn_huy.UseGradient = false;
             // 
             // btn_inhoadon
             // 
@@ -800,10 +761,14 @@
             this.btn_inhoadon.BorderWidth = 1;
             this.btn_inhoadon.CornerRadius = 8;
             this.btn_inhoadon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_inhoadon.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_inhoadon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_inhoadon.EnableShadow = false;
             this.btn_inhoadon.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btn_inhoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_inhoadon.GradientColor1 = System.Drawing.Color.White;
+            this.btn_inhoadon.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_inhoadon.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.btn_inhoadon.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btn_inhoadon.Image = global::KhachSanSaoBang.Properties.Resources.icons8_invoice_100;
             this.btn_inhoadon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -812,12 +777,14 @@
             this.btn_inhoadon.ImageSize = new System.Drawing.Size(20, 20);
             this.btn_inhoadon.Location = new System.Drawing.Point(651, 3);
             this.btn_inhoadon.Name = "btn_inhoadon";
+            this.btn_inhoadon.NormalBackColor = System.Drawing.Color.White;
             this.btn_inhoadon.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btn_inhoadon.Size = new System.Drawing.Size(404, 74);
             this.btn_inhoadon.TabIndex = 1;
             this.btn_inhoadon.Text = "In Hóa Đơn";
             this.btn_inhoadon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_inhoadon.TextPadding = 8;
+            this.btn_inhoadon.UseGradient = false;
             // 
             // btn_thanhtoan
             // 
@@ -826,10 +793,15 @@
             this.btn_thanhtoan.BorderWidth = 1;
             this.btn_thanhtoan.CornerRadius = 8;
             this.btn_thanhtoan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_thanhtoan.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_thanhtoan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_thanhtoan.Enabled = false;
             this.btn_thanhtoan.EnableShadow = false;
             this.btn_thanhtoan.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btn_thanhtoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_thanhtoan.GradientColor1 = System.Drawing.Color.White;
+            this.btn_thanhtoan.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_thanhtoan.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.btn_thanhtoan.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.btn_thanhtoan.Image = global::KhachSanSaoBang.Properties.Resources.icons8_payment_64;
             this.btn_thanhtoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -838,16 +810,72 @@
             this.btn_thanhtoan.ImageSize = new System.Drawing.Size(20, 20);
             this.btn_thanhtoan.Location = new System.Drawing.Point(173, 3);
             this.btn_thanhtoan.Name = "btn_thanhtoan";
+            this.btn_thanhtoan.NormalBackColor = System.Drawing.Color.White;
             this.btn_thanhtoan.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btn_thanhtoan.Size = new System.Drawing.Size(404, 74);
             this.btn_thanhtoan.TabIndex = 2;
             this.btn_thanhtoan.Text = "Thanh Toán";
             this.btn_thanhtoan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btn_thanhtoan.TextPadding = 8;
+            this.btn_thanhtoan.UseGradient = false;
             // 
-            // prt_mayin
+            // da_dv_su_dung
             // 
-            this.prt_mayin.UseEXDialog = true;
+            this.da_dv_su_dung.AllowUserToDeleteRows = false;
+            this.da_dv_su_dung.AllowUserToResizeColumns = false;
+            this.da_dv_su_dung.AllowUserToResizeRows = false;
+            this.da_dv_su_dung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.da_dv_su_dung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.da_dv_su_dung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_Ten_dv,
+            this.col_gia_dv,
+            this.col_donvi_dv,
+            this.col_SL_dv});
+            this.da_dv_su_dung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.da_dv_su_dung.Location = new System.Drawing.Point(3, 103);
+            this.da_dv_su_dung.MultiSelect = false;
+            this.da_dv_su_dung.Name = "da_dv_su_dung";
+            this.da_dv_su_dung.ReadOnly = true;
+            this.da_dv_su_dung.RowHeadersVisible = false;
+            this.da_dv_su_dung.RowHeadersWidth = 82;
+            this.da_dv_su_dung.RowTemplate.Height = 33;
+            this.da_dv_su_dung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.da_dv_su_dung.Size = new System.Drawing.Size(821, 749);
+            this.da_dv_su_dung.TabIndex = 44;
+            // 
+            // col_Ten_dv
+            // 
+            this.col_Ten_dv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.col_Ten_dv.DataPropertyName = "Tendv";
+            this.col_Ten_dv.HeaderText = "Tên dịch vụ";
+            this.col_Ten_dv.MinimumWidth = 10;
+            this.col_Ten_dv.Name = "col_Ten_dv";
+            this.col_Ten_dv.ReadOnly = true;
+            this.col_Ten_dv.Width = 125;
+            // 
+            // col_gia_dv
+            // 
+            this.col_gia_dv.DataPropertyName = "Giaban";
+            this.col_gia_dv.HeaderText = "Giá dịch vụ";
+            this.col_gia_dv.MinimumWidth = 10;
+            this.col_gia_dv.Name = "col_gia_dv";
+            this.col_gia_dv.ReadOnly = true;
+            // 
+            // col_donvi_dv
+            // 
+            this.col_donvi_dv.DataPropertyName = "Donvi";
+            this.col_donvi_dv.HeaderText = "Đơn vị tính";
+            this.col_donvi_dv.MinimumWidth = 10;
+            this.col_donvi_dv.Name = "col_donvi_dv";
+            this.col_donvi_dv.ReadOnly = true;
+            // 
+            // col_SL_dv
+            // 
+            this.col_SL_dv.DataPropertyName = "Soluong";
+            this.col_SL_dv.HeaderText = "Số lượng";
+            this.col_SL_dv.MinimumWidth = 10;
+            this.col_SL_dv.Name = "col_SL_dv";
+            this.col_SL_dv.ReadOnly = true;
             // 
             // ThanhToan
             // 
@@ -857,8 +885,8 @@
             this.ClientSize = new System.Drawing.Size(1715, 1373);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ThanhToan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ThanhToan";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.container_left.ResumeLayout(false);
@@ -873,8 +901,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tbl_phai.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.da_dv_su_dung)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.da_dv_su_dung)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -922,11 +950,6 @@
         private System.Windows.Forms.Button btn_apdungvoucher;
         private System.Windows.Forms.TableLayoutPanel tbl_phai;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.DataGridView da_dv_su_dung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_Ten_dv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_gia_dv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_donvi_dv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_SL_dv;
         private CustomLabel_Image lbl_header_phai;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private ImageButton btn_huy;
@@ -935,5 +958,10 @@
         private System.Drawing.Printing.PrintDocument hoadon;
         private System.Windows.Forms.PrintDialog prt_mayin;
         private System.Windows.Forms.TextBox txt_mavoucher;
+        private System.Windows.Forms.DataGridView da_dv_su_dung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_Ten_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_gia_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_donvi_dv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_SL_dv;
     }
 }

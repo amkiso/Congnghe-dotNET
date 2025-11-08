@@ -6,21 +6,96 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace KhachSanSaoBang
 {
-    public partial class Mainform : Form
+    public partial class MainForm : Form
     {
+        bool isMenuCollapsed = false;
         Xuly xl = new Xuly();
+        private string lastSelectedValue = "";
+        private int clickCount = 0;
+        private bool isLoading = false;
 
-        public Mainform()
+        private void ToggleSubMenu(Panel submenu)
+        {
+            if (!submenu.Visible)
+            {
+                submenu.Visible = true;
+            }
+            else
+            {
+                submenu.Visible = false;
+            }
+        }
+        private void Btn_Toggle_menu_Click(object sender, EventArgs e)
+        {
+            if (pnl_menu.Visible) { pnl_menu.Visible = false; }
+            else pnl_menu.Visible = true;
+            if (isMenuCollapsed)
+            {
+                // Mở rộng lại menu
+                tableLayoutPanel1.ColumnStyles[0].Width = 15;
+                tableLayoutPanel1.ColumnStyles[1].Width = 70;
+            }
+            else
+            {
+                // Thu nhỏ menu
+                tableLayoutPanel1.ColumnStyles[0].Width = 1;
+                tableLayoutPanel1.ColumnStyles[1].Width = 84;
+            }
+            
+            isMenuCollapsed = !isMenuCollapsed;
+        }
+        private void btnKhachSan_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlKhachSanSub);
+        }
+
+        private void btnDichVu_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlDichVuSub);
+        }
+
+        private void pnlKhachhang_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlKhachHangSub);
+        }
+
+        private void btnDoanhThu_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlDoanhThuSub);
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlThongKeSub);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlNhanVienSub);
+        }
+        public MainForm()
         {
             InitializeComponent();
+            this.Load += Mainform_Load;
+            // Toggle menu chính
+            list_dichvu.SelectedIndexChanged += list_dichvu_SelectedIndexChanged;
+            this.btn_Toggle_menu.Click += Btn_Toggle_menu_Click;
+            lbl_Nhanvien.Text = Session.UserName;
+            lbl_chucvu.Text = Session.Role;
+            // Các nút con
+            btnKhachSan.Click += btnKhachSan_Click;
+            btnDichVu.Click += btnDichVu_Click;
+            pnlKhachhang.Click += pnlKhachhang_Click;
+            btnDoanhThu.Click += btnDoanhThu_Click;
+            btnThongKe.Click += btnThongKe_Click;
+            btn_nhanvien.Click += button1_Click;
+            btn_tracuu.Click += Btn_tracuu_Click;
             this.timer1.Tick += Timer1_Tick; //timer
             //Sự kiện phòng Tầng 1
             btn_p101.Click += Btn_p101_Click;
@@ -50,9 +125,13 @@ namespace KhachSanSaoBang
             cbo_tinhtrang.SelectedIndexChanged += Cbo_tinhtrang_SelectedIndexChanged;
             list_dichvu.Click += List_dichvu_Click;
         }
-        private string lastSelectedValue = "";
-        private int clickCount = 0;
-        private bool isLoading = false;
+
+        private void Btn_tracuu_Click(object sender, EventArgs e)
+        {
+            TraCuuKhachHang tracuu = new TraCuuKhachHang();
+            tracuu.ShowDialog();
+        }
+        
 
         private void List_dichvu_Click(object sender, EventArgs e)
         {
@@ -77,19 +156,19 @@ namespace KhachSanSaoBang
         }
         private void Cbo_tinhtrang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (isLoading) return; //bỏ qua sự kiện nếu đang load thông tin phòng khác
             if (Session.maphonghientai != 0)
             {
                 int new_values, old_values;
                 old_values = xl.GetCodeRoomStatus(Session.maphonghientai);
                 string trangthai_new = null, trangthai_old;
-                new_values = (int) cbo_tinhtrang.SelectedValue;
+                new_values = (int)cbo_tinhtrang.SelectedValue;
                 trangthai_old = xl.GetStringRoomStatus(old_values);
                 if (cbo_tinhtrang.SelectedItem is tblTinhTrangPhong ttr)
                 {
                     trangthai_new = ttr.mo_ta;
-                    
+
                 }
 
                 Thongtinchung tt = xl.GetThongtinphong(Session.maphonghientai);
@@ -103,8 +182,8 @@ namespace KhachSanSaoBang
                                 //thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
                                 BieuMauThuePhong thuep = new BieuMauThuePhong(tt);
                                 thuep.ShowDialog();
-                                
-                                if (Session.golbal_Status)
+
+                                if (Session.Acction_status)
                                 {
                                     Mainform_Load(this, EventArgs.Empty);
                                     MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo");
@@ -131,17 +210,21 @@ namespace KhachSanSaoBang
                                 }
                                 else
                                 {
-                                    DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {tt.Tenphong} ?", "Thông báo", MessageBoxButtons.YesNo);
-                                    if (rls == DialogResult.Yes)
+                                    if (Session.maphonghientai != 0)
                                     {
-                                        ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
-                                        pm.Show();
+                                        DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {tt.Tenphong} ?", "Thông báo", MessageBoxButtons.YesNo);
+                                        if (rls == DialogResult.Yes)
+                                        {
+                                            ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
+                                            pm.ShowDialog(this);
 
+                                        }
+                                        else return;
                                     }
-                                    else return;
+                                    else { MessageBox.Show("Bạn chưa chọn phòng để thanh toán!", "Thông báo"); }
                                 }
 
-                                    break;
+                                break;
                             }
                         case 3:
                             {
@@ -156,17 +239,17 @@ namespace KhachSanSaoBang
                         case 4:
                             {
                                 //thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
-                                MessageBox.Show("Trạng thái phòng không hợp lệ !","Lỗi");
+                                MessageBox.Show("Trạng thái phòng không hợp lệ !", "Lỗi");
                                 break;
                             }
                         case 5:
                             {
                                 //thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
-                                DialogResult rel =  MessageBox.Show("Xác nhận nhận phòng khách đặt ?","Thông báo",MessageBoxButtons.YesNo);
-                                if(rel == DialogResult.Yes)
+                                DialogResult rel = MessageBox.Show("Xác nhận nhận phòng khách đặt ?", "Thông báo", MessageBoxButtons.YesNo);
+                                if (rel == DialogResult.Yes)
                                 {
                                     //Đổi trạng thái phòng, trạng thái phiếu đặt, tạo hóa đơn mới
-                                    
+
                                 }
                                 else
                                 {
@@ -193,27 +276,33 @@ namespace KhachSanSaoBang
                                 return;
                             }
                     }
-                    
+
                 }
-                
-                else {
+
+                else
+                {
                     isLoading = true;
                     cbo_tinhtrang.SelectedValue = old_values;
-                    return; }
-                
+                    return;
+                }
+
             }
         }
         private void Btn_thanhtoan_Click(object sender, EventArgs e)
         {
             //ẩn cửa sổ này và gọi cửa sổ thanh toán tại đây
-           DialogResult rls = MessageBox.Show("THanh toán phòng ? !", "Thông báo", MessageBoxButtons.YesNo);
-            if (rls == DialogResult.Yes)
-            {   
-                ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
-                pm.Show();
-                
+            if (Session.maphonghientai != 0)
+            {
+                DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {Session.maphonghientai} ?", "Thông báo", MessageBoxButtons.YesNo);
+                if (rls == DialogResult.Yes)
+                {
+                    Form1 pm = new Form1(xl.GetThongtinThanhToan(Session.maphonghientai));
+                    pm.ShowDialog(this);
+                        
+                }
+                else return;
             }
-            else return;
+            else { MessageBox.Show("Bạn chưa chọn phòng để thanh toán!", "Thông báo"); }
 
         }
         private void Btn_trahang_Click(object sender, EventArgs e)
@@ -469,13 +558,17 @@ namespace KhachSanSaoBang
             list_dichvu.DisplayMember = "ten_dv";
             List<tblTinhTrangPhong> ttp = xl.tinhtrangp();
             cbo_tinhtrang.DataSource = ttp;
+
             cbo_tinhtrang.ValueMember = "ma_tinh_trang";
             cbo_tinhtrang.DisplayMember = "mo_ta";
-            Tomauphong();
+            Drawitem();
         }
-        private void Tomauphong()
+        private void Drawitem()
         {
             if (!Dataloader.ToMauPhong(this, xl.tomau())) MessageBox.Show("Lấy thông tin các phòng thất bại", "Thông báo");
+            main_left_bot_container.Paint += (s, ev) => DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
+            main_right_top_container.Paint += (s, ev) => DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
+            main_right_bot_container.Paint += (s, ev) => DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
         }
         private void list_dichvu_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -488,7 +581,17 @@ namespace KhachSanSaoBang
                 txt_sl_goi.SelectAll();
             }
         }
+        private void DrawTableCellBorder(object sender, PaintEventArgs e, Color c)
+        {
+            var g = e.Graphics;
+            var panel = sender as TableLayoutPanel;
 
+            using (Pen p = new Pen(c))
+            {
+                g.DrawRectangle(p, 0, 0, panel.ClientSize.Width - 1, panel.ClientSize.Height - 1);
+            }
+        }
 
     }
 }
+

@@ -220,11 +220,11 @@ namespace KhachSanSaoBang.Models.Data
                 if(invoiceData.Tilechietkhau > 0)
                 {
 
-                    yPos = DrawLineItem(g, $"Khuyễn mãi ({invoiceData.Tilechietkhau}%):", (int)invoiceData.Tienchietkhau, fontNormal, brush, MARGIN, yPos, calculateOnly);
+                    yPos = DrawLineItem(g, $"Khuyễn mãi ({invoiceData.Tilechietkhau}%):", "-"+(int)invoiceData.Tienchietkhau, fontNormal, brush, MARGIN, yPos, calculateOnly);
                 }
                 else
                 {
-                    yPos = DrawLineItem(g, "Khuyễn mãi:", (int)invoiceData.Tienchietkhau, fontNormal, brush, MARGIN, yPos, calculateOnly);
+                    yPos = DrawLineItem(g, "Khuyễn mãi:", "-"+(int)invoiceData.Tienchietkhau, fontNormal, brush, MARGIN, yPos, calculateOnly);
                 }
             }
 
@@ -305,6 +305,24 @@ namespace KhachSanSaoBang.Models.Data
         private float DrawLineItem(Graphics g, string text, float amount, Font font, Brush brush, float x, float y, bool calculateOnly)
         {
             string amountStr = FormatMoney(amount);
+            SizeF amountSize = g.MeasureString(amountStr, font);
+            SizeF textSize = g.MeasureString(text, font);
+
+            if (!calculateOnly)
+            {
+                // Vẽ text bên trái
+                g.DrawString(text, font, brush, x, y);
+
+                // Vẽ số tiền bên phải
+                float amountX = PAPER_WIDTH - MARGIN - amountSize.Width;
+                g.DrawString(amountStr, font, brush, amountX, y);
+            }
+
+            return y + Math.Max(textSize.Height, amountSize.Height) + 2;
+        }
+        private float DrawLineItem(Graphics g, string text, string amount, Font font, Brush brush, float x, float y, bool calculateOnly)
+        {
+            string amountStr = decimal.Parse(amount).ToString("N0", new System.Globalization.CultureInfo("vi-VN")) + "đ";
             SizeF amountSize = g.MeasureString(amountStr, font);
             SizeF textSize = g.MeasureString(text, font);
 

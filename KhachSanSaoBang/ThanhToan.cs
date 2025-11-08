@@ -71,6 +71,8 @@ namespace KhachSanSaoBang
             data_phuthu.ClearSelection();
             data_tienphong.ClearSelection();
             da_dv_su_dung.ClearSelection();
+            this.WindowState = FormWindowState.Maximized;
+            
         }
 
         private void DrawTableCellBorder(object sender, TableLayoutCellPaintEventArgs e, Color c)
