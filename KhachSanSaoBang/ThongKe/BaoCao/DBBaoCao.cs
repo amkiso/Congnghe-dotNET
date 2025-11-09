@@ -64,6 +64,25 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
             return tbl;
         }
 
+        // 🔹 Doanh thu nhân viên theo khoảng
+        public DataTable LayDoanhThuNhanVienTheoKhoang(DateTime tuNgay, DateTime denNgay)
+        {
+            string sql = @"
+                SELECT NV.ho_ten AS TenNV, SUM(HD.tong_tien) AS TongDoanhThu
+                FROM tblHoaDon HD
+                JOIN tblNhanVien NV ON HD.ma_nv = NV.ma_nv
+                WHERE HD.ngay_tra_phong BETWEEN @tuNgay AND @denNgay
+                GROUP BY NV.ho_ten
+                ORDER BY TongDoanhThu DESC";
+            SqlCommand cmd = new SqlCommand(sql, sqlcnn);
+            cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
+            cmd.Parameters.AddWithValue("@denNgay", denNgay);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tbl = new DataTable();
+            da.Fill(tbl);
+            return tbl;
+        }
+
         // 🔹 Doanh thu nhân viên theo năm
         public DataTable LayDoanhThuNhanVienTheoNam(int nam)
         {
@@ -82,7 +101,7 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
             return tbl;
         }
 
-        // 🔹 Dịch vụ phổ biến (theo khoảng ngày)
+        // 🔹 Dịch vụ phổ biến
         public DataTable LayDichVuPhoBienTheoNgay(DateTime tuNgay, DateTime denNgay)
         {
             string sql = @"
@@ -90,7 +109,7 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
                 FROM tblDichVuDaDat CT
                 JOIN tblDichVu DV ON CT.ma_dv = DV.ma_dv
                 JOIN tblHoaDon HD ON CT.ma_hd = HD.ma_hd
-                WHERE ngay_tra_phong BETWEEN @tuNgay AND @denNgay
+                WHERE HD.ngay_tra_phong BETWEEN @tuNgay AND @denNgay
                 GROUP BY DV.ten_dv
                 ORDER BY SoLanDung DESC";
             SqlCommand cmd = new SqlCommand(sql, sqlcnn);
@@ -102,7 +121,28 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
             return tbl;
         }
 
-        // 🔹 Số lượt đặt phòng theo loại phòng
+        // 🔹 Doanh thu theo loại phòng (theo khoảng ngày)
+        public DataTable LayDoanhThuTheoLoaiPhong(DateTime tuNgay, DateTime denNgay)
+        {
+            string sql = @"
+        SELECT LP.mo_ta AS LoaiPhong, SUM(HD.tong_tien) AS TongDoanhThu
+        FROM tblHoaDon HD
+        JOIN tblPhieuDatPhong PDP ON HD.ma_pdp = PDP.ma_pdp
+        JOIN tblPhong P ON PDP.ma_phong = P.ma_phong
+        JOIN tblLoaiPhong LP ON P.loai_phong = LP.loai_phong
+        WHERE HD.ngay_tra_phong BETWEEN @tuNgay AND @denNgay
+        GROUP BY LP.mo_ta
+        ORDER BY TongDoanhThu DESC";
+            SqlCommand cmd = new SqlCommand(sql, sqlcnn);
+            cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
+            cmd.Parameters.AddWithValue("@denNgay", denNgay);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tbl = new DataTable();
+            da.Fill(tbl);
+            return tbl;
+        }
+
+        // 🔹 Phòng – lượt đặt theo loại
         public DataTable LaySoLuotDatPhongTheoLoaiPhong(int nam)
         {
             string sql = @"
@@ -116,16 +156,6 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
             SqlCommand cmd = new SqlCommand(sql, sqlcnn);
             cmd.Parameters.AddWithValue("@nam", nam);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable tbl = new DataTable();
-            da.Fill(tbl);
-            return tbl;
-        }
-
-        // 🔹 Danh sách năm
-        public DataTable LayDanhSachNam()
-        {
-            string sql = "SELECT DISTINCT YEAR(ngay_tra_phong) AS Nam FROM tblHoaDon ORDER BY Nam DESC";
-            SqlDataAdapter da = new SqlDataAdapter(sql, sqlcnn);
             DataTable tbl = new DataTable();
             da.Fill(tbl);
             return tbl;

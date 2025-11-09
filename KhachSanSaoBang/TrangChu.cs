@@ -1,4 +1,5 @@
-﻿using KhachSanSaoBang.NhanVien;
+﻿using KhachSanSaoBang.DoanhThu;
+using KhachSanSaoBang.NhanVien;
 using KhachSanSaoBang.ThongKe.BaoCao;
 using System;
 using System.Collections.Generic;

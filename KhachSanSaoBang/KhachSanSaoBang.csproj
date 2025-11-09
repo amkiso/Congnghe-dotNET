@@ -164,12 +164,6 @@
     <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThongKe\BaoCao\ucTest.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ThongKe\BaoCao\ucTest.Designer.cs">
-      <DependentUpon>ucTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="TraCuuKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,9 +222,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKe\BaoCao\ucBaoCao.resx">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThongKe\BaoCao\ucTest.resx">
-      <DependentUpon>ucTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
