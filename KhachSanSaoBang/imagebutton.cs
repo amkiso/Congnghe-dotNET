@@ -70,8 +70,19 @@ public class ImageButton : Control
         set { _cornerRadius = Math.Max(0, value); Invalidate(); }
     }
 
+    // Cải tiến: Thêm thuộc tính NormalBackColor riêng
+    private Color _normalBackColor = Color.White;
+    [Category("Appearance")]
+    [Description("Màu nền khi button ở trạng thái bình thường")]
+    public Color NormalBackColor
+    {
+        get => _normalBackColor;
+        set { _normalBackColor = value; Invalidate(); }
+    }
+
     private Color _hoverBackColor = Color.FromArgb(240, 240, 240);
     [Category("Appearance")]
+    [Description("Màu nền khi hover chuột")]
     public Color HoverBackColor
     {
         get => _hoverBackColor;
@@ -80,10 +91,20 @@ public class ImageButton : Control
 
     private Color _pressedBackColor = Color.FromArgb(220, 220, 220);
     [Category("Appearance")]
+    [Description("Màu nền khi nhấn button")]
     public Color PressedBackColor
     {
         get => _pressedBackColor;
         set { _pressedBackColor = value; Invalidate(); }
+    }
+
+    private Color _disabledBackColor = Color.FromArgb(245, 245, 245);
+    [Category("Appearance")]
+    [Description("Màu nền khi button bị disabled")]
+    public Color DisabledBackColor
+    {
+        get => _disabledBackColor;
+        set { _disabledBackColor = value; Invalidate(); }
     }
 
     private Color _borderColor = Color.FromArgb(200, 200, 200);
@@ -126,12 +147,56 @@ public class ImageButton : Control
         set { _enableShadow = value; Invalidate(); }
     }
 
-    private Color _defaultBackColor = Color.White;
-    [Browsable(false)]
+    // Gradient background options
+    private bool _useGradient = false;
+    [Category("Appearance")]
+    [Description("Sử dụng gradient cho background")]
+    public bool UseGradient
+    {
+        get => _useGradient;
+        set { _useGradient = value; Invalidate(); }
+    }
+
+    private Color _gradientColor1 = Color.White;
+    [Category("Appearance")]
+    [Description("Màu bắt đầu của gradient")]
+    public Color GradientColor1
+    {
+        get => _gradientColor1;
+        set { _gradientColor1 = value; Invalidate(); }
+    }
+
+    private Color _gradientColor2 = Color.LightGray;
+    [Category("Appearance")]
+    [Description("Màu kết thúc của gradient")]
+    public Color GradientColor2
+    {
+        get => _gradientColor2;
+        set { _gradientColor2 = value; Invalidate(); }
+    }
+
+    private LinearGradientMode _gradientMode = LinearGradientMode.Vertical;
+    [Category("Appearance")]
+    [Description("Hướng của gradient")]
+    public LinearGradientMode GradientMode
+    {
+        get => _gradientMode;
+        set { _gradientMode = value; Invalidate(); }
+    }
+
+    // Override BackColor để sync với NormalBackColor
+    [Browsable(true)]
+    [Category("Appearance")]
+    [Description("Màu nền của button (sync với NormalBackColor)")]
     public override Color BackColor
     {
-        get => base.BackColor;
-        set { base.BackColor = value; _defaultBackColor = value; Invalidate(); }
+        get => _normalBackColor;
+        set
+        {
+            _normalBackColor = value;
+            base.BackColor = value;
+            Invalidate();
+        }
     }
 
     // States
@@ -193,6 +258,12 @@ public class ImageButton : Control
         }
     }
 
+    protected override void OnEnabledChanged(EventArgs e)
+    {
+        base.OnEnabledChanged(e);
+        Invalidate();
+    }
+
     // Helper: get rounded rectangle path
     private GraphicsPath GetRoundRect(RectangleF bounds, int radius)
     {
@@ -218,25 +289,22 @@ public class ImageButton : Control
         if (!_autoSizeImage || _image == null)
             return _imageSize;
 
-        // Calculate size based on button height with scale factor
         int targetSize = (int)(clientRect.Height * _imageScaleFactor);
         targetSize = Math.Max(8, Math.Min(targetSize, clientRect.Height - _imagePadding * 2));
 
-        // Maintain aspect ratio
         float aspectRatio = (float)_image.Width / _image.Height;
         int width = targetSize;
         int height = targetSize;
 
-        if (aspectRatio > 1) // Wider than tall
+        if (aspectRatio > 1)
         {
             height = (int)(width / aspectRatio);
         }
-        else if (aspectRatio < 1) // Taller than wide
+        else if (aspectRatio < 1)
         {
             width = (int)(height * aspectRatio);
         }
 
-        // Ensure it doesn't exceed button bounds
         if (width > clientRect.Width - _imagePadding * 2)
         {
             width = clientRect.Width - _imagePadding * 2;
@@ -254,17 +322,13 @@ public class ImageButton : Control
 
         if (_image == null)
         {
-            // No image, text takes full area with padding
             textRect.Inflate(-_textPadding, -_textPadding);
             return;
         }
 
-        // Get image size (auto or manual)
         Size imgSz = GetCalculatedImageSize(clientRect);
-
         bool hasText = !string.IsNullOrEmpty(this.Text);
 
-        // Calculate image position based on ImageAlign
         Point imgPos = Point.Empty;
 
         switch (_imageAlign)
@@ -300,15 +364,12 @@ public class ImageButton : Control
 
         imgRect = new Rectangle(imgPos, imgSz);
 
-        // Calculate text area
         if (hasText)
         {
-            // If image is on left or right, adjust text area accordingly
             if (_imageAlign == ContentAlignment.MiddleLeft ||
                 _imageAlign == ContentAlignment.TopLeft ||
                 _imageAlign == ContentAlignment.BottomLeft)
             {
-                // Image on left, text on right
                 float textLeft = imgRect.Right + _textPadding;
                 textRect = new RectangleF(
                     textLeft,
@@ -321,7 +382,6 @@ public class ImageButton : Control
                      _imageAlign == ContentAlignment.TopRight ||
                      _imageAlign == ContentAlignment.BottomRight)
             {
-                // Image on right, text on left
                 textRect = new RectangleF(
                     _textPadding,
                     _textPadding,
@@ -331,7 +391,6 @@ public class ImageButton : Control
             }
             else
             {
-                // Image is centered or top/bottom, text uses full width
                 textRect = new RectangleF(
                     _textPadding,
                     _textPadding,
@@ -340,6 +399,18 @@ public class ImageButton : Control
                 );
             }
         }
+    }
+
+    // Get current background color based on state
+    private Color GetCurrentBackColor()
+    {
+        if (!this.Enabled)
+            return _disabledBackColor;
+        if (_pressed)
+            return _pressedBackColor;
+        if (_hovered)
+            return _hoverBackColor;
+        return _normalBackColor;
     }
 
     // Painting
@@ -353,7 +424,7 @@ public class ImageButton : Control
         Rectangle r = ClientRectangle;
 
         // Shadow effect
-        if (_enableShadow && !_pressed)
+        if (_enableShadow && !_pressed && this.Enabled)
         {
             using (var shadowPath = GetRoundRect(new RectangleF(r.X + 2, r.Y + 2, r.Width, r.Height), CornerRadius))
             using (var shadowBrush = new SolidBrush(Color.FromArgb(30, 0, 0, 0)))
@@ -362,34 +433,64 @@ public class ImageButton : Control
             }
         }
 
-        // Background
-        Color back = _defaultBackColor;
-        if (_pressed)
-            back = _pressedBackColor;
-        else if (_hovered)
-            back = _hoverBackColor;
-
         // Apply slight offset when pressed for depth effect
         RectangleF drawRect = r;
-        if (_pressed)
+        if (_pressed && this.Enabled)
         {
             drawRect.Offset(1, 1);
         }
 
-        using (var brush = new SolidBrush(back))
         using (var path = GetRoundRect(drawRect, CornerRadius))
         {
-            g.FillPath(brush, path);
-        }
-
-        // Border
-        if (_borderWidth > 0)
-        {
-            using (var pen = new Pen(_borderColor, _borderWidth))
+            // Background - Gradient or Solid
+            if (_useGradient)
             {
-                pen.Alignment = PenAlignment.Inset;
-                using (var path = GetRoundRect(drawRect, CornerRadius))
+                // Gradient background
+                Color color1 = _gradientColor1;
+                Color color2 = _gradientColor2;
+
+                // Adjust gradient colors based on state
+                if (!this.Enabled)
                 {
+                    color1 = _disabledBackColor;
+                    color2 = _disabledBackColor;
+                }
+                else if (_pressed)
+                {
+                    color1 = ControlPaint.Dark(_gradientColor1, 0.1f);
+                    color2 = ControlPaint.Dark(_gradientColor2, 0.1f);
+                }
+                else if (_hovered)
+                {
+                    color1 = ControlPaint.Light(_gradientColor1, 0.1f);
+                    color2 = ControlPaint.Light(_gradientColor2, 0.1f);
+                }
+
+                RectangleF gradientRect = drawRect;
+                if (gradientRect.Width > 0 && gradientRect.Height > 0)
+                {
+                    using (var gradientBrush = new LinearGradientBrush(gradientRect, color1, color2, _gradientMode))
+                    {
+                        g.FillPath(gradientBrush, path);
+                    }
+                }
+            }
+            else
+            {
+                // Solid background
+                Color back = GetCurrentBackColor();
+                using (var brush = new SolidBrush(back))
+                {
+                    g.FillPath(brush, path);
+                }
+            }
+
+            // Border
+            if (_borderWidth > 0)
+            {
+                using (var pen = new Pen(_borderColor, _borderWidth))
+                {
+                    pen.Alignment = PenAlignment.Inset;
                     g.DrawPath(pen, path);
                 }
             }
@@ -407,7 +508,68 @@ public class ImageButton : Control
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             g.CompositingQuality = CompositingQuality.HighQuality;
-            g.DrawImage(_image, imgRect);
+
+            if (!this.Enabled)
+            {
+                //    // Draw grayed out image when disabled
+                //    ControlPaint.DrawImageDisabled(g, _image, imgRect.X, imgRect.Y, Color.Transparent);
+
+                //}
+                if (_image != null && !imgRect.IsEmpty && imgRect.Width > 0 && imgRect.Height > 0)
+                {
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+
+                    if (!this.Enabled)
+                    {
+                        // Draw grayed out image when disabled - with proper error handling
+                        try
+                        {
+                            // Tạo image attributes để vẽ image mờ hơn
+                            using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
+                            {
+                                // Tạo color matrix để giảm độ sáng và độ bão hòa
+                                float[][] matrixItems = {
+                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                    new float[] {0, 0, 0, 0.5f, 0},
+                    new float[] {0.2f, 0.2f, 0.2f, 0, 1}
+                };
+                                var colorMatrix = new System.Drawing.Imaging.ColorMatrix(matrixItems);
+                                imageAttr.SetColorMatrix(colorMatrix,
+                                    System.Drawing.Imaging.ColorMatrixFlag.Default,
+                                    System.Drawing.Imaging.ColorAdjustType.Bitmap);
+
+                                g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
+                                    GraphicsUnit.Pixel, imageAttr);
+                            }
+                        }
+                        catch
+                        {
+                            // Fallback: vẽ image bình thường với opacity thấp
+                            using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
+                            {
+                                var colorMatrix = new System.Drawing.Imaging.ColorMatrix();
+                                colorMatrix.Matrix33 = 0.3f; // Opacity 30%
+                                imageAttr.SetColorMatrix(colorMatrix);
+
+                                g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
+                                    GraphicsUnit.Pixel, imageAttr);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        g.DrawImage(_image, imgRect);
+                    }
+                }
+            }
+            else
+            {
+                g.DrawImage(_image, imgRect);
+            }
         }
 
         // Draw text
@@ -458,7 +620,8 @@ public class ImageButton : Control
                 sf.Trimming = StringTrimming.EllipsisCharacter;
                 sf.FormatFlags = StringFormatFlags.NoWrap;
 
-                using (var textBrush = new SolidBrush(this.ForeColor))
+                Color textColor = this.Enabled ? this.ForeColor : ControlPaint.Dark(this.ForeColor, 0.5f);
+                using (var textBrush = new SolidBrush(textColor))
                 {
                     g.DrawString(this.Text, this.Font, textBrush, textRect, sf);
                 }
@@ -466,7 +629,7 @@ public class ImageButton : Control
         }
 
         // Focus rectangle
-        if (this.Focused)
+        if (this.Focused && this.Enabled)
         {
             Rectangle fr = Rectangle.Inflate(r, -4, -4);
             ControlPaint.DrawFocusRectangle(g, fr);

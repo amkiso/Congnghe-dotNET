@@ -15,16 +15,16 @@ namespace KhachSanSaoBang.Models
         {
             try
             {
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_tenphong"].Text = tt.Tenphong;
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_loaiphong"].Text = tt.Loaiphong;
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_giathue"].Text = tt.Giathue.ToString();
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_sotang"].Text = tt.Matang.ToString();
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_ngayra"].Text = tt.Ngayra.ToString();
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_ngaydatphong"].Text = tt.Ngayvao.ToString();
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_gionhanphong"].Text = tt.Thoigian_nhanphong.ToString();
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_tenkhach"].Text = tt.Khachhang;
-                f.Controls["panel2"].Controls["panel1"].Controls["txt_sokhachthue"].Text = tt.Sokhach.ToString();
-                
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["row2"].Controls["txt_tenphong"].Text = tt.Tenphong;
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["row2"].Controls["txt_loaiphong"].Text = tt.Loaiphong;
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row3"].Controls["txt_giathue"].Text = tt.Giathue.ToString();
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["row2"].Controls["txt_sotang"].Text = tt.Matang.ToString();
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row5"].Controls["txt_ngayra"].Text = tt.Ngayra.ToString();
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row4"].Controls["txt_ngaydatphong"].Text = tt.Ngayvao.ToString();
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row6"].Controls["txt_gionhanphong"].Text = tt.Thoigian_nhanphong.ToString();
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row4"].Controls["txt_tenkhach"].Text = tt.Khachhang;
+                f.Controls["tableLayoutPanel1"].Controls["tableLayoutPanel2"].Controls["main_left_container"].Controls["main_left_bot_container"].Controls["tableLayoutPanel3"].Controls["row5"].Controls["txt_sokhachthue"].Text = tt.Sokhach.ToString();
+
                 return true;
             }
             catch (Exception e) { return false; }

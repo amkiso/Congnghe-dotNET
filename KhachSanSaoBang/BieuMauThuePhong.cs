@@ -48,7 +48,7 @@ namespace KhachSanSaoBang
                 }
                 else
                 {
-                    Session.golbal_Status = false;
+                    Session.Acction_status = false;
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace KhachSanSaoBang
             if (result == DialogResult.Yes)
             {
                 this.Close();
-                Session.golbal_Status = false;
+                Session.Acction_status = false;
             }
             else return;
         }
@@ -148,7 +148,7 @@ namespace KhachSanSaoBang
                     if (xl.AutoRoomBook(pdp)==0)
                     {
                         MessageBox.Show("Tạo phiếu thuê phòng thành công !", "Thông báo");
-                        Session.golbal_Status = true;
+                        Session.Acction_status = true;
                         pstatus = true;
                         this.Close();
                     }
@@ -163,7 +163,7 @@ namespace KhachSanSaoBang
                     if (xl.CreateNewPhieuDatPhong(pdp))
                     {
                         MessageBox.Show("Tạo phiếu thuê phòng thành công !", "Thông báo");
-                        Session.golbal_Status = true;
+                        Session.Acction_status = true;
                         pstatus = true;
                         this.Close();
                     }

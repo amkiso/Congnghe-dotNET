@@ -14,49 +14,47 @@ using System.Windows.Forms;
 namespace KhachSanSaoBang
 {
     public partial class Dangnhap : Form
-
     {
-        private readonly string rememberFile = Path.Combine(Application.StartupPath, "remember.dat");
-
         Xuly xl = new Xuly();
+        private readonly string rememberFile = Path.Combine(Application.StartupPath, "remember.dat");
         public Dangnhap()
         {
             InitializeComponent();
-            btn_dangnhap.Click += Btn_dangnhap_Click;
-            lbl_quenmatkhau.Click += Lbl_quenmatkhau_Click;
             lb_Register.Click += Lb_Register_Click;
-            
+            this.Load += Temp_Load;
+        }
+
+        private void Temp_Load(object sender, EventArgs e)
+        {
+            txt_matkhau.UseSystemPasswordChar = true;
+            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
+            panel1.Visible = true;
+            TaiThongTinDaLuu();
         }
 
         private void Lb_Register_Click(object sender, EventArgs e)
         {
-            Dangky  dk = new Dangky();
+            Dangky dk = new Dangky();
             dk.ShowDialog();
             MessageBox.Show("Cảm ơn bạn đã đăng ký ! ");
         }
 
-        private void Lbl_quenmatkhau_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Btn_dangnhap_Click(object sender, EventArgs e)
         {
-            tblNhanVien nv =new tblNhanVien();
+            tblNhanVien nv = new tblNhanVien();
             nv.tai_khoan = txt_taikhoan.Text;
             nv.mat_khau = txt_matkhau.Text;
             if (!xl.Dangnhap(nv)) { MessageBox.Show("Tài khoản hoặc mật khẩu không đúng!", "Thông báo"); }
             else
             {
-                if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text,txt_matkhau.Text); }
-                MessageBox.Show("Đăng nhập thành công, Chào mừng "+ Session.UserName+"!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
+                if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text, txt_matkhau.Text); }
+                MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
-                Mainform main = new Mainform();
+                MainForm main = new MainForm();
                 main.ShowDialog();
                 this.Close();
             }
-           
 
         }
         private void TaiThongTinDaLuu()
@@ -94,15 +92,24 @@ namespace KhachSanSaoBang
                     File.Delete(rememberFile);
             }
         }
-        private void Dangnhap_Load(object sender, EventArgs e)
-        {
-            
-            txt_matkhau.UseSystemPasswordChar = true;
-            panel1.BackColor = Color.FromArgb(120, 0, 0, 0);
-            panel1.Visible = true;
-            TaiThongTinDaLuu();
-        }
 
-        
+        private void btn_dangnhap_Click_1(object sender, EventArgs e)
+        {
+            tblNhanVien nv = new tblNhanVien();
+            nv.tai_khoan = txt_taikhoan.Text;
+            nv.mat_khau = txt_matkhau.Text;
+            if (!xl.Dangnhap(nv)) { MessageBox.Show("Tài khoản hoặc mật khẩu không đúng!", "Thông báo"); }
+            else
+            {
+                if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text, txt_matkhau.Text); }
+                MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
+                this.DialogResult = DialogResult.OK;
+                this.Hide();
+                MainForm main = new MainForm();
+                main.ShowDialog();
+                this.Close();
+            }
+
+        }
     }
 }
