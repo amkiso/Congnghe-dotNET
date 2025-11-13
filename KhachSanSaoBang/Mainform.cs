@@ -98,26 +98,26 @@ namespace KhachSanSaoBang
             btn_tracuu.Click += Btn_tracuu_Click;
             this.timer1.Tick += Timer1_Tick; //timer
             //Sự kiện phòng Tầng 1
-            btn_p101.Click += Btn_p101_Click;
-            btn_p102.Click += Btn_p102_Click;
-            btn_p103.Click += Btn_p103_Click;
-            btn_p104.Click += Btn_p104_Click;
-            btn_p105.Click += Btn_p105_Click;
-            btn_p106.Click += Btn_p106_Click;
+            btn_p101.Click += Sophong_click;
+            btn_p102.Click += Sophong_click;
+            btn_p103.Click += Sophong_click;
+            btn_p104.Click += Sophong_click;
+            btn_p105.Click += Sophong_click;
+            btn_p106.Click += Sophong_click;
             //Sự kiện phòng Tầng 2
-            btn_p201.Click += Btn_p201_Click;
-            btn_p202.Click += Btn_p202_Click;
-            btn_p203.Click += Btn_p203_Click;
-            btn_p204.Click += Btn_p204_Click;
-            btn_p205.Click += Btn_p205_Click;
-            btn_p206.Click += Btn_p206_Click;
+            btn_p201.Click += Sophong_click;
+            btn_p202.Click += Sophong_click;
+            btn_p203.Click += Sophong_click;
+            btn_p204.Click += Sophong_click;
+            btn_p205.Click += Sophong_click;
+            btn_p206.Click += Sophong_click;
             //Sự kiện phòng Tầng 3
-            btn_p301.Click += Btn_p301_Click;
-            btn_p302.Click += Btn_p302_Click;
-            btn_p303.Click += Btn_p303_Click;
-            btn_p304.Click += Btn_p304_Click;
-            btn_p305.Click += Btn_p305_Click;
-            btn_p306.Click += Btn_p306_Click;
+            btn_p301.Click += Sophong_click;
+            btn_p302.Click += Sophong_click;
+            btn_p303.Click += Sophong_click;
+            btn_p304.Click += Sophong_click;
+            btn_p305.Click += Sophong_click;
+            btn_p306.Click += Sophong_click;
             //Sự kiện liên quan đến thao tác nghiệp vụ
             btn_goidv.Click += Btn_goidv_Click;
             btn_trahang.Click += Btn_trahang_Click;
@@ -131,8 +131,6 @@ namespace KhachSanSaoBang
             TraCuuKhachHang tracuu = new TraCuuKhachHang();
             tracuu.ShowDialog();
         }
-        
-
         private void List_dichvu_Click(object sender, EventArgs e)
         {
             if (list_dichvu.SelectedValue == null)
@@ -296,7 +294,7 @@ namespace KhachSanSaoBang
                 DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {Session.maphonghientai} ?", "Thông báo", MessageBoxButtons.YesNo);
                 if (rls == DialogResult.Yes)
                 {
-                    Form1 pm = new Form1(xl.GetThongtinThanhToan(Session.maphonghientai));
+                    ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
                     pm.ShowDialog(this);
                         
                 }
@@ -304,6 +302,15 @@ namespace KhachSanSaoBang
             }
             else { MessageBox.Show("Bạn chưa chọn phòng để thanh toán!", "Thông báo"); }
 
+        }
+        private void Sophong_click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                int sophong = Convert.ToInt32(btn.Tag); // lấy giá trị từ Tag
+                loadingroom(sophong);
+            }
         }
         private void Btn_trahang_Click(object sender, EventArgs e)
         {
@@ -418,6 +425,10 @@ namespace KhachSanSaoBang
                                 txt_sl_goi.SelectAll();
                             }
                         }
+                        else
+                        {
+                            MessageBox.Show("Gọi dịch vụ thất bại do phòng chưa có khách đặt hoặc do lỗi không xác định !", "Thông báo");
+                        }
                     }
                     else
                     {
@@ -433,99 +444,7 @@ namespace KhachSanSaoBang
             }
 
         }
-        private void Btn_p306_Click(object sender, EventArgs e)
-        {
-
-            int ma_p = 18;
-            loadingroom(ma_p);
-        }
-        private void Btn_p305_Click(object sender, EventArgs e)
-        {
-            int ma_p = 17;
-            loadingroom(ma_p);
-        }
-        private void Btn_p304_Click(object sender, EventArgs e)
-        {
-            int ma_p = 16;
-            loadingroom(ma_p);
-        }
-        private void Btn_p303_Click(object sender, EventArgs e)
-        {
-            int ma_p = 15;
-            loadingroom(ma_p);
-        }
-        private void Btn_p302_Click(object sender, EventArgs e)
-        {
-            int ma_p = 14;
-            loadingroom(ma_p);
-        }
-        private void Btn_p301_Click(object sender, EventArgs e)
-        {
-            int ma_p = 13;
-            loadingroom(ma_p);
-        }
-        private void Btn_p206_Click(object sender, EventArgs e)
-        {
-            int ma_p = 12;
-            loadingroom(ma_p);
-        }
-        private void Btn_p205_Click(object sender, EventArgs e)
-        {
-            int ma_p = 11;
-            loadingroom(ma_p);
-        }
-        private void Btn_p204_Click(object sender, EventArgs e)
-        {
-            int ma_p = 10;
-            loadingroom(ma_p);
-        }
-        private void Btn_p203_Click(object sender, EventArgs e)
-        {
-            int ma_p = 9;
-            loadingroom(ma_p);
-        }
-        private void Btn_p202_Click(object sender, EventArgs e)
-        {
-            int ma_p = 8;
-            loadingroom(ma_p);
-        }
-        private void Btn_p201_Click(object sender, EventArgs e)
-        {
-            int ma_p = 7;
-            loadingroom(ma_p);
-        }
-        private void Btn_p106_Click(object sender, EventArgs e)
-        {
-            int ma_p = 6;
-            loadingroom(ma_p);
-        }
-        private void Btn_p105_Click(object sender, EventArgs e)
-        {
-            int ma_p = 5;
-            loadingroom(ma_p);
-        }
-        private void Btn_p104_Click(object sender, EventArgs e)
-        {
-            int ma_p = 4;
-            loadingroom(ma_p);
-        }
-        private void Btn_p103_Click(object sender, EventArgs e)
-        {
-            int ma_p = 3;
-            loadingroom(ma_p);
-        }
-        private void Btn_p102_Click(object sender, EventArgs e)
-        {
-
-            int ma_p = 2;
-            loadingroom(ma_p);
-        }
-        private void Btn_p101_Click(object sender, EventArgs e)
-        {
-
-            int ma_p = 1;
-            loadingroom(ma_p);
-        }
+       
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lbl_timer.Text = DateTime.Now.ToString("dd/MM/yyyy \nHH:mm:ss");
@@ -551,6 +470,10 @@ namespace KhachSanSaoBang
         }
         private void Mainform_Load(object sender, EventArgs e)
         {
+            FormStart();
+        }
+        private void FormStart()
+        {
             dsDichVu.loaddata();
             timer1.Start();
             list_dichvu.DataSource = dsDichVu.dsDichVus;
@@ -558,7 +481,6 @@ namespace KhachSanSaoBang
             list_dichvu.DisplayMember = "ten_dv";
             List<tblTinhTrangPhong> ttp = xl.tinhtrangp();
             cbo_tinhtrang.DataSource = ttp;
-
             cbo_tinhtrang.ValueMember = "ma_tinh_trang";
             cbo_tinhtrang.DisplayMember = "mo_ta";
             Drawitem();

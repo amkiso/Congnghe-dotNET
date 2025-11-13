@@ -17,6 +17,7 @@ namespace KhachSanSaoBang.Models.Data
         float tienchietkhau, _tongtien;
         int _tilechietkhau;
         string makm;
+        float tienkhachdua;
         public List<DichVuDaDung> Dichvusudung { get; set; } = new List<DichVuDaDung>();
         public string Makh { get => _makh; set => _makh = value; }
         public string Sophong { get => _sophong; set => _sophong = value; }
@@ -60,7 +61,7 @@ namespace KhachSanSaoBang.Models.Data
                 if (Ngayvao == default || Ngaydukienra == default)
                     return 0;
 
-                TimeSpan thoiGianSuDung = Ngaydukienra - Ngayvao;
+                TimeSpan thoiGianSuDung = DateTime.Now - Ngayvao;
 
                 float soNgay = (float)Math.Round(thoiGianSuDung.TotalDays,2);
                 return Math.Max(0, soNgay);
@@ -82,5 +83,6 @@ namespace KhachSanSaoBang.Models.Data
         public string Tennv { get => _tennv; set => _tennv = value; }
         public int Tilechietkhau { get => _tilechietkhau; set => _tilechietkhau = value; }
         public string Makm { get => makm; set => makm = value; }
+        public float Tienkhachdua { get => tienkhachdua; set => tienkhachdua = value; }
     }
 }

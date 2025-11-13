@@ -718,7 +718,7 @@ namespace KhachSanSaoBang.Models
                 data.Mahd = ttp.Maphieudp;
                 data.Tilephuthu = ttp.Phuthu;
                 data.sokhach = ttp.Sokhach;
-
+                data.Tienkhachdua = 0;
                 return data;
             }
             catch { return null; }
@@ -737,24 +737,26 @@ namespace KhachSanSaoBang.Models
             else return false;
         }
         //Thanh toán
-        public bool ThanhToanHoaDon(tblHoaDon hd)
+        
+        public bool ThanhToanHoaDon(ThongtinThanhToan hd, int mathanhtoan)
         {
             try
             {
-                var hoadon = db.tblHoaDons.FirstOrDefault(t => t.ma_hd == hd.ma_hd);
+                var hoadon = db.tblHoaDons.FirstOrDefault(t => t.ma_hd == hd.Mahd);
                 if (hoadon != null)
                 {
                     hoadon.ngay_tra_phong = DateTime.Now;
-                    hoadon.tien_dich_vu = hd.tien_dich_vu;
-                    hoadon.tien_phong = hd.tien_phong;
-                    hoadon.phu_thu = hd.phu_thu;
-                    hoadon.tong_tien = hd.tong_tien;
-                    hoadon.ma_thanh_toan = hd.ma_thanh_toan;
-                    hoadon.ma_khuyenmai = hd.ma_khuyenmai;
-                    hoadon.ma_nv = hd.ma_nv;
+                    hoadon.tien_dich_vu = hd.Tiendichvu;
+                    hoadon.tien_phong = hd.Giaphong;
+                    hoadon.phu_thu = hd.Thanhtienphuthu;
+                    hoadon.tong_tien = hd.Tongtien;
+                    hoadon.ma_thanh_toan = mathanhtoan;
+                    hoadon.ma_khuyenmai = hd.Makm;
+                    hoadon.ma_nv = Session.UserId;
                     hoadon.ma_tinh_trang = 2; //Đã thanh toán
-                    ChangeRoomForm((int)hd.ma_pdp, 4);//Đã xong
+                    ChangeRoomForm((int)hoadon.ma_pdp, 4);//Đã xong
                     db.SubmitChanges();
+                    ChangeRoomStatus(Session.maphonghientai, 3);
                     return true;
                 }
                 else return false;

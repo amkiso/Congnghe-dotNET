@@ -678,6 +678,7 @@
             this.btn_p101.Name = "btn_p101";
             this.btn_p101.Size = new System.Drawing.Size(301, 259);
             this.btn_p101.TabIndex = 7;
+            this.btn_p101.Tag = "1";
             this.btn_p101.Text = "Phòng 101";
             this.btn_p101.UseVisualStyleBackColor = true;
             // 
@@ -688,6 +689,7 @@
             this.btn_p102.Name = "btn_p102";
             this.btn_p102.Size = new System.Drawing.Size(301, 259);
             this.btn_p102.TabIndex = 8;
+            this.btn_p102.Tag = "2";
             this.btn_p102.Text = "Phòng 102";
             this.btn_p102.UseVisualStyleBackColor = true;
             // 
@@ -698,6 +700,7 @@
             this.btn_p103.Name = "btn_p103";
             this.btn_p103.Size = new System.Drawing.Size(301, 259);
             this.btn_p103.TabIndex = 9;
+            this.btn_p103.Tag = "3";
             this.btn_p103.Text = "Phòng 103";
             this.btn_p103.UseVisualStyleBackColor = true;
             // 
@@ -708,6 +711,7 @@
             this.btn_p104.Name = "btn_p104";
             this.btn_p104.Size = new System.Drawing.Size(301, 259);
             this.btn_p104.TabIndex = 10;
+            this.btn_p104.Tag = "4";
             this.btn_p104.Text = "Phòng 104";
             this.btn_p104.UseVisualStyleBackColor = true;
             // 
@@ -718,6 +722,7 @@
             this.btn_p105.Name = "btn_p105";
             this.btn_p105.Size = new System.Drawing.Size(301, 259);
             this.btn_p105.TabIndex = 11;
+            this.btn_p105.Tag = "5";
             this.btn_p105.Text = "Phòng 105";
             this.btn_p105.UseVisualStyleBackColor = true;
             // 
@@ -728,6 +733,7 @@
             this.btn_p106.Name = "btn_p106";
             this.btn_p106.Size = new System.Drawing.Size(301, 259);
             this.btn_p106.TabIndex = 12;
+            this.btn_p106.Tag = "6";
             this.btn_p106.Text = "Phòng 106";
             this.btn_p106.UseVisualStyleBackColor = true;
             // 
@@ -777,6 +783,7 @@
             this.btn_p201.Name = "btn_p201";
             this.btn_p201.Size = new System.Drawing.Size(301, 259);
             this.btn_p201.TabIndex = 7;
+            this.btn_p201.Tag = "7";
             this.btn_p201.Text = "Phòng 201";
             this.btn_p201.UseVisualStyleBackColor = true;
             // 
@@ -787,6 +794,7 @@
             this.btn_p202.Name = "btn_p202";
             this.btn_p202.Size = new System.Drawing.Size(301, 259);
             this.btn_p202.TabIndex = 8;
+            this.btn_p202.Tag = "8";
             this.btn_p202.Text = "Phòng 202";
             this.btn_p202.UseVisualStyleBackColor = true;
             // 
@@ -797,6 +805,7 @@
             this.btn_p203.Name = "btn_p203";
             this.btn_p203.Size = new System.Drawing.Size(301, 259);
             this.btn_p203.TabIndex = 9;
+            this.btn_p203.Tag = "9";
             this.btn_p203.Text = "Phòng 203";
             this.btn_p203.UseVisualStyleBackColor = true;
             // 
@@ -807,6 +816,7 @@
             this.btn_p204.Name = "btn_p204";
             this.btn_p204.Size = new System.Drawing.Size(301, 259);
             this.btn_p204.TabIndex = 10;
+            this.btn_p204.Tag = "10";
             this.btn_p204.Text = "Phòng 204";
             this.btn_p204.UseVisualStyleBackColor = true;
             // 
@@ -817,6 +827,7 @@
             this.btn_p205.Name = "btn_p205";
             this.btn_p205.Size = new System.Drawing.Size(301, 259);
             this.btn_p205.TabIndex = 11;
+            this.btn_p205.Tag = "11";
             this.btn_p205.Text = "Phòng 205";
             this.btn_p205.UseVisualStyleBackColor = true;
             // 
@@ -827,6 +838,7 @@
             this.btn_p206.Name = "btn_p206";
             this.btn_p206.Size = new System.Drawing.Size(301, 259);
             this.btn_p206.TabIndex = 12;
+            this.btn_p206.Tag = "12";
             this.btn_p206.Text = "Phòng 206";
             this.btn_p206.UseVisualStyleBackColor = true;
             // 
@@ -876,6 +888,7 @@
             this.btn_p301.Name = "btn_p301";
             this.btn_p301.Size = new System.Drawing.Size(301, 259);
             this.btn_p301.TabIndex = 7;
+            this.btn_p301.Tag = "13";
             this.btn_p301.Text = "Phòng 301";
             this.btn_p301.UseVisualStyleBackColor = true;
             // 
@@ -886,6 +899,7 @@
             this.btn_p302.Name = "btn_p302";
             this.btn_p302.Size = new System.Drawing.Size(301, 259);
             this.btn_p302.TabIndex = 8;
+            this.btn_p302.Tag = "14";
             this.btn_p302.Text = "Phòng 302";
             this.btn_p302.UseVisualStyleBackColor = true;
             // 
@@ -896,6 +910,7 @@
             this.btn_p303.Name = "btn_p303";
             this.btn_p303.Size = new System.Drawing.Size(301, 259);
             this.btn_p303.TabIndex = 9;
+            this.btn_p303.Tag = "15";
             this.btn_p303.Text = "Phòng 303";
             this.btn_p303.UseVisualStyleBackColor = true;
             // 
@@ -906,6 +921,7 @@
             this.btn_p304.Name = "btn_p304";
             this.btn_p304.Size = new System.Drawing.Size(301, 259);
             this.btn_p304.TabIndex = 10;
+            this.btn_p304.Tag = "16";
             this.btn_p304.Text = "Phòng 304";
             this.btn_p304.UseVisualStyleBackColor = true;
             // 
@@ -916,6 +932,7 @@
             this.btn_p305.Name = "btn_p305";
             this.btn_p305.Size = new System.Drawing.Size(301, 259);
             this.btn_p305.TabIndex = 11;
+            this.btn_p305.Tag = "17";
             this.btn_p305.Text = "Phòng 305";
             this.btn_p305.UseVisualStyleBackColor = true;
             // 
@@ -926,6 +943,7 @@
             this.btn_p306.Name = "btn_p306";
             this.btn_p306.Size = new System.Drawing.Size(301, 259);
             this.btn_p306.TabIndex = 12;
+            this.btn_p306.Tag = "18";
             this.btn_p306.Text = "Phòng 306";
             this.btn_p306.UseVisualStyleBackColor = true;
             // 

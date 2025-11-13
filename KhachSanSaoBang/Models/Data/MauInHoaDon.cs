@@ -17,7 +17,7 @@ namespace KhachSanSaoBang.Models.Data
         private Image logoImage;
         private float tienKhachDua;
         private float tienThua;
-
+        private int loai = 0;
         // Khổ giấy K80 (80mm = 3.15 inches)
         private const int PAPER_WIDTH = 302; // 80mm ≈ 302 pixels at 96 DPI
         private const int MARGIN = 10;
@@ -25,10 +25,11 @@ namespace KhachSanSaoBang.Models.Data
 
         private int calculatedHeight = 0; // Chiều cao tính toán được
 
-        public MauInHoaDon(ThongtinThanhToan data, string logoPath, int tienKhachDua = 0)
+        public MauInHoaDon(ThongtinThanhToan data, string logoPath, int loaihd)
         {
             this.invoiceData = data;
-            this.tienKhachDua = tienKhachDua;
+            this.tienKhachDua = data.Tienkhachdua;
+            loai = loaihd;
             this.tienThua = tienKhachDua - data.Tongtien;
 
             // Load logo
@@ -132,7 +133,7 @@ namespace KhachSanSaoBang.Models.Data
 
             // === TIÊU ĐỀ HÓA ĐƠN ===
             string title = null;
-            if(tienKhachDua > 0)
+            if(loai == 1)
             {
                 title = "HÓA ĐƠN THANH TOÁN";
             }
@@ -240,7 +241,7 @@ namespace KhachSanSaoBang.Models.Data
                 yPos += 8;
 
                 yPos = DrawLineItem(g, "Tiền khách đưa:", tienKhachDua, fontBold, brush, MARGIN, yPos, calculateOnly);
-                yPos = DrawLineItem(g, "Tiền thừa:", tienThua, fontBold, brush, MARGIN, yPos, calculateOnly);
+                yPos = DrawLineItem(g, "Tiền trả khách:", tienThua, fontBold, brush, MARGIN, yPos, calculateOnly);
             }
 
             yPos += 15;
@@ -251,6 +252,7 @@ namespace KhachSanSaoBang.Models.Data
             // === FOOTER ===
             string footer1 = "Cảm ơn quý khách!";
             string footer2 = "Hẹn gặp lại!";
+            string phonenumber = "Hotline: 0911.911.899";
 
             SizeF footer1Size = g.MeasureString(footer1, fontBold);
             float footer1X = (PAPER_WIDTH - footer1Size.Width) / 2;
@@ -263,7 +265,11 @@ namespace KhachSanSaoBang.Models.Data
             if (!calculateOnly)
                 g.DrawString(footer2, fontNormal, brush, footer2X, yPos);
             yPos += footer2Size.Height;
-
+            SizeF footer3Size = g.MeasureString(phonenumber, fontNormal);
+            float footer3X = (PAPER_WIDTH - footer3Size.Width) / 2;
+            if (!calculateOnly)
+                g.DrawString(phonenumber, fontNormal, brush, footer3X, yPos);
+            yPos += footer3Size.Height;
             // Cleanup
             fontHeader.Dispose();
             fontTitle.Dispose();

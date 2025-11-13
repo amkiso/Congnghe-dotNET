@@ -26,8 +26,8 @@ namespace KhachSanSaoBang.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Tru" +
-            "stServerCertificate=True;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=hoangv" +
+            "u205;Password=Amkiso2019@;TrustServerCertificate=True")]
         public string dataQLKSConnectionString {
             get {
                 return ((string)(this["dataQLKSConnectionString"]));

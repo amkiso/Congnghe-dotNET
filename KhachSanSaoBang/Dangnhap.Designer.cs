@@ -327,6 +327,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1707, 1100);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.DoubleBuffered = true;
             this.Name = "Dangnhap";
             this.Text = "Đăng nhập";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;

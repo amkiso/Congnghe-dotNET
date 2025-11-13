@@ -1,0 +1,26 @@
+﻿THÔNG TIN CHI TIẾT VỀ QUÁ TRÌNH THIẾT KẾ, CÁCH HOẠT ĐỘNG VÀ HƯỚNG DẪN SỬ DỤNG CỦA CỬA SỔ LÀM VIỆC CHÍNH SAU KHI ĐĂNG NHẬP
+I.THIẾT KẾ
+	- thiết kế với mục đích để nhân viên có thể thao tác các tác vụ cơ bản và quản lý các phòng tại một giao diện duy nhất
+II. Sự Kiện
+	- Khởi động: 
+		+ Cờ và các biến cục bộ được tạo
+			++ Cờ isLoading: mặc định là false với mục đích khi load thông tin các phòng thì combobox cũng sẽ thay đổi giá trị
+				dẫn đến sự kiện kích hoạt không được chính xác.
+			++ Cờ isMenuCollapsed: để hàm liên quan biết rằng liệu menu bên trái có được thu nhỏ hay chưa(mặc định là false)
+		+ chương trình truy vấn thông tin trạng thái của các phòng sau đó đánh dấu lên trên màn hình màu sắc tương ứng với trạng thái hiện tại của phòng
+		+ Gán giá trị và values cho combobox hiển thị trạng thái phòng
+		+ Tiếp tục vẽ các viền (border)  cho tablelayoutpanel chỉ định để làm rõ ranh giới các vùng thao tác và thông tin phòng
+	- Người dùng/nhân viên thao tác Click vào button biểu thị cho phòng tương ứng:
+		+ Session lưu trữ thông tin mã phòng hiện tại vừa chọn
+		+ Lấy giá trị tag(được lập trình viên gán với mã phòng tương ứng)
+		+ Gọi hàm [loadingroom] để bắt đầu lấy thông tin từ CSDL
+			++ bật cờ:isLoading
+			++ Lấy thông tin phòng qua phương thức GetThongtinphong(ma_p) ở class Xuly với mã phòng (ma_p) là mã phòng đã lấy từ tag của nút trước đó
+			++ truyền thông tin đã có cùng với Class Form hiện tại và gọi phương thức loaddulieu của Dataloader thử gán dữ liệu lên các controls tương ứng và hiện thông báo nếu gặp lỗi
+			++ Gán SelectedValue là mã trạng thái phòng hiện tại cho cbo_tinhtrang(combobox hiển thị trạng thái phòng)
+			++ Hiển thị list dịch vụ mà phòng đang chọn đã dùng bằng cách gán DataSource là kết quả của phương thức listdichvup của class Xuly
+			++ Tính tổng tiền tạm tính hiện tại của phòng
+			++ Trả lại cờ isLoading=false
+	-Người dùng chọn dịch vụ trong list dịch vụ hiện có
+		+
+		

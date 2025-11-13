@@ -71,7 +71,7 @@
     <Compile Include="BieuMauThuePhong.Designer.cs">
       <DependentUpon>BieuMauThuePhong.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomLabel_Image.cs">
+    <Compile Include="Models\Client\CustomLabel_Image.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dangky.cs">
@@ -93,23 +93,26 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Client\DoubleBufferingTablePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThanhToan.Designer.cs">
+      <DependentUpon>ThanhToan.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="imagebutton.cs">
+    <Compile Include="Models\Client\imagebutton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="KhachHang\DanhSachKhachHang.cs" />
     <Compile Include="KhachHang\ThongTinKhachHang.cs" />
-    <Compile Include="Layout.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Layout.Designer.cs">
-      <DependentUpon>Layout.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Dataloader.cs" />
     <Compile Include="Models\Data\DichVuDaDung.cs" />
     <Compile Include="Models\Data\dsDichVu.cs" />
@@ -157,12 +160,6 @@
     <Compile Include="Dangnhap.Designer.cs">
       <DependentUpon>Dangnhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThanhToan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThanhToan.Designer.cs">
-      <DependentUpon>ThanhToan.cs</DependentUpon>
-    </Compile>
     <Compile Include="ThongKe\BaoCao\DBBaoCao.cs" />
     <Compile Include="ThongKe\BaoCao\ucBaoCao.cs">
       <SubType>UserControl</SubType>
@@ -209,14 +206,14 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ThanhToan.resx">
+      <DependentUpon>ThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
       <DependentUpon>ucKhachHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Layout.resx">
-      <DependentUpon>Layout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
@@ -231,9 +228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dangnhap.resx">
       <DependentUpon>Dangnhap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ThanhToan.resx">
-      <DependentUpon>ThanhToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKe\BaoCao\ucBaoCao.resx">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
@@ -258,6 +252,7 @@
     <None Include="dataQLKSDataSet.xss">
       <DependentUpon>dataQLKSDataSet.xsd</DependentUpon>
     </None>
+    <None Include="HuongDan\dataQLKS.bacpac" />
     <None Include="Models\Data\SQLData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SQLData1.designer.cs</LastGenOutput>
@@ -285,10 +280,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HuongDan\HuongDan.txt" />
+    <Content Include="Note\FormDatPhong.txt" />
+    <Content Include="Note\MainForm.txt" />
     <None Include="icon\file-edit.png" />
     <None Include="icon\gui_cancel.png" />
     <None Include="icon\icons8-payment-64.png" />
     <None Include="icon\icons8-invoice-100.png" />
+    <Content Include="icon\icons8-next-50.png" />
+    <Content Include="icon\icons8-previous-64.png" />
     <Content Include="icon\user-add.png" />
   </ItemGroup>
   <ItemGroup />

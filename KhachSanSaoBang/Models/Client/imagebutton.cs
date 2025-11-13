@@ -247,15 +247,14 @@ public class ImageButton : Control
 
     protected override void OnMouseUp(MouseEventArgs mevent)
     {
-        bool wasPressed = _pressed;
-        base.OnMouseUp(mevent);
-        if (mevent.Button == MouseButtons.Left)
+        // Chỉ cập nhật trạng thái pressed, không gọi OnClick thủ công
+        // vì base.OnMouseUp sẽ tự động kích hoạt Click event
+        if (mevent.Button == MouseButtons.Left && _pressed)
         {
             _pressed = false;
             Invalidate();
-            if (wasPressed && ClientRectangle.Contains(mevent.Location))
-                OnClick(EventArgs.Empty);
         }
+        base.OnMouseUp(mevent);
     }
 
     protected override void OnEnabledChanged(EventArgs e)
@@ -503,7 +502,7 @@ public class ImageButton : Control
                        out imgRect, out textRect);
 
         // Draw image with high quality
-        if (_image != null && !imgRect.IsEmpty)
+        if (_image != null && !imgRect.IsEmpty && imgRect.Width > 0 && imgRect.Height > 0)
         {
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -511,58 +510,40 @@ public class ImageButton : Control
 
             if (!this.Enabled)
             {
-                //    // Draw grayed out image when disabled
-                //    ControlPaint.DrawImageDisabled(g, _image, imgRect.X, imgRect.Y, Color.Transparent);
-
-                //}
-                if (_image != null && !imgRect.IsEmpty && imgRect.Width > 0 && imgRect.Height > 0)
+                // Draw grayed out image when disabled - with proper error handling
+                try
                 {
-                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    g.CompositingQuality = CompositingQuality.HighQuality;
-
-                    if (!this.Enabled)
+                    // Tạo image attributes để vẽ image mờ hơn
+                    using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
                     {
-                        // Draw grayed out image when disabled - with proper error handling
-                        try
-                        {
-                            // Tạo image attributes để vẽ image mờ hơn
-                            using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
-                            {
-                                // Tạo color matrix để giảm độ sáng và độ bão hòa
-                                float[][] matrixItems = {
-                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
-                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
-                    new float[] {0.3f, 0.3f, 0.3f, 0, 0},
-                    new float[] {0, 0, 0, 0.5f, 0},
-                    new float[] {0.2f, 0.2f, 0.2f, 0, 1}
-                };
-                                var colorMatrix = new System.Drawing.Imaging.ColorMatrix(matrixItems);
-                                imageAttr.SetColorMatrix(colorMatrix,
-                                    System.Drawing.Imaging.ColorMatrixFlag.Default,
-                                    System.Drawing.Imaging.ColorAdjustType.Bitmap);
+                        // Tạo color matrix để giảm độ sáng và độ bão hòa
+                        float[][] matrixItems = {
+                            new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                            new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                            new float[] {0.3f, 0.3f, 0.3f, 0, 0},
+                            new float[] {0, 0, 0, 0.5f, 0},
+                            new float[] {0.2f, 0.2f, 0.2f, 0, 1}
+                        };
+                        var colorMatrix = new System.Drawing.Imaging.ColorMatrix(matrixItems);
+                        imageAttr.SetColorMatrix(colorMatrix,
+                            System.Drawing.Imaging.ColorMatrixFlag.Default,
+                            System.Drawing.Imaging.ColorAdjustType.Bitmap);
 
-                                g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
-                                    GraphicsUnit.Pixel, imageAttr);
-                            }
-                        }
-                        catch
-                        {
-                            // Fallback: vẽ image bình thường với opacity thấp
-                            using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
-                            {
-                                var colorMatrix = new System.Drawing.Imaging.ColorMatrix();
-                                colorMatrix.Matrix33 = 0.3f; // Opacity 30%
-                                imageAttr.SetColorMatrix(colorMatrix);
-
-                                g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
-                                    GraphicsUnit.Pixel, imageAttr);
-                            }
-                        }
+                        g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
+                            GraphicsUnit.Pixel, imageAttr);
                     }
-                    else
+                }
+                catch
+                {
+                    // Fallback: vẽ image bình thường với opacity thấp
+                    using (var imageAttr = new System.Drawing.Imaging.ImageAttributes())
                     {
-                        g.DrawImage(_image, imgRect);
+                        var colorMatrix = new System.Drawing.Imaging.ColorMatrix();
+                        colorMatrix.Matrix33 = 0.3f; // Opacity 30%
+                        imageAttr.SetColorMatrix(colorMatrix);
+
+                        g.DrawImage(_image, imgRect, 0, 0, _image.Width, _image.Height,
+                            GraphicsUnit.Pixel, imageAttr);
                     }
                 }
             }

@@ -1,0 +1,51 @@
+﻿THÔNG TIN CHI TIẾT VỀ QUÁ TRÌNH THIẾT KẾ, CÁCH HOẠT ĐỘNG VÀ HƯỚNG DẪN SỬ DỤNG CỦA FORM ĐẶT PHÒNG
+1. Mục đích của Form Đặt Phòng
+-> Form Đặt Phòng được thiết kế để cho phép người dùng đặt phòng trong khách sạn một cách dễ dàng và thuận tiện.
+-> Form này cung cấp giao diện người dùng thân thiện để nhập thông tin cần thiết cho việc đặt phòng.
+-> Có thể hủy đặt phòng hoặc di chuyển sang các bước khác trong quá trình đặt phòng.
+-> Mô hình step-by-step giúp người dùng hoàn thành quá trình đặt phòng một cách tuần tự và rõ ràng, tránh gặp lỗi phát sinh.
+2. Thiết kế
+-> Form thiết kế theo mô hình step-by-step giúp người dùng dễ dàng theo dõi và hoàn thành quá trình đặt phòng.
+-> Mỗi bước là một phần riêng biệt của quá trình đặt phòng
+-> Thiết kế sử dụng kết các Controls tự thiết kế và có sẵn giúp tối ưu giao diện và đẹp mắt
+3. Hoạt động
+#Mô tả tình huống:
+->Bắt đầu
+	- Khách đến khách sạn đặt phòng tại quầy tiếp tân của khách sạn
+	- Nhân viên tiến hành hỏi thông tin cá nhân để bắt đầu quá trình đặt phòng
+	- Nhân viên sau khi có được thông tin khách hàng sẽ tiến hành tra cứu xem khách hàng có tài khoản khách hàng trong cơ sở dũ liệu
+	  của khách sạn hay không:
+		+ Nếu có: tiếp tục bước đặt phòng
+		+ Nếu không: Hỏi khách hàng có muốn đăng ký tài khoản khách hàng hay không
+			* Nếu có: tiến hành đăng ký tài khoản khách hàng
+			* Nếu không: tiếp tục bước đặt phòng với tư cách khách vãng lai (trong CSDL có tài khoản mặc định của khách vãng lai để sử dụng( id:customer,password: 123456, email: sample@csholtel.com, sdt:0999.999.999(chưa có thì tạo mới để test nhá!))
+- Nhân viên bắt đầu bằng cách chọn ngày vào/ra của khách hàng và client sẽ hiển thị danh sách các phòng trống trong khoảng thời gian đó
+- Nhân viên thông báo các phòng tương ứng với yêu cầu để khách hàng lựa chọn
+- Khách hàng sau khi lựa chọn phòng sẽ tiến hành hỏi khách hàng có đặt trước các dịch vụ bổ sung hay không và tiến hành làm theo yêu cầu
+- Sau khi hoàn tất các bước trên, nhân viên sẽ tổng hợp thông tin và xác nhận đặt phòng cho khách hàng, Lưu ý:
+			+ đối với hội viên: khách hàng chỉ cần xác nhận đặt phòng, nhận phiếu đặt và ra về
+			+ Đối với khách vãng lai: Khách hàng cần đặt cọc trước 50% giá trị của phiếu đặt ( bao gồm tiền dịch vụ gọi sẵn nếu có ) sau đó xác nhận lại thông tin, nhận phiếu đặt và ra về
+**Note: Nếu khách hàng không có tài khoản và không muốn đăng ký tài khoản thì sẽ sử dụng tài khoản khách vãng lai để đặt phòng và sẽ phải trả tiền cọc phòng (các bạn insert thêm cột tiền cọc phòng vào bảng đặt phòng nhé))
+-> Kết thúc
+#Cách ứng dụng hoạt động:
+--> BẮT ĐẦU:
+	- bước 1: nhân viên nhập thông tin và tra cứu: 
+		+ ứng dụng tra cứu thông tin khách hàng sau đó hiển thị kết quả tra cứu
+		+ Nếu có tài khoản: hiển thị thông tin khách hàng đã tra cứu được trong mid-step giữa bước 1 và 2
+		+ Nếu không có tài khoản: hiển thị thông báo không tìm thấy tài khoản khách hàng và hỏi có muốn đăng ký tài khoản hay không ?
+			++ Nếu có: mở form đăng ký tài khoản khách hàng
+			++ Nếu không: tiếp tục bước đặt phòng với tư cách khách vãng lai
+		* chuyển sang bước 2 *
+	- Bước 2: 
+		+ Nhân viên chọn ngày vào và ngày ra mà khách hàng muốn đặt rồi bấm nút tra cứu:
+			(Hàm tra cứu sẽ tra cứu phòng trống theo thông tin theo thời gian mà khách hàng đặt )
+			++ Ứng dụng tra cứu phòng trống theo thời gian đó sau đó trả về và hiển thị lại trên datagridview
+			++ Thông báo nếu không có phòng hoặc tra cứu thất bại
+		+ Nhân viên chọn phòng cần đặt sau đó bấm nút [xác nhận], khách hàng có thể đặt nhiều phòng cùng lúc
+			++ khi nhân viên bấm nút [xác nhận] thì phòng đang chọn hiện tại sẽ được thêm vào list và hiển thị lại
+		+ Sau khi khách hàng chốt số lượng phòng thì nhân viên sẽ chuyển tiếp đến bước xác nhận lại thông tin đặt phòng cho khách hàng
+	- Bước 3: Xác nhận đặt phòng: 
+			+ Ứng dụng bắt hiển thị lại tất cả thông tin cần thiết, tính toán tiền đặt cọc (nếu có)
+			+ Nhận được lệnh xác nhận tiến hành thanh toán tiền cọc (nếu có) và in phiếu đặt phòng
+->KẾT THÚC
+			
