@@ -121,7 +121,7 @@
             this.list_dichvu = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbl_xacnhanp = new System.Windows.Forms.Label();
+            this.lbl_sophongchoxacnhan = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.main_right_bot1_container = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -1461,7 +1461,7 @@
             this.tableLayoutPanel14.ColumnCount = 2;
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel14.Controls.Add(this.lbl_xacnhanp, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.lbl_sophongchoxacnhan, 1, 0);
             this.tableLayoutPanel14.Controls.Add(this.label22, 0, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(595, 3);
@@ -1471,16 +1471,16 @@
             this.tableLayoutPanel14.Size = new System.Drawing.Size(565, 44);
             this.tableLayoutPanel14.TabIndex = 34;
             // 
-            // lbl_xacnhanp
+            // lbl_sophongchoxacnhan
             // 
-            this.lbl_xacnhanp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lbl_xacnhanp.AutoSize = true;
-            this.lbl_xacnhanp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_xacnhanp.Location = new System.Drawing.Point(398, 7);
-            this.lbl_xacnhanp.Name = "lbl_xacnhanp";
-            this.lbl_xacnhanp.Size = new System.Drawing.Size(26, 29);
-            this.lbl_xacnhanp.TabIndex = 30;
-            this.lbl_xacnhanp.Text = "0";
+            this.lbl_sophongchoxacnhan.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lbl_sophongchoxacnhan.AutoSize = true;
+            this.lbl_sophongchoxacnhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbl_sophongchoxacnhan.Location = new System.Drawing.Point(398, 7);
+            this.lbl_sophongchoxacnhan.Name = "lbl_sophongchoxacnhan";
+            this.lbl_sophongchoxacnhan.Size = new System.Drawing.Size(26, 29);
+            this.lbl_sophongchoxacnhan.TabIndex = 30;
+            this.lbl_sophongchoxacnhan.Text = "0";
             // 
             // label22
             // 
@@ -2095,7 +2095,7 @@
         private System.Windows.Forms.ListBox list_dichvu;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
-        private System.Windows.Forms.Label lbl_xacnhanp;
+        private System.Windows.Forms.Label lbl_sophongchoxacnhan;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TableLayoutPanel main_right_bot1_container;
         private System.Windows.Forms.GroupBox groupBox1;

@@ -273,6 +273,10 @@
     <Content Include="HuongDan\HuongDan.txt" />
     <Content Include="Note\FormDatPhong.txt" />
     <Content Include="Note\MainForm.txt" />
+    <None Include="Resources\22.jpg" />
+    <None Include="Resources\icons8-search-40.png" />
+    <None Include="Resources\32.jpg" />
+    <None Include="Resources\icons8-save-48.png" />
     <None Include="icon\file-edit.png" />
     <None Include="icon\gui_cancel.png" />
     <None Include="icon\icons8-payment-64.png" />

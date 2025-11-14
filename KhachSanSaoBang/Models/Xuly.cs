@@ -3,13 +3,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
+using static Syncfusion.Windows.Forms.Tools.TextBoxExt;
 namespace KhachSanSaoBang.Models
 {
     public class Xuly
@@ -641,10 +642,25 @@ namespace KhachSanSaoBang.Models
                 {
                     hoten = kh.Tenkh,
                     socmt = kh.Cccd,
-                    tuoi = kh.Tuoi
+                    tuoi = kh.Tuoi,
+                    ngsinh = kh.Ngsinh
                 }).ToList();
                 return JsonConvert.SerializeObject(thongTinList);
             }
+        }
+        //Tạo hóa đơn khi xác nhận cho phiếu đặt phòng
+        public bool CreateTempHoaDon(int mapdp)
+        {
+            try
+            {
+                tblHoaDon hd = new tblHoaDon();
+                hd.ma_pdp = mapdp;
+                hd.ma_tinh_trang = 1; //Chưa thanh toán
+                db.tblHoaDons.InsertOnSubmit(hd);
+                db.SubmitChanges();
+                return true;
+            }
+            catch { return false; }
         }
         public int AutoRoomBook(tblPhieuDatPhong pdp)
         {
@@ -661,10 +677,7 @@ namespace KhachSanSaoBang.Models
                                  where u.ma_tinh_trang == 1 && u.ma_phong == pdp.ma_phong && u.ma_kh == pdp.ma_kh
                                  select u.ma_pdp).FirstOrDefault();
                     //sau đó tạo hóa đơn
-                    tblHoaDon hd = new tblHoaDon();
-                    hd.ma_pdp = mapdp;
-                    hd.ma_tinh_trang = 1; //Chưa thanh toán
-                    db.tblHoaDons.InsertOnSubmit(hd);
+                    CreateTempHoaDon(mapdp);
                     //đặt trạng thái phiếu đặt phòng về thành 2(đã xong->đã được xác nhận và đang sử dụng phòng)
                     var phieu = db.tblPhieuDatPhongs.SingleOrDefault(p => p.ma_pdp == mapdp);
                     if (phieu != null)
@@ -803,5 +816,28 @@ namespace KhachSanSaoBang.Models
             }
             
             else return 0;
+        }
+        //Đếm số phòng đang chờ xác nhận
+        public int GetSoPhongChoXacNhan()
+        {
+            return (from p in db.tblPhongs where p.ma_tinh_trang==6 select p.ma_phong).Count();
+        }
+        public bool XacNhanPhong(int map)
+        {
+            try
+            {
+                //Xác nhận phòng
+                var list = db.tblPhieuDatPhongs
+                 .Where(x => x.ma_tinh_trang == 1 && x.ma_phong == map)
+                 .FirstOrDefault();
+                    list.ma_tinh_trang = 2;
+                ChangeRoomStatus(map, 7);
+                CreateTempHoaDon(list.ma_pdp);
+                db.SubmitChanges();
+                //Tạo hóa đơn
+                return true;
+
+            }
+            catch { return false; }
         }
     }  }

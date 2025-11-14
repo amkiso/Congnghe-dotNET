@@ -139,6 +139,36 @@ public class ImageButton : Control
         set { _textPadding = Math.Max(0, value); Invalidate(); }
     }
 
+    private bool _autoSizeText = false;
+    [Category("Appearance")]
+    [DefaultValue(false)]
+    [Description("Tự động điều chỉnh font size để text vừa với button")]
+    public bool AutoSizeText
+    {
+        get => _autoSizeText;
+        set { _autoSizeText = value; Invalidate(); }
+    }
+
+    private float _minFontSize = 6f;
+    [Category("Appearance")]
+    [DefaultValue(6f)]
+    [Description("Font size tối thiểu khi AutoSizeText = true")]
+    public float MinFontSize
+    {
+        get => _minFontSize;
+        set { _minFontSize = Math.Max(4f, value); Invalidate(); }
+    }
+
+    private float _maxFontSize = 48f;
+    [Category("Appearance")]
+    [DefaultValue(48f)]
+    [Description("Font size tối đa khi AutoSizeText = true")]
+    public float MaxFontSize
+    {
+        get => _maxFontSize;
+        set { _maxFontSize = Math.Max(_minFontSize, value); Invalidate(); }
+    }
+
     private bool _enableShadow = false;
     [Category("Appearance")]
     public bool EnableShadow
@@ -321,7 +351,13 @@ public class ImageButton : Control
 
         if (_image == null)
         {
-            textRect.Inflate(-_textPadding, -_textPadding);
+            // Không có icon, textRect chiếm toàn bộ với padding nhỏ
+            textRect = new RectangleF(
+                _textPadding,
+                2,
+                clientRect.Width - _textPadding * 2,
+                clientRect.Height - 4
+            );
             return;
         }
 
@@ -372,9 +408,9 @@ public class ImageButton : Control
                 float textLeft = imgRect.Right + _textPadding;
                 textRect = new RectangleF(
                     textLeft,
-                    _textPadding,
+                    2, // Giảm padding trên xuống
                     clientRect.Width - textLeft - _textPadding,
-                    clientRect.Height - _textPadding * 2
+                    clientRect.Height - 4 // Giảm padding tổng cộng
                 );
             }
             else if (_imageAlign == ContentAlignment.MiddleRight ||
@@ -383,18 +419,18 @@ public class ImageButton : Control
             {
                 textRect = new RectangleF(
                     _textPadding,
-                    _textPadding,
+                    2,
                     imgRect.Left - _textPadding * 2,
-                    clientRect.Height - _textPadding * 2
+                    clientRect.Height - 4
                 );
             }
             else
             {
                 textRect = new RectangleF(
                     _textPadding,
-                    _textPadding,
+                    2,
                     clientRect.Width - _textPadding * 2,
-                    clientRect.Height - _textPadding * 2
+                    clientRect.Height - 4
                 );
             }
         }
@@ -410,6 +446,56 @@ public class ImageButton : Control
         if (_hovered)
             return _hoverBackColor;
         return _normalBackColor;
+    }
+
+    // Calculate optimal font size to fit text in rectangle
+    private Font GetOptimalFont(Graphics g, string text, RectangleF bounds, Font originalFont)
+    {
+        if (!_autoSizeText || string.IsNullOrEmpty(text) || bounds.Width <= 0 || bounds.Height <= 0)
+            return originalFont;
+
+        // Thêm một chút buffer để text không bị sát mép
+        float availableWidth = bounds.Width - 4;
+        float availableHeight = bounds.Height - 4;
+
+        if (availableWidth <= 0 || availableHeight <= 0)
+            return originalFont;
+
+        float fontSize = Math.Min(_maxFontSize, originalFont.Size);
+        Font testFont = new Font(originalFont.FontFamily, fontSize, originalFont.Style);
+
+        // Đo kích thước text với font hiện tại
+        SizeF textSize = g.MeasureString(text, testFont, (int)availableWidth);
+
+        // Nếu text quá lớn, giảm dần font size
+        while (fontSize > _minFontSize && (textSize.Width > availableWidth || textSize.Height > availableHeight))
+        {
+            fontSize -= 0.5f;
+            testFont.Dispose();
+            testFont = new Font(originalFont.FontFamily, fontSize, originalFont.Style);
+            textSize = g.MeasureString(text, testFont, (int)availableWidth);
+        }
+
+        // Nếu text quá nhỏ, tăng dần font size (cho đến khi vừa hoặc đạt max)
+        while (fontSize < _maxFontSize)
+        {
+            Font nextFont = new Font(originalFont.FontFamily, fontSize + 0.5f, originalFont.Style);
+            SizeF nextSize = g.MeasureString(text, nextFont, (int)availableWidth);
+
+            if (nextSize.Width <= availableWidth && nextSize.Height <= availableHeight)
+            {
+                testFont.Dispose();
+                testFont = nextFont;
+                fontSize += 0.5f;
+            }
+            else
+            {
+                nextFont.Dispose();
+                break;
+            }
+        }
+
+        return testFont;
     }
 
     // Painting
@@ -556,6 +642,9 @@ public class ImageButton : Control
         // Draw text
         if (!string.IsNullOrEmpty(this.Text))
         {
+            // Tính toán font tối ưu nếu AutoSizeText = true
+            Font drawFont = _autoSizeText ? GetOptimalFont(g, this.Text, textRect, this.Font) : this.Font;
+
             using (var sf = new StringFormat())
             {
                 switch (_textAlign)
@@ -604,8 +693,14 @@ public class ImageButton : Control
                 Color textColor = this.Enabled ? this.ForeColor : ControlPaint.Dark(this.ForeColor, 0.5f);
                 using (var textBrush = new SolidBrush(textColor))
                 {
-                    g.DrawString(this.Text, this.Font, textBrush, textRect, sf);
+                    g.DrawString(this.Text, drawFont, textBrush, textRect, sf);
                 }
+            }
+
+            // Dispose font nếu là font tự động tạo
+            if (_autoSizeText && drawFont != this.Font)
+            {
+                drawFont.Dispose();
             }
         }
 

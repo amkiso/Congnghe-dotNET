@@ -17,7 +17,23 @@ namespace KhachSanSaoBang
         public Dangky()
         {
             InitializeComponent();
-            
+            this.Load += Dangky_Load;
+            this.lbl_back_to_login.Click += Lbl_back_to_login_Click;
+        }
+
+        private void Lbl_back_to_login_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dangnhap dn  = new Dangnhap();
+            dn.ShowDialog();
+            this.Close();
+        }
+
+        private void Dangky_Load(object sender, EventArgs e)
+        {
+            txt_matkhau.UseSystemPasswordChar = true;
+            main_container.BackColor = Color.FromArgb(120, 0, 0, 0);
+            main_container.Visible = true;
         }
     }
 }

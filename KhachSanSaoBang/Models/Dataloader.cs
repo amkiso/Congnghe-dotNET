@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using KhachSanSaoBang.Models.Data;
 namespace KhachSanSaoBang.Models
 {
-    public class Dataloader
+    public static class Dataloader
     {
         
         public static bool loaddulieu(Thongtinchung tt, Form f)
@@ -30,8 +30,10 @@ namespace KhachSanSaoBang.Models
             catch (Exception e) { return false; }
         }
 
-        public static bool ToMauPhong(Form form, List<tblPhong> danhSachPhong)
+        public static bool ToMauPhong(Form form)
         {
+            Xuly xl = new Xuly();
+            var danhSachPhong = xl.tomau();
             if (form == null || danhSachPhong == null) return false;
             try
             {
@@ -80,7 +82,36 @@ namespace KhachSanSaoBang.Models
             else if(ma==4) return Color.DarkOrange;
             else return SystemColors.Control;
         }
-        
+        /// <summary>
+        /// Vẽ border cho TableLayoutPanel.
+        /// </summary>
+        public static void DrawTableCellBorder(object sender, PaintEventArgs e, Color borderColor)
+        {
+            if (sender is TableLayoutPanel panel)
+            {
+                using (Pen pen = new Pen(borderColor))
+                {
+                    e.Graphics.DrawRectangle(
+                        pen,
+                        0,
+                        0,
+                        panel.ClientSize.Width - 1,
+                        panel.ClientSize.Height - 1
+                    );
+                }
+            }
+        }
+        public static void DrawTableFullCellBorder(object sender, TableLayoutCellPaintEventArgs e, Color c)
+        {
+            var g = e.Graphics;
+            var r = e.CellBounds;
+
+            using (Pen p = new Pen(c))
+            {
+                g.DrawRectangle(p, r.X, r.Y, r.Width - 1, r.Height - 1);
+            }
+        }
+
 
     }
 }

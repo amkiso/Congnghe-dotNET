@@ -165,10 +165,10 @@ namespace KhachSanSaoBang
         private void ThanhToan_Load(object sender, EventArgs e)
         {
             DataLoader();
-            tbl_trai.CellPaint += (s, ev) => DrawTableCellBorder(s, ev, Color.Azure);
-            tbl_topleft.CellPaint += (s, ev) => DrawTableCellBorder(s, ev, Color.Azure);
-            container_left.CellPaint += (s, ev) => DrawTableCellBorder(s, ev, Color.Azure);
-            tbl_phai.CellPaint += (s, ev) => DrawTableCellBorder(s, ev, Color.Azure);
+            tbl_trai.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
+            tbl_topleft.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
+            container_left.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
+            tbl_phai.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
             tbl_phai.BackColor = Color.FromArgb(120, 0, 0, 0);
             tbl_phai.Visible = true;
             container_left.BackColor = Color.FromArgb(120, 0, 0, 0);
@@ -182,16 +182,7 @@ namespace KhachSanSaoBang
 
         }
 
-        private void DrawTableCellBorder(object sender, TableLayoutCellPaintEventArgs e, Color c)
-        {
-            var g = e.Graphics;
-            var r = e.CellBounds;
-
-            using (Pen p = new Pen(c))
-            {
-                g.DrawRectangle(p, r.X, r.Y, r.Width - 1, r.Height - 1);
-            }
-        }
+        
         
         private void DataLoader()
         {
