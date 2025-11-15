@@ -20,6 +20,7 @@ namespace KhachSanSaoBang.Models.Data
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
+	using System.Configuration;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dataQLKS")]
@@ -94,8 +95,8 @@ namespace KhachSanSaoBang.Models.Data
 		{
 			OnCreated();
 		}
-		
-		public SQLDataDataContext(System.Data.IDbConnection connection) : 
+
+        public SQLDataDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -1568,6 +1569,8 @@ namespace KhachSanSaoBang.Models.Data
 		
 		private System.Nullable<int> _diem;
 		
+		private System.Nullable<System.DateTime> _ngsinh;
+		
 		private EntitySet<tblTinNhan> _tblTinNhans;
 		
 		private EntitySet<tblPhieuDatPhong> _tblPhieuDatPhongs;
@@ -1590,6 +1593,8 @@ namespace KhachSanSaoBang.Models.Data
     partial void OnmailChanged();
     partial void OndiemChanging(System.Nullable<int> value);
     partial void OndiemChanged();
+    partial void OnngsinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnngsinhChanged();
     #endregion
 		
 		public tblKhachHang()
@@ -1735,6 +1740,26 @@ namespace KhachSanSaoBang.Models.Data
 					this._diem = value;
 					this.SendPropertyChanged("diem");
 					this.OndiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngsinh", DbType="Date")]
+		public System.Nullable<System.DateTime> ngsinh
+		{
+			get
+			{
+				return this._ngsinh;
+			}
+			set
+			{
+				if ((this._ngsinh != value))
+				{
+					this.OnngsinhChanging(value);
+					this.SendPropertyChanging();
+					this._ngsinh = value;
+					this.SendPropertyChanged("ngsinh");
+					this.OnngsinhChanged();
 				}
 			}
 		}
@@ -2260,6 +2285,8 @@ namespace KhachSanSaoBang.Models.Data
 		
 		private System.Nullable<int> _luong;
 		
+		private string _Email;
+		
 		private EntitySet<tblHoaDon> _tblHoaDons;
 		
 		private EntityRef<tblChucVu> _tblChucVu;
@@ -2292,6 +2319,8 @@ namespace KhachSanSaoBang.Models.Data
     partial void Onnam_bdChanged();
     partial void OnluongChanging(System.Nullable<int> value);
     partial void OnluongChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     #endregion
 		
 		public tblNhanVien()
@@ -2541,6 +2570,26 @@ namespace KhachSanSaoBang.Models.Data
 					this._luong = value;
 					this.SendPropertyChanged("luong");
 					this.OnluongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Char(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}

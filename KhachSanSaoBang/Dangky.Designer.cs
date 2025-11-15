@@ -45,8 +45,12 @@
             this.txt_email = new System.Windows.Forms.TextBox();
             this.txt_matkhau = new System.Windows.Forms.TextBox();
             this.dtp_ngsinh = new System.Windows.Forms.DateTimePicker();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.rbt_nu = new System.Windows.Forms.RadioButton();
+            this.rdb_nam = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.main_container.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,10 +77,10 @@
             // 
             this.main_container.BackColor = System.Drawing.SystemColors.ControlDark;
             this.main_container.ColumnCount = 4;
-            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.21245F));
-            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.65934F));
-            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.01926F));
+            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.24995F));
+            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.71154F));
+            this.main_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.01926F));
             this.main_container.Controls.Add(this.label2, 1, 0);
             this.main_container.Controls.Add(this.label1, 1, 1);
             this.main_container.Controls.Add(this.label3, 1, 2);
@@ -84,18 +88,19 @@
             this.main_container.Controls.Add(this.label5, 1, 4);
             this.main_container.Controls.Add(this.label6, 1, 5);
             this.main_container.Controls.Add(this.label7, 1, 6);
-            this.main_container.Controls.Add(this.btn_dangky, 0, 7);
-            this.main_container.Controls.Add(this.lbl_back_to_login, 0, 8);
+            this.main_container.Controls.Add(this.btn_dangky, 0, 8);
+            this.main_container.Controls.Add(this.lbl_back_to_login, 0, 9);
             this.main_container.Controls.Add(this.txt_hoten, 2, 1);
             this.main_container.Controls.Add(this.txt_tendangnhap, 2, 3);
             this.main_container.Controls.Add(this.txt_matkhau2, 2, 5);
             this.main_container.Controls.Add(this.txt_email, 2, 6);
             this.main_container.Controls.Add(this.txt_matkhau, 2, 4);
             this.main_container.Controls.Add(this.dtp_ngsinh, 2, 2);
+            this.main_container.Controls.Add(this.tableLayoutPanel2, 1, 7);
             this.main_container.Dock = System.Windows.Forms.DockStyle.Fill;
             this.main_container.Location = new System.Drawing.Point(238, 153);
             this.main_container.Name = "main_container";
-            this.main_container.RowCount = 9;
+            this.main_container.RowCount = 10;
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.11594F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
@@ -103,6 +108,7 @@
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
+            this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.47826F));
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.057971F));
             this.main_container.Size = new System.Drawing.Size(1092, 696);
@@ -116,7 +122,7 @@
             this.main_container.SetColumnSpan(this.label2, 2);
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(411, 31);
+            this.label2.Location = new System.Drawing.Point(411, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(269, 63);
             this.label2.TabIndex = 2;
@@ -124,12 +130,12 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(167, 142);
+            this.label1.Location = new System.Drawing.Point(272, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 31);
             this.label1.TabIndex = 3;
@@ -137,12 +143,12 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(167, 205);
+            this.label3.Location = new System.Drawing.Point(256, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 31);
             this.label3.TabIndex = 4;
@@ -150,12 +156,12 @@
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(167, 268);
+            this.label4.Location = new System.Drawing.Point(226, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(195, 31);
             this.label4.TabIndex = 5;
@@ -163,12 +169,12 @@
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(167, 331);
+            this.label5.Location = new System.Drawing.Point(261, 304);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 31);
             this.label5.TabIndex = 6;
@@ -176,12 +182,12 @@
             // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(167, 394);
+            this.label6.Location = new System.Drawing.Point(200, 362);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(246, 31);
             this.label6.TabIndex = 7;
@@ -189,11 +195,12 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label7.ForeColor = System.Drawing.SystemColors.Control;
-            this.label7.Location = new System.Drawing.Point(167, 441);
+            this.label7.Location = new System.Drawing.Point(283, 420);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 31);
             this.label7.TabIndex = 8;
@@ -203,7 +210,7 @@
             // 
             this.btn_dangky.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.main_container.SetColumnSpan(this.btn_dangky, 4);
-            this.btn_dangky.Location = new System.Drawing.Point(401, 514);
+            this.btn_dangky.Location = new System.Drawing.Point(401, 520);
             this.btn_dangky.Name = "btn_dangky";
             this.btn_dangky.Size = new System.Drawing.Size(290, 108);
             this.btn_dangky.TabIndex = 9;
@@ -217,7 +224,7 @@
             this.lbl_back_to_login.BackColor = System.Drawing.Color.Transparent;
             this.main_container.SetColumnSpan(this.lbl_back_to_login, 4);
             this.lbl_back_to_login.ForeColor = System.Drawing.SystemColors.Control;
-            this.lbl_back_to_login.Location = new System.Drawing.Point(413, 651);
+            this.lbl_back_to_login.Location = new System.Drawing.Point(413, 652);
             this.lbl_back_to_login.Name = "lbl_back_to_login";
             this.lbl_back_to_login.Size = new System.Drawing.Size(266, 25);
             this.lbl_back_to_login.TabIndex = 10;
@@ -227,7 +234,7 @@
             // 
             this.txt_hoten.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_hoten.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_hoten.Location = new System.Drawing.Point(486, 138);
+            this.txt_hoten.Location = new System.Drawing.Point(486, 127);
             this.txt_hoten.Name = "txt_hoten";
             this.txt_hoten.Size = new System.Drawing.Size(438, 38);
             this.txt_hoten.TabIndex = 11;
@@ -236,7 +243,7 @@
             // 
             this.txt_tendangnhap.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_tendangnhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.81075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_tendangnhap.Location = new System.Drawing.Point(486, 268);
+            this.txt_tendangnhap.Location = new System.Drawing.Point(486, 246);
             this.txt_tendangnhap.Name = "txt_tendangnhap";
             this.txt_tendangnhap.Size = new System.Drawing.Size(438, 31);
             this.txt_tendangnhap.TabIndex = 13;
@@ -245,7 +252,7 @@
             // 
             this.txt_matkhau2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_matkhau2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_matkhau2.Location = new System.Drawing.Point(486, 390);
+            this.txt_matkhau2.Location = new System.Drawing.Point(486, 359);
             this.txt_matkhau2.Name = "txt_matkhau2";
             this.txt_matkhau2.Size = new System.Drawing.Size(438, 38);
             this.txt_matkhau2.TabIndex = 15;
@@ -254,7 +261,7 @@
             // 
             this.txt_email.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_email.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_email.Location = new System.Drawing.Point(486, 453);
+            this.txt_email.Location = new System.Drawing.Point(486, 417);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(438, 38);
             this.txt_email.TabIndex = 16;
@@ -263,7 +270,7 @@
             // 
             this.txt_matkhau.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txt_matkhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_matkhau.Location = new System.Drawing.Point(486, 327);
+            this.txt_matkhau.Location = new System.Drawing.Point(486, 301);
             this.txt_matkhau.Name = "txt_matkhau";
             this.txt_matkhau.Size = new System.Drawing.Size(438, 38);
             this.txt_matkhau.TabIndex = 17;
@@ -274,10 +281,53 @@
             this.dtp_ngsinh.CustomFormat = "dd/MM/yyyy";
             this.dtp_ngsinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.dtp_ngsinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_ngsinh.Location = new System.Drawing.Point(486, 201);
+            this.dtp_ngsinh.Location = new System.Drawing.Point(486, 185);
             this.dtp_ngsinh.Name = "dtp_ngsinh";
             this.dtp_ngsinh.Size = new System.Drawing.Size(438, 38);
             this.dtp_ngsinh.TabIndex = 18;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.main_container.SetColumnSpan(this.tableLayoutPanel2, 2);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.rbt_nu, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.rdb_nam, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(167, 468);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(757, 44);
+            this.tableLayoutPanel2.TabIndex = 19;
+            // 
+            // rbt_nu
+            // 
+            this.rbt_nu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rbt_nu.AutoSize = true;
+            this.rbt_nu.ForeColor = System.Drawing.SystemColors.Control;
+            this.rbt_nu.Location = new System.Drawing.Point(532, 7);
+            this.rbt_nu.Name = "rbt_nu";
+            this.rbt_nu.Size = new System.Drawing.Size(70, 29);
+            this.rbt_nu.TabIndex = 0;
+            this.rbt_nu.TabStop = true;
+            this.rbt_nu.Text = "Nữ";
+            this.rbt_nu.UseVisualStyleBackColor = true;
+            // 
+            // rdb_nam
+            // 
+            this.rdb_nam.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rdb_nam.AutoSize = true;
+            this.rdb_nam.ForeColor = System.Drawing.SystemColors.Control;
+            this.rdb_nam.Location = new System.Drawing.Point(145, 7);
+            this.rdb_nam.Name = "rdb_nam";
+            this.rdb_nam.Size = new System.Drawing.Size(87, 29);
+            this.rdb_nam.TabIndex = 1;
+            this.rdb_nam.TabStop = true;
+            this.rdb_nam.Text = "Nam";
+            this.rdb_nam.UseVisualStyleBackColor = true;
             // 
             // Dangky
             // 
@@ -292,6 +342,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.main_container.ResumeLayout(false);
             this.main_container.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -314,5 +366,8 @@
         private System.Windows.Forms.TextBox txt_email;
         private System.Windows.Forms.TextBox txt_matkhau;
         private System.Windows.Forms.DateTimePicker dtp_ngsinh;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.RadioButton rbt_nu;
+        private System.Windows.Forms.RadioButton rdb_nam;
     }
 }

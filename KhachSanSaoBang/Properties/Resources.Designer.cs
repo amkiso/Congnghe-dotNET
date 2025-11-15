@@ -103,6 +103,16 @@ namespace KhachSanSaoBang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_filter_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-filter-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_invoice_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-invoice-100", resourceCulture);
@@ -156,6 +166,26 @@ namespace KhachSanSaoBang.Properties {
         internal static System.Drawing.Bitmap icons8_search_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-search-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_tick_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-tick-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_tick_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-tick-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

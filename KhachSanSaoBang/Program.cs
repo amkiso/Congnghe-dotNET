@@ -18,7 +18,7 @@ namespace KhachSanSaoBang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dangky());
+            Application.Run(new Dangnhap());
         }
     }
 }

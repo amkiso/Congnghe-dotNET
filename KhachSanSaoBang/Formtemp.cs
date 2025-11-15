@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace KhachSanSaoBang
 {
-    public partial class Form1 : Form
+    public partial class Formtemp : Form
     {
-        public Form1()
+        public Formtemp()
         {
             InitializeComponent();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

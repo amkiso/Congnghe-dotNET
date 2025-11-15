@@ -21,5 +21,14 @@ namespace KhachSanSaoBang.Models
         /// Cờ mang giá trị false nếu hành động bị hủy hoặc thất bại và ngược lại
         /// </summary>
         public static bool Acction_status { get; set; }
+        public static void Reset()
+        {
+            UserId = 0;
+            UserName = null;
+            Role = null;
+            UserEmail = null;
+            maphonghientai = 0;
+            Acction_status = false;
+        }
     }
 }

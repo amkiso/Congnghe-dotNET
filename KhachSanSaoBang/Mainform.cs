@@ -97,10 +97,12 @@ namespace KhachSanSaoBang
             btnKhachSan.Click += btnKhachSan_Click;
             btnDichVu.Click += btnDichVu_Click;
             pnlKhachhang.Click += pnlKhachhang_Click;
+            btn_thoatca.Click += Btn_thoatca_Click;
             btnDoanhThu.Click += btnDoanhThu_Click;
             btnThongKe.Click += btnThongKe_Click;
             btn_nhanvien.Click += button1_Click;
-            btn_tracuu.Click += Btn_tracuu_Click;
+            btn_TracuuKhachHang.Click += Btn_tracuu_Click;
+            btn_datphong.Click += Btn_datphong_Click;
             this.timer1.Tick += Timer1_Tick; //timer
             //Sự kiện phòng Tầng 1
             btn_p101.Click += Sophong_click;
@@ -126,14 +128,44 @@ namespace KhachSanSaoBang
             //Sự kiện liên quan đến thao tác nghiệp vụ
             btn_goidv.Click += Btn_goidv_Click;
             btn_trahang.Click += Btn_trahang_Click;
+            btn_dangkyKH.Click += Btn_dangkyKH_Click;
             btn_thanhtoan.Click += Btn_thanhtoan_Click;
             cbo_tinhtrang.SelectedIndexChanged += Cbo_tinhtrang_SelectedIndexChanged;
             list_dichvu.Click += List_dichvu_Click;
         }
 
+        private void Btn_thoatca_Click(object sender, EventArgs e)
+        {
+            Session.Reset();
+            this.Hide();
+            Dangnhap dn = new Dangnhap();
+            dn.ShowDialog();
+            this.Close();
+        }
+
+        private void Btn_dangkyKH_Click(object sender, EventArgs e)
+        {
+            int acction = 3;//đăng ký tài khoản khách hàng
+            Session.Acction_status = false;
+            AcctionForm dk = new AcctionForm(acction);
+            dk.ShowDialog();
+        }
+
+        private void Btn_datphong_Click(object sender, EventArgs e)
+        {
+            int acction = 0;
+            AcctionForm datp = new AcctionForm(acction);
+            Session.Acction_status = false;
+            datp.ShowDialog();
+            if(Session.Acction_status == false)
+            {
+                MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
+            }
+        }
+
         private void Btn_tracuu_Click(object sender, EventArgs e)
         {
-            Form1 tracuu = new Form1(1);
+            AcctionForm tracuu = new AcctionForm(1);
             tracuu.ShowDialog();
         }
         private void List_dichvu_Click(object sender, EventArgs e)
@@ -184,8 +216,10 @@ namespace KhachSanSaoBang
                         {
                             case 1:
                                 {
+                                    int acction = 1;
+                                    Session.Acction_status = false;
                                     //thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
-                                    BieuMauThuePhong thuep = new BieuMauThuePhong(tt);
+                                    AcctionForm thuep = new AcctionForm(acction);
                                     thuep.ShowDialog();
 
                                     if (Session.Acction_status)
