@@ -37,7 +37,7 @@ namespace KhachSanSaoBang.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MySuperSecretKey!")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1234567890123456")]
         public string AES_Key {
             get {
                 return ((string)(this["AES_Key"]));
@@ -46,7 +46,7 @@ namespace KhachSanSaoBang.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MyInitVector12345")]
+        [global::System.Configuration.DefaultSettingValueAttribute("abcdef1234567890")]
         public string AES_IV {
             get {
                 return ((string)(this["AES_IV"]));

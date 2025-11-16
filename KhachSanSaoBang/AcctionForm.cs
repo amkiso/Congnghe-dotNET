@@ -75,6 +75,7 @@ namespace KhachSanSaoBang
         private void Form1_Load(object sender, EventArgs e)
         {
             tab_container.ItemSize = new Size(0, 1);
+            dtp_ngayra.Value.AddDays(1);
             if (acction == 0)
             {
                 this.Text = "Đặt phòng";

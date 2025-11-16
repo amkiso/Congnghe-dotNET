@@ -156,6 +156,7 @@ namespace KhachSanSaoBang
             AcctionForm datp = new AcctionForm(acction);
             Session.Acction_status = false;
             datp.ShowDialog();
+            FormStart();
             if(Session.Acction_status == false)
             {
                 MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
@@ -211,7 +212,7 @@ namespace KhachSanSaoBang
                     DialogResult result = MessageBox.Show($"Bạn có chắc muốn thay đổi trạng thái của phòng {tt.Tenphong} \n từ '{trangthai_old}' thành '{trangthai_new}' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        switch (xl.GetRoomCase(old_values, new_values))
+                        switch (xl.GetRoomCase(tt.Trangthai, new_values))
                         {
                             case 1:
                                 {

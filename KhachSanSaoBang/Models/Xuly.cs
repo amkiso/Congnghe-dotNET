@@ -805,8 +805,9 @@ namespace KhachSanSaoBang.Models
                     hoadon.ma_nv = Session.UserId;
                     hoadon.ma_tinh_trang = 2; //Đã thanh toán
                     ChangeRoomForm((int)hoadon.ma_pdp, 4);//Đã xong
-                    db.SubmitChanges();
                     ChangeRoomStatus(Session.maphonghientai, 3);
+                    db.SubmitChanges();
+                    
                     return true;
                 }
                 else return false;
