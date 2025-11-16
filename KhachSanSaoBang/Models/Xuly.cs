@@ -425,27 +425,41 @@ namespace KhachSanSaoBang.Models
             }
         }
         //Tính tiền tạm tính
-        public string TienTamTinh(int ma)
+        public string TienTamTinh(int maphong)
         {
 
             //Tiền tạm tính được tính bằng: số tiền dịch vụ đã dùng + ( tiền phòng * số ngày đặt ) + ( %phụ thu tiền phòng * Số ngày ở thêm )
-            Thongtinchung tt = GetThongtinphong(ma);
+            Thongtinchung tt = GetThongtinphong(maphong);
+            
             if (tt.Trangthai == 1) return "0 VNĐ";
             else
             {
                 //Nếu trạng thái là đang sử dụng (2) thì mới tính tiền
                 if (tt.Trangthai == 2)
                 {
-                    List<DichVuDaDung> dv = listdichvup(ma);
-                    float tiendv = dv.Sum(t => t.Giaban * t.Soluong);
+                    DateTime nr = DateTime.Parse(tt.Ngayra);
+                    DateTime nv = DateTime.Parse(tt.Ngayvao);
+                    List<DichVuDaDung> dv = listdichvup(maphong);
+                    double totaldv = dv.Sum(d => (double)d.Giaban * d.Soluong);
+                    
                     //tính số ngày ở
-                    float tongngayo = (float)(DateTime.Now - DateTime.Parse(tt.Ngayvao)).TotalDays; //dùng now để cập nhật số tiền ở đến hiện tại ( tạm tính )
-                    //Tính số ngay đặt và ngày ở thêm
-                    int sngaydat = (int)(DateTime.Parse(tt.Ngayra) - DateTime.Parse(tt.Ngayvao)).TotalDays;
-                    float thoigianthem = tongngayo - sngaydat;
-                    //Tiến hành tính tiền
-                    //Tiền tạm tính được tính bằng: số tiền dịch vụ đã dùng + ( tiền phòng * số ngày đặt ) + ( %phụ thu tiền phòng * Số ngày ở thêm )
-                    return (tiendv + (tt.Giathue * sngaydat) + ((tt.Giathue / 100) * tt.Phuthu * thoigianthem)).ToString() + " VNĐ";
+                    float tongngayo = (float)(DateTime.Now - nv ).TotalDays; //dùng now để cập nhật số tiền ở đến hiện tại ( tạm tính )
+                   if( nr > DateTime.Now)
+                    {
+                        return (tongngayo * tt.Giathue + totaldv).ToString("N0") + "VNĐ";
+                    }
+                   else
+                    {
+                        //tính số ngày vượt quá
+                        float npt = (float)(DateTime.Now - nr).TotalDays;
+                        // tiền phụ thu
+                        float tienphuthu = (tt.Giathue * npt * tt.Phuthu )/100;
+                        float ngayoHopLe = (float)(nr - nv).TotalDays;
+                        if (ngayoHopLe < 0) ngayoHopLe = 1;
+                        var tamtinh = ngayoHopLe * tt.Giathue + tienphuthu + totaldv;
+                        return tamtinh.ToString("N0") + "VNĐ";
+                    }
+                   
                 }
 
             }
@@ -855,7 +869,7 @@ namespace KhachSanSaoBang.Models
                  .FirstOrDefault();
                 list.ma_tinh_trang = 2;
                 ChangeRoomStatus(map, 7);
-                CreateTempHoaDon(list.ma_pdp);
+
                 db.SubmitChanges();
                 //Tạo hóa đơn
                 return true;
@@ -940,6 +954,29 @@ namespace KhachSanSaoBang.Models
                 return true;
             }
             catch (Exception e) { return false; }
+        }
+        /// <summary>
+        /// Điền thông tin khách thuê vào phiếu đặt phòng 
+        /// </summary>
+        /// <param Mã phòng="ma_phong"></param>
+        /// <param Chuỗi json thông tin khách thuê="jsonstring"></param>
+        /// <returns></returns>& tạo hóa đơn
+        public bool AddThongtinKhachHangThuePhong(int ma_phong, string jsonstring)
+        {
+            var pdp = db.tblPhieuDatPhongs.Where(t=>t.ma_phong==ma_phong && t.ma_tinh_trang==2).FirstOrDefault();
+            if (pdp != null)
+            {
+                pdp.thong_tin_khach_thue = jsonstring;
+                CreateTempHoaDon(pdp.ma_pdp);
+                db.SubmitChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        
         }
     }
 }

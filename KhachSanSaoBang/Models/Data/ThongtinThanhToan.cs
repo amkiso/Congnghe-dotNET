@@ -32,7 +32,7 @@ namespace KhachSanSaoBang.Models.Data
                 if (Ngayvao == default || Ngaydukienra == default)
                     return 0;
                 var days = (Ngaydukienra.Date - Ngayvao.Date).Days;
-                return Math.Max(0, days);
+                return Math.Max(1, days);
             }
         }
 
@@ -61,7 +61,7 @@ namespace KhachSanSaoBang.Models.Data
                 if (Ngayvao == default || Ngaydukienra == default)
                     return 0;
 
-                TimeSpan thoiGianSuDung = DateTime.Now - Ngayvao;
+                TimeSpan thoiGianSuDung = DateTime.Now - Ngaydukienra;
 
                 float soNgay = (float)Math.Round(thoiGianSuDung.TotalDays,2);
                 return Math.Max(0, soNgay);

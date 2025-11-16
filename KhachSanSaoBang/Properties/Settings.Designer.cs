@@ -26,22 +26,12 @@ namespace KhachSanSaoBang.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=hoangv" +
-            "u205;Password=Amkiso2019@;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Securi" +
+            "ty Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServe" +
+            "rCertificate=True;")]
         public string dataQLKSConnectionString {
             get {
                 return ((string)(this["dataQLKSConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-MI8BCIFM;Initial Catalog=dataQLKS;Integrated Security=True;Tru" +
-            "stServerCertificate=True;")]
-        public string dataQLKSConnectionString1 {
-            get {
-                return ((string)(this["dataQLKSConnectionString1"]));
             }
         }
         
@@ -60,6 +50,18 @@ namespace KhachSanSaoBang.Properties {
         public string AES_IV {
             get {
                 return ((string)(this["AES_IV"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=tcp:hoangvux.database.windows.net,1433;Initial Catalog=dataQLKS;Persist Se" +
+            "curity Info=False;User ID=hoangvu205;Password={Amkiso2019@};MultipleActiveResult" +
+            "Sets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")]
+        public string dataQLKSConnectionString1 {
+            get {
+                return ((string)(this["dataQLKSConnectionString1"]));
             }
         }
     }

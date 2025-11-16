@@ -78,11 +78,11 @@ namespace KhachSanSaoBang
             if (acction == 0)
             {
                 this.Text = "Đặt phòng";
-                tab_container.SelectedIndex = 0;
+                tab_container.SelectedTab = step1;
             }
             if (acction == 2)
             {
-                tab_container.SelectedIndex = 5;
+                tab_container.SelectedTab = tabkhachdicung;
                 btn_back_step.Enabled = false;
                 this.Text = "Thêm khách thuê";
                 danhSachKhach = new BindingList<KhachThue>();
@@ -384,7 +384,12 @@ namespace KhachSanSaoBang
         private void Btn_back_step_Click(object sender, EventArgs e)
         {
             btn_next_step.Enabled = true;
-            if (tab_container.SelectedTab == tab_khachhang_register)
+            if (acction == 2)
+            {
+                DialogResult rel1 = MessageBox.Show("Bạn sẽ thoát khỏi cửa sổ này, đồng ý ?", "Thông báo");
+                if (rel1 != DialogResult.Yes) { this.Close(); }
+            }
+            if (tab_container.SelectedTab == tab_khachhang_register && acction !=3)
             {
                 tab_container.SelectedIndex = 0;
 
@@ -454,11 +459,6 @@ namespace KhachSanSaoBang
                 }
             }
         }
-
-        
-
-    
-
         private int TinhTuoi(DateTime ngsinh)
         {
             DateTime today = DateTime.Today;
@@ -466,7 +466,5 @@ namespace KhachSanSaoBang
             if (ngsinh.Date > today.AddYears(-age)) age--; // nếu chưa tới sinh nhật năm nay
             return age;
         }
-
-        
     }
 }

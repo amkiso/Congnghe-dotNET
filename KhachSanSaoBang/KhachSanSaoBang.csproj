@@ -65,18 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formtemp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formtemp.Designer.cs">
-      <DependentUpon>Formtemp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Client\CustomLabel_Image.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -176,12 +164,6 @@
     <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="TraCuuKhachHang.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TraCuuKhachHang.Designer.cs">
-      <DependentUpon>TraCuuKhachHang.cs</DependentUpon>
-    </Compile>
     <Compile Include="TrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,12 +187,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AcctionForm.resx">
       <DependentUpon>AcctionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formtemp.resx">
-      <DependentUpon>Formtemp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThanhToan.resx">
       <DependentUpon>ThanhToan.cs</DependentUpon>
@@ -283,7 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HuongDan\HuongDan.txt" />
-    <Content Include="Note\FormDatPhong.txt" />
     <Content Include="Note\MainForm.txt" />
     <None Include="Resources\icons8-tick-48.png" />
     <None Include="Resources\icons8-tick-50.png" />

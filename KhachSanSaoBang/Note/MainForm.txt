@@ -22,5 +22,12 @@ II. Sự Kiện
 			++ Tính tổng tiền tạm tính hiện tại của phòng
 			++ Trả lại cờ isLoading=false
 	-Người dùng chọn dịch vụ trong list dịch vụ hiện có
-		+
+		+ số lượng trong ô số lượng tăng nếu người dùng click vào đúng dịch vụ cũ đã chon(vd đang chọn Nước ngọt, click vào Nước ngọt lần nữa sẽ làm tăng số lượng lên )
+	- Người dùng bấm nút [Gọi dịch vụ]:
+		+ Thông tin dịch vụ đã chọn và số lượng gọi được thêm vào database nếu chưa có
+		+ nếu dịch vụ đã gọi trước đó rồi thì tăng số lượng lên
+	- người dùng click vào nút [Trả dịch vụ]:
+		+ trả lại dịch vụ đang chọn trong list với số lượng được người dùng nhập
+		+ nếu số lượng trả > số lượng gọi -> xóa dịch vụ
+	- người dùng click 
 		

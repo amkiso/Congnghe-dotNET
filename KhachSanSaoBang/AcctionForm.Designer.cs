@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AcctionForm));
             this.main_container = new System.Windows.Forms.TableLayoutPanel();
             this.doubleBufferingTablePanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_cancel = new ImageButton();
+            this.btn_next_step = new ImageButton();
+            this.btn_back_step = new ImageButton();
             this.tab_container = new System.Windows.Forms.TabControl();
             this.step1 = new System.Windows.Forms.TabPage();
             this.step1_main_container = new System.Windows.Forms.TableLayoutPanel();
@@ -38,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_input = new System.Windows.Forms.TextBox();
+            this.btn_tracuu = new ImageButton();
             this.step2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.step2_lower_container = new System.Windows.Forms.TableLayoutPanel();
@@ -82,6 +86,8 @@
             this.dtp_ngayra = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_chonP = new ImageButton();
+            this.btn_loc = new ImageButton();
             this.step4 = new System.Windows.Forms.TabPage();
             this.step4_main_container = new System.Windows.Forms.TableLayoutPanel();
             this.step4_center_container = new System.Windows.Forms.TableLayoutPanel();
@@ -113,6 +119,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_xacnhan_step4 = new ImageButton();
+            this.btn_inphieu = new ImageButton();
             this.tabkhachdicung = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.data_khach_di_cung = new System.Windows.Forms.DataGridView();
@@ -122,6 +130,10 @@
             this.col_age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_luu_acction2 = new ImageButton();
+            this.btn_sua_acction2 = new ImageButton();
+            this.btn_xoa_acction2 = new ImageButton();
+            this.btn_them_acction2 = new ImageButton();
             this.tab_khachhang_register = new System.Windows.Forms.TabPage();
             this.step6_main_container = new System.Windows.Forms.TableLayoutPanel();
             this.form_dangky_KH = new System.Windows.Forms.TableLayoutPanel();
@@ -145,18 +157,6 @@
             this.txt_hoten_dangky = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_cancel = new ImageButton();
-            this.btn_next_step = new ImageButton();
-            this.btn_back_step = new ImageButton();
-            this.btn_tracuu = new ImageButton();
-            this.btn_chonP = new ImageButton();
-            this.btn_loc = new ImageButton();
-            this.btn_xacnhan_step4 = new ImageButton();
-            this.btn_inphieu = new ImageButton();
-            this.btn_luu_acction2 = new ImageButton();
-            this.btn_sua_acction2 = new ImageButton();
-            this.btn_xoa_acction2 = new ImageButton();
-            this.btn_them_acction2 = new ImageButton();
             this.btn_dangky = new ImageButton();
             this.main_container.SuspendLayout();
             this.doubleBufferingTablePanel7.SuspendLayout();
@@ -236,6 +236,100 @@
             this.doubleBufferingTablePanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.doubleBufferingTablePanel7.Size = new System.Drawing.Size(1433, 64);
             this.doubleBufferingTablePanel7.TabIndex = 1;
+            // 
+            // btn_cancel
+            // 
+            this.btn_cancel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_cancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_cancel.BorderWidth = 1;
+            this.btn_cancel.CornerRadius = 8;
+            this.btn_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_cancel.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_cancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_cancel.EnableShadow = false;
+            this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_cancel.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btn_cancel.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btn_cancel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_cancel.Image = global::KhachSanSaoBang.Properties.Resources.gui_cancel;
+            this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_cancel.ImagePadding = 8;
+            this.btn_cancel.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_cancel.Location = new System.Drawing.Point(631, 3);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_cancel.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_cancel.Size = new System.Drawing.Size(167, 58);
+            this.btn_cancel.TabIndex = 1;
+            this.btn_cancel.Text = "Hủy";
+            this.btn_cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_cancel.TextPadding = 8;
+            this.btn_cancel.UseGradient = true;
+            // 
+            // btn_next_step
+            // 
+            this.btn_next_step.BackColor = System.Drawing.Color.Transparent;
+            this.btn_next_step.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_next_step.BorderWidth = 1;
+            this.btn_next_step.CornerRadius = 8;
+            this.btn_next_step.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_next_step.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_next_step.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_next_step.EnableShadow = false;
+            this.btn_next_step.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_next_step.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_next_step.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(164)))), ((int)(((byte)(212)))));
+            this.btn_next_step.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            this.btn_next_step.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btn_next_step.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_next_step.Image = global::KhachSanSaoBang.Properties.Resources.icons8_next_50;
+            this.btn_next_step.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_next_step.ImagePadding = 8;
+            this.btn_next_step.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_next_step.Location = new System.Drawing.Point(1259, 3);
+            this.btn_next_step.Name = "btn_next_step";
+            this.btn_next_step.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_next_step.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_next_step.Size = new System.Drawing.Size(171, 58);
+            this.btn_next_step.TabIndex = 2;
+            this.btn_next_step.Text = "Tiếp theo";
+            this.btn_next_step.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_next_step.TextPadding = 8;
+            this.btn_next_step.UseGradient = true;
+            // 
+            // btn_back_step
+            // 
+            this.btn_back_step.BackColor = System.Drawing.Color.Transparent;
+            this.btn_back_step.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_back_step.BorderWidth = 1;
+            this.btn_back_step.CornerRadius = 8;
+            this.btn_back_step.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_back_step.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_back_step.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_back_step.Enabled = false;
+            this.btn_back_step.EnableShadow = false;
+            this.btn_back_step.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_back_step.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_back_step.GradientColor1 = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_back_step.GradientColor2 = System.Drawing.SystemColors.ButtonFace;
+            this.btn_back_step.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btn_back_step.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_back_step.Image = global::KhachSanSaoBang.Properties.Resources.icons8_previous_64;
+            this.btn_back_step.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_back_step.ImagePadding = 8;
+            this.btn_back_step.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_back_step.Location = new System.Drawing.Point(3, 3);
+            this.btn_back_step.Name = "btn_back_step";
+            this.btn_back_step.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_back_step.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_back_step.Size = new System.Drawing.Size(167, 58);
+            this.btn_back_step.TabIndex = 0;
+            this.btn_back_step.Text = "Quay lại";
+            this.btn_back_step.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_back_step.TextPadding = 8;
+            this.btn_back_step.UseGradient = true;
             // 
             // tab_container
             // 
@@ -350,6 +444,37 @@
             this.txt_input.Size = new System.Drawing.Size(370, 47);
             this.txt_input.TabIndex = 6;
             this.txt_input.Text = "nhập sđt/cccd...";
+            // 
+            // btn_tracuu
+            // 
+            this.btn_tracuu.BackColor = System.Drawing.Color.Transparent;
+            this.btn_tracuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_tracuu.BorderWidth = 1;
+            this.btn_tracuu.CornerRadius = 8;
+            this.btn_tracuu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_tracuu.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_tracuu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_tracuu.EnableShadow = false;
+            this.btn_tracuu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_tracuu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_tracuu.GradientColor1 = System.Drawing.Color.Cornsilk;
+            this.btn_tracuu.GradientColor2 = System.Drawing.Color.Gold;
+            this.btn_tracuu.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_tracuu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_tracuu.Image = global::KhachSanSaoBang.Properties.Resources.icons8_search_40;
+            this.btn_tracuu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_tracuu.ImagePadding = 8;
+            this.btn_tracuu.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_tracuu.Location = new System.Drawing.Point(631, 201);
+            this.btn_tracuu.Name = "btn_tracuu";
+            this.btn_tracuu.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_tracuu.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_tracuu.Size = new System.Drawing.Size(186, 54);
+            this.btn_tracuu.TabIndex = 4;
+            this.btn_tracuu.Text = "Tra cứu";
+            this.btn_tracuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_tracuu.TextPadding = 8;
+            this.btn_tracuu.UseGradient = true;
             // 
             // step2
             // 
@@ -946,6 +1071,69 @@
             this.tableLayoutPanel13.Size = new System.Drawing.Size(994, 152);
             this.tableLayoutPanel13.TabIndex = 5;
             // 
+            // btn_chonP
+            // 
+            this.btn_chonP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btn_chonP.BackColor = System.Drawing.Color.Transparent;
+            this.btn_chonP.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_chonP.BorderWidth = 1;
+            this.btn_chonP.CornerRadius = 8;
+            this.btn_chonP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_chonP.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_chonP.Enabled = false;
+            this.btn_chonP.EnableShadow = false;
+            this.btn_chonP.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_chonP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_chonP.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btn_chonP.GradientColor2 = System.Drawing.Color.DodgerBlue;
+            this.btn_chonP.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btn_chonP.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_chonP.Image = global::KhachSanSaoBang.Properties.Resources.icons8_tick_48;
+            this.btn_chonP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_chonP.ImagePadding = 8;
+            this.btn_chonP.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_chonP.Location = new System.Drawing.Point(500, 56);
+            this.btn_chonP.Name = "btn_chonP";
+            this.btn_chonP.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_chonP.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_chonP.Size = new System.Drawing.Size(198, 40);
+            this.btn_chonP.TabIndex = 0;
+            this.btn_chonP.Text = "Chọn phòng";
+            this.btn_chonP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_chonP.TextPadding = 8;
+            this.btn_chonP.UseGradient = true;
+            // 
+            // btn_loc
+            // 
+            this.btn_loc.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn_loc.BackColor = System.Drawing.Color.Transparent;
+            this.btn_loc.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_loc.BorderWidth = 1;
+            this.btn_loc.CornerRadius = 8;
+            this.btn_loc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_loc.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_loc.EnableShadow = false;
+            this.btn_loc.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_loc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_loc.GradientColor1 = System.Drawing.Color.PeachPuff;
+            this.btn_loc.GradientColor2 = System.Drawing.Color.Yellow;
+            this.btn_loc.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            this.btn_loc.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_loc.Image = global::KhachSanSaoBang.Properties.Resources.icons8_filter_50;
+            this.btn_loc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_loc.ImagePadding = 8;
+            this.btn_loc.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_loc.Location = new System.Drawing.Point(312, 56);
+            this.btn_loc.Name = "btn_loc";
+            this.btn_loc.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_loc.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_loc.Size = new System.Drawing.Size(182, 40);
+            this.btn_loc.TabIndex = 1;
+            this.btn_loc.Text = "Lọc";
+            this.btn_loc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_loc.TextPadding = 8;
+            this.btn_loc.UseGradient = true;
+            // 
             // step4
             // 
             this.step4.Controls.Add(this.step4_main_container);
@@ -1353,6 +1541,68 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(845, 56);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
+            // btn_xacnhan_step4
+            // 
+            this.btn_xacnhan_step4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btn_xacnhan_step4.BackColor = System.Drawing.Color.Transparent;
+            this.btn_xacnhan_step4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_xacnhan_step4.BorderWidth = 1;
+            this.btn_xacnhan_step4.CornerRadius = 8;
+            this.btn_xacnhan_step4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_xacnhan_step4.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_xacnhan_step4.EnableShadow = false;
+            this.btn_xacnhan_step4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_xacnhan_step4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_xacnhan_step4.GradientColor1 = System.Drawing.Color.White;
+            this.btn_xacnhan_step4.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_xacnhan_step4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_xacnhan_step4.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_xacnhan_step4.Image = null;
+            this.btn_xacnhan_step4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_xacnhan_step4.ImagePadding = 8;
+            this.btn_xacnhan_step4.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_xacnhan_step4.Location = new System.Drawing.Point(435, 8);
+            this.btn_xacnhan_step4.Name = "btn_xacnhan_step4";
+            this.btn_xacnhan_step4.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_xacnhan_step4.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_xacnhan_step4.Size = new System.Drawing.Size(182, 40);
+            this.btn_xacnhan_step4.TabIndex = 2;
+            this.btn_xacnhan_step4.Text = "Xác nhận";
+            this.btn_xacnhan_step4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_xacnhan_step4.TextPadding = 8;
+            this.btn_xacnhan_step4.UseGradient = true;
+            // 
+            // btn_inphieu
+            // 
+            this.btn_inphieu.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn_inphieu.BackColor = System.Drawing.Color.Transparent;
+            this.btn_inphieu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_inphieu.BorderWidth = 1;
+            this.btn_inphieu.CornerRadius = 8;
+            this.btn_inphieu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_inphieu.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_inphieu.EnableShadow = false;
+            this.btn_inphieu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_inphieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_inphieu.GradientColor1 = System.Drawing.Color.White;
+            this.btn_inphieu.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_inphieu.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_inphieu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_inphieu.Image = null;
+            this.btn_inphieu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_inphieu.ImagePadding = 8;
+            this.btn_inphieu.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_inphieu.Location = new System.Drawing.Point(227, 8);
+            this.btn_inphieu.Name = "btn_inphieu";
+            this.btn_inphieu.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_inphieu.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_inphieu.Size = new System.Drawing.Size(182, 40);
+            this.btn_inphieu.TabIndex = 0;
+            this.btn_inphieu.Text = "In phiếu";
+            this.btn_inphieu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_inphieu.TextPadding = 8;
+            this.btn_inphieu.UseGradient = true;
+            // 
             // tabkhachdicung
             // 
             this.tabkhachdicung.Controls.Add(this.tableLayoutPanel1);
@@ -1457,6 +1707,130 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(561, 58);
             this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // btn_luu_acction2
+            // 
+            this.btn_luu_acction2.BackColor = System.Drawing.Color.White;
+            this.btn_luu_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_luu_acction2.BorderWidth = 1;
+            this.btn_luu_acction2.CornerRadius = 8;
+            this.btn_luu_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_luu_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_luu_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_luu_acction2.EnableShadow = false;
+            this.btn_luu_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_luu_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_luu_acction2.GradientColor1 = System.Drawing.Color.White;
+            this.btn_luu_acction2.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_luu_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_luu_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_luu_acction2.Image = global::KhachSanSaoBang.Properties.Resources.icons8_save_48;
+            this.btn_luu_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_luu_acction2.ImagePadding = 8;
+            this.btn_luu_acction2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_luu_acction2.Location = new System.Drawing.Point(423, 3);
+            this.btn_luu_acction2.Name = "btn_luu_acction2";
+            this.btn_luu_acction2.NormalBackColor = System.Drawing.Color.White;
+            this.btn_luu_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_luu_acction2.Size = new System.Drawing.Size(135, 52);
+            this.btn_luu_acction2.TabIndex = 3;
+            this.btn_luu_acction2.Text = "Lưu";
+            this.btn_luu_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_luu_acction2.TextPadding = 8;
+            this.btn_luu_acction2.UseGradient = false;
+            // 
+            // btn_sua_acction2
+            // 
+            this.btn_sua_acction2.BackColor = System.Drawing.SystemColors.Window;
+            this.btn_sua_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_sua_acction2.BorderWidth = 1;
+            this.btn_sua_acction2.CornerRadius = 8;
+            this.btn_sua_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_sua_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_sua_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_sua_acction2.EnableShadow = false;
+            this.btn_sua_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_sua_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_sua_acction2.GradientColor1 = System.Drawing.Color.White;
+            this.btn_sua_acction2.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_sua_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_sua_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_sua_acction2.Image = global::KhachSanSaoBang.Properties.Resources.file_edit;
+            this.btn_sua_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_sua_acction2.ImagePadding = 8;
+            this.btn_sua_acction2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_sua_acction2.Location = new System.Drawing.Point(283, 3);
+            this.btn_sua_acction2.Name = "btn_sua_acction2";
+            this.btn_sua_acction2.NormalBackColor = System.Drawing.SystemColors.Window;
+            this.btn_sua_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_sua_acction2.Size = new System.Drawing.Size(134, 52);
+            this.btn_sua_acction2.TabIndex = 2;
+            this.btn_sua_acction2.Text = "Sửa";
+            this.btn_sua_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_sua_acction2.TextPadding = 8;
+            this.btn_sua_acction2.UseGradient = false;
+            // 
+            // btn_xoa_acction2
+            // 
+            this.btn_xoa_acction2.BackColor = System.Drawing.Color.White;
+            this.btn_xoa_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_xoa_acction2.BorderWidth = 1;
+            this.btn_xoa_acction2.CornerRadius = 8;
+            this.btn_xoa_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_xoa_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_xoa_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_xoa_acction2.EnableShadow = false;
+            this.btn_xoa_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_xoa_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_xoa_acction2.GradientColor1 = System.Drawing.Color.White;
+            this.btn_xoa_acction2.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_xoa_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_xoa_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_xoa_acction2.Image = global::KhachSanSaoBang.Properties.Resources.user_delete;
+            this.btn_xoa_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_xoa_acction2.ImagePadding = 8;
+            this.btn_xoa_acction2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_xoa_acction2.Location = new System.Drawing.Point(143, 3);
+            this.btn_xoa_acction2.Name = "btn_xoa_acction2";
+            this.btn_xoa_acction2.NormalBackColor = System.Drawing.Color.White;
+            this.btn_xoa_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_xoa_acction2.Size = new System.Drawing.Size(134, 52);
+            this.btn_xoa_acction2.TabIndex = 1;
+            this.btn_xoa_acction2.Text = "Xóa";
+            this.btn_xoa_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_xoa_acction2.TextPadding = 8;
+            this.btn_xoa_acction2.UseGradient = false;
+            // 
+            // btn_them_acction2
+            // 
+            this.btn_them_acction2.BackColor = System.Drawing.Color.White;
+            this.btn_them_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_them_acction2.BorderWidth = 1;
+            this.btn_them_acction2.CornerRadius = 8;
+            this.btn_them_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_them_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_them_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_them_acction2.EnableShadow = false;
+            this.btn_them_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_them_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_them_acction2.GradientColor1 = System.Drawing.Color.White;
+            this.btn_them_acction2.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_them_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_them_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_them_acction2.Image = global::KhachSanSaoBang.Properties.Resources.user_add;
+            this.btn_them_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_them_acction2.ImagePadding = 8;
+            this.btn_them_acction2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_them_acction2.Location = new System.Drawing.Point(3, 3);
+            this.btn_them_acction2.Name = "btn_them_acction2";
+            this.btn_them_acction2.NormalBackColor = System.Drawing.Color.White;
+            this.btn_them_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_them_acction2.Size = new System.Drawing.Size(134, 52);
+            this.btn_them_acction2.TabIndex = 0;
+            this.btn_them_acction2.Text = "Thêm";
+            this.btn_them_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_them_acction2.TextPadding = 8;
+            this.btn_them_acction2.UseGradient = false;
             // 
             // tab_khachhang_register
             // 
@@ -1766,380 +2140,6 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(981, 141);
             this.tableLayoutPanel15.TabIndex = 7;
-            // 
-            // btn_cancel
-            // 
-            this.btn_cancel.BackColor = System.Drawing.Color.Transparent;
-            this.btn_cancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_cancel.BorderWidth = 1;
-            this.btn_cancel.CornerRadius = 8;
-            this.btn_cancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_cancel.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_cancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_cancel.EnableShadow = false;
-            this.btn_cancel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_cancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_cancel.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btn_cancel.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btn_cancel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_cancel.Image = global::KhachSanSaoBang.Properties.Resources.gui_cancel;
-            this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_cancel.ImagePadding = 8;
-            this.btn_cancel.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_cancel.Location = new System.Drawing.Point(631, 3);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_cancel.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_cancel.Size = new System.Drawing.Size(167, 58);
-            this.btn_cancel.TabIndex = 1;
-            this.btn_cancel.Text = "Hủy";
-            this.btn_cancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_cancel.TextPadding = 8;
-            this.btn_cancel.UseGradient = true;
-            // 
-            // btn_next_step
-            // 
-            this.btn_next_step.BackColor = System.Drawing.Color.Transparent;
-            this.btn_next_step.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_next_step.BorderWidth = 1;
-            this.btn_next_step.CornerRadius = 8;
-            this.btn_next_step.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_next_step.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_next_step.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_next_step.EnableShadow = false;
-            this.btn_next_step.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_next_step.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_next_step.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(164)))), ((int)(((byte)(212)))));
-            this.btn_next_step.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            this.btn_next_step.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.btn_next_step.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_next_step.Image = global::KhachSanSaoBang.Properties.Resources.icons8_next_50;
-            this.btn_next_step.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_next_step.ImagePadding = 8;
-            this.btn_next_step.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_next_step.Location = new System.Drawing.Point(1259, 3);
-            this.btn_next_step.Name = "btn_next_step";
-            this.btn_next_step.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_next_step.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_next_step.Size = new System.Drawing.Size(171, 58);
-            this.btn_next_step.TabIndex = 2;
-            this.btn_next_step.Text = "Tiếp theo";
-            this.btn_next_step.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_next_step.TextPadding = 8;
-            this.btn_next_step.UseGradient = true;
-            // 
-            // btn_back_step
-            // 
-            this.btn_back_step.BackColor = System.Drawing.Color.Transparent;
-            this.btn_back_step.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_back_step.BorderWidth = 1;
-            this.btn_back_step.CornerRadius = 8;
-            this.btn_back_step.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_back_step.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_back_step.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_back_step.Enabled = false;
-            this.btn_back_step.EnableShadow = false;
-            this.btn_back_step.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_back_step.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_back_step.GradientColor1 = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_back_step.GradientColor2 = System.Drawing.SystemColors.ButtonFace;
-            this.btn_back_step.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.btn_back_step.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_back_step.Image = global::KhachSanSaoBang.Properties.Resources.icons8_previous_64;
-            this.btn_back_step.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_back_step.ImagePadding = 8;
-            this.btn_back_step.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_back_step.Location = new System.Drawing.Point(3, 3);
-            this.btn_back_step.Name = "btn_back_step";
-            this.btn_back_step.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_back_step.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_back_step.Size = new System.Drawing.Size(167, 58);
-            this.btn_back_step.TabIndex = 0;
-            this.btn_back_step.Text = "Quay lại";
-            this.btn_back_step.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_back_step.TextPadding = 8;
-            this.btn_back_step.UseGradient = true;
-            // 
-            // btn_tracuu
-            // 
-            this.btn_tracuu.BackColor = System.Drawing.Color.Transparent;
-            this.btn_tracuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_tracuu.BorderWidth = 1;
-            this.btn_tracuu.CornerRadius = 8;
-            this.btn_tracuu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_tracuu.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_tracuu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_tracuu.EnableShadow = false;
-            this.btn_tracuu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_tracuu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_tracuu.GradientColor1 = System.Drawing.Color.Cornsilk;
-            this.btn_tracuu.GradientColor2 = System.Drawing.Color.Gold;
-            this.btn_tracuu.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_tracuu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_tracuu.Image = global::KhachSanSaoBang.Properties.Resources.icons8_search_40;
-            this.btn_tracuu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_tracuu.ImagePadding = 8;
-            this.btn_tracuu.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_tracuu.Location = new System.Drawing.Point(631, 201);
-            this.btn_tracuu.Name = "btn_tracuu";
-            this.btn_tracuu.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_tracuu.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_tracuu.Size = new System.Drawing.Size(186, 54);
-            this.btn_tracuu.TabIndex = 4;
-            this.btn_tracuu.Text = "Tra cứu";
-            this.btn_tracuu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_tracuu.TextPadding = 8;
-            this.btn_tracuu.UseGradient = true;
-            // 
-            // btn_chonP
-            // 
-            this.btn_chonP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btn_chonP.BackColor = System.Drawing.Color.Transparent;
-            this.btn_chonP.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_chonP.BorderWidth = 1;
-            this.btn_chonP.CornerRadius = 8;
-            this.btn_chonP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_chonP.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_chonP.Enabled = false;
-            this.btn_chonP.EnableShadow = false;
-            this.btn_chonP.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_chonP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_chonP.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btn_chonP.GradientColor2 = System.Drawing.Color.DodgerBlue;
-            this.btn_chonP.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.btn_chonP.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_chonP.Image = global::KhachSanSaoBang.Properties.Resources.icons8_tick_48;
-            this.btn_chonP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_chonP.ImagePadding = 8;
-            this.btn_chonP.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_chonP.Location = new System.Drawing.Point(500, 56);
-            this.btn_chonP.Name = "btn_chonP";
-            this.btn_chonP.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_chonP.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_chonP.Size = new System.Drawing.Size(198, 40);
-            this.btn_chonP.TabIndex = 0;
-            this.btn_chonP.Text = "Chọn phòng";
-            this.btn_chonP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_chonP.TextPadding = 8;
-            this.btn_chonP.UseGradient = true;
-            // 
-            // btn_loc
-            // 
-            this.btn_loc.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btn_loc.BackColor = System.Drawing.Color.Transparent;
-            this.btn_loc.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_loc.BorderWidth = 1;
-            this.btn_loc.CornerRadius = 8;
-            this.btn_loc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_loc.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_loc.EnableShadow = false;
-            this.btn_loc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_loc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_loc.GradientColor1 = System.Drawing.Color.PeachPuff;
-            this.btn_loc.GradientColor2 = System.Drawing.Color.Yellow;
-            this.btn_loc.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            this.btn_loc.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_loc.Image = global::KhachSanSaoBang.Properties.Resources.icons8_filter_50;
-            this.btn_loc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_loc.ImagePadding = 8;
-            this.btn_loc.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_loc.Location = new System.Drawing.Point(312, 56);
-            this.btn_loc.Name = "btn_loc";
-            this.btn_loc.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_loc.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_loc.Size = new System.Drawing.Size(182, 40);
-            this.btn_loc.TabIndex = 1;
-            this.btn_loc.Text = "Lọc";
-            this.btn_loc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_loc.TextPadding = 8;
-            this.btn_loc.UseGradient = true;
-            // 
-            // btn_xacnhan_step4
-            // 
-            this.btn_xacnhan_step4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btn_xacnhan_step4.BackColor = System.Drawing.Color.Transparent;
-            this.btn_xacnhan_step4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_xacnhan_step4.BorderWidth = 1;
-            this.btn_xacnhan_step4.CornerRadius = 8;
-            this.btn_xacnhan_step4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_xacnhan_step4.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_xacnhan_step4.EnableShadow = false;
-            this.btn_xacnhan_step4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_xacnhan_step4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_xacnhan_step4.GradientColor1 = System.Drawing.Color.White;
-            this.btn_xacnhan_step4.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_xacnhan_step4.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_xacnhan_step4.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_xacnhan_step4.Image = null;
-            this.btn_xacnhan_step4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_xacnhan_step4.ImagePadding = 8;
-            this.btn_xacnhan_step4.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_xacnhan_step4.Location = new System.Drawing.Point(435, 8);
-            this.btn_xacnhan_step4.Name = "btn_xacnhan_step4";
-            this.btn_xacnhan_step4.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_xacnhan_step4.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_xacnhan_step4.Size = new System.Drawing.Size(182, 40);
-            this.btn_xacnhan_step4.TabIndex = 2;
-            this.btn_xacnhan_step4.Text = "Xác nhận";
-            this.btn_xacnhan_step4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_xacnhan_step4.TextPadding = 8;
-            this.btn_xacnhan_step4.UseGradient = true;
-            // 
-            // btn_inphieu
-            // 
-            this.btn_inphieu.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btn_inphieu.BackColor = System.Drawing.Color.Transparent;
-            this.btn_inphieu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_inphieu.BorderWidth = 1;
-            this.btn_inphieu.CornerRadius = 8;
-            this.btn_inphieu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_inphieu.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_inphieu.EnableShadow = false;
-            this.btn_inphieu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_inphieu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_inphieu.GradientColor1 = System.Drawing.Color.White;
-            this.btn_inphieu.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_inphieu.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_inphieu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_inphieu.Image = null;
-            this.btn_inphieu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_inphieu.ImagePadding = 8;
-            this.btn_inphieu.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_inphieu.Location = new System.Drawing.Point(227, 8);
-            this.btn_inphieu.Name = "btn_inphieu";
-            this.btn_inphieu.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_inphieu.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_inphieu.Size = new System.Drawing.Size(182, 40);
-            this.btn_inphieu.TabIndex = 0;
-            this.btn_inphieu.Text = "In phiếu";
-            this.btn_inphieu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_inphieu.TextPadding = 8;
-            this.btn_inphieu.UseGradient = true;
-            // 
-            // btn_luu_acction2
-            // 
-            this.btn_luu_acction2.BackColor = System.Drawing.Color.White;
-            this.btn_luu_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_luu_acction2.BorderWidth = 1;
-            this.btn_luu_acction2.CornerRadius = 8;
-            this.btn_luu_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_luu_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_luu_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_luu_acction2.EnableShadow = false;
-            this.btn_luu_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_luu_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_luu_acction2.GradientColor1 = System.Drawing.Color.White;
-            this.btn_luu_acction2.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_luu_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_luu_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_luu_acction2.Image = global::KhachSanSaoBang.Properties.Resources.icons8_save_48;
-            this.btn_luu_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_luu_acction2.ImagePadding = 8;
-            this.btn_luu_acction2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_luu_acction2.Location = new System.Drawing.Point(423, 3);
-            this.btn_luu_acction2.Name = "btn_luu_acction2";
-            this.btn_luu_acction2.NormalBackColor = System.Drawing.Color.White;
-            this.btn_luu_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_luu_acction2.Size = new System.Drawing.Size(135, 52);
-            this.btn_luu_acction2.TabIndex = 3;
-            this.btn_luu_acction2.Text = "Lưu";
-            this.btn_luu_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_luu_acction2.TextPadding = 8;
-            this.btn_luu_acction2.UseGradient = false;
-            // 
-            // btn_sua_acction2
-            // 
-            this.btn_sua_acction2.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_sua_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_sua_acction2.BorderWidth = 1;
-            this.btn_sua_acction2.CornerRadius = 8;
-            this.btn_sua_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_sua_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_sua_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_sua_acction2.EnableShadow = false;
-            this.btn_sua_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_sua_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_sua_acction2.GradientColor1 = System.Drawing.Color.White;
-            this.btn_sua_acction2.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_sua_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_sua_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_sua_acction2.Image = global::KhachSanSaoBang.Properties.Resources.file_edit;
-            this.btn_sua_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_sua_acction2.ImagePadding = 8;
-            this.btn_sua_acction2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_sua_acction2.Location = new System.Drawing.Point(283, 3);
-            this.btn_sua_acction2.Name = "btn_sua_acction2";
-            this.btn_sua_acction2.NormalBackColor = System.Drawing.SystemColors.Window;
-            this.btn_sua_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_sua_acction2.Size = new System.Drawing.Size(134, 52);
-            this.btn_sua_acction2.TabIndex = 2;
-            this.btn_sua_acction2.Text = "Sửa";
-            this.btn_sua_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_sua_acction2.TextPadding = 8;
-            this.btn_sua_acction2.UseGradient = false;
-            // 
-            // btn_xoa_acction2
-            // 
-            this.btn_xoa_acction2.BackColor = System.Drawing.Color.White;
-            this.btn_xoa_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_xoa_acction2.BorderWidth = 1;
-            this.btn_xoa_acction2.CornerRadius = 8;
-            this.btn_xoa_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_xoa_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_xoa_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_xoa_acction2.EnableShadow = false;
-            this.btn_xoa_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_xoa_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_xoa_acction2.GradientColor1 = System.Drawing.Color.White;
-            this.btn_xoa_acction2.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_xoa_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_xoa_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_xoa_acction2.Image = global::KhachSanSaoBang.Properties.Resources.user_delete;
-            this.btn_xoa_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_xoa_acction2.ImagePadding = 8;
-            this.btn_xoa_acction2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_xoa_acction2.Location = new System.Drawing.Point(143, 3);
-            this.btn_xoa_acction2.Name = "btn_xoa_acction2";
-            this.btn_xoa_acction2.NormalBackColor = System.Drawing.Color.White;
-            this.btn_xoa_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_xoa_acction2.Size = new System.Drawing.Size(134, 52);
-            this.btn_xoa_acction2.TabIndex = 1;
-            this.btn_xoa_acction2.Text = "Xóa";
-            this.btn_xoa_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_xoa_acction2.TextPadding = 8;
-            this.btn_xoa_acction2.UseGradient = false;
-            // 
-            // btn_them_acction2
-            // 
-            this.btn_them_acction2.BackColor = System.Drawing.Color.White;
-            this.btn_them_acction2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_them_acction2.BorderWidth = 1;
-            this.btn_them_acction2.CornerRadius = 8;
-            this.btn_them_acction2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_them_acction2.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_them_acction2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_them_acction2.EnableShadow = false;
-            this.btn_them_acction2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_them_acction2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_them_acction2.GradientColor1 = System.Drawing.Color.White;
-            this.btn_them_acction2.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_them_acction2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_them_acction2.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_them_acction2.Image = global::KhachSanSaoBang.Properties.Resources.user_add;
-            this.btn_them_acction2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_them_acction2.ImagePadding = 8;
-            this.btn_them_acction2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_them_acction2.Location = new System.Drawing.Point(3, 3);
-            this.btn_them_acction2.Name = "btn_them_acction2";
-            this.btn_them_acction2.NormalBackColor = System.Drawing.Color.White;
-            this.btn_them_acction2.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_them_acction2.Size = new System.Drawing.Size(134, 52);
-            this.btn_them_acction2.TabIndex = 0;
-            this.btn_them_acction2.Text = "Thêm";
-            this.btn_them_acction2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_them_acction2.TextPadding = 8;
-            this.btn_them_acction2.UseGradient = false;
             // 
             // btn_dangky
             // 

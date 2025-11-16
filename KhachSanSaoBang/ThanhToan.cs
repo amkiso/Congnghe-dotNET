@@ -37,11 +37,19 @@ namespace KhachSanSaoBang
             btn_thanhtoan.Click += Btn_thanhtoan_Click;
             btn_100k.Click += Btn_Menhgia_click;
             btn_200k.Click += Btn_Menhgia_click;
+            btn_huy.Click += Btn_huy_Click;
             btn_500k.Click += Btn_Menhgia_click;
             btn_vuadu.Click += Btn_vuadu_Click;
             btn_chuyenkhoan.Click += HinhThucThanhToan_Click;
             btn_tienmat.Click += HinhThucThanhToan_Click;
             btn_quethe.Click += HinhThucThanhToan_Click;
+        }
+
+        private void Btn_huy_Click(object sender, EventArgs e)
+        {
+            DialogResult rel = MessageBox.Show("Hủy thanh toán ?","Thông báo",MessageBoxButtons.YesNo);
+            if (rel == DialogResult.Yes) { this.Close(); }
+
         }
 
         private void Btn_thanhtoan_Click(object sender, EventArgs e)
@@ -53,6 +61,8 @@ namespace KhachSanSaoBang
                 {
                     Inhoadon(1);
                     MessageBox.Show("Thanh Toán thành công !", "thông báo");
+                    Session.Acction_status = true;
+                    this.Close();
                 }
                 else
                 {

@@ -16,6 +16,8 @@ namespace KhachSanSaoBang.Models
         public static string Role { get; set; }
         public static string UserEmail { get; set; }
         public static int maphonghientai { get; set; }
+        public static int trangthaiphong { get; set; }
+
         /// <summary>
         /// Cờ Trạng thái của hành động thực hiện tiếp theo khi hoạt động ở cửa sổ khác
         /// Cờ mang giá trị false nếu hành động bị hủy hoặc thất bại và ngược lại
