@@ -1,0 +1,41 @@
+﻿THÔNG TIN CHI TIẾT VỀ THIẾT KẾ, CÁCH HOẠT ĐỘNG VÀ HƯỚNG DẪN SỬ DỤNG CỦA Form [AcctionForm]
+I.Thông tin thiết kế
+	- Thiết kế theo giao diện thao tác step-by-step
+	- sử dụng Tabcontrol để phân các trang
+	- Để mở Form cần truyền vào một số nguyên biểu thị cho hành động tiếp theo muốn làm
+	- Tiêu đề của form tự thay đổi theo tên hành động đang thực hiện
+	- nút chọn tab sẽ được ẩn đi khi Form hoạt động
+II.Hoạt động
+	- Form hoạt động theo mô hình thao tác step-by-step dễ dàng mở rộng sau này.
+	- Form có chức năng chính là đặt phòng (acction 0) và các chức năng phụ như tra cứu thông tin khách hàng (acction 1),
+	   Nhập thông tin khách cư trú (acction 2) và đăng kí tài khoản khách hàng (acction 3)
+	- Người dùng có thể di chuyển qua lại giữa các step bằng nút [trở về] và [tiếp theo], 2 nút này sẽ được cài đặt chức năng tùy thuộc vào hành động hiện tại đang thực hiện là gì.
+	- Cách hoạt động của từng chức năng cụ thể:
+		+ Đặt phòng (acction 0):
+			++ Mở đầu bằng cách nhân viên nhập số điện thoại hoặc số CCCD của khách hàng để tra cứu thông tin tài khoản, nếu khách hàng
+				chưa có tài khoản tại khách sạn sẽ được thông báo ra màn hình, khách hàng phải có tài khoản mới có thể đặt phòng và sử dụng dịch vụ
+					+++ Nếu khách hàng không đồng ý tạo tài khoản thì nhân viên sẽ có 2 hướng xử lý sau:
+						1. Tự tạo tài khoản cho khách hàng và không cần mật khẩu(random) rồi tiếp tục đặt phòng
+						2. Quản lý phòng bằng sổ sách thông thường, viết phiếu đặt bằng tay
+			++ Nhân viên xác nhận thông tin khách hàng vừa tra cứu ra
+			++ Khách hàng cung cấp ngày vào, ra để bắt đầu chọn phòng trống được lọc
+			++ nhân viên sau khi chọn ngày thì bấm nút lọc để chương trình lọc các phòng trống tương ứng rồi cung cấp thông tin được lọc ra để khách hàng chọn phòng
+			++ Sau khi chọn phòng sẽ được chuyển đến bước xác nhận chốt lại thông tin phiếu đặt phòng, chương trình hiển thị ra thông tin phiếu đặt, in phiếu đặt phòng cho khách hàng
+			++ Kết thúc
+		+ Tra cứu thông tin:
+			++ nhân viên điền số điện thoại hoặc CCCD của khách vào để bắt đầu tra cứu
+			++ Nếu khách hàng tồn tại:
+				+++ Trả về thông tin sau: Họ tên khách hàng, Số điện thoại, Số CCCD, Điểm tích lũy, Số phòng đã từng đặt, số phòng đang chờ xác nhận, Số phòng chờ check in, danh sách phòng chờ xác nhận, danh sách phòng đang chờ check in
+			++ Nếu không tìm thấy:
+				+++ Gợi ý tạo tài khoản, nếu không đồng ý -> Kết thúc tra cứu
+			->Note: Có thể tiếp tục tra cứu vì cửa sổ sẽ đóng nếu người dùng không tắt nó đi
+			++Kết thúc
+		+ Đăng ký tài khoản khách hàng:
+			++ Nhân viên nhập đầy đủ thông tin khách hàng để đăng ký
+			++ Nếu tạo tài khoản thành công sẽ có thông báo thành công
+			++ Nếu không tạo được tài khoản thì có nghĩa là tên tài khoản hoặc số điện thoại, cccd đã được người khác đăng ký rồi.
+			++ Kết thúc
+
+
+
+

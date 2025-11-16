@@ -102,7 +102,11 @@ namespace KhachSanSaoBang.Models
             }
             return list;
         }
-        //tính toán số lượng khách dự vào tính hợp lệ của chuỗi json từ db
+        /// <summary>
+        /// tính toán số lượng khách dự vào tính hợp lệ của chuỗi json từ db
+        /// </summary>
+        /// <param name="ttkhachtheo"></param>
+        /// <returns></returns>
         public int Soluongkhach(string ttkhachtheo)
         {
             try
@@ -149,19 +153,6 @@ namespace KhachSanSaoBang.Models
         /// <returns></returns>
         public int GetRoomCase(int old, int pnew)
         {
-            /*Sơ đồ hoạt động: 
-                        nếu thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
-                        Nếu thay đổi từ 2-3: Kiểm tra xem phòng có được thanh toán hay chưa, 
-                                             nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
-                                             Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)
-                                             Yes: mở thêm cửa sổ thanh toán, tiến hành nhập thông tin thanh toán và thanh toán hóa đơn
-                                             No: return và không cho phép thay đổi
-                        Nếu thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
-                        Nếu thay đổi từ 1-6: Không thể thay đổi trạng thái từ 1->6 vì chức năng này thuộc về người dùng đặt phòng trên website
-                        Nếu thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
-                        Thay đổi từ 7-2: Hiện cửa sổ nhập thông tin khách nhận phòng,Ghi lại ngày vào (ngay_vao) trong database thành ngày giờ hiện tại, Cập nhật dữ liệu trên db
-                        Các trạng thái 4,5 của phòng chỉ có thể thay đổi khi phòng trống(1)
-                        Ngoài ra không chấp nhận thay đổi khác với luồng này*/
             if (old == 1 && pnew == 2)
             {
                 return 1;
@@ -190,9 +181,18 @@ namespace KhachSanSaoBang.Models
             {
                 return 0;
             }
+            else if (old == 6 && pnew == 1)
+            {
+                return 7;
+            }
+            else if( old == 7 && pnew == 1)
+            {
+                return 8;   
+            }
             else return -1;
 
         }
+       
         //Lấy thông tin tất cả các phòng
         public List<Thongtinchung> GetAllThongtinphong()
         {
@@ -787,6 +787,18 @@ namespace KhachSanSaoBang.Models
             }
             else return false;
         }
+        //Đổi trạng thái phiếu đặt phòng
+        public bool ChangeRoomFormStatus(int ma_p, int trangthaicu, int trangthaimoi)
+        {
+            var pdp = db.tblPhieuDatPhongs.FirstOrDefault(t => t.ma_phong == ma_p && t.ma_tinh_trang==trangthaicu);
+            if (pdp != null)
+            {
+                pdp.ma_tinh_trang = trangthaimoi;
+                db.SubmitChanges();
+                return true;
+            }
+            else return false;
+        }
         //Thanh toán
         public bool ThanhToanHoaDon(ThongtinThanhToan hd, int mathanhtoan)
         {
@@ -808,6 +820,7 @@ namespace KhachSanSaoBang.Models
                     ChangeRoomStatus(Session.maphonghientai, 3);
                     db.SubmitChanges();
                     
+
                     return true;
                 }
                 else return false;
@@ -855,11 +868,31 @@ namespace KhachSanSaoBang.Models
 
             else return 0;
         }
-        //Đếm số phòng đang chờ xác nhận
+        /// <summary>
+        /// Đếm số phòng đang chờ xác nhận
+        /// </summary>
+        /// <returns></returns>
         public int GetSoPhongChoXacNhan()
         {
             return (from p in db.tblPhongs where p.ma_tinh_trang == 6 select p.ma_phong).Count();
         }
+        /// <summary>
+        /// Lấy danh sách phòng đang chờ xác nhận (string)
+        /// </summary>
+        /// <returns>List</returns>
+        public string GetListPhongChoXacNhan()
+        {
+            string danhsach;
+            if (GetSoPhongChoXacNhan() < 1) { return "[trống]"; }
+            var list = db.tblPhongs.Where(t => t.ma_tinh_trang == 6).Select(t => t.so_phong).ToList();
+            danhsach = $"[{string.Join(", ",list)}]";
+            return danhsach;
+        }
+        /// <summary>
+        /// Xác nhận phiếu đặt phòng của phòng đang chọn
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
         public bool XacNhanPhong(int map)
         {
             try
@@ -870,7 +903,6 @@ namespace KhachSanSaoBang.Models
                  .FirstOrDefault();
                 list.ma_tinh_trang = 2;
                 ChangeRoomStatus(map, 7);
-
                 db.SubmitChanges();
                 //Tạo hóa đơn
                 return true;
@@ -976,8 +1008,19 @@ namespace KhachSanSaoBang.Models
             {
                 return false;
             }
-            
         
+        }
+        //Cộng điểm tích lũy chi khách hàng
+        public bool CongDiemTichLuy(string makh, float tien)
+        {
+            var khach = db.tblKhachHangs.Where(t => t.ma_kh == makh).FirstOrDefault();
+            if (khach != null)
+            {
+                khach.diem += (int)((tien) / 100);
+                db.SubmitChanges();
+                return true;
+            }
+            else return false;
         }
     }
 }

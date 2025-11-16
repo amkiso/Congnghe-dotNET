@@ -1,6 +1,8 @@
 ﻿THÔNG TIN CHI TIẾT VỀ QUÁ TRÌNH THIẾT KẾ, CÁCH HOẠT ĐỘNG VÀ HƯỚNG DẪN SỬ DỤNG CỦA CỬA SỔ LÀM VIỆC CHÍNH SAU KHI ĐĂNG NHẬP
 I.THIẾT KẾ
 	- thiết kế với mục đích để nhân viên có thể thao tác các tác vụ cơ bản và quản lý các phòng tại một giao diện duy nhất
+	- Menu/taskbar có thể thu nhỏ
+	- phòng được tô màu dựa theo trạng thái của nó
 II. Sự Kiện
 	- Khởi động: 
 		+ Cờ và các biến cục bộ được tạo
@@ -29,5 +31,24 @@ II. Sự Kiện
 	- người dùng click vào nút [Trả dịch vụ]:
 		+ trả lại dịch vụ đang chọn trong list với số lượng được người dùng nhập
 		+ nếu số lượng trả > số lượng gọi -> xóa dịch vụ
-	- người dùng click 
-		
+	- người dùng thay đổi trạng thái phòng
+		+ Người dùng chỉ có thể thay đổi trạng thái phòng theo quy tắc tuần tự đặt ra:
+			++ Phòng Trống:
+				+++ Có thể đổi sang trạng thái [chờ xác nhận] thông qua việc đặt phòng
+				+++ Có thể trực tiếp đổi sang trạng thái [Bảo trì] hoặc [Dừng sử dụng]
+			++ Phòng đang sử dụng:
+				+++ Chỉ có thể thay đổi sang trạng thái [Đang dọn] thông qua thanh toán phòng tương ứng
+			++ Phòng chờ xác nhận:
+				+++ Có thể chuyển trực tiếp sang trạng thái [Chờ check-in], có câu hỏi xác nhận phòng.
+				+++ Có thể chuyển sang trạng thái [Trống] để từ chối phiếu đặt phòng này.
+			++ Phòng chờ check-in: 
+				+++ Có thể chuyển sang trạng thái [Đang sử dụng] và nhập thông tin khách cư trú
+				+++ Có thể chuyển sang trạng thái [Trống] với lí do Khách hủy phòng
+			++ Phòng đang [Bảo trì] và [Dừng sử dụng]:
+				+++ Có thể chuyển sang trạng thái [Trống] trở lại.
+			--> Ngoài ra không chấp nhận trường hợp thay đổi trạng thái khác so với luồng này.
+	- Chức năng khác:
+		++ ẩn hiện thanh Menu điều hướng
+		++ Chuyển nhanh đến các trang khác trong ứng dụng thông qua menu lựa chọn
+		++ Làm mới thông tin sau 5s, bật bắt bằng checkbox
+		++ Làm mới thông tin nhanh bằng nút [reload]

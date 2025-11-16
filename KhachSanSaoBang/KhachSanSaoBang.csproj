@@ -99,11 +99,11 @@
     <Compile Include="ThanhToan.Designer.cs">
       <DependentUpon>ThanhToan.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="TrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="TrangChu.Designer.cs">
+      <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Client\imagebutton.cs">
       <SubType>Component</SubType>
@@ -164,12 +164,6 @@
     <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrangChu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TrangChu.Designer.cs">
-      <DependentUpon>TrangChu.cs</DependentUpon>
-    </Compile>
     <Compile Include="KhachHang\ucKhachHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,8 +185,8 @@
     <EmbeddedResource Include="ThanhToan.resx">
       <DependentUpon>ThanhToan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="TrangChu.resx">
+      <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
       <DependentUpon>ucKhachHang.cs</DependentUpon>
@@ -213,9 +207,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKe\BaoCao\ucBaoCao.resx">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TrangChu.resx">
-      <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DoanhThu\ucDoanhThu.resx">
       <DependentUpon>ucDoanhThu.cs</DependentUpon>
@@ -259,7 +250,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HuongDan\HuongDan.txt" />
+    <Content Include="Note\AcctionForm.txt" />
     <Content Include="Note\MainForm.txt" />
+    <Content Include="Note\ThanhToan.txt" />
+    <None Include="Resources\icons8-reload-50.png" />
     <None Include="Resources\icons8-tick-48.png" />
     <None Include="Resources\icons8-tick-50.png" />
     <None Include="Resources\icons8-filter-50.png" />

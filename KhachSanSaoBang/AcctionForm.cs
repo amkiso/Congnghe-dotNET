@@ -170,8 +170,9 @@ namespace KhachSanSaoBang
             {
                 DialogResult rel = MessageBox.Show("Đặt phòng thành công !, Bạn có muốn in lại phiếu nhận không ?", "Thông báo",MessageBoxButtons.YesNo);
                 if (rel == DialogResult.Yes) { inphieudatphong(); }
-                this.Close();
                 Session.Acction_status = true;
+                this.Close();
+                
             }
             else { MessageBox.Show("Đặt phòng thất bại!", "Lỗi"); }
         }

@@ -51,7 +51,7 @@ namespace KhachSanSaoBang
                 MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
-                MainForm main = new MainForm();
+                TrangChu main = new TrangChu();
                 main.ShowDialog();
                 this.Close();
             }
@@ -105,7 +105,7 @@ namespace KhachSanSaoBang
                 MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
-                MainForm main = new MainForm();
+                TrangChu main = new TrangChu();
                 main.ShowDialog();
                 this.Close();
             }

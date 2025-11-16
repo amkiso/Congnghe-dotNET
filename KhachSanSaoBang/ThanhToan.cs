@@ -17,6 +17,7 @@ namespace KhachSanSaoBang
         ThongtinThanhToan data = new ThongtinThanhToan();
         Xuly xl = new Xuly();
         int mahinhthuc = 0;
+        bool phuongthucthanhtoan = false;
         public ThanhToan(ThongtinThanhToan dt)
         {
             InitializeComponent();
@@ -59,6 +60,8 @@ namespace KhachSanSaoBang
             {
                 if (xl.ThanhToanHoaDon(data, mahinhthuc))
                 {
+                    // Cộng điểm tích lũy cho khách hàng
+                    xl.CongDiemTichLuy(data.Makh, data.Tongtien);
                     Inhoadon(1);
                     MessageBox.Show("Thanh Toán thành công !", "thông báo");
                     Session.Acction_status = true;
@@ -79,6 +82,7 @@ namespace KhachSanSaoBang
             resetmau();
             btn.BackColor = Color.FromArgb(192, 255, 255);
             mahinhthuc = Convert.ToInt32(btn.Tag);
+            phuongthucthanhtoan = true;
             btn_xacnhan.Enabled = true;
             checkval(mahinhthuc);
         }
@@ -127,6 +131,7 @@ namespace KhachSanSaoBang
             data.Tienkhachdua = 0;
             resetmau();
             mahinhthuc = 0;
+            phuongthucthanhtoan = false;
             btn_xacnhan.Enabled = false;
             btn_thanhtoan.Enabled = false;
             txt_tienkhachdua.Text =  "0VNĐ";
@@ -135,10 +140,17 @@ namespace KhachSanSaoBang
 
         private void Btn_xacnhan_Click(object sender, EventArgs e)
         {
-
-            txt_tienthua.Text = (data.Tienkhachdua - data.Tongtien).ToString("N0") + "VNĐ";
-            txt_tienthua.SelectionAlignment = HorizontalAlignment.Right;
-            btn_thanhtoan.Enabled = true;
+            if (phuongthucthanhtoan)
+            {
+                if (data.Tienkhachdua < data.Tongtien) { MessageBox.Show("Chưa đủ tiền để thanh toán !", "Thông báo"); }
+                else
+                {
+                    txt_tienthua.Text = (data.Tienkhachdua - data.Tongtien).ToString("N0") + "VNĐ";
+                    txt_tienthua.SelectionAlignment = HorizontalAlignment.Right;
+                    btn_thanhtoan.Enabled = true;
+                }
+            }
+            else MessageBox.Show("Bạn chưa chọn phương thức thanh toán", "Thông báo");
         }
 
         private void Btn_apdungvoucher_Click(object sender, EventArgs e)
