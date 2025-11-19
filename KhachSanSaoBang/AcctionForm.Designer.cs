@@ -341,7 +341,7 @@
             this.tab_container.Controls.Add(this.tabkhachdicung);
             this.tab_container.Controls.Add(this.tab_khachhang_register);
             this.tab_container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tab_container.ItemSize = new System.Drawing.Size(60, 30);
+            this.tab_container.ItemSize = new System.Drawing.Size(0, 1);
             this.tab_container.Location = new System.Drawing.Point(3, 3);
             this.tab_container.Name = "tab_container";
             this.tab_container.SelectedIndex = 0;
@@ -352,10 +352,10 @@
             // step1
             // 
             this.step1.Controls.Add(this.step1_main_container);
-            this.step1.Location = new System.Drawing.Point(4, 34);
+            this.step1.Location = new System.Drawing.Point(4, 5);
             this.step1.Name = "step1";
             this.step1.Padding = new System.Windows.Forms.Padding(3);
-            this.step1.Size = new System.Drawing.Size(1425, 875);
+            this.step1.Size = new System.Drawing.Size(1425, 904);
             this.step1.TabIndex = 0;
             this.step1.Text = "Thông tin khách hàng";
             this.step1.UseVisualStyleBackColor = true;
@@ -380,7 +380,7 @@
             this.step1_main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.step1_main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23F));
             this.step1_main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23F));
-            this.step1_main_container.Size = new System.Drawing.Size(1419, 869);
+            this.step1_main_container.Size = new System.Drawing.Size(1419, 898);
             this.step1_main_container.TabIndex = 1;
             // 
             // step1_lower_container
@@ -398,14 +398,14 @@
             this.step1_lower_container.Controls.Add(this.txt_input, 2, 1);
             this.step1_lower_container.Controls.Add(this.btn_tracuu, 3, 1);
             this.step1_lower_container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.step1_lower_container.Location = new System.Drawing.Point(286, 202);
+            this.step1_lower_container.Location = new System.Drawing.Point(286, 209);
             this.step1_lower_container.Name = "step1_lower_container";
             this.step1_lower_container.RowCount = 3;
             this.step1_main_container.SetRowSpan(this.step1_lower_container, 3);
             this.step1_lower_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43F));
             this.step1_lower_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.step1_lower_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42F));
-            this.step1_lower_container.Size = new System.Drawing.Size(844, 461);
+            this.step1_lower_container.Size = new System.Drawing.Size(844, 477);
             this.step1_lower_container.TabIndex = 7;
             // 
             // label2
@@ -416,7 +416,7 @@
             this.step1_lower_container.SetColumnSpan(this.label2, 3);
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(252, 76);
+            this.label2.Location = new System.Drawing.Point(252, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(336, 46);
             this.label2.TabIndex = 5;
@@ -429,9 +429,9 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(23, 198);
+            this.label1.Location = new System.Drawing.Point(23, 205);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 69);
+            this.label1.Size = new System.Drawing.Size(226, 71);
             this.label1.TabIndex = 1;
             this.label1.Text = "vui lòng điền vào ô bên cạnh:";
             // 
@@ -439,7 +439,7 @@
             // 
             this.txt_input.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_input.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_input.Location = new System.Drawing.Point(255, 201);
+            this.txt_input.Location = new System.Drawing.Point(255, 208);
             this.txt_input.Name = "txt_input";
             this.txt_input.Size = new System.Drawing.Size(370, 47);
             this.txt_input.TabIndex = 6;
@@ -465,7 +465,7 @@
             this.btn_tracuu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_tracuu.ImagePadding = 8;
             this.btn_tracuu.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_tracuu.Location = new System.Drawing.Point(631, 201);
+            this.btn_tracuu.Location = new System.Drawing.Point(631, 208);
             this.btn_tracuu.Name = "btn_tracuu";
             this.btn_tracuu.NormalBackColor = System.Drawing.Color.Transparent;
             this.btn_tracuu.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));

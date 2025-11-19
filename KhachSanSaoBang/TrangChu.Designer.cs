@@ -140,6 +140,7 @@
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_sophongchoxacnhan = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.btn_reload = new ImageButton();
             this.main_right_bot1_container = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
@@ -177,7 +178,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_reload = new ImageButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnl_menu.SuspendLayout();
             this.pnlNhanVienSub.SuspendLayout();
@@ -1743,6 +1743,36 @@
             this.label22.TabIndex = 29;
             this.label22.Text = "Số phòng chờ xác nhận:";
             // 
+            // btn_reload
+            // 
+            this.btn_reload.BackColor = System.Drawing.Color.Transparent;
+            this.btn_reload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_reload.BorderWidth = 1;
+            this.btn_reload.CornerRadius = 8;
+            this.btn_reload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_reload.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_reload.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_reload.EnableShadow = false;
+            this.btn_reload.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.btn_reload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_reload.GradientColor1 = System.Drawing.Color.White;
+            this.btn_reload.GradientColor2 = System.Drawing.Color.Cyan;
+            this.btn_reload.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_reload.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_reload.Image = global::KhachSanSaoBang.Properties.Resources.icons8_reload_50;
+            this.btn_reload.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_reload.ImagePadding = 8;
+            this.btn_reload.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_reload.Location = new System.Drawing.Point(511, 3);
+            this.btn_reload.Name = "btn_reload";
+            this.btn_reload.NormalBackColor = System.Drawing.Color.Transparent;
+            this.btn_reload.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_reload.Size = new System.Drawing.Size(51, 38);
+            this.btn_reload.TabIndex = 27;
+            this.btn_reload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_reload.TextPadding = 8;
+            this.btn_reload.UseGradient = true;
+            // 
             // main_right_bot1_container
             // 
             this.main_right_bot1_container.ColumnCount = 1;
@@ -2204,43 +2234,13 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Chức vụ:";
             // 
-            // btn_reload
-            // 
-            this.btn_reload.BackColor = System.Drawing.Color.Transparent;
-            this.btn_reload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_reload.BorderWidth = 1;
-            this.btn_reload.CornerRadius = 8;
-            this.btn_reload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_reload.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_reload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_reload.EnableShadow = false;
-            this.btn_reload.Font = new System.Drawing.Font("Segoe UI", 7F);
-            this.btn_reload.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_reload.GradientColor1 = System.Drawing.Color.White;
-            this.btn_reload.GradientColor2 = System.Drawing.Color.Cyan;
-            this.btn_reload.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_reload.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_reload.Image = global::KhachSanSaoBang.Properties.Resources.icons8_reload_50;
-            this.btn_reload.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_reload.ImagePadding = 8;
-            this.btn_reload.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_reload.Location = new System.Drawing.Point(511, 3);
-            this.btn_reload.Name = "btn_reload";
-            this.btn_reload.NormalBackColor = System.Drawing.Color.Transparent;
-            this.btn_reload.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_reload.Size = new System.Drawing.Size(51, 38);
-            this.btn_reload.TabIndex = 27;
-            this.btn_reload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_reload.TextPadding = 8;
-            this.btn_reload.UseGradient = true;
-            // 
-            // MainForm
+            // TrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2884, 1629);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "MainForm";
+            this.Name = "TrangChu";
             this.Text = "Form2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);

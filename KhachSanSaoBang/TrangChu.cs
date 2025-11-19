@@ -408,15 +408,20 @@ namespace KhachSanSaoBang
                     if (rls == DialogResult.Yes)
                     {
                         Session.Acction_status = false;
-                        ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
-                        pm.ShowDialog(this);
-                        if (!Session.Acction_status)
-                        {
-                            MessageBox.Show("Bạn đã hủy thanh toán !", "Thông báo");
-                        }
+                        var thanhtoans = xl.GetThongtinThanhToan(Session.maphonghientai);
+                        if (thanhtoans == null) { MessageBox.Show("Lấy thông tin thanh toán thất bại", "Lỗi"); return; }
                         else
                         {
-                            FormStart();
+                            ThanhToan pm = new ThanhToan(thanhtoans);
+                            pm.ShowDialog(this);
+                            if (!Session.Acction_status)
+                            {
+                                MessageBox.Show("Bạn đã hủy thanh toán !", "Thông báo");
+                            }
+                            else
+                            {
+                                FormStart();
+                            }
                         }
                     }
                     else return;

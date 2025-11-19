@@ -766,7 +766,8 @@ namespace KhachSanSaoBang.Models
                 data.Ngayvao = DateTime.Parse(ttp.Ngayvao);
                 data.Ngaydukienra = DateTime.Parse(ttp.Ngayra);
                 data.Ngayra = DateTime.Now;
-                data.Mahd = ttp.Maphieudp;
+                data.Mahd = GetMaHoaDonChuaThanhToan(ttp.Maphieudp);
+                
                 data.Tilephuthu = ttp.Phuthu;
                 data.sokhach = ttp.Sokhach;
                 data.Tienkhachdua = 0;
@@ -1009,6 +1010,15 @@ namespace KhachSanSaoBang.Models
                 return false;
             }
         
+        }
+        //Lấy mã hóa đơn chưa thanh toán
+        public int GetMaHoaDonChuaThanhToan(int mapdp)
+        {
+            int mahd = (from u in db.tblHoaDons
+                        where u.ma_pdp == mapdp && u.ma_tinh_trang== 1 select u.ma_hd
+                        
+                        ).FirstOrDefault();
+            return mahd;
         }
         //Cộng điểm tích lũy chi khách hàng
         public bool CongDiemTichLuy(string makh, float tien)
