@@ -191,7 +191,6 @@
             this.btn_dangnhap.TabIndex = 0;
             this.btn_dangnhap.Text = "Đăng Nhập";
             this.btn_dangnhap.UseVisualStyleBackColor = true;
-            this.btn_dangnhap.Click += new System.EventHandler(this.btn_dangnhap_Click_1);
             // 
             // tableLayoutPanel7
             // 

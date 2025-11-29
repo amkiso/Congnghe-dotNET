@@ -13812,7 +13812,7 @@ SELECT ma_nv, ho_ten, ngay_sinh, dia_chi, sdt, tai_khoan, mat_khau, ma_chuc_vu, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
+            this._connection.ConnectionString = global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

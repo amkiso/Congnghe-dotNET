@@ -187,10 +187,10 @@ namespace KhachSanSaoBang
         private void ThanhToan_Load(object sender, EventArgs e)
         {
             DataLoader();
-            tbl_trai.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
-            tbl_topleft.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
-            container_left.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
-            tbl_phai.CellPaint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.Azure);
+            tbl_trai.CellPaint += (s, ev) => Dataloader.DrawTableFullCellBorder(s, ev, Color.Azure);
+            tbl_topleft.CellPaint += (s, ev) => Dataloader.DrawTableFullCellBorder(s, ev, Color.Azure);
+            container_left.CellPaint += (s, ev) => Dataloader.DrawTableFullCellBorder(s, ev, Color.Azure);
+            tbl_phai.CellPaint += (s, ev) => Dataloader.DrawTableFullCellBorder(s, ev, Color.Azure);
             tbl_phai.BackColor = Color.FromArgb(120, 0, 0, 0);
             tbl_phai.Visible = true;
             container_left.BackColor = Color.FromArgb(120, 0, 0, 0);

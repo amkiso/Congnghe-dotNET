@@ -551,7 +551,7 @@ namespace KhachSanSaoBang.Models
             if (!ChecKH(_input)) { return null; }
             else
             {
-                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input);
+                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input || t.ma_kh == _input);
                 return kh.ma_kh;
             }
         }
@@ -560,7 +560,7 @@ namespace KhachSanSaoBang.Models
         {
             try
             {
-                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input);
+                var kh = db.tblKhachHangs.FirstOrDefault(t => t.cmt == _input || t.sdt == _input || t.ma_kh == _input);
                 if (kh == null) return false;
                 else return true;
 
@@ -759,7 +759,7 @@ namespace KhachSanSaoBang.Models
                 //Lấy thông tin phòng hiện tại
                 Thongtinchung ttp = GetThongtinphong(ma_p);
                 data.Dichvusudung = listdichvup(ma_p);
-                data.Tenkh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ttp.Khachhang).ho_ten;
+                data.Tenkh = db.tblKhachHangs.FirstOrDefault(t => t.ho_ten == ttp.Khachhang).ho_ten;
                 data.Makh = ttp.Khachhang;
                 data.Sophong = ttp.Tenphong;
                 data.Giaphong = ttp.Giathue;
@@ -896,20 +896,19 @@ namespace KhachSanSaoBang.Models
         /// <returns></returns>
         public bool XacNhanPhong(int map)
         {
-            try
-            {
                 //Xác nhận phòng
-                var list = db.tblPhieuDatPhongs
+                tblPhieuDatPhong list = db.tblPhieuDatPhongs
                  .Where(x => x.ma_tinh_trang == 1 && x.ma_phong == map)
                  .FirstOrDefault();
-                list.ma_tinh_trang = 2;
-                ChangeRoomStatus(map, 7);
-                db.SubmitChanges();
-                //Tạo hóa đơn
-                return true;
+                if(list!= null)
+                {
+                    list.ma_tinh_trang = 2;
+                    ChangeRoomStatus(map, 7);
+                    db.SubmitChanges();
+                    return true;
+                }
 
-            }
-            catch { return false; }
+           else return false; 
         }
         //Lấy danh sách phòng trống theo ngày đặt
         public List<PhongTrong> GetPhongTrongs(DateTime ngayvao, DateTime ngayra)

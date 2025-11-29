@@ -105,6 +105,12 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrangLamViec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrangLamViec.Designer.cs">
+      <DependentUpon>TrangLamViec.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client\imagebutton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrangLamViec.resx">
+      <DependentUpon>TrangLamViec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
       <DependentUpon>ucKhachHang.cs</DependentUpon>

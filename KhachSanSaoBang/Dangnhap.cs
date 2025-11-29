@@ -22,6 +22,7 @@ namespace KhachSanSaoBang
             InitializeComponent();
             lb_Register.Click += Lb_Register_Click;
             this.Load += Temp_Load;
+            btn_dangnhap.Click += Btn_dangnhap_Click;
         }
 
         private void Temp_Load(object sender, EventArgs e)
@@ -48,17 +49,23 @@ namespace KhachSanSaoBang
             else
             {
                 if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text, txt_matkhau.Text); }
-                MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
+                else
+                {
+                        if (File.Exists(rememberFile))
+                        File.Delete(rememberFile);
+                }
+                    MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
-                TrangChu main = new TrangChu();
-                main.ShowDialog();
+                TrangChu tt = new TrangChu();
+                tt.ShowDialog();
                 this.Close();
             }
 
         }
         private void TaiThongTinDaLuu()
         {
+            cb_ghinho.Checked = false;
             if (File.Exists(rememberFile))
             {
                 try
@@ -93,23 +100,5 @@ namespace KhachSanSaoBang
             }
         }
 
-        private void btn_dangnhap_Click_1(object sender, EventArgs e)
-        {
-            tblNhanVien nv = new tblNhanVien();
-            nv.tai_khoan = txt_taikhoan.Text;
-            nv.mat_khau = txt_matkhau.Text;
-            if (!xl.Dangnhap(nv)) { MessageBox.Show("Tài khoản hoặc mật khẩu không đúng!", "Thông báo"); }
-            else
-            {
-                if (cb_ghinho.Checked) { LuuThongTinDangNhap(txt_taikhoan.Text, txt_matkhau.Text); }
-                MessageBox.Show("Đăng nhập thành công, Chào mừng " + Session.UserName + "!\n \t Nhấn OK để bắt đầu làm việc", "Thông báo");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
-                TrangChu main = new TrangChu();
-                main.ShowDialog();
-                this.Close();
-            }
-
-        }
     }
 }

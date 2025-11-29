@@ -52,17 +52,5 @@ namespace KhachSanSaoBang.Properties {
                 return ((string)(this["AES_IV"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=tcp:hoangvux.database.windows.net,1433;Initial Catalog=dataQLKS;Persist Se" +
-            "curity Info=False;User ID=hoangvu205;Password={Amkiso2019@};MultipleActiveResult" +
-            "Sets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")]
-        public string dataQLKSConnectionString1 {
-            get {
-                return ((string)(this["dataQLKSConnectionString1"]));
-            }
-        }
     }
 }

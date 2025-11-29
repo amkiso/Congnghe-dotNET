@@ -11,7 +11,7 @@ namespace KhachSanSaoBang.DoanhThu
 {
     public class DBDoanhThu
     {
-        string _cnn = "Data Source=LAPTOP-MOJM17CB\\SQLEXPRESS02;Initial Catalog=dataQLKS;Integrated Security=True";
+        string _cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;";
         SqlConnection sqlcnn;
         DataSet dataQLKS;
         SqlDataAdapter da;

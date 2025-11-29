@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KhachSanSaoBang
 {
@@ -59,15 +60,18 @@ namespace KhachSanSaoBang
             kh.ho_ten = txt_hoten_dangky.Text;
             kh.ma_kh = txt_taikhoandk.Text;
             kh.mat_khau = txt_matkhau_dangky.Text;
-            if(txt_cccd_dangky.Text.Length > 10 && txt_sdt_dangky.Text.Length >10)
-            {
-                kh.cmt = txt_cccd_dangky.Text;
-                kh.sdt = txt_sdt_dangky.Text;
-            }
-            else { MessageBox.Show("Số điện thoại và số căn cước không hợp lệ !","Thông báo"); return; }
+            //if(txt_cccd_dangky.Text.Length > 10 && txt_sdt_dangky.Text.Length >10)
+            //{
+            //    kh.cmt = txt_cccd_dangky.Text;
+            //    kh.sdt = txt_sdt_dangky.Text;
+            //}
+            //else { MessageBox.Show("Số điện thoại và số căn cước không hợp lệ !","Thông báo"); return; }
             kh.mail = txt_email_dangky.Text;
+            kh.cmt = txt_cccd_dangky.Text;
+            kh.diem = 0;
+            kh.sdt = txt_sdt_dangky.Text;
             kh.ngsinh = dpt_ngsinh_dkKH.Value;
-            if (xl.CreateNewKhachHang(kh)) { MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo"); Session.Acction_status = true;  tab_container.SelectedTab = step1; }
+            if (xl.CreateNewKhachHang(kh)) { MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo"); Session.Acction_status = true;  tab_container.SelectedTab = step1; txt_input.Text = txt_cccd_dangky.Text; }
             else MessageBox.Show("Đăng ký tài khoản không thành công!", "Lỗi");
 
         }
@@ -162,6 +166,8 @@ namespace KhachSanSaoBang
         private void Txt_input_Click(object sender, EventArgs e)
         {
             txt_input.Clear();
+            txt_input.Font = new Font(txt_input.Font.FontFamily, 13);
+
         }
 
         private void Btn_xacnhan_step4_Click(object sender, EventArgs e)
@@ -457,6 +463,7 @@ namespace KhachSanSaoBang
                 else
                 {
                     tab_container.SelectedTab = tab_khachhang_register;
+                    
                     
                 }
             }

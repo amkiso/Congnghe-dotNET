@@ -16,13 +16,5 @@
     <Setting Name="AES_IV" Type="System.String" Scope="Application">
       <Value Profile="(Default)">abcdef1234567890</Value>
     </Setting>
-    <Setting Name="dataQLKSConnectionString1" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Server=tcp:hoangvux.database.windows.net,1433;Initial Catalog=dataQLKS;Persist Security Info=False;User ID=hoangvu205;Password={Amkiso2019@};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=tcp:hoangvux.database.windows.net,1433;Initial Catalog=dataQLKS;Persist Security Info=False;User ID=hoangvu205;Password={Amkiso2019@};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
