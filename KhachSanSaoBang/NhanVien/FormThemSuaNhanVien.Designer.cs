@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_DiaChi = new System.Windows.Forms.TextBox();
+            this.lbl_DiaChi = new System.Windows.Forms.Label();
             this.cbo_NamSinh = new System.Windows.Forms.ComboBox();
             this.cbo_ThangSinh = new System.Windows.Forms.ComboBox();
             this.cbo_NamBD = new System.Windows.Forms.ComboBox();
@@ -47,14 +49,16 @@
             this.lbl_MSNV = new System.Windows.Forms.Label();
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_Huy = new System.Windows.Forms.Button();
-            this.lbl_DiaChi = new System.Windows.Forms.Label();
-            this.txt_DiaChi = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_sdt = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Silver;
+            this.groupBox2.Controls.Add(this.txt_sdt);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txt_DiaChi);
             this.groupBox2.Controls.Add(this.lbl_DiaChi);
             this.groupBox2.Controls.Add(this.cbo_NamSinh);
@@ -80,6 +84,26 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông Tin Nhân Viên";
+            // 
+            // txt_DiaChi
+            // 
+            this.txt_DiaChi.BackColor = System.Drawing.Color.White;
+            this.txt_DiaChi.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_DiaChi.Location = new System.Drawing.Point(1037, 219);
+            this.txt_DiaChi.Multiline = true;
+            this.txt_DiaChi.Name = "txt_DiaChi";
+            this.txt_DiaChi.Size = new System.Drawing.Size(282, 37);
+            this.txt_DiaChi.TabIndex = 19;
+            // 
+            // lbl_DiaChi
+            // 
+            this.lbl_DiaChi.AutoSize = true;
+            this.lbl_DiaChi.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbl_DiaChi.Location = new System.Drawing.Point(901, 224);
+            this.lbl_DiaChi.Name = "lbl_DiaChi";
+            this.lbl_DiaChi.Size = new System.Drawing.Size(84, 26);
+            this.lbl_DiaChi.TabIndex = 18;
+            this.lbl_DiaChi.Text = "Địa Chỉ";
             // 
             // cbo_NamSinh
             // 
@@ -260,25 +284,25 @@
             this.btn_Huy.Text = "Hủy";
             this.btn_Huy.UseVisualStyleBackColor = false;
             // 
-            // lbl_DiaChi
+            // label1
             // 
-            this.lbl_DiaChi.AutoSize = true;
-            this.lbl_DiaChi.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_DiaChi.Location = new System.Drawing.Point(901, 224);
-            this.lbl_DiaChi.Name = "lbl_DiaChi";
-            this.lbl_DiaChi.Size = new System.Drawing.Size(84, 26);
-            this.lbl_DiaChi.TabIndex = 18;
-            this.lbl_DiaChi.Text = "Địa Chỉ";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(901, 289);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 26);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "SDT";
             // 
-            // txt_DiaChi
+            // txt_sdt
             // 
-            this.txt_DiaChi.BackColor = System.Drawing.Color.White;
-            this.txt_DiaChi.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txt_DiaChi.Location = new System.Drawing.Point(1037, 219);
-            this.txt_DiaChi.Multiline = true;
-            this.txt_DiaChi.Name = "txt_DiaChi";
-            this.txt_DiaChi.Size = new System.Drawing.Size(282, 37);
-            this.txt_DiaChi.TabIndex = 19;
+            this.txt_sdt.BackColor = System.Drawing.Color.White;
+            this.txt_sdt.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txt_sdt.Location = new System.Drawing.Point(1037, 286);
+            this.txt_sdt.Multiline = true;
+            this.txt_sdt.Name = "txt_sdt";
+            this.txt_sdt.Size = new System.Drawing.Size(282, 37);
+            this.txt_sdt.TabIndex = 21;
             // 
             // FormThemSuaNhanVien
             // 
@@ -319,5 +343,7 @@
         private System.Windows.Forms.ComboBox cbo_ThangSinh;
         private System.Windows.Forms.TextBox txt_DiaChi;
         private System.Windows.Forms.Label lbl_DiaChi;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_sdt;
     }
 }
