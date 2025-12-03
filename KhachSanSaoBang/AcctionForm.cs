@@ -70,7 +70,7 @@ namespace KhachSanSaoBang
             kh.cmt = txt_cccd_dangky.Text;
             kh.diem = 0;
             kh.sdt = txt_sdt_dangky.Text;
-            kh.ngsinh = dpt_ngsinh_dkKH.Value;
+            kh.Ngsinh = dpt_ngsinh_dkKH.Value;
             if (xl.CreateNewKhachHang(kh)) { MessageBox.Show("Đăng ký tài khoản thành công!", "Thông báo"); Session.Acction_status = true;  tab_container.SelectedTab = step1; txt_input.Text = txt_cccd_dangky.Text; }
             else MessageBox.Show("Đăng ký tài khoản không thành công!", "Lỗi");
 

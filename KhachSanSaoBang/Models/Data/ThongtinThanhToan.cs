@@ -16,6 +16,7 @@ namespace KhachSanSaoBang.Models.Data
         int khachdicung;
         float tienchietkhau, _tongtien;
         int _tilechietkhau;
+        string strhang;
         string makm;
         float tienkhachdua;
         public List<DichVuDaDung> Dichvusudung { get; set; } = new List<DichVuDaDung>();
@@ -84,5 +85,6 @@ namespace KhachSanSaoBang.Models.Data
         public int Tilechietkhau { get => _tilechietkhau; set => _tilechietkhau = value; }
         public string Makm { get => makm; set => makm = value; }
         public float Tienkhachdua { get => tienkhachdua; set => tienkhachdua = value; }
+        public string Strhang { get => strhang; set => strhang = value; }
     }
 }

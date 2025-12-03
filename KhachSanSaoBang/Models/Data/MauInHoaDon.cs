@@ -152,6 +152,7 @@ namespace KhachSanSaoBang.Models.Data
             yPos = DrawText(g, $"Ngày: {DateTime.Now:dd/MM/yyyy HH:mm}", fontNormal, brush, MARGIN, yPos, calculateOnly);
             yPos = DrawText(g, $"Khách hàng: {invoiceData.Tenkh}", fontNormal, brush, MARGIN, yPos, calculateOnly);
             yPos = DrawText(g, $"Mã KH: {invoiceData.Makh}", fontNormal, brush, MARGIN, yPos, calculateOnly);
+            yPos = DrawText(g, $"Thành viên: {invoiceData.Strhang}", fontNormal, brush, MARGIN, yPos, calculateOnly);
             yPos = DrawTextWithLabel(g, "Số phòng:", invoiceData.Sophong, fontNormal, fontBold, brush, MARGIN, yPos, calculateOnly);
             yPos = DrawText(g, $"Số khách: {invoiceData.sokhach}", fontNormal, brush, MARGIN, yPos, calculateOnly);
 

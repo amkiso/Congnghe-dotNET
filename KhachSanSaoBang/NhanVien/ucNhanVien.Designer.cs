@@ -268,7 +268,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ucNhanVien";
             this.Size = new System.Drawing.Size(2398, 1004);
-            this.Load += new System.EventHandler(this.UcNhanVien_Click);
+            //this.Load += new System.EventHandler(this.UcNhanVien_Click);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblNhanVienBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataQLKSDataSetBindingSource)).EndInit();

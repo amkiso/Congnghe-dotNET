@@ -125,7 +125,18 @@ namespace KhachSanSaoBang
             btn_thanhtoan.Enabled = false;
             txt_tienkhachdua.Text = data.Tienkhachdua.ToString("N0") + "VNĐ";
         }
-
+        private void giamgiathanhvien()
+        {
+            // Giảm giá thành viên nếu có
+            int tile = xl.GetTileGiamKhThanhVien(data.Makh);
+            if (tile > 0)
+            {
+                float tienhientai = data.Tongtien;
+                tienhientai = data.Tongtien - tile*(data.Tongtien / 100);
+                MessageBox.Show($"Khách hàng là thành viên {data.Strhang}, được giảm {tile}% tổng tiền!", "Thông báo");
+                data.Tongtien = tienhientai;
+            }
+        }
         private void Btn_Menhgia_click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -222,15 +233,18 @@ namespace KhachSanSaoBang
         {
             try
             {
+                
                 lbl_mahd.Text = data.Mahd.ToString();
                 lbl_tennv.Text = Session.UserName;
-                lbl_hoten_kh.Text = data.Tenkh;
+                lbl_hoten_kh.Text = data.Tenkh +" - "+ data.Strhang;
                 lbl_ngaydukienra.Text = data.Ngaydukienra.ToString();
                 lbl_ngayra.Text = data.Ngayra.ToString();
                 lbl_ngayvao.Text = data.Ngayvao.ToString();
                 lbl_sophong.Text = data.Sophong;
                 lbl_khachdicung.Text = data.sokhach.ToString();
                 da_dv_su_dung.DataSource = data.Dichvusudung;
+                txt_tongtien.Text = data.Tongtien.ToString("N0") + "VNĐ";
+                giamgiathanhvien();
                 txt_tongtien.Text = data.Tongtien.ToString("N0") + "VNĐ";
                 data_tienphong.Rows.Add();
                 data_phuthu.Rows.Add();

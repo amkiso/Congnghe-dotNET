@@ -206,7 +206,7 @@ namespace KhachSanSaoBang.Models
                 nv.que_quan = row["que_quan"].ToString();
                 if (row["nam_bd"] != DBNull.Value) nv.nam_bd = (int)row["nam_bd"];
                 if (row["luong"] != DBNull.Value) nv.luong = Convert.ToInt32(row["luong"]); // Ép kiểu an toàn hơn
-                if (row["trang_thai"] != DBNull.Value) nv.trang_thai = (bool)row["trang_thai"];
+                //if (row["trang_thai"] != DBNull.Value) nv.trang_thai = (bool)row["trang_thai"];
 
                 return nv;
             }

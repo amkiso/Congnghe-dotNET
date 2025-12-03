@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dataQLKS" Class="SQLDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=hoangvu205;Trust Server Certificate=True" SettingsObjectName="KhachSanSaoBang.Properties.Settings" SettingsPropertyName="dataQLKSConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="KhachSanSaoBang.Properties.Settings" SettingsPropertyName="dataQLKSConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblChucVu" Member="tblChucVus">
     <Type Name="tblChucVu">
       <Column Name="ma_chuc_vu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -69,7 +69,8 @@
       <Column Name="sdt" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="mail" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="diem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ngsinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Ngsinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Member" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="tblKhachHang_tblTinNhan" Member="tblTinNhans" ThisKey="ma_kh" OtherKey="ma_kh" Type="tblTinNhan" />
       <Association Name="tblKhachHang_tblPhieuDatPhong" Member="tblPhieuDatPhongs" ThisKey="ma_kh" OtherKey="ma_kh" Type="tblPhieuDatPhong" />
     </Type>
@@ -110,7 +111,7 @@
       <Column Name="que_quan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="nam_bd" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="luong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="tblNhanVien_tblHoaDon" Member="tblHoaDons" ThisKey="ma_nv" OtherKey="ma_nv" Type="tblHoaDon" />
       <Association Name="tblChucVu_tblNhanVien" Member="tblChucVu" ThisKey="ma_chuc_vu" OtherKey="ma_chuc_vu" Type="tblChucVu" IsForeignKey="true" />
     </Type>

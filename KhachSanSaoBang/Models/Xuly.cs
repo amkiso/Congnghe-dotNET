@@ -749,6 +749,52 @@ namespace KhachSanSaoBang.Models
             }
             catch (Exception e) { return false; }
         }
+        //Lấy hạng thành viên của khách hàng
+        public string GetHangThanhVien(string ma_kh)
+        {
+            var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ma_kh);
+            if (kh != null)
+            {
+                if (kh.Member == false)
+                {
+                    return "Chưa đăng ký thành viên";
+                }
+                else
+                if (kh.diem < 1000)
+                {
+                    return "Hạng: Đồng";
+                }
+                else if (kh.diem < 5000)
+                {
+                    return "Hạng Bạc";
+                }
+                else return "Hạng: Vàng";
+               
+            }
+            else return null;
+        }
+        public int GetTileGiamKhThanhVien(string ma_kh)
+        {
+            var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ma_kh);
+            if (kh != null)
+            {
+                if (kh.Member == false)
+                {
+                    return 0;
+                }
+                else
+                if (kh.diem < 1000)// Hạng đồng: không giảm
+                {
+                    return 0;
+                }
+                else if (kh.diem < 5000)//Hạng bạc: Giảm 5%
+                {
+                    return 5;
+                }
+                else return 10;
+            }
+            else return 0;
+        }
         //Lấy thông tin thanh toán
         public ThongtinThanhToan GetThongtinThanhToan(int ma_p)
         {
@@ -766,7 +812,7 @@ namespace KhachSanSaoBang.Models
                 data.Ngaydukienra = DateTime.Parse(ttp.Ngayra);
                 data.Ngayra = DateTime.Now;
                 data.Mahd = GetMaHoaDonChuaThanhToan(ttp.Maphieudp);
-                
+                data.Strhang= GetHangThanhVien(ttp.Khachhang);
                 data.Tilephuthu = ttp.Phuthu;
                 data.sokhach = ttp.Sokhach;
                 data.Tienkhachdua = 0;
@@ -814,39 +860,13 @@ namespace KhachSanSaoBang.Models
                     var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == hd.Makh);
 
                     // ============================
-                    // 2) TÍNH GIẢM GIÁ THÀNH VIÊN
-                    // ============================
-                    float giamThanhVien = GetVoucherThanhVien(hd.Makh, hd.Tongtien);
-
-                    // ============================
-                    // 3) TÍNH GIẢM GIÁ MÃ CODE (bạn bạn nhập)
-                    // ============================
-                    float giamMaKM = 0;
-
-                    if (!string.IsNullOrEmpty(hd.Makm) && CheckMaKM(hd.Makm))
-                    {
-                        giamMaKM = GetTienChietKhau(hd.Makm, hd.Tongtien);
-                        hoadon.ma_khuyenmai = hd.Makm;
-                    }
-                    else
-                    {
-                        hoadon.ma_khuyenmai = null; // Không dùng mã gì
-                    }
-
-                    // ============================
-                    // 4) TÍNH TỔNG TIỀN SAU KHUYẾN MÃI
-                    // ============================
-                    float tongGiam = giamThanhVien + giamMaKM;
-                    float tongPhaiTra = hd.Tongtien - tongGiam;
-
-                    // ============================
                     // 5) LƯU HÓA ĐƠN
                     // ============================
                     hoadon.ngay_tra_phong = DateTime.Now;
                     hoadon.tien_dich_vu = hd.Tiendichvu;
                     hoadon.tien_phong = hd.Giaphong;
                     hoadon.phu_thu = hd.Thanhtienphuthu;
-                    hoadon.tong_tien = tongPhaiTra;  // !!!! TIỀN SAU GIẢM
+                    hoadon.tong_tien = hd.Tongtien;  // !!!! TIỀN SAU GIẢM
                     hoadon.ma_thanh_toan = mathanhtoan;
                     hoadon.ma_nv = Session.UserId;
                     hoadon.ma_tinh_trang = 2; //Đã thanh toán
@@ -859,7 +879,7 @@ namespace KhachSanSaoBang.Models
                     // ============================
                     // 6) CỘNG ĐIỂM TÍCH LŨY
                     // ============================
-                    CongDiemTichLuy(hd.Makh, tongPhaiTra);
+                    CongDiemTichLuy(hd.Makh, hd.Tongtien);
 
                     return true;
                 }
@@ -1078,27 +1098,7 @@ namespace KhachSanSaoBang.Models
             return false;
         }
 
-        // ==========================================
-        // TÍNH VOUCHER TỰ ĐỘNG CHO THÀNH VIÊN
-        // ==========================================
-        public float GetVoucherThanhVien(string ma_kh, float tongTien)
-        {
-            var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ma_kh);
-
-            if (kh == null || kh.is_member == false)
-                return 0; // khách không phải thành viên → không giảm
-
-            // Hạng Đồng
-            if (kh.diem < 1000)
-                return 0;
-
-            // Hạng Bạc → giảm 5%
-            if (kh.diem < 5000)
-                return tongTien * 0.05f;
-
-            // Hạng Vàng → giảm 10%
-            return tongTien * 0.10f;
-        }
+        
 
 
     }

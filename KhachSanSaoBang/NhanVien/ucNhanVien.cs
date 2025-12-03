@@ -23,7 +23,7 @@ namespace KhachSanSaoBang.NhanVien
             this.btn_SuaNV.Click += Btn_SuaNV_Click;
             this.btn_XoaNV.Click += Btn_XoaNV_Click;
             this.btn_VoHieuHoaTK.Click += Btn_VoHieuHoaTK_Click;
-            this.btn_KhoiPhuc.Click += Btn_KhoiPhuc_Click;
+            //this.btn_KhoiPhuc.Click += Btn_KhoiPhuc_Click;
             this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
 

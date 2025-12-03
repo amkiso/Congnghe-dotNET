@@ -20,7 +20,6 @@ namespace KhachSanSaoBang.Models.Data
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	using System.Configuration;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dataQLKS")]
@@ -95,8 +94,8 @@ namespace KhachSanSaoBang.Models.Data
 		{
 			OnCreated();
 		}
-
-        public SQLDataDataContext(System.Data.IDbConnection connection) : 
+		
+		public SQLDataDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -1569,7 +1568,9 @@ namespace KhachSanSaoBang.Models.Data
 		
 		private System.Nullable<int> _diem;
 		
-		private System.Nullable<System.DateTime> _ngsinh;
+		private System.Nullable<System.DateTime> _Ngsinh;
+		
+		private bool _Member;
 		
 		private EntitySet<tblTinNhan> _tblTinNhans;
 		
@@ -1593,8 +1594,10 @@ namespace KhachSanSaoBang.Models.Data
     partial void OnmailChanged();
     partial void OndiemChanging(System.Nullable<int> value);
     partial void OndiemChanged();
-    partial void OnngsinhChanging(System.Nullable<System.DateTime> value);
-    partial void OnngsinhChanged();
+    partial void OnNgsinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgsinhChanged();
+    partial void OnMemberChanging(bool value);
+    partial void OnMemberChanged();
     #endregion
 		
 		public tblKhachHang()
@@ -1744,22 +1747,42 @@ namespace KhachSanSaoBang.Models.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngsinh", DbType="Date")]
-		public System.Nullable<System.DateTime> ngsinh
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngsinh", DbType="Date")]
+		public System.Nullable<System.DateTime> Ngsinh
 		{
 			get
 			{
-				return this._ngsinh;
+				return this._Ngsinh;
 			}
 			set
 			{
-				if ((this._ngsinh != value))
+				if ((this._Ngsinh != value))
 				{
-					this.OnngsinhChanging(value);
+					this.OnNgsinhChanging(value);
 					this.SendPropertyChanging();
-					this._ngsinh = value;
-					this.SendPropertyChanged("ngsinh");
-					this.OnngsinhChanged();
+					this._Ngsinh = value;
+					this.SendPropertyChanged("Ngsinh");
+					this.OnNgsinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Member", DbType="Bit NOT NULL")]
+		public bool Member
+		{
+			get
+			{
+				return this._Member;
+			}
+			set
+			{
+				if ((this._Member != value))
+				{
+					this.OnMemberChanging(value);
+					this.SendPropertyChanging();
+					this._Member = value;
+					this.SendPropertyChanged("Member");
+					this.OnMemberChanged();
 				}
 			}
 		}
@@ -2574,7 +2597,7 @@ namespace KhachSanSaoBang.Models.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="Char(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50)")]
 		public string Email
 		{
 			get
