@@ -10,107 +10,112 @@ namespace KhachSanSaoBang.KhachHang
 {
     public class DanhSachKhachHang
     {
-        string _cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;";
-        SqlConnection sqlcnn;
-        DataSet dataQLKS;
-        SqlDataAdapter daKhachHang;
+        private string cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;";
+        private SqlConnection cn;
 
         public DanhSachKhachHang()
         {
-            sqlcnn = new SqlConnection(_cnn);
-            dataQLKS = new DataSet();
-            LoadKhachHang();
+            cn = new SqlConnection(cnn);
         }
 
-        public DataTable LoadKhachHang()
+        // ============================================================
+        // LOAD THÀNH VIÊN
+        // ============================================================
+        public DataTable LoadThanhVien()
         {
-            string query = "SELECT * FROM tblKhachHang";
-            daKhachHang = new SqlDataAdapter(query, sqlcnn);
-            dataQLKS.Tables.Clear(); 
-            daKhachHang.Fill(dataQLKS, "tblKhachHang");
+            string sql = @"
+                SELECT ma_kh, ho_ten, sdt, diem,
+                CASE 
+	                WHEN diem < 1000 THEN N'Đồng'
+	                WHEN diem < 5000 THEN N'Bạc'
+	                ELSE N'Vàng'
+                END AS Hang,
+                CASE 
+	                WHEN diem < 1000 THEN N'Không'
+	                WHEN diem < 5000 THEN N'Giảm 5%'
+	                ELSE N'Giảm 10%'
+                END AS Voucher
+                FROM tblKhachHang
+                WHERE is_member = 1";
 
-            DataColumn[] key = new DataColumn[1];
-            key[0] = dataQLKS.Tables["tblKhachHang"].Columns["ma_kh"];
-            dataQLKS.Tables["tblKhachHang"].PrimaryKey = key;
-
-            return dataQLKS.Tables["tblKhachHang"];
+            SqlDataAdapter da = new SqlDataAdapter(sql, cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
         }
 
-        public bool Them(ThongTinKhachHang kh)
+        // ============================================================
+        // TÌM KHÁCH THEO SDT
+        // ============================================================
+        public DataRow TimKhachTheoSDT(string sdt)
         {
-            try
-            {
-                DataRow row = dataQLKS.Tables["tblKhachHang"].NewRow();
-                row["ma_kh"] = kh.MaKH;
-                row["HoTen"] = kh.HoTen;
-                row["GioiTinh"] = kh.GioiTinh;
-                row["NgaySinh"] = kh.NgaySinh;
-                row["CCCD"] = kh.CCCD;
-                row["Email"] = kh.Email;
-                row["DiaChi"] = kh.DiaChi;
-                row["SDT"] = kh.SDT;
+            string sql = @"
+                SELECT TOP 1 k.*
+                FROM tblKhachHang k
+                JOIN tblPhieuDatPhong p ON k.ma_kh = p.ma_kh
+                WHERE k.sdt = @sdt";
 
-                dataQLKS.Tables["tblKhachHang"].Rows.Add(row);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi thêm: " + ex.Message);
-                return false;
-            }
+            SqlDataAdapter da = new SqlDataAdapter(sql, cn);
+            da.SelectCommand.Parameters.AddWithValue("@sdt", sdt);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            return dt.Rows[0];
         }
 
-        // ✅ Xóa khách hàng
-        public bool Xoa(ThongTinKhachHang kh)
+        // =====================================================
+        // KIỂM TRA KHÁCH ĐÃ LÀ THÀNH VIÊN CHƯA
+        // =====================================================
+        public bool IsMember(string maKH)
         {
-            DataRow row = dataQLKS.Tables["tblKhachHang"].Rows.Find(kh.MaKH);
-            if (row != null)
-            {
-                row.Delete();
-                return true;
-            }
-            return false;
+            string sql = "SELECT is_member FROM tblKhachHang WHERE ma_kh = @ma";
+
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cmd.Parameters.AddWithValue("@ma", maKH);
+
+            cn.Open();
+            object result = cmd.ExecuteScalar();
+            cn.Close();
+
+            if (result == null) return false;
+
+            return Convert.ToBoolean(result);
         }
 
-        // ✅ Sửa khách hàng
-        public bool Sua(ThongTinKhachHang kh)
+        // ============================================================
+        // ĐĂNG KÝ THÀNH VIÊN
+        // ============================================================
+        public bool DangKyThanhVien(string maKH)
         {
-            DataRow row = dataQLKS.Tables["tblKhachHang"].Rows.Find(kh.MaKH);
-            if (row != null)
-            {
-                row["HoTen"] = kh.HoTen;
-                row["GioiTinh"] = kh.GioiTinh;
-                row["NgaySinh"] = kh.NgaySinh;
-                row["CCCD"] = kh.CCCD;
-                row["Email"] = kh.Email;
-                row["DiaChi"] = kh.DiaChi;
-                row["SDT"] = kh.SDT;
-                return true;
-            }
-            return false;
+            string sql = "UPDATE tblKhachHang SET is_member = 1 WHERE ma_kh = @ma_kh";
+
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cmd.Parameters.AddWithValue("@ma_kh", maKH);
+
+            cn.Open();
+            int rows = cmd.ExecuteNonQuery();
+            cn.Close();
+
+            return rows > 0;
+        }
+        public DataRow GetKhachByMa(string ma)
+        {
+            string sql = "SELECT * FROM tblKhachHang WHERE ma_kh = @ma";
+
+            SqlDataAdapter da = new SqlDataAdapter(sql, cn);
+            da.SelectCommand.Parameters.AddWithValue("@ma", ma);
+
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            if (dt.Rows.Count == 0) return null;
+
+            return dt.Rows[0];
         }
 
-        public bool Luu()
-        {
-            try
-            {
-                SqlCommandBuilder build = new SqlCommandBuilder(daKhachHang);
-                daKhachHang.Update(dataQLKS, "tblKhachHang");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi lưu: " + ex.Message);
-                return false;
-            }
-        }
-
-        public DataTable TimKiem(string tuKhoa)
-        {
-            DataTable tbl = dataQLKS.Tables["tblKhachHang"];
-            DataView view = new DataView(tbl);
-            view.RowFilter = $"ma_kh LIKE '%{tuKhoa}%' OR SDT LIKE '%{tuKhoa}%'";
-            return view.ToTable();
-        }
     }
 }

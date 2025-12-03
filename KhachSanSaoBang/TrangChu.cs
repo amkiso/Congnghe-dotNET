@@ -1,4 +1,5 @@
 ﻿using KhachSanSaoBang.DoanhThu;
+using KhachSanSaoBang.KhachHang;
 using KhachSanSaoBang.Models;
 using KhachSanSaoBang.NhanVien;
 using KhachSanSaoBang.ThongKe.BaoCao;

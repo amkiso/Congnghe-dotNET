@@ -62,6 +62,18 @@ namespace KhachSanSaoBang
                 {
                     // Cộng điểm tích lũy cho khách hàng
                     xl.CongDiemTichLuy(data.Makh, data.Tongtien);
+
+                    try
+                    {
+                        var uc = Application.OpenForms["MainForm"]
+                                 ?.Controls.Find("ucKhachHang", true)
+                                 .FirstOrDefault() as ucKhachHang;
+
+                        if (uc != null)
+                            uc.RefreshData();
+                    }
+                    catch { }
+
                     Inhoadon(1);
                     MessageBox.Show("Thanh Toán thành công !", "thông báo");
                     Session.Acction_status = true;

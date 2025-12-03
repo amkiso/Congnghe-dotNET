@@ -93,6 +93,7 @@
     <Compile Include="Models\Data\MauPhieuNhanDatPhong.cs" />
     <Compile Include="Models\Data\PhieuNhanPhong.cs" />
     <Compile Include="Models\Data\PhongTrong.cs" />
+    <Compile Include="Models\Data\tblKhachHang.cs" />
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,7 +116,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="KhachHang\DanhSachKhachHang.cs" />
-    <Compile Include="KhachHang\ThongTinKhachHang.cs" />
     <Compile Include="Models\Dataloader.cs" />
     <Compile Include="Models\Data\DichVuDaDung.cs" />
     <Compile Include="Models\Data\dsDichVu.cs" />

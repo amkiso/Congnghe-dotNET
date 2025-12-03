@@ -10,7 +10,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Syncfusion.Windows.Forms.Tools.TextBoxExt;
 using System.Text.RegularExpressions;
 namespace KhachSanSaoBang.Models
 {
@@ -806,28 +805,73 @@ namespace KhachSanSaoBang.Models
             try
             {
                 var hoadon = db.tblHoaDons.FirstOrDefault(t => t.ma_hd == hd.Mahd);
+
                 if (hoadon != null)
                 {
+                    // ============================
+                    // 1) LẤY THÔNG TIN KHÁCH HÀNG
+                    // ============================
+                    var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == hd.Makh);
+
+                    // ============================
+                    // 2) TÍNH GIẢM GIÁ THÀNH VIÊN
+                    // ============================
+                    float giamThanhVien = GetVoucherThanhVien(hd.Makh, hd.Tongtien);
+
+                    // ============================
+                    // 3) TÍNH GIẢM GIÁ MÃ CODE (bạn bạn nhập)
+                    // ============================
+                    float giamMaKM = 0;
+
+                    if (!string.IsNullOrEmpty(hd.Makm) && CheckMaKM(hd.Makm))
+                    {
+                        giamMaKM = GetTienChietKhau(hd.Makm, hd.Tongtien);
+                        hoadon.ma_khuyenmai = hd.Makm;
+                    }
+                    else
+                    {
+                        hoadon.ma_khuyenmai = null; // Không dùng mã gì
+                    }
+
+                    // ============================
+                    // 4) TÍNH TỔNG TIỀN SAU KHUYẾN MÃI
+                    // ============================
+                    float tongGiam = giamThanhVien + giamMaKM;
+                    float tongPhaiTra = hd.Tongtien - tongGiam;
+
+                    // ============================
+                    // 5) LƯU HÓA ĐƠN
+                    // ============================
                     hoadon.ngay_tra_phong = DateTime.Now;
                     hoadon.tien_dich_vu = hd.Tiendichvu;
                     hoadon.tien_phong = hd.Giaphong;
                     hoadon.phu_thu = hd.Thanhtienphuthu;
-                    hoadon.tong_tien = hd.Tongtien;
+                    hoadon.tong_tien = tongPhaiTra;  // !!!! TIỀN SAU GIẢM
                     hoadon.ma_thanh_toan = mathanhtoan;
-                    hoadon.ma_khuyenmai = hd.Makm;
                     hoadon.ma_nv = Session.UserId;
                     hoadon.ma_tinh_trang = 2; //Đã thanh toán
-                    ChangeRoomForm((int)hoadon.ma_pdp, 4);//Đã xong
+
+                    ChangeRoomForm((int)hoadon.ma_pdp, 4);
                     ChangeRoomStatus(Session.maphonghientai, 3);
+
                     db.SubmitChanges();
-                    
+
+                    // ============================
+                    // 6) CỘNG ĐIỂM TÍCH LŨY
+                    // ============================
+                    CongDiemTichLuy(hd.Makh, tongPhaiTra);
 
                     return true;
                 }
-                else return false;
+
+                return false;
             }
-            catch { return false; }
+            catch
+            {
+                return false;
+            }
         }
+
         //Kiểm tra mã khuyến mãi
         public bool CheckMaKM(string makm)
         {
@@ -1022,14 +1066,40 @@ namespace KhachSanSaoBang.Models
         //Cộng điểm tích lũy chi khách hàng
         public bool CongDiemTichLuy(string makh, float tien)
         {
-            var khach = db.tblKhachHangs.Where(t => t.ma_kh == makh).FirstOrDefault();
-            if (khach != null)
+            var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == makh);
+
+            if (kh != null && kh.is_member == true)
             {
-                khach.diem += (int)((tien) / 100);
+                int diem = (int)(tien / 10000) * 10;
+                kh.diem += diem;
                 db.SubmitChanges();
                 return true;
             }
-            else return false;
+            return false;
         }
+
+        // ==========================================
+        // TÍNH VOUCHER TỰ ĐỘNG CHO THÀNH VIÊN
+        // ==========================================
+        public float GetVoucherThanhVien(string ma_kh, float tongTien)
+        {
+            var kh = db.tblKhachHangs.FirstOrDefault(t => t.ma_kh == ma_kh);
+
+            if (kh == null || kh.is_member == false)
+                return 0; // khách không phải thành viên → không giảm
+
+            // Hạng Đồng
+            if (kh.diem < 1000)
+                return 0;
+
+            // Hạng Bạc → giảm 5%
+            if (kh.diem < 5000)
+                return tongTien * 0.05f;
+
+            // Hạng Vàng → giảm 10%
+            return tongTien * 0.10f;
+        }
+
+
     }
 }
