@@ -94,6 +94,12 @@
     <Compile Include="Models\Data\PhieuNhanPhong.cs" />
     <Compile Include="Models\Data\PhongTrong.cs" />
     <Compile Include="Models\Data\tblKhachHang.cs" />
+    <Compile Include="QlThietBi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QlThietBi.Designer.cs">
+      <DependentUpon>QlThietBi.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AcctionForm.resx">
       <DependentUpon>AcctionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QlThietBi.resx">
+      <DependentUpon>QlThietBi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThanhToan.resx">
       <DependentUpon>ThanhToan.cs</DependentUpon>

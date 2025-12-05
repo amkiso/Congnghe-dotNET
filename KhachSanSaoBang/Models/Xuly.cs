@@ -1098,8 +1098,5 @@ namespace KhachSanSaoBang.Models
             return false;
         }
 
-        
-
-
     }
 }

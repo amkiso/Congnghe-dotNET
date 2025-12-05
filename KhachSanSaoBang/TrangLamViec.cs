@@ -66,7 +66,6 @@ namespace KhachSanSaoBang
             //Sự kiện khác
             btn_goidv.Click += Btn_goidv_Click;
             btn_trahang.Click += Btn_trahang_Click;
-            this.btn_doiKhuvuc.Click += Btn_doiKhuvuc_Click;
             btn_dangkyKH.Click += Btn_dangkyKH_Click;
             btn_thanhtoan.Click += Btn_thanhtoan_Click;
             this.Load += Mainform_Load;

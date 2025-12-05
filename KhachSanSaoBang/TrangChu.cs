@@ -27,7 +27,7 @@ namespace KhachSanSaoBang
             this.btn_dangkyKH.Click += Btn_dangkyKH_Click;
             btn_datphong.Click += Btn_datphong_Click;
             btn_TracuuKhachHang.Click += Btn_TracuuKhachHang_Click;
-            btn_doiKhuvuc.Click += Btn_doiKhuvuc_Click;
+            btnQLPhong.Click += Btn_doiKhuvuc_Click;
         }
 
         private void Btn_doiKhuvuc_Click(object sender, EventArgs e)
