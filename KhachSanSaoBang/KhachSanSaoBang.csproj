@@ -182,12 +182,6 @@
     <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="KhachHang\ucKhachHang.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="KhachHang\ucKhachHang.Designer.cs">
-      <DependentUpon>ucKhachHang.cs</DependentUpon>
-    </Compile>
     <Compile Include="DoanhThu\ucDoanhThu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,9 +208,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangLamViec.resx">
       <DependentUpon>TrangLamViec.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
-      <DependentUpon>ucKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
