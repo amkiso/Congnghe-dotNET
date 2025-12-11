@@ -72,7 +72,7 @@ namespace KhachSanSaoBang.KhachHang
             }
 
             // Nếu KH đã là thành viên → thông báo
-            if (kh.Field<bool>("is_member") == true)
+            if (kh.Field<bool>("member") == true)
             {
                 MessageBox.Show("Khách hàng này đã là thành viên!", "Thông báo");
                 return;
