@@ -65,6 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhachHang\DangKyKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhachHang\DangKyKhachHang.Designer.cs">
+      <DependentUpon>DangKyKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client\CustomLabel_Image.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     <EmbeddedResource Include="AcctionForm.resx">
       <DependentUpon>AcctionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KhachHang\DangKyKhachHang.resx">
+      <DependentUpon>DangKyKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QlThietBi.resx">
       <DependentUpon>QlThietBi.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +280,7 @@
     <Content Include="Note\AcctionForm.txt" />
     <Content Include="Note\MainForm.txt" />
     <Content Include="Note\ThanhToan.txt" />
+    <None Include="Resources\638283196125137654.jpg" />
     <None Include="Resources\icons8-reload-50.png" />
     <None Include="Resources\icons8-tick-48.png" />
     <None Include="Resources\icons8-tick-50.png" />

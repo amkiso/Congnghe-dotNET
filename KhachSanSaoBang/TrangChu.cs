@@ -4,13 +4,6 @@ using KhachSanSaoBang.Models;
 using KhachSanSaoBang.NhanVien;
 using KhachSanSaoBang.ThongKe.BaoCao;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KhachSanSaoBang
@@ -20,25 +13,89 @@ namespace KhachSanSaoBang
         public TrangChu()
         {
             InitializeComponent();
-            this.btn_QLNhanVien.Click += Btn_QLNhanVien_Click;
-            this.btnQLKhachHang.Click += BtnQLKhachHang_Click;
-            this.btnQLDoanhThu.Click += BtnQLDoanhThu_Click;
-            this.btnBaoCao.Click += BtnBaoCao_Click;
-            this.btn_dangkyKH.Click += Btn_dangkyKH_Click;
-            btn_datphong.Click += Btn_datphong_Click;
-            btn_TracuuKhachHang.Click += Btn_TracuuKhachHang_Click;
-            btnQLPhong.Click += Btn_doiKhuvuc_Click;
+
+            // =============== GÁN SỰ KIỆN MENU CHÍNH ===============
+            btnKhachSan.Click += btnKhachSan_Click;
+            btnDichVu.Click += btnDichVu_Click;
+            btnKhachHang.Click += BtnKhachHang_Click;
+            btnDoanhThu.Click += btnDoanhThu_Click;
+            btnNhanVien.Click += BtnNhanVien_Click;
+
+            // =============== GÁN SỰ KIỆN SUBMENU ===============
+            btnQLNhanVien.Click += BtnQLNhanVien_Click;
+            btnDangKiThanhVien.Click += BtnDangKiThanhVien_Click;
+            btnQLDoanhThu.Click += BtnQLDoanhThu_Click1;
+            btnBaoCao.Click += BtnBaoCao_Click;
+            btnDangKiKhachHang.Click += Btn_dangkyKH_Click;
+            btnDatPhong.Click += Btn_datphong_Click;
+            btnTraCuuKhachHang.Click += Btn_TracuuKhachHang_Click;
+            btnQLPhong.Click += btnDoiKhuVuc_Click;
         }
 
-        private void Btn_doiKhuvuc_Click(object sender, EventArgs e)
+        private void BtnNhanVien_Click(object sender, EventArgs e)
         {
-            DialogResult rel = MessageBox.Show("Xác nhận đổi khu vực làm việc ?", "Thông báo", MessageBoxButtons.YesNo);
-            if (rel == DialogResult.Yes)
-            {
-                DoiTrang();
-            }
-            else return;
+            ToggleSubMenu(pnlSub_NhanVien);
         }
+
+        // =============== SUBMENU CLICK ===============
+        private void BtnKhachHang_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlSub_KhachHang);
+        }
+
+        private void btnKhachSan_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlSub_KhachSan);
+        }
+
+        private void btnDichVu_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlSub_DichVu);
+        }
+
+        private void btnDoanhThu_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(pnlSub_DoanhThu);
+        }
+
+
+        // =============== LOAD FORM VÀ CONTROL ===============
+        private void LoadFormToPanel(Form frm)
+        {
+            pnl_main.Controls.Clear();
+
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            pnl_main.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void LoadControlVaoPanel(Control control)
+        {
+            pnl_main.Controls.Clear();
+            control.Dock = DockStyle.Fill;
+            pnl_main.Controls.Add(control);
+        }
+
+        // =============== CLICK XỬ LÝ NGHIỆP VỤ (GIỮ NGUYÊN LOGIC) ===============
+        private void BtnQLDoanhThu_Click1(object sender, EventArgs e)
+        {
+            LoadControlVaoPanel(new ucDoanhThu());
+        }
+
+        private void BtnDangKiThanhVien_Click(object sender, EventArgs e)
+        {
+            LoadFormToPanel(new DangKyKhachHang());
+        }
+
+        private void BtnQLNhanVien_Click(object sender, EventArgs e)
+        {
+            LoadControlVaoPanel(new ucNhanVien());
+        }
+
+
         private void DoiTrang()
         {
             this.Hide();
@@ -46,6 +103,7 @@ namespace KhachSanSaoBang
             tc.ShowDialog();
             this.Close();
         }
+
         private void Btn_TracuuKhachHang_Click(object sender, EventArgs e)
         {
             AcctionForm tracuu = new AcctionForm(1);
@@ -58,6 +116,7 @@ namespace KhachSanSaoBang
             AcctionForm datp = new AcctionForm(acction);
             Session.Acction_status = false;
             datp.ShowDialog();
+
             if (Session.Acction_status == false)
             {
                 MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
@@ -66,7 +125,7 @@ namespace KhachSanSaoBang
 
         private void Btn_dangkyKH_Click(object sender, EventArgs e)
         {
-            int acction = 3;//đăng ký tài khoản khách hàng
+            int acction = 3;  // đăng ký tài khoản khách hàng
             Session.Acction_status = false;
             AcctionForm dk = new AcctionForm(acction);
             dk.ShowDialog();
@@ -74,86 +133,27 @@ namespace KhachSanSaoBang
 
         private void BtnBaoCao_Click(object sender, EventArgs e)
         {
-            ucBaoCao userControlBC = new ucBaoCao();
-
-            LoadControlVaoPanel(userControlBC);
+            LoadControlVaoPanel(new ucBaoCao());
         }
 
-        private void BtnQLDoanhThu_Click(object sender, EventArgs e)
-        {
-            ucDoanhThu userControlDT = new ucDoanhThu();
-
-            LoadControlVaoPanel(userControlDT);
-        }
-
-        private void BtnQLKhachHang_Click(object sender, EventArgs e)
-        {
-            ucKhachHang userControlNV = new ucKhachHang();
-
-            LoadControlVaoPanel(userControlNV);
-        }
-
-        private void Btn_QLNhanVien_Click(object sender, EventArgs e)
-        {
-            ucNhanVien userControlNV = new ucNhanVien();
-
-            LoadControlVaoPanel(userControlNV);
-        }
-
-        private void LoadControlVaoPanel(Control control)
-        {
-            // Xóa mọi control đang có trên "sân khấu"
-            pnl_main.Controls.Clear();
-
-            // Thêm control mới vào và cho nó lấp đầy "sân khấu"
-            control.Dock = DockStyle.Fill;
-            pnl_main.Controls.Add(control);
-        }
-
-
-
+        // =============== SUBMENU TOGGLE ===============
         public void ToggleSubMenu(Panel submenu)
         {
-            if (!submenu.Visible)
+            submenu.Visible = !submenu.Visible;
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnDoiKhuVuc_Click(object sender, EventArgs e)
+        {
+            DialogResult rel = MessageBox.Show("Xác nhận đổi khu vực làm việc ?", "Thông báo", MessageBoxButtons.YesNo);
+            if (rel == DialogResult.Yes)
             {
-                submenu.Visible = true;
+                DoiTrang();
             }
-            else
-            {
-                submenu.Visible = false;
-            }
-        }
-
-        private void btnKhachSan_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlKhachSanSub);
-        }
-
-        private void btnDichVu_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlDichVuSub);
-        }
-
-        private void pnlKhachhang_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlKhachHangSub);
-        }
-
-        private void btnDoanhThu_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlDoanhThuSub);
-        }
-
-        private void btnThongKe_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlThongKeSub);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlNhanVienSub);
-
-
         }
     }
 }

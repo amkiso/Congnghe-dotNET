@@ -37,7 +37,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtSearchSDT = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -113,16 +112,6 @@
             this.Column4.HeaderText = "Điểm";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(439, 163);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(196, 29);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "SĐT khách hàng:";
             // 
             // txtSearchSDT
             // 
@@ -246,7 +235,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnTim);
             this.Controls.Add(this.txtSearchSDT);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvTV);
             this.Controls.Add(this.label1);
             this.Name = "ucKhachHang";
@@ -262,7 +250,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvTV;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSearchSDT;
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.Label label3;
