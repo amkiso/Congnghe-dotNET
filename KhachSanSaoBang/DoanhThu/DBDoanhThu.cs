@@ -1,64 +1,67 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
+
 namespace KhachSanSaoBang.DoanhThu
 {
     public class DBDoanhThu
     {
+        // Chuỗi kết nối của bạn
         string _cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;";
+
         SqlConnection sqlcnn;
-        DataSet dataQLKS;
         SqlDataAdapter da;
 
         public DBDoanhThu()
         {
             sqlcnn = new SqlConnection(_cnn);
-            dataQLKS = new DataSet();
         }
 
         // 🔸 1. Lấy danh sách hóa đơn (lọc theo ngày và nhân viên)
         public DataTable LayDoanhThu(DateTime tuNgay, DateTime denNgay, string maNV, bool locTheoNgay)
         {
-            string sql = "SELECT * FROM tblHoaDon";
-            bool coDieuKien = false;
+            // Mẹo: Dùng 1=1 để dễ nối chuỗi AND
+            string sql = "SELECT * FROM tblHoaDon WHERE 1=1";
 
             // Nếu lọc theo ngày
             if (locTheoNgay)
             {
-                sql += " WHERE ngay_tra_phong BETWEEN @tuNgay AND @denNgay";
-                coDieuKien = true;
+                sql += " AND ngay_tra_phong BETWEEN @tuNgay AND @denNgay";
             }
 
             // Nếu có lọc theo nhân viên
             if (!string.IsNullOrEmpty(maNV))
             {
-                if (coDieuKien)
-                    sql += " AND ma_nv = @maNV";
-                else
-                    sql += " WHERE ma_nv = @maNV";
+                sql += " AND ma_nv = @maNV";
             }
 
-            SqlCommand cmd = new SqlCommand(sql, sqlcnn);
-
-            // Gán giá trị tham số
-            if (locTheoNgay)
-            {
-                cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
-                cmd.Parameters.AddWithValue("@denNgay", denNgay);
-            }
-
-            if (!string.IsNullOrEmpty(maNV))
-                cmd.Parameters.AddWithValue("@maNV", maNV);
-
-            da = new SqlDataAdapter(cmd);
             DataTable tbl = new DataTable();
-            da.Fill(tbl);
+
+            using (SqlConnection conn = new SqlConnection(_cnn))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    // Gán giá trị tham số
+                    if (locTheoNgay)
+                    {
+                        cmd.Parameters.AddWithValue("@tuNgay", tuNgay);
+                        cmd.Parameters.AddWithValue("@denNgay", denNgay);
+                    }
+
+                    if (!string.IsNullOrEmpty(maNV))
+                    {
+                        cmd.Parameters.AddWithValue("@maNV", maNV);
+                    }
+
+                    conn.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(tbl);
+                }
+            }
             return tbl;
         }
 
@@ -66,10 +69,16 @@ namespace KhachSanSaoBang.DoanhThu
         public decimal TinhTongDoanhThu(DataTable tbl)
         {
             decimal tong = 0;
-            foreach (DataRow r in tbl.Rows)
+            if (tbl != null && tbl.Rows.Count > 0)
             {
-                if (r["tong_tien"] != DBNull.Value)
-                    tong += Convert.ToDecimal(r["tong_tien"]);
+                foreach (DataRow r in tbl.Rows)
+                {
+                    // Đảm bảo cột tong_tien tồn tại và không null
+                    if (tbl.Columns.Contains("tong_tien") && r["tong_tien"] != DBNull.Value)
+                    {
+                        tong += Convert.ToDecimal(r["tong_tien"]);
+                    }
+                }
             }
             return tong;
         }
@@ -77,12 +86,16 @@ namespace KhachSanSaoBang.DoanhThu
         // 🔸 3. Load danh sách nhân viên
         public DataTable LoadNhanVien()
         {
+            // Lưu ý: alias 'ten_nv' ở đây phải khớp với DisplayMember bên Form
             string query = "SELECT ma_nv, ho_ten AS ten_nv FROM tblNhanVien";
-            SqlDataAdapter da = new SqlDataAdapter(query, sqlcnn);
+
             DataTable tbl = new DataTable();
-            da.Fill(tbl);
+            using (SqlConnection conn = new SqlConnection(_cnn))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.Fill(tbl);
+            }
             return tbl;
         }
-
     }
 }

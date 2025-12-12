@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using KhachSanSaoBang.DoanhThu;
 
 namespace KhachSanSaoBang
 {
@@ -18,7 +19,7 @@ namespace KhachSanSaoBang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dangnhap());
+            Application.Run(new KhachSanSaoBang.ChatBox.Chat());
         }
     }
 }

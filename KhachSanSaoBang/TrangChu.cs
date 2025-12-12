@@ -82,7 +82,7 @@ namespace KhachSanSaoBang
         // =============== CLICK XỬ LÝ NGHIỆP VỤ (GIỮ NGUYÊN LOGIC) ===============
         private void BtnQLDoanhThu_Click1(object sender, EventArgs e)
         {
-            LoadControlVaoPanel(new ucDoanhThu());
+            LoadControlVaoPanel(new QuanLyThongKe());
         }
 
         private void BtnDangKiThanhVien_Click(object sender, EventArgs e)
