@@ -203,6 +203,12 @@
     <EmbeddedResource Include="ChatBox\Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="DoanhThu\ucDoanhThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DoanhThu\ucDoanhThu.Designer.cs">
+      <DependentUpon>ucDoanhThu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,9 +232,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangLamViec.resx">
       <DependentUpon>TrangLamViec.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KhachHang\ucKhachHang.resx">
-      <DependentUpon>ucKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>

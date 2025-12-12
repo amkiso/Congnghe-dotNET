@@ -36,7 +36,7 @@ namespace KhachSanSaoBang.KhachHang
 	                ELSE N'Giảm 10%'
                 END AS Voucher
                 FROM tblKhachHang
-                WHERE is_member = 1";
+                WHERE member = 1";
 
             SqlDataAdapter da = new SqlDataAdapter(sql, cn);
             DataTable dt = new DataTable();
@@ -72,7 +72,7 @@ namespace KhachSanSaoBang.KhachHang
         // =====================================================
         public bool IsMember(string maKH)
         {
-            string sql = "SELECT is_member FROM tblKhachHang WHERE ma_kh = @ma";
+            string sql = "SELECT member FROM tblKhachHang WHERE ma_kh = @ma";
 
             SqlCommand cmd = new SqlCommand(sql, cn);
             cmd.Parameters.AddWithValue("@ma", maKH);
@@ -91,7 +91,7 @@ namespace KhachSanSaoBang.KhachHang
         // ============================================================
         public bool DangKyThanhVien(string maKH)
         {
-            string sql = "UPDATE tblKhachHang SET is_member = 1 WHERE ma_kh = @ma_kh";
+            string sql = "UPDATE tblKhachHang SET ember = 1 WHERE ma_kh = @ma_kh";
 
             SqlCommand cmd = new SqlCommand(sql, cn);
             cmd.Parameters.AddWithValue("@ma_kh", maKH);

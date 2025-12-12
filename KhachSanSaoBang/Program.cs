@@ -19,7 +19,7 @@ namespace KhachSanSaoBang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KhachSanSaoBang.ChatBox.Chat());
+            Application.Run(new Dangnhap());
         }
     }
 }
