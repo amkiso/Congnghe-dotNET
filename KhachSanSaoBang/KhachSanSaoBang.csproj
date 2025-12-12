@@ -77,6 +77,12 @@
     <Compile Include="DoanhThu\QuanLyThongKe.Designer.cs">
       <DependentUpon>QuanLyThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="KhachHang\DangKyKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,8 +111,23 @@
     <Compile Include="AcctionForm.Designer.cs">
       <DependentUpon>AcctionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Client\customtoolstrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Client\DoubleBufferingTablePanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\Client\UCdichvu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Models\Client\UCdichvu.Designer.cs">
+      <DependentUpon>UCdichvu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Client\UCPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Models\Client\UCPhong.Designer.cs">
+      <DependentUpon>UCPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\MauPhieuNhanDatPhong.cs" />
     <Compile Include="Models\Data\PhieuNhanPhong.cs" />
@@ -194,21 +215,11 @@
     <Compile Include="ThongKe\BaoCao\ucBaoCao.Designer.cs">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="KhachHang\ucKhachHang.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="KhachHang\ucKhachHang.Designer.cs">
-      <DependentUpon>ucKhachHang.cs</DependentUpon>
-    </Compile>
+        
     <EmbeddedResource Include="ChatBox\Chat.resx">
       <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="DoanhThu\ucDoanhThu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DoanhThu\ucDoanhThu.Designer.cs">
-      <DependentUpon>ucDoanhThu.cs</DependentUpon>
-    </Compile>
+    
     <EmbeddedResource Include="Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
