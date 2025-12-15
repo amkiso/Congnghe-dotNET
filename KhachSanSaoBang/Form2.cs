@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace KhachSanSaoBang
 {
-    public partial class QlThietBi : Form
+    public partial class Form2 : Form
     {
-        public QlThietBi()
+        public Form2()
         {
             InitializeComponent();
         }

@@ -20,6 +20,30 @@ namespace KhachSanSaoBang.Models
         {
 
         }
+        public ThongkePhong GetThongKePhong()
+        {
+            ThongkePhong tkp = new ThongkePhong();
+            var result = db.sp_ThongKePhongTheoTinhTrang().FirstOrDefault();
+            if (result != null)
+            {
+                // Gán dữ liệu từ kết quả SP sang object của bạn
+                // Nếu bạn đã đổi tên trong SQL như Bước 1, EF sẽ gợi ý đúng tên thuộc tính
+                tkp.Trong = result.Trong ?? 0; // ?? 0 để xử lý trường hợp null (nếu có)
+                tkp.DangDung = result.DangDung ?? 0;
+                tkp.DangDon = result.DangDon ?? 0;
+                tkp.BaoTri = result.BaoTri ?? 0;
+                tkp.DungSuDung = result.DungSuDung ?? 0;
+                tkp.ChoXacNhan = result.ChoXacNhan ?? 0;
+                tkp.ChoCheckIn = result.ChoCheckIn ?? 0;
+                tkp.QuaHan = result.QuaHan ?? 0;
+            }
+            tkp.TatCa = db.tblPhongs.Count();
+            return tkp;
+        }
+        public string Gettenphong(int map)
+        {
+            return db.tblPhongs.FirstOrDefault(t => t.ma_phong == map).so_phong;
+        }
         //Xử lý đăng nhập và lưu session
         public bool Dangnhap(tblNhanVien nv)
         {
@@ -67,6 +91,11 @@ namespace KhachSanSaoBang.Models
         public List<tblDichVu> dsDichVu()
         {
             return (from u in db.tblDichVus select u).ToList();
+        }
+        //Lấy dịch vụ tương ứng với mã
+        public tblDichVu GetDichVuTheoMa(int madv)
+        {
+            return db.tblDichVus.Where(t => t.ma_dv == madv).FirstOrDefault();
         }
         //Lấy list toàn bộ thông tin tình trạng phòng
         public List<tblTinhTrangPhong> tinhtrangp()
@@ -184,14 +213,14 @@ namespace KhachSanSaoBang.Models
             {
                 return 7;
             }
-            else if( old == 7 && pnew == 1)
+            else if (old == 7 && pnew == 1)
             {
-                return 8;   
+                return 8;
             }
             else return -1;
 
         }
-       
+
         //Lấy thông tin tất cả các phòng
         public List<Thongtinchung> GetAllThongtinphong()
         {
@@ -236,7 +265,10 @@ namespace KhachSanSaoBang.Models
                                       u.ngay_vao,
                                       u.ma_tinh_trang,
                                       k.ho_ten,
-                                      u.thong_tin_khach_thue
+                                      u.thong_tin_khach_thue,
+                                      k.diem,
+                                      k.is_member,
+                                      u.ma_kh
                                   }).FirstOrDefault();
 
                     if (phongp != null)
@@ -246,6 +278,8 @@ namespace KhachSanSaoBang.Models
                         tt.Ngayvao = phongp.ngay_dat.ToString();
                         tt.Khachhang = phongp.ho_ten;
                         tt.Sokhach = Soluongkhach(phongp.thong_tin_khach_thue);
+                        tt.Diemtichluy = phongp.diem ?? 0;
+                        tt.Hangthanhvien = GetHangThanhVien(phongp.ma_kh);
                     }
                     else
                     {
@@ -254,10 +288,13 @@ namespace KhachSanSaoBang.Models
                         tt.Ngayvao = "-";
                         tt.Khachhang = "-";
                         tt.Sokhach = 0;
+                        tt.Hangthanhvien = "-";
                     }
                 }
                 else
                 {
+                    tt.Hangthanhvien = "-";
+                    tt.Diemtichluy = 0;
                     tt.Thoigian_nhanphong = "-";
                     tt.Ngayra = "-";
                     tt.Ngayvao = "-";
@@ -423,13 +460,52 @@ namespace KhachSanSaoBang.Models
                 return false;
             }
         }
+        public bool GoiDichVu(int ma_p, int madv, decimal soluong)
+        {
+            try
+            {   //Lấy mã hóa đơn của phòng
+                int current_ma_hd = (from u in db.tblHoaDons
+                                     join p in db.tblPhieuDatPhongs on u.ma_pdp equals p.ma_pdp
+                                     where p.ma_phong == ma_p && u.ma_tinh_trang == 1
+                                     select u.ma_hd).FirstOrDefault();
+
+                if (current_ma_hd == 0)
+                {
+                    return false;
+                }
+                //Nếu dịch vụ đã có gọi từ trước thì tăng thêm số lượng
+                var existingService = db.tblDichVuDaDats.FirstOrDefault(d => d.ma_hd == current_ma_hd && d.ma_dv == madv);
+
+                if (existingService != null)
+                {
+                    existingService.so_luong += (int)soluong;
+                }
+                else // chưa có thì thêm mới vào bảng dichvudatat
+                {
+                    var dv = new tblDichVuDaDat();
+                    dv.ma_hd = current_ma_hd;
+                    dv.ma_dv = madv;
+                    dv.so_luong = (int)soluong;
+
+                    db.tblDichVuDaDats.InsertOnSubmit(dv);
+                }
+                //lưu
+                db.SubmitChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         //Tính tiền tạm tính
         public string TienTamTinh(int maphong)
         {
 
             //Tiền tạm tính được tính bằng: số tiền dịch vụ đã dùng + ( tiền phòng * số ngày đặt ) + ( %phụ thu tiền phòng * Số ngày ở thêm )
             Thongtinchung tt = GetThongtinphong(maphong);
-            
+
             if (tt.Trangthai == 1) return "0 VNĐ";
             else
             {
@@ -440,25 +516,25 @@ namespace KhachSanSaoBang.Models
                     DateTime nv = DateTime.Parse(tt.Ngayvao);
                     List<DichVuDaDung> dv = listdichvup(maphong);
                     double totaldv = dv.Sum(d => (double)d.Giaban * d.Soluong);
-                    
+
                     //tính số ngày ở
-                    float tongngayo = (float)(DateTime.Now - nv ).TotalDays; //dùng now để cập nhật số tiền ở đến hiện tại ( tạm tính )
-                   if( nr > DateTime.Now)
+                    float tongngayo = (float)(DateTime.Now - nv).TotalDays; //dùng now để cập nhật số tiền ở đến hiện tại ( tạm tính )
+                    if (nr > DateTime.Now)
                     {
                         return (tongngayo * tt.Giathue + totaldv).ToString("N0") + "VNĐ";
                     }
-                   else
+                    else
                     {
                         //tính số ngày vượt quá
                         float npt = (float)(DateTime.Now - nr).TotalDays;
                         // tiền phụ thu
-                        float tienphuthu = (tt.Giathue * npt * tt.Phuthu )/100;
+                        float tienphuthu = (tt.Giathue * npt * tt.Phuthu) / 100;
                         float ngayoHopLe = (float)(nr - nv).TotalDays;
                         if (ngayoHopLe < 0) ngayoHopLe = 1;
                         var tamtinh = ngayoHopLe * tt.Giathue + tienphuthu + totaldv;
                         return tamtinh.ToString("N0") + "VNĐ";
                     }
-                   
+
                 }
 
             }
@@ -762,14 +838,14 @@ namespace KhachSanSaoBang.Models
                 else
                 if (kh.diem < 1000)
                 {
-                    return "Hạng: Đồng";
+                    return "Đồng";
                 }
                 else if (kh.diem < 5000)
                 {
-                    return "Hạng Bạc";
+                    return "Bạc";
                 }
-                else return "Hạng: Vàng";
-               
+                else return "Vàng";
+
             }
             else return null;
         }
@@ -812,7 +888,7 @@ namespace KhachSanSaoBang.Models
                 data.Ngaydukienra = DateTime.Parse(ttp.Ngayra);
                 data.Ngayra = DateTime.Now;
                 data.Mahd = GetMaHoaDonChuaThanhToan(ttp.Maphieudp);
-                data.Strhang= GetHangThanhVien(ttp.Khachhang);
+                data.Strhang = GetHangThanhVien(ttp.Khachhang);
                 data.Tilephuthu = ttp.Phuthu;
                 data.sokhach = ttp.Sokhach;
                 data.Tienkhachdua = 0;
@@ -836,7 +912,7 @@ namespace KhachSanSaoBang.Models
         //Đổi trạng thái phiếu đặt phòng
         public bool ChangeRoomFormStatus(int ma_p, int trangthaicu, int trangthaimoi)
         {
-            var pdp = db.tblPhieuDatPhongs.FirstOrDefault(t => t.ma_phong == ma_p && t.ma_tinh_trang==trangthaicu);
+            var pdp = db.tblPhieuDatPhongs.FirstOrDefault(t => t.ma_phong == ma_p && t.ma_tinh_trang == trangthaicu);
             if (pdp != null)
             {
                 pdp.ma_tinh_trang = trangthaimoi;
@@ -950,7 +1026,7 @@ namespace KhachSanSaoBang.Models
             string danhsach;
             if (GetSoPhongChoXacNhan() < 1) { return "[trống]"; }
             var list = db.tblPhongs.Where(t => t.ma_tinh_trang == 6).Select(t => t.so_phong).ToList();
-            danhsach = $"[{string.Join(", ",list)}]";
+            danhsach = $"[{string.Join(", ", list)}]";
             return danhsach;
         }
         /// <summary>
@@ -960,19 +1036,19 @@ namespace KhachSanSaoBang.Models
         /// <returns></returns>
         public bool XacNhanPhong(int map)
         {
-                //Xác nhận phòng
-                tblPhieuDatPhong list = db.tblPhieuDatPhongs
-                 .Where(x => x.ma_tinh_trang == 1 && x.ma_phong == map)
-                 .FirstOrDefault();
-                if(list!= null)
-                {
-                    list.ma_tinh_trang = 2;
-                    ChangeRoomStatus(map, 7);
-                    db.SubmitChanges();
-                    return true;
-                }
+            //Xác nhận phòng
+            tblPhieuDatPhong list = db.tblPhieuDatPhongs
+             .Where(x => x.ma_tinh_trang == 1 && x.ma_phong == map)
+             .FirstOrDefault();
+            if (list != null)
+            {
+                list.ma_tinh_trang = 2;
+                ChangeRoomStatus(map, 7);
+                db.SubmitChanges();
+                return true;
+            }
 
-           else return false; 
+            else return false;
         }
         //Lấy danh sách phòng trống theo ngày đặt
         public List<PhongTrong> GetPhongTrongs(DateTime ngayvao, DateTime ngayra)
@@ -988,12 +1064,12 @@ namespace KhachSanSaoBang.Models
                         p.ma_phong == phong.ma_phong &&
 
                         // phiếu đã xác nhận
-                        p.ma_tinh_trang == 2 && 
+                        p.ma_tinh_trang == 2 &&
 
-                        
+
                         p.ngay_ra.HasValue &&
 
-                        
+
                         (ngayvao < p.ngay_ra.Value.AddDays(5) &&
                          ngayra > p.ngay_vao)
                     )
@@ -1027,11 +1103,11 @@ namespace KhachSanSaoBang.Models
                 pt.Maphong = (int)data.ma_phong;
                 pt.Matinhtrang = (int)data.ma_tinh_trang;
                 pt.Tentinhtrang = data.tinhtrang;
-                pt.Tenphong= data.so_phong;
+                pt.Tenphong = data.so_phong;
                 pt.Tenloai = data.mo_ta;
                 pt.Giathue = (float)data.gia;
                 kq.Add(pt);
-                
+
             }
 
             return kq;
@@ -1039,7 +1115,7 @@ namespace KhachSanSaoBang.Models
         //Mấy mã phiếu đặt phòng sẽ sinh ra kế tiếp
         public int GetNextMaPdp()
         {
-            return db.tblPhieuDatPhongs.Count()+1;
+            return db.tblPhieuDatPhongs.Count() + 1;
         }
         //Tạo tài khoản khách hàng
         public bool CreateNewKhachHang(tblKhachHang kh)
@@ -1060,7 +1136,7 @@ namespace KhachSanSaoBang.Models
         /// <returns></returns>& tạo hóa đơn
         public bool AddThongtinKhachHangThuePhong(int ma_phong, string jsonstring)
         {
-            var pdp = db.tblPhieuDatPhongs.Where(t=>t.ma_phong==ma_phong && t.ma_tinh_trang==2).FirstOrDefault();
+            var pdp = db.tblPhieuDatPhongs.Where(t => t.ma_phong == ma_phong && t.ma_tinh_trang == 2).FirstOrDefault();
             if (pdp != null)
             {
                 pdp.thong_tin_khach_thue = jsonstring;
@@ -1072,14 +1148,15 @@ namespace KhachSanSaoBang.Models
             {
                 return false;
             }
-        
+
         }
         //Lấy mã hóa đơn chưa thanh toán
         public int GetMaHoaDonChuaThanhToan(int mapdp)
         {
             int mahd = (from u in db.tblHoaDons
-                        where u.ma_pdp == mapdp && u.ma_tinh_trang== 1 select u.ma_hd
-                        
+                        where u.ma_pdp == mapdp && u.ma_tinh_trang == 1
+                        select u.ma_hd
+
                         ).FirstOrDefault();
             return mahd;
         }
@@ -1097,6 +1174,30 @@ namespace KhachSanSaoBang.Models
             }
             return false;
         }
+        //Cấu hình cho nút đổi trạng thái phòng nhanh
+        public (int tag, string text) GetCauhinhNutDoiTrangthai(int ma_tinh_trang)
+        {
+            switch (ma_tinh_trang)
+            {
+                case 1: //Hiện tại: Trống -> đặt phòng
+                    return (6, "Đặt phòng");
+                case 2: //Hiện tại: Đang sử dụng -> thanh toán
+                    return (2, "Thanh toán");
+                case 3: //Hiện tại: Đang dọn dẹp -> dọn xong
+                    return (1, "Dọn xong");
+                case 4: //Đang bảo trì - > hoàn tất bảo trì(trống)
+                 
+                    return (1, "Bảo trì xong");
+                case 5://Dừng sử dụng-> trống
+                    return (1, "Mở lại");
+                case 6: //hiện tại: Chờ xác nhận-> chờ checkin
+                    return (7, "Xác nhận");
+                case 7: //hiện tại: Chờ checkin -> đang sử dụng
+                    return (2, "Checkin");
+                default:
+                    return (0, "Chờ chọn phòng");
+            }
 
+        }
     }
 }

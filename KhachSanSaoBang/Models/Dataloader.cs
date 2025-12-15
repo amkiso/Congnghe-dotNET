@@ -1,16 +1,17 @@
-﻿using System;
+﻿using KhachSanSaoBang.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KhachSanSaoBang.Models.Data;
 namespace KhachSanSaoBang.Models
 {
     public static class Dataloader
     {
-        
+
         public static bool loaddulieu(Thongtinchung tt, Form f)
         {
             try
@@ -48,7 +49,8 @@ namespace KhachSanSaoBang.Models
                     {
                         btn.BackColor = LayMauTheoTinhTrang((int)phong.ma_tinh_trang);
                     }
-                }return true;
+                }
+                return true;
             }
             catch { return false; }
         }
@@ -79,7 +81,7 @@ namespace KhachSanSaoBang.Models
             else if ((ma == 6)) return Color.Orange;
             else if (ma == 7) return Color.LightPink;
             else if ((ma == 5)) return Color.Gray;
-            else if(ma==4) return Color.DarkOrange;
+            else if (ma == 4) return Color.DarkOrange;
             else return SystemColors.Control;
         }
         /// <summary>
@@ -111,8 +113,47 @@ namespace KhachSanSaoBang.Models
                 g.DrawRectangle(p, r.X, r.Y, r.Width - 1, r.Height - 1);
             }
         }
+        public static class PathHelper
+        {
+            public static string ProjectRoot
+            {
+                get
+                {
+                    var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                    var dir = new DirectoryInfo(baseDir);
 
+                    while (dir != null && !Directory.Exists(Path.Combine(dir.FullName, "Content")))
+                    {
+                        dir = dir.Parent;
+                    }
 
+                    return dir?.FullName;
+                }
+            }
+            public static Image LoadFromDb(string dbPath)
+            {
+                if (string.IsNullOrWhiteSpace(dbPath))
+                    return Properties.Resources.no_image;
+
+                // bỏ / đầu
+                dbPath = dbPath.TrimStart('/', '\\')
+                               .Replace('/', Path.DirectorySeparatorChar);
+
+                string fullPath = Path.Combine(
+                    PathHelper.ProjectRoot,
+                    dbPath
+                );
+
+                if (!File.Exists(fullPath))
+                    return Properties.Resources.no_image;
+
+                // tránh lock file
+                using (var img = Image.FromFile(fullPath))
+                {
+                    return new Bitmap(img);
+                }
+            }
+        }
     }
 }
 

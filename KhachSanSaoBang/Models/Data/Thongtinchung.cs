@@ -16,6 +16,8 @@ namespace KhachSanSaoBang.Models
         DateTime ngay_o_thuc_te;
         int phuthu;
         int maphieudp;
+        int diemtichluy;
+        string hangthanhvien;
         public string Tenphong { get => tenphong; set => tenphong = value; }
         public string Loaiphong { get => loaiphong; set => loaiphong = value; }
         public string Khachhang { get => khachhang; set => khachhang = value; }
@@ -30,5 +32,7 @@ namespace KhachSanSaoBang.Models
         public DateTime Ngay_o_thuc_te { get => ngay_o_thuc_te; set => ngay_o_thuc_te = value; }
         public int Phuthu { get => phuthu; set => phuthu = value; }
         public int Maphieudp { get => maphieudp; set => maphieudp = value; }
+        public int Diemtichluy { get => diemtichluy; set => diemtichluy = value; }
+        public string Hangthanhvien { get => hangthanhvien; set => hangthanhvien = value; }
     }
 }

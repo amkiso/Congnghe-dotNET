@@ -189,4 +189,17 @@
       <Association Name="tblTinhTrangPhong_tblPhong" Member="tblPhongs" ThisKey="ma_tinh_trang" OtherKey="ma_tinh_trang" Type="tblPhong" />
     </Type>
   </Table>
+  <Function Name="dbo.sp_ThongKePhongTheoTinhTrang" Method="sp_ThongKePhongTheoTinhTrang">
+    <ElementType Name="sp_ThongKePhongTheoTinhTrangResult">
+      <Column Name="Trong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DangDung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DangDon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BaoTri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DungSuDung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChoXacNhan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChoCheckIn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuaHan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongPhong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -259,7 +259,7 @@ namespace KhachSanSaoBang
                                 {
                                     int acction = 1;
                                     Session.Acction_status = false;
-                                    //thay đổi từ 1-2: Mở cửa sổ nhập thông tin khách hàng thuê phòng, set ngày giờ vào, phiếu đặt phòng và tạo hóa đơn
+                                    
                                     AcctionForm thuep = new AcctionForm(acction);
                                     thuep.ShowDialog();
 

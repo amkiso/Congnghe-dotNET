@@ -16,5 +16,8 @@
     <Setting Name="AES_IV" Type="System.String" Scope="Application">
       <Value Profile="(Default)">abcdef1234567890</Value>
     </Setting>
+    <Setting Name="dataQLKSConnectionString1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

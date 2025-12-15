@@ -53,6 +53,7 @@
             this.btnQLDichVu = new System.Windows.Forms.Button();
             this.btnDichVu = new System.Windows.Forms.Button();
             this.pnlKhachSanSub = new System.Windows.Forms.Panel();
+            this.btn_datphong = new System.Windows.Forms.Button();
             this.btnQLThietBi = new System.Windows.Forms.Button();
             this.btnQLPhong = new System.Windows.Forms.Button();
             this.btnKhachSan = new System.Windows.Forms.Button();
@@ -140,7 +141,7 @@
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_sophongchoxacnhan = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.btn_reload = new ImageButton();
+            this.btn_reload = new KhachSanSaoBang.ImageButton();
             this.main_right_bot1_container = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
@@ -178,7 +179,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_datphong = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnl_menu.SuspendLayout();
             this.pnlNhanVienSub.SuspendLayout();
@@ -224,7 +224,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Navy;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
@@ -244,7 +244,7 @@
             // 
             // pnl_menu
             // 
-            this.pnl_menu.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.pnl_menu.BackColor = System.Drawing.Color.Navy;
             this.pnl_menu.Controls.Add(this.btnChatBox);
             this.pnl_menu.Controls.Add(this.pnlNhanVienSub);
             this.pnl_menu.Controls.Add(this.btn_nhanvien);
@@ -581,7 +581,7 @@
             // 
             // pnlKhachSanSub
             // 
-            this.pnlKhachSanSub.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.pnlKhachSanSub.BackColor = System.Drawing.Color.Transparent;
             this.pnlKhachSanSub.Controls.Add(this.btn_datphong);
             this.pnlKhachSanSub.Controls.Add(this.btnQLThietBi);
             this.pnlKhachSanSub.Controls.Add(this.btnQLPhong);
@@ -592,6 +592,24 @@
             this.pnlKhachSanSub.Size = new System.Drawing.Size(424, 171);
             this.pnlKhachSanSub.TabIndex = 1;
             this.pnlKhachSanSub.Visible = false;
+            // 
+            // btn_datphong
+            // 
+            this.btn_datphong.BackColor = System.Drawing.Color.Transparent;
+            this.btn_datphong.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_datphong.FlatAppearance.BorderSize = 0;
+            this.btn_datphong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_datphong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btn_datphong.ForeColor = System.Drawing.Color.White;
+            this.btn_datphong.Location = new System.Drawing.Point(0, 124);
+            this.btn_datphong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_datphong.Name = "btn_datphong";
+            this.btn_datphong.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
+            this.btn_datphong.Size = new System.Drawing.Size(424, 62);
+            this.btn_datphong.TabIndex = 2;
+            this.btn_datphong.Text = "Đặt phòng";
+            this.btn_datphong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_datphong.UseVisualStyleBackColor = false;
             // 
             // btnQLThietBi
             // 
@@ -648,7 +666,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48F));
@@ -1014,7 +1032,7 @@
             // 
             // main_left_bot_container
             // 
-            this.main_left_bot_container.BackColor = System.Drawing.Color.Bisque;
+            this.main_left_bot_container.BackColor = System.Drawing.Color.SteelBlue;
             this.main_left_bot_container.ColumnCount = 1;
             this.main_left_bot_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.main_left_bot_container.Controls.Add(this.label14, 0, 0);
@@ -1662,7 +1680,7 @@
             // 
             // main_right_bot_container
             // 
-            this.main_right_bot_container.BackColor = System.Drawing.Color.Moccasin;
+            this.main_right_bot_container.BackColor = System.Drawing.Color.SteelBlue;
             this.main_right_bot_container.ColumnCount = 4;
             this.main_right_bot_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2F));
             this.main_right_bot_container.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47F));
@@ -1750,7 +1768,6 @@
             this.btn_reload.BackColor = System.Drawing.Color.Transparent;
             this.btn_reload.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.btn_reload.BorderWidth = 1;
-            this.btn_reload.CornerRadius = 8;
             this.btn_reload.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_reload.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_reload.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2133,7 +2150,7 @@
             // 
             // btn_Toggle_menu
             // 
-            this.btn_Toggle_menu.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btn_Toggle_menu.BackColor = System.Drawing.Color.Navy;
             this.btn_Toggle_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_Toggle_menu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Toggle_menu.FlatAppearance.BorderSize = 0;
@@ -2198,7 +2215,7 @@
             // 
             this.lbl_chucvu.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_chucvu.AutoSize = true;
-            this.lbl_chucvu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_chucvu.ForeColor = System.Drawing.Color.Yellow;
             this.lbl_chucvu.Location = new System.Drawing.Point(216, 109);
             this.lbl_chucvu.Name = "lbl_chucvu";
             this.lbl_chucvu.Size = new System.Drawing.Size(48, 25);
@@ -2209,7 +2226,7 @@
             // 
             this.lbl_Nhanvien.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_Nhanvien.AutoSize = true;
-            this.lbl_Nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_Nhanvien.ForeColor = System.Drawing.Color.Yellow;
             this.lbl_Nhanvien.Location = new System.Drawing.Point(216, 52);
             this.lbl_Nhanvien.Name = "lbl_Nhanvien";
             this.lbl_Nhanvien.Size = new System.Drawing.Size(54, 25);
@@ -2220,6 +2237,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Location = new System.Drawing.Point(95, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 25);
@@ -2230,29 +2248,12 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(113, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Chức vụ:";
-            // 
-            // btn_datphong
-            // 
-            this.btn_datphong.BackColor = System.Drawing.Color.Transparent;
-            this.btn_datphong.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_datphong.FlatAppearance.BorderSize = 0;
-            this.btn_datphong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_datphong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btn_datphong.ForeColor = System.Drawing.Color.White;
-            this.btn_datphong.Location = new System.Drawing.Point(0, 124);
-            this.btn_datphong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_datphong.Name = "btn_datphong";
-            this.btn_datphong.Padding = new System.Windows.Forms.Padding(60, 0, 0, 0);
-            this.btn_datphong.Size = new System.Drawing.Size(424, 62);
-            this.btn_datphong.TabIndex = 2;
-            this.btn_datphong.Text = "Đặt phòng";
-            this.btn_datphong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_datphong.UseVisualStyleBackColor = false;
             // 
             // TrangLamViec
             // 
