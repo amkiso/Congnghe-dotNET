@@ -146,6 +146,13 @@
     <Compile Include="KetNoi.Designer.cs">
       <DependentUpon>KetNoi.cs</DependentUpon>
     </Compile>
+    <Compile Include="NhanVien\DanhSachNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhanVien\DanhSachNhanVien.Designer.cs">
+      <DependentUpon>DanhSachNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVien\XuLyNhanVien.cs" />
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,18 +195,11 @@
     <Compile Include="Models\Data\ttDichVu.cs" />
     <Compile Include="Models\Remember_Me.cs" />
     <Compile Include="Models\Xuly.cs" />
-    <Compile Include="Models\XuLyNV.cs" />
     <Compile Include="NhanVien\FormThemSuaNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NhanVien\FormThemSuaNhanVien.Designer.cs">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NhanVien\ucNhanVien.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NhanVien\ucNhanVien.Designer.cs">
-      <DependentUpon>ucNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -252,6 +252,9 @@
     <EmbeddedResource Include="KetNoi.resx">
       <DependentUpon>KetNoi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NhanVien\DanhSachNhanVien.resx">
+      <DependentUpon>DanhSachNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThanhToan.resx">
       <DependentUpon>ThanhToan.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NhanVien\ucNhanVien.resx">
-      <DependentUpon>ucNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

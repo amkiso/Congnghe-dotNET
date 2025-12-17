@@ -1,97 +1,106 @@
-﻿using KhachSanSaoBang.Models;
-using KhachSanSaoBang.Models.Data;
+﻿using KhachSanSaoBang.Models.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KhachSanSaoBang.NhanVien
 {
     public partial class FormThemSuaNhanVien : Form
     {
-        Models.XulyNV xl_nv = new Models.XulyNV();
+        XuLyNhanVien xl_nv = new XuLyNhanVien();
+
         private int currentNhanVienId;
-        private bool isEditMode = false;
+        private bool isEditMode;
 
         public FormThemSuaNhanVien(int maNV)
         {
             InitializeComponent();
-            this.currentNhanVienId = maNV;
-            if (currentNhanVienId != 0) isEditMode = true;
+
+            currentNhanVienId = maNV;
+            isEditMode = maNV != 0;
 
             this.Load += FormThemSuaNhanVien_Load;
-            this.btn_Luu.Click += Btn_Luu_Click;
-            this.btn_Huy.Click += Btn_Huy_Click;
+            btn_Luu.Click += Btn_Luu_Click;
+            btn_Huy.Click += Btn_Huy_Click;
         }
 
+        // =====================================================
+        // LOAD FORM
+        // =====================================================
         private void FormThemSuaNhanVien_Load(object sender, EventArgs e)
         {
-            // Khởi tạo các ComboBox
             KhoiTaoComboBox();
 
             if (isEditMode)
             {
                 this.Text = "Sửa thông tin Nhân viên";
-                txt_MSNV.ReadOnly = true; // Không cho sửa khóa chính
 
-                // Lấy thông tin cũ
-                tblNhanVien nv = xl_nv.LayThongTinNhanVien(currentNhanVienId);
-                if (nv != null)
+                lbl_MSNV.Visible = true;
+                txt_MSNV.Visible = true;
+                txt_MSNV.ReadOnly = true;
+
+                DataRow nv = xl_nv.LayThongTinNhanVien(currentNhanVienId);
+                if (nv == null)
                 {
-                    txt_MSNV.Text = nv.ma_nv.ToString();
-                    txt_HoTen.Text = nv.ho_ten;
-                    cbo_GioiTinh.Text = nv.gioi_tinh;
-                    txt_QueQuan.Text = nv.que_quan;
-                    cbo_NamBD.Text = nv.nam_bd.ToString();
-                    txt_Luong.Text = nv.luong.ToString();
-                    txt_DiaChi.Text = nv.dia_chi;
-                    txt_sdt.Text = nv.sdt;
+                    MessageBox.Show("Không tìm thấy nhân viên!");
+                    this.Close();
+                    return;
+                }
 
-                    if (nv.ngay_sinh.HasValue)
-                    {
-                        cbo_NgaySinh.Text = nv.ngay_sinh.Value.Day.ToString();
-                        cbo_ThangSinh.Text = nv.ngay_sinh.Value.Month.ToString();
-                        cbo_NamSinh.Text = nv.ngay_sinh.Value.Year.ToString();
-                    }
+                txt_MSNV.Text = nv["ma_nv"].ToString();
+                txt_HoTen.Text = nv["ho_ten"].ToString();
+                cbo_GioiTinh.Text = nv["gioi_tinh"].ToString();
+                txt_QueQuan.Text = nv["que_quan"].ToString();
+                txt_DiaChi.Text = nv["dia_chi"].ToString();
+                txt_sdt.Text = nv["sdt"].ToString();
+                txt_Luong.Text = nv["luong"].ToString();
+                cbo_NamBD.Text = nv["nam_bd"].ToString();
+
+                if (nv["ngay_sinh"] != DBNull.Value)
+                {
+                    DateTime ns = (DateTime)nv["ngay_sinh"];
+                    cbo_NgaySinh.Text = ns.Day.ToString();
+                    cbo_ThangSinh.Text = ns.Month.ToString();
+                    cbo_NamSinh.Text = ns.Year.ToString();
                 }
             }
             else
             {
                 this.Text = "Thêm Nhân viên mới";
-                cbo_GioiTinh.SelectedIndex = 0; // Chọn mặc định
+
+                // 👉 KHÔNG CHO NHẬP MÃ NV KHI THÊM
+                lbl_MSNV.Visible = false;
+                txt_MSNV.Visible = false;
+
+                cbo_GioiTinh.SelectedIndex = 0;
             }
         }
 
+        // =====================================================
+        // LƯU
+        // =====================================================
         private void Btn_Luu_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu
-            if (!int.TryParse(txt_MSNV.Text, out int msnv))
-            {
-                MessageBox.Show("Mã nhân viên phải là số!");
-                return;
-            }
             if (!int.TryParse(txt_Luong.Text, out int luong))
             {
                 MessageBox.Show("Lương phải là số!");
                 return;
             }
 
-            // 2. Tạo đối tượng nhân viên
-            tblNhanVien nv = new tblNhanVien();
-            nv.ho_ten = txt_HoTen.Text;
-            nv.gioi_tinh = cbo_GioiTinh.Text;
-            nv.que_quan = txt_QueQuan.Text;
-            nv.luong = luong;
-            nv.dia_chi = txt_DiaChi.Text;
-            nv.sdt = txt_sdt.Text;
-            if (int.TryParse(cbo_NamBD.Text, out int namBD)) nv.nam_bd = namBD;
+            tblNhanVien nv = new tblNhanVien
+            {
+                ho_ten = txt_HoTen.Text.Trim(),
+                gioi_tinh = cbo_GioiTinh.Text,
+                que_quan = txt_QueQuan.Text.Trim(),
+                dia_chi = txt_DiaChi.Text.Trim(),
+                sdt = txt_sdt.Text.Trim(),
+                luong = luong
+            };
 
-            // Xử lý ngày sinh
+            if (int.TryParse(cbo_NamBD.Text, out int namBD))
+                nv.nam_bd = namBD;
+
+            // Ngày sinh
             try
             {
                 int d = int.Parse(cbo_NgaySinh.Text);
@@ -105,46 +114,54 @@ namespace KhachSanSaoBang.NhanVien
                 return;
             }
 
-            bool ketQua = false;
+            bool ketQua;
 
-            // 3. Gọi hàm xử lý
             if (isEditMode)
             {
-                nv.ma_nv = currentNhanVienId; // ID để tìm và sửa
+                nv.ma_nv = currentNhanVienId; // 👉 CHỈ GÁN KHI SỬA
                 ketQua = xl_nv.SuaNhanVien(nv);
             }
             else
             {
-                nv.ma_nv = msnv; // ID mới để thêm
-                ketQua = xl_nv.ThemNhanVien(nv);
+                ketQua = xl_nv.ThemNhanVien(nv); // 👉 KHÔNG GÁN ma_nv
             }
 
-            // 4. Thông báo và đóng form
             if (ketQua)
             {
-                string msg = isEditMode ? "Sửa thành công!" : "Thêm thành công!";
-                MessageBox.Show(msg);
+                MessageBox.Show(isEditMode ? "Sửa thành công!" : "Thêm thành công!");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                string msg = isEditMode ? "Sửa thất bại!" : "Thêm thất bại (có thể trùng mã NV)!";
-                MessageBox.Show(msg);
+                MessageBox.Show("Lưu thất bại!");
             }
         }
 
+        // =====================================================
+        // HỦY
+        // =====================================================
         private void Btn_Huy_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // =====================================================
+        // KHỞI TẠO COMBOBOX
+        // =====================================================
         private void KhoiTaoComboBox()
         {
+            cbo_NgaySinh.Items.Clear();
+            cbo_ThangSinh.Items.Clear();
+            cbo_NamSinh.Items.Clear();
+            cbo_NamBD.Items.Clear();
+            cbo_GioiTinh.Items.Clear();
+
             for (int i = 1; i <= 31; i++) cbo_NgaySinh.Items.Add(i);
             for (int i = 1; i <= 12; i++) cbo_ThangSinh.Items.Add(i);
             for (int i = DateTime.Now.Year - 60; i <= DateTime.Now.Year; i++) cbo_NamSinh.Items.Add(i);
             for (int i = 2000; i <= DateTime.Now.Year; i++) cbo_NamBD.Items.Add(i);
+
             cbo_GioiTinh.Items.AddRange(new string[] { "Nam", "Nữ" });
         }
     }

@@ -63,7 +63,7 @@ namespace KhachSanSaoBang.KhachHang
             }
 
             // Lấy khách hàng từ DB
-            var kh = dsKH.GetKhachByMa(maKhTimDuoc);
+            DataRow kh = dsKH.GetKhachByMa(maKhTimDuoc);
 
             if (kh == null)
             {
@@ -71,14 +71,28 @@ namespace KhachSanSaoBang.KhachHang
                 return;
             }
 
-            // Nếu KH đã là thành viên → thông báo
+            // Nếu KH đã là thành viên
             if (kh.Field<bool>("member") == true)
             {
                 MessageBox.Show("Khách hàng này đã là thành viên!", "Thông báo");
                 return;
             }
 
-            // Gọi phương thức đăng ký thành viên
+            // ===== RÀNG BUỘC NGHIỆP VỤ =====
+            // Phải có ít nhất 1 hóa đơn >= 1.000.000đ
+            bool duDieuKien = dsKH.CoHoaDonTren1Trieu(maKhTimDuoc);
+
+            if (!duDieuKien)
+            {
+                MessageBox.Show(
+                    "Khách hàng chưa đủ điều kiện đăng ký thành viên.\n" +
+                    "Yêu cầu: Có ít nhất 1 hóa đơn từ 1.000.000 VNĐ trở lên.",
+                    "Không đủ điều kiện"
+                );
+                return;
+            }
+
+            // ===== ĐỦ ĐIỀU KIỆN → ĐĂNG KÝ =====
             if (dsKH.DangKyThanhVien(maKhTimDuoc))
             {
                 MessageBox.Show("Đăng ký thành viên thành công!");
@@ -89,6 +103,7 @@ namespace KhachSanSaoBang.KhachHang
                 MessageBox.Show("Lỗi hệ thống, không đăng ký được!", "Lỗi");
             }
         }
+
 
         private void UcKhachHang_Load(object sender, EventArgs e)
         {

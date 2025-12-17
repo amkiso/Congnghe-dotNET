@@ -91,7 +91,7 @@ namespace KhachSanSaoBang.KhachHang
         // ============================================================
         public bool DangKyThanhVien(string maKH)
         {
-            string sql = "UPDATE tblKhachHang SET ember = 1 WHERE ma_kh = @ma_kh";
+            string sql = "UPDATE tblKhachHang SET member = 1 WHERE ma_kh = @ma_kh";
 
             SqlCommand cmd = new SqlCommand(sql, cn);
             cmd.Parameters.AddWithValue("@ma_kh", maKH);
@@ -115,6 +115,26 @@ namespace KhachSanSaoBang.KhachHang
             if (dt.Rows.Count == 0) return null;
 
             return dt.Rows[0];
+        }
+        // =====================================================
+        // KIỂM TRA KHÁCH CÓ HÓA ĐƠN >= 1 TRIỆU KHÔNG
+        // =====================================================
+        public bool CoHoaDonTren1Trieu(string maKH)
+        {
+            string sql = @"
+        SELECT COUNT(*)
+        FROM tblHoaDon
+        WHERE ma_kh = @ma_kh
+          AND tong_tien >= 1000000";
+
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            cmd.Parameters.AddWithValue("@ma_kh", maKH);
+
+            cn.Open();
+            int count = (int)cmd.ExecuteScalar();
+            cn.Close();
+
+            return count > 0;
         }
 
     }
