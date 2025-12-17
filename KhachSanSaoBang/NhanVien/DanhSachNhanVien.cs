@@ -11,11 +11,10 @@ using System.Windows.Forms;
 
 namespace KhachSanSaoBang.NhanVien
 {
-    public partial class ucNhanVien : UserControl
+    public partial class DanhSachNhanVien : Form
     {
-        Models.XulyNV xl_nv = new Models.XulyNV();
-
-        public ucNhanVien()
+        XuLyNhanVien nv = new XuLyNhanVien();
+        public DanhSachNhanVien()
         {
             InitializeComponent();
             this.Load += UcNhanVien_Load;
@@ -26,9 +25,6 @@ namespace KhachSanSaoBang.NhanVien
             //this.btn_KhoiPhuc.Click += Btn_KhoiPhuc_Click;
             this.dataGridView1.CellFormatting += DataGridView1_CellFormatting;
         }
-
-
-
         private void UcNhanVien_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -38,7 +34,7 @@ namespace KhachSanSaoBang.NhanVien
         {
             dataGridView1.AutoGenerateColumns = false;
             // Lấy DataTable từ XulyNV và gán vào Grid
-            dataGridView1.DataSource = xl_nv.LoadNhanVien();
+            dataGridView1.DataSource = nv.LoadNhanVien();
         }
 
         //Tô màu xám cho nhân viên bị vô hiệu hóa
@@ -80,19 +76,26 @@ namespace KhachSanSaoBang.NhanVien
 
         private void Btn_SuaNV_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            // 1. Kiểm tra có chọn dòng chưa
+            if (dataGridView1.CurrentRow == null)
             {
-                int maNV = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                FormThemSuaNhanVien frmSua = new FormThemSuaNhanVien(maNV);
-
-                if (frmSua.ShowDialog() == DialogResult.OK)
-                {
-                    LoadData();
-                }
+                MessageBox.Show("Vui lòng chọn nhân viên cần sửa!");
+                return;
             }
-            else
+
+            // 2. Lấy mã nhân viên từ dòng đang chọn
+            int maNV = Convert.ToInt32(
+                dataGridView1.CurrentRow.Cells["ma_nv"].Value
+            );
+
+            // 3. Mở form Sửa và TRUYỀN maNV
+            FormThemSuaNhanVien frm = new FormThemSuaNhanVien(maNV);
+
+            // 4. Show form
+            if (frm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Vui lòng chọn nhân viên để sửa!");
+                // 5. Load lại danh sách sau khi sửa
+                LoadData();
             }
         }
 
@@ -105,7 +108,7 @@ namespace KhachSanSaoBang.NhanVien
 
                 if (MessageBox.Show("Bạn có chắc muốn xóa nhân viên này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    if (xl_nv.XoaNhanVien(maNV))
+                    if (nv.XoaNhanVien(maNV))
                     {
                         MessageBox.Show("Xóa thành công!");
                         LoadData();
@@ -139,7 +142,7 @@ namespace KhachSanSaoBang.NhanVien
 
                 if (MessageBox.Show($"Bạn có muốn {hanhDong} tài khoản này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (xl_nv.CapNhatTrangThai(maNV, trangThaiMoi))
+                    if (nv.CapNhatTrangThai(maNV, trangThaiMoi))
                     {
                         MessageBox.Show($"{hanhDong} thành công!");
                         LoadData();
@@ -150,6 +153,10 @@ namespace KhachSanSaoBang.NhanVien
                     }
                 }
             }
+        }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
