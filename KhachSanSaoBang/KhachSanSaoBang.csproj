@@ -146,7 +146,6 @@
     <Compile Include="KetNoi.Designer.cs">
       <DependentUpon>KetNoi.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="QuanLyDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,7 +164,6 @@
     <Compile Include="QuanLyTienIch.Designer.cs">
       <DependentUpon>QuanLyTienIch.cs</DependentUpon>
     </Compile>
-=======
     <Compile Include="NhanVien\DanhSachNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,7 +171,6 @@
       <DependentUpon>DanhSachNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="NhanVien\XuLyNhanVien.cs" />
->>>>>>> e49f2c75dddb57e62fc36e23007f8daf823554ba
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>

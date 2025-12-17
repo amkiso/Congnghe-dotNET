@@ -33,6 +33,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flow_ds_dich_vu = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_change = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_exit = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
@@ -44,10 +51,14 @@
             this.txt_tendv = new System.Windows.Forms.TextBox();
             this.txt_giaban = new System.Windows.Forms.TextBox();
             this.txt_duongdananh = new System.Windows.Forms.TextBox();
+            this.txt_slton = new System.Windows.Forms.TextBox();
+            this.txt_dv_tinh = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_image = new System.Windows.Forms.Button();
             this.btn_refesh = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.picImage = new System.Windows.Forms.PictureBox();
             this.modernToolStrip1 = new KhachSanSaoBang.ModernToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.btn_Trangchu = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,31 +84,20 @@
             this.lbl_tennb = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.lbl_chucvu = new System.Windows.Forms.ToolStripLabel();
-            this.txt_slton = new System.Windows.Forms.TextBox();
-            this.txt_dv_tinh = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.picImage = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.btn_delete = new System.Windows.Forms.Button();
-            this.btn_change = new System.Windows.Forms.Button();
-            this.btn_save = new System.Windows.Forms.Button();
-            this.btn_exit = new System.Windows.Forms.Button();
             this.main_container.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.modernToolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
+            this.modernToolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // main_container
@@ -150,6 +150,98 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(719, 1056);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tableLayoutPanel5);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(3, 847);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(713, 206);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thao tác";
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 8;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Controls.Add(this.btn_add, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btn_delete, 3, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btn_change, 5, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btn_save, 7, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btn_exit, 1, 2);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 27);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 4;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(707, 176);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // btn_add
+            // 
+            this.btn_add.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_add.Location = new System.Drawing.Point(23, 20);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(150, 64);
+            this.btn_add.TabIndex = 0;
+            this.btn_add.Text = "Thêm";
+            this.btn_add.UseVisualStyleBackColor = true;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_delete.Enabled = false;
+            this.btn_delete.Location = new System.Drawing.Point(199, 20);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(150, 64);
+            this.btn_delete.TabIndex = 1;
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            // 
+            // btn_change
+            // 
+            this.btn_change.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_change.Enabled = false;
+            this.btn_change.Location = new System.Drawing.Point(375, 20);
+            this.btn_change.Name = "btn_change";
+            this.btn_change.Size = new System.Drawing.Size(150, 64);
+            this.btn_change.TabIndex = 2;
+            this.btn_change.Text = "Sửa";
+            this.btn_change.UseVisualStyleBackColor = true;
+            // 
+            // btn_save
+            // 
+            this.btn_save.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_save.Enabled = false;
+            this.btn_save.Location = new System.Drawing.Point(551, 20);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(153, 64);
+            this.btn_save.TabIndex = 3;
+            this.btn_save.Text = "Lưu";
+            this.btn_save.UseVisualStyleBackColor = true;
+            // 
+            // btn_exit
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.btn_exit, 7);
+            this.btn_exit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_exit.Location = new System.Drawing.Point(23, 90);
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(681, 64);
+            this.btn_exit.TabIndex = 4;
+            this.btn_exit.Text = "Thoát";
+            this.btn_exit.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -283,6 +375,24 @@
             this.txt_duongdananh.Size = new System.Drawing.Size(345, 32);
             this.txt_duongdananh.TabIndex = 15;
             // 
+            // txt_slton
+            // 
+            this.txt_slton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_slton.Enabled = false;
+            this.txt_slton.Location = new System.Drawing.Point(143, 161);
+            this.txt_slton.Name = "txt_slton";
+            this.txt_slton.Size = new System.Drawing.Size(204, 32);
+            this.txt_slton.TabIndex = 16;
+            // 
+            // txt_dv_tinh
+            // 
+            this.txt_dv_tinh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_dv_tinh.Enabled = false;
+            this.txt_dv_tinh.Location = new System.Drawing.Point(493, 82);
+            this.txt_dv_tinh.Name = "txt_dv_tinh";
+            this.txt_dv_tinh.Size = new System.Drawing.Size(205, 32);
+            this.txt_dv_tinh.TabIndex = 17;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -339,6 +449,28 @@
             this.btn_refesh.TabIndex = 2;
             this.btn_refesh.Text = "Làm mới";
             this.btn_refesh.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.picImage);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.tableLayoutPanel3.SetRowSpan(this.panel1, 2);
+            this.panel1.Size = new System.Drawing.Size(449, 352);
+            this.panel1.TabIndex = 3;
+            // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.SystemColors.Control;
+            this.picImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picImage.Location = new System.Drawing.Point(0, 0);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(447, 350);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picImage.TabIndex = 1;
+            this.picImage.TabStop = false;
             // 
             // modernToolStrip1
             // 
@@ -537,138 +669,6 @@
             this.lbl_chucvu.Size = new System.Drawing.Size(101, 46);
             this.lbl_chucvu.Text = "Chức vụ";
             // 
-            // txt_slton
-            // 
-            this.txt_slton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_slton.Enabled = false;
-            this.txt_slton.Location = new System.Drawing.Point(143, 161);
-            this.txt_slton.Name = "txt_slton";
-            this.txt_slton.Size = new System.Drawing.Size(204, 32);
-            this.txt_slton.TabIndex = 16;
-            // 
-            // txt_dv_tinh
-            // 
-            this.txt_dv_tinh.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txt_dv_tinh.Enabled = false;
-            this.txt_dv_tinh.Location = new System.Drawing.Point(493, 82);
-            this.txt_dv_tinh.Name = "txt_dv_tinh";
-            this.txt_dv_tinh.Size = new System.Drawing.Size(205, 32);
-            this.txt_dv_tinh.TabIndex = 17;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.picImage);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.tableLayoutPanel3.SetRowSpan(this.panel1, 2);
-            this.panel1.Size = new System.Drawing.Size(449, 352);
-            this.panel1.TabIndex = 3;
-            // 
-            // picImage
-            // 
-            this.picImage.BackColor = System.Drawing.SystemColors.Control;
-            this.picImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picImage.Location = new System.Drawing.Point(0, 0);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(447, 350);
-            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picImage.TabIndex = 1;
-            this.picImage.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tableLayoutPanel5);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 847);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(713, 206);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Thao tác";
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 8;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel5.Controls.Add(this.btn_add, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btn_delete, 3, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btn_change, 5, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btn_save, 7, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btn_exit, 1, 2);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 27);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 4;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(707, 176);
-            this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // btn_add
-            // 
-            this.btn_add.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_add.Location = new System.Drawing.Point(23, 20);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(150, 64);
-            this.btn_add.TabIndex = 0;
-            this.btn_add.Text = "Thêm";
-            this.btn_add.UseVisualStyleBackColor = true;
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_delete.Enabled = false;
-            this.btn_delete.Location = new System.Drawing.Point(199, 20);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(150, 64);
-            this.btn_delete.TabIndex = 1;
-            this.btn_delete.Text = "Xóa";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            // 
-            // btn_change
-            // 
-            this.btn_change.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_change.Enabled = false;
-            this.btn_change.Location = new System.Drawing.Point(375, 20);
-            this.btn_change.Name = "btn_change";
-            this.btn_change.Size = new System.Drawing.Size(150, 64);
-            this.btn_change.TabIndex = 2;
-            this.btn_change.Text = "Sửa";
-            this.btn_change.UseVisualStyleBackColor = true;
-            // 
-            // btn_save
-            // 
-            this.btn_save.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_save.Enabled = false;
-            this.btn_save.Location = new System.Drawing.Point(551, 20);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(153, 64);
-            this.btn_save.TabIndex = 3;
-            this.btn_save.Text = "Lưu";
-            this.btn_save.UseVisualStyleBackColor = true;
-            // 
-            // btn_exit
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.btn_exit, 7);
-            this.btn_exit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_exit.Location = new System.Drawing.Point(23, 90);
-            this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(681, 64);
-            this.btn_exit.TabIndex = 4;
-            this.btn_exit.Text = "Thoát";
-            this.btn_exit.UseVisualStyleBackColor = true;
-            // 
             // QuanLyDichVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -683,18 +683,18 @@
             this.main_container.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel11.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.modernToolStrip1.ResumeLayout(false);
-            this.modernToolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
+            this.modernToolStrip1.ResumeLayout(false);
+            this.modernToolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

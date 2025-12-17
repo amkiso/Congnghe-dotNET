@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThanhToan));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_huy = new KhachSanSaoBang.ImageButton();
+            this.btn_inhoadon = new KhachSanSaoBang.ImageButton();
+            this.btn_thanhtoan = new KhachSanSaoBang.ImageButton();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_apdungvoucher = new System.Windows.Forms.Button();
@@ -74,11 +77,13 @@
             this.col_gia_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_donvi_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_SL_dv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl_header_phai = new KhachSanSaoBang.CustomLabel_Image();
             this.main_right_bot = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_tongtien = new System.Windows.Forms.RichTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_clear = new KhachSanSaoBang.ImageButton();
             this.btn_1k = new System.Windows.Forms.Button();
             this.btn_20k = new System.Windows.Forms.Button();
             this.btn_2k = new System.Windows.Forms.Button();
@@ -96,11 +101,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txt_tienkhachdua = new System.Windows.Forms.RichTextBox();
             this.txt_tienthua = new System.Windows.Forms.RichTextBox();
-            this.btn_huy = new KhachSanSaoBang.ImageButton();
-            this.btn_inhoadon = new KhachSanSaoBang.ImageButton();
-            this.btn_thanhtoan = new KhachSanSaoBang.ImageButton();
-            this.lbl_header_phai = new KhachSanSaoBang.CustomLabel_Image();
-            this.btn_clear = new KhachSanSaoBang.ImageButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.container_left.SuspendLayout();
@@ -138,6 +138,99 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1396, 80);
             this.tableLayoutPanel2.TabIndex = 49;
+            // 
+            // btn_huy
+            // 
+            this.btn_huy.BackColor = System.Drawing.Color.White;
+            this.btn_huy.BorderColor = System.Drawing.Color.Black;
+            this.btn_huy.BorderWidth = 1;
+            this.btn_huy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_huy.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_huy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_huy.EnableShadow = false;
+            this.btn_huy.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btn_huy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_huy.GradientColor1 = System.Drawing.Color.White;
+            this.btn_huy.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_huy.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_huy.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_huy.Image = global::KhachSanSaoBang.Properties.Resources.gui_cancel;
+            this.btn_huy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_huy.ImagePadding = 8;
+            this.btn_huy.ImageScaleFactor = 0.8F;
+            this.btn_huy.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_huy.Location = new System.Drawing.Point(922, 3);
+            this.btn_huy.Name = "btn_huy";
+            this.btn_huy.NormalBackColor = System.Drawing.Color.White;
+            this.btn_huy.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_huy.Size = new System.Drawing.Size(329, 50);
+            this.btn_huy.TabIndex = 0;
+            this.btn_huy.Text = "Hủy";
+            this.btn_huy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_huy.TextPadding = 8;
+            this.btn_huy.UseGradient = false;
+            // 
+            // btn_inhoadon
+            // 
+            this.btn_inhoadon.BackColor = System.Drawing.Color.White;
+            this.btn_inhoadon.BorderColor = System.Drawing.Color.Black;
+            this.btn_inhoadon.BorderWidth = 1;
+            this.btn_inhoadon.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_inhoadon.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_inhoadon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_inhoadon.EnableShadow = false;
+            this.btn_inhoadon.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btn_inhoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_inhoadon.GradientColor1 = System.Drawing.Color.White;
+            this.btn_inhoadon.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_inhoadon.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_inhoadon.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_inhoadon.Image = global::KhachSanSaoBang.Properties.Resources.icons8_invoice_100;
+            this.btn_inhoadon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_inhoadon.ImagePadding = 8;
+            this.btn_inhoadon.ImageScaleFactor = 0.8F;
+            this.btn_inhoadon.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_inhoadon.Location = new System.Drawing.Point(532, 3);
+            this.btn_inhoadon.Name = "btn_inhoadon";
+            this.btn_inhoadon.NormalBackColor = System.Drawing.Color.White;
+            this.btn_inhoadon.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_inhoadon.Size = new System.Drawing.Size(329, 50);
+            this.btn_inhoadon.TabIndex = 1;
+            this.btn_inhoadon.Text = "In Hóa Đơn";
+            this.btn_inhoadon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_inhoadon.TextPadding = 8;
+            this.btn_inhoadon.UseGradient = false;
+            // 
+            // btn_thanhtoan
+            // 
+            this.btn_thanhtoan.BackColor = System.Drawing.Color.White;
+            this.btn_thanhtoan.BorderColor = System.Drawing.Color.Black;
+            this.btn_thanhtoan.BorderWidth = 1;
+            this.btn_thanhtoan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_thanhtoan.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_thanhtoan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_thanhtoan.EnableShadow = false;
+            this.btn_thanhtoan.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btn_thanhtoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_thanhtoan.GradientColor1 = System.Drawing.Color.White;
+            this.btn_thanhtoan.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_thanhtoan.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_thanhtoan.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_thanhtoan.Image = global::KhachSanSaoBang.Properties.Resources.icons8_payment_64;
+            this.btn_thanhtoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_thanhtoan.ImagePadding = 8;
+            this.btn_thanhtoan.ImageScaleFactor = 0.8F;
+            this.btn_thanhtoan.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_thanhtoan.Location = new System.Drawing.Point(142, 3);
+            this.btn_thanhtoan.Name = "btn_thanhtoan";
+            this.btn_thanhtoan.NormalBackColor = System.Drawing.Color.White;
+            this.btn_thanhtoan.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_thanhtoan.Size = new System.Drawing.Size(329, 50);
+            this.btn_thanhtoan.TabIndex = 2;
+            this.btn_thanhtoan.Text = "Thanh Toán";
+            this.btn_thanhtoan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_thanhtoan.TextPadding = 8;
+            this.btn_thanhtoan.UseGradient = false;
             // 
             // tableLayoutPanel6
             // 
@@ -738,6 +831,26 @@
             this.col_SL_dv.Name = "col_SL_dv";
             this.col_SL_dv.ReadOnly = true;
             // 
+            // lbl_header_phai
+            // 
+            this.lbl_header_phai.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_header_phai.BorderColor = System.Drawing.Color.Transparent;
+            this.lbl_header_phai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_header_phai.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.lbl_header_phai.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbl_header_phai.Image = ((System.Drawing.Image)(resources.GetObject("lbl_header_phai.Image")));
+            this.lbl_header_phai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_header_phai.ImagePadding = 4;
+            this.lbl_header_phai.ImageScaleFactor = 0.4F;
+            this.lbl_header_phai.ImageSize = new System.Drawing.Size(20, 20);
+            this.lbl_header_phai.Location = new System.Drawing.Point(3, 3);
+            this.lbl_header_phai.Name = "lbl_header_phai";
+            this.lbl_header_phai.Size = new System.Drawing.Size(664, 113);
+            this.lbl_header_phai.TabIndex = 43;
+            this.lbl_header_phai.Text = "Danh sách dịch vụ đã dùng";
+            this.lbl_header_phai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_header_phai.TextPadding = 4;
+            // 
             // main_right_bot
             // 
             this.main_right_bot.BackColor = System.Drawing.Color.LightGray;
@@ -841,6 +954,36 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(658, 533);
             this.tableLayoutPanel1.TabIndex = 48;
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.BackColor = System.Drawing.Color.White;
+            this.btn_clear.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.btn_clear.BorderWidth = 1;
+            this.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_clear.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.btn_clear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_clear.EnableShadow = false;
+            this.btn_clear.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_clear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btn_clear.GradientColor1 = System.Drawing.Color.White;
+            this.btn_clear.GradientColor2 = System.Drawing.Color.LightGray;
+            this.btn_clear.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.btn_clear.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.btn_clear.Image = null;
+            this.btn_clear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_clear.ImagePadding = 8;
+            this.btn_clear.ImageSize = new System.Drawing.Size(20, 20);
+            this.btn_clear.Location = new System.Drawing.Point(501, 143);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.NormalBackColor = System.Drawing.Color.White;
+            this.btn_clear.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btn_clear.Size = new System.Drawing.Size(154, 119);
+            this.btn_clear.TabIndex = 15;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_clear.TextPadding = 8;
+            this.btn_clear.UseGradient = false;
             // 
             // btn_1k
             // 
@@ -1029,149 +1172,6 @@
             this.txt_tienthua.Size = new System.Drawing.Size(393, 71);
             this.txt_tienthua.TabIndex = 5;
             this.txt_tienthua.Text = "";
-            // 
-            // btn_huy
-            // 
-            this.btn_huy.BackColor = System.Drawing.Color.White;
-            this.btn_huy.BorderColor = System.Drawing.Color.Black;
-            this.btn_huy.BorderWidth = 1;
-            this.btn_huy.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_huy.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_huy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_huy.EnableShadow = false;
-            this.btn_huy.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btn_huy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_huy.GradientColor1 = System.Drawing.Color.White;
-            this.btn_huy.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_huy.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_huy.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_huy.Image = global::KhachSanSaoBang.Properties.Resources.gui_cancel;
-            this.btn_huy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_huy.ImagePadding = 8;
-            this.btn_huy.ImageScaleFactor = 0.8F;
-            this.btn_huy.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_huy.Location = new System.Drawing.Point(922, 3);
-            this.btn_huy.Name = "btn_huy";
-            this.btn_huy.NormalBackColor = System.Drawing.Color.White;
-            this.btn_huy.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_huy.Size = new System.Drawing.Size(329, 50);
-            this.btn_huy.TabIndex = 0;
-            this.btn_huy.Text = "Hủy";
-            this.btn_huy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_huy.TextPadding = 8;
-            this.btn_huy.UseGradient = false;
-            // 
-            // btn_inhoadon
-            // 
-            this.btn_inhoadon.BackColor = System.Drawing.Color.White;
-            this.btn_inhoadon.BorderColor = System.Drawing.Color.Black;
-            this.btn_inhoadon.BorderWidth = 1;
-            this.btn_inhoadon.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_inhoadon.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_inhoadon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_inhoadon.EnableShadow = false;
-            this.btn_inhoadon.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btn_inhoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_inhoadon.GradientColor1 = System.Drawing.Color.White;
-            this.btn_inhoadon.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_inhoadon.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_inhoadon.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_inhoadon.Image = global::KhachSanSaoBang.Properties.Resources.icons8_invoice_100;
-            this.btn_inhoadon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_inhoadon.ImagePadding = 8;
-            this.btn_inhoadon.ImageScaleFactor = 0.8F;
-            this.btn_inhoadon.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_inhoadon.Location = new System.Drawing.Point(532, 3);
-            this.btn_inhoadon.Name = "btn_inhoadon";
-            this.btn_inhoadon.NormalBackColor = System.Drawing.Color.White;
-            this.btn_inhoadon.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_inhoadon.Size = new System.Drawing.Size(329, 50);
-            this.btn_inhoadon.TabIndex = 1;
-            this.btn_inhoadon.Text = "In Hóa Đơn";
-            this.btn_inhoadon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_inhoadon.TextPadding = 8;
-            this.btn_inhoadon.UseGradient = false;
-            // 
-            // btn_thanhtoan
-            // 
-            this.btn_thanhtoan.BackColor = System.Drawing.Color.White;
-            this.btn_thanhtoan.BorderColor = System.Drawing.Color.Black;
-            this.btn_thanhtoan.BorderWidth = 1;
-            this.btn_thanhtoan.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_thanhtoan.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_thanhtoan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_thanhtoan.EnableShadow = false;
-            this.btn_thanhtoan.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btn_thanhtoan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_thanhtoan.GradientColor1 = System.Drawing.Color.White;
-            this.btn_thanhtoan.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_thanhtoan.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_thanhtoan.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_thanhtoan.Image = global::KhachSanSaoBang.Properties.Resources.icons8_payment_64;
-            this.btn_thanhtoan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_thanhtoan.ImagePadding = 8;
-            this.btn_thanhtoan.ImageScaleFactor = 0.8F;
-            this.btn_thanhtoan.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_thanhtoan.Location = new System.Drawing.Point(142, 3);
-            this.btn_thanhtoan.Name = "btn_thanhtoan";
-            this.btn_thanhtoan.NormalBackColor = System.Drawing.Color.White;
-            this.btn_thanhtoan.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_thanhtoan.Size = new System.Drawing.Size(329, 50);
-            this.btn_thanhtoan.TabIndex = 2;
-            this.btn_thanhtoan.Text = "Thanh Toán";
-            this.btn_thanhtoan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_thanhtoan.TextPadding = 8;
-            this.btn_thanhtoan.UseGradient = false;
-            // 
-            // lbl_header_phai
-            // 
-            this.lbl_header_phai.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_header_phai.BorderColor = System.Drawing.Color.Transparent;
-            this.lbl_header_phai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_header_phai.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.lbl_header_phai.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_header_phai.Image = ((System.Drawing.Image)(resources.GetObject("lbl_header_phai.Image")));
-            this.lbl_header_phai.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_header_phai.ImagePadding = 4;
-            this.lbl_header_phai.ImageScaleFactor = 0.4F;
-            this.lbl_header_phai.ImageSize = new System.Drawing.Size(20, 20);
-            this.lbl_header_phai.Location = new System.Drawing.Point(3, 3);
-            this.lbl_header_phai.Name = "lbl_header_phai";
-            this.lbl_header_phai.Size = new System.Drawing.Size(664, 113);
-            this.lbl_header_phai.TabIndex = 43;
-            this.lbl_header_phai.Text = "Danh sách dịch vụ đã dùng";
-            this.lbl_header_phai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl_header_phai.TextPadding = 4;
-            // 
-            // btn_clear
-            // 
-            this.btn_clear.BackColor = System.Drawing.Color.White;
-            this.btn_clear.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.btn_clear.BorderWidth = 1;
-            this.btn_clear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_clear.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.btn_clear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_clear.EnableShadow = false;
-            this.btn_clear.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btn_clear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btn_clear.GradientColor1 = System.Drawing.Color.White;
-            this.btn_clear.GradientColor2 = System.Drawing.Color.LightGray;
-            this.btn_clear.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.btn_clear.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.btn_clear.Image = null;
-            this.btn_clear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_clear.ImagePadding = 8;
-            this.btn_clear.ImageSize = new System.Drawing.Size(20, 20);
-            this.btn_clear.Location = new System.Drawing.Point(501, 143);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.NormalBackColor = System.Drawing.Color.White;
-            this.btn_clear.PressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.btn_clear.Size = new System.Drawing.Size(154, 119);
-            this.btn_clear.TabIndex = 15;
-            this.btn_clear.Text = "Clear";
-            this.btn_clear.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btn_clear.TextPadding = 8;
-            this.btn_clear.UseGradient = false;
             // 
             // ThanhToan
             // 
