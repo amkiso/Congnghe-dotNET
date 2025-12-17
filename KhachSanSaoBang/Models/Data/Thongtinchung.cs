@@ -18,6 +18,9 @@ namespace KhachSanSaoBang.Models
         int maphieudp;
         int diemtichluy;
         string hangthanhvien;
+        int maloaiphong;
+        int matienich;
+        int sohoadon, sophieudat;
         public string Tenphong { get => tenphong; set => tenphong = value; }
         public string Loaiphong { get => loaiphong; set => loaiphong = value; }
         public string Khachhang { get => khachhang; set => khachhang = value; }
@@ -34,5 +37,9 @@ namespace KhachSanSaoBang.Models
         public int Maphieudp { get => maphieudp; set => maphieudp = value; }
         public int Diemtichluy { get => diemtichluy; set => diemtichluy = value; }
         public string Hangthanhvien { get => hangthanhvien; set => hangthanhvien = value; }
+        public int Maloaiphong { get => maloaiphong; set => maloaiphong = value; }
+        public int Matienich { get => matienich; set => matienich = value; }
+        public int Sohoadon { get => sohoadon; set => sohoadon = value; }
+        public int Sophieudat { get => sophieudat; set => sophieudat = value; }
     }
 }

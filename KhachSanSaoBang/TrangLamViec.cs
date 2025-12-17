@@ -1,7 +1,7 @@
-﻿using KhachSanSaoBang.Models;
+﻿using KhachSanSaoBang.ChatBox;
+using KhachSanSaoBang.Models;
+using KhachSanSaoBang.Models.Client;
 using KhachSanSaoBang.Models.Data;
-using KhachSanSaoBang.NhanVien;
-using KhachSanSaoBang.ThongKe.BaoCao;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,89 +12,81 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static KhachSanSaoBang.Models.Dataloader;
 
 namespace KhachSanSaoBang
 {
     public partial class TrangLamViec : Form
     {
-        bool isMenuCollapsed = false;
         Xuly xl = new Xuly();
-        private string lastSelectedValue = "";
-        private int clickCount = 0;
+        private static List<Thongtinchung> DanhsachPhong;
         int counter = 0;
-        private bool isLoading = false;
         public TrangLamViec()
         {
             InitializeComponent();
-            
-            lbl_Nhanvien.Text = Session.UserName;
-            lbl_chucvu.Text = Session.Role;
-            // Các nút con
-            btnKhachSan.Click += btnKhachSan_Click;
-            btnDichVu.Click += btnDichVu_Click;
-            pnlKhachhang.Click += pnlKhachhang_Click;
-            btn_thoatca.Click += Btn_thoatca_Click;
-            btnDoanhThu.Click += btnDoanhThu_Click;
-            btnThongKe.Click += btnThongKe_Click;
-            btn_nhanvien.Click += button1_Click;
-            btn_TracuuKhachHang.Click += Btn_tracuu_Click;
-            btn_datphong.Click += Btn_datphong_Click;
-            this.timer1.Tick += Timer1_Tick; //timer
-            //Sự kiện phòng Tầng 1
-            btn_p101.Click += Sophong_click;
-            btn_p102.Click += Sophong_click;
-            btn_p103.Click += Sophong_click;
-
-            btn_p104.Click += Sophong_click;
-            btn_p105.Click += Sophong_click;
-            btn_p106.Click += Sophong_click;
-            //Sự kiện phòng Tầng 2
-            btn_p201.Click += Sophong_click;
-            btn_p202.Click += Sophong_click;
-            btn_p203.Click += Sophong_click;
-            btn_p204.Click += Sophong_click;
-            btn_p205.Click += Sophong_click;
-            btn_p206.Click += Sophong_click;
-            //Sự kiện phòng Tầng 3
-            btn_p301.Click += Sophong_click;
-            btn_p302.Click += Sophong_click;
-            btn_p303.Click += Sophong_click;
-            btn_p304.Click += Sophong_click;
-            btn_p305.Click += Sophong_click;
-            btn_p306.Click += Sophong_click;
-            //Sự kiện khác
+            this.timer1.Tick += Timer1_Tick;
+            this.Load += Form1_Load;
+            btn_clear_all.Click += Btn_clear_all_Click;
+            btn_thoatca.Click += Btn_thoatca_Click1;
+            btn_tradv.Click += Btn_tradv_Click;
             btn_goidv.Click += Btn_goidv_Click;
-            btn_trahang.Click += Btn_trahang_Click;
-            btn_dangkyKH.Click += Btn_dangkyKH_Click;
-            btn_thanhtoan.Click += Btn_thanhtoan_Click;
-            this.Load += Mainform_Load;
-            list_dichvu.SelectedIndexChanged += list_dichvu_SelectedIndexChanged;
-            this.btn_Toggle_menu.Click += Btn_Toggle_menu_Click;
-            this.btnQLNhanVien.Click += DoiKhuVucLamViec;
-            this.btnQLKhachHang.Click += DoiKhuVucLamViec;
-            this.btnQLDoanhThu.Click += DoiKhuVucLamViec;
-            this.btnBaoCao.Click += DoiKhuVucLamViec;
+            btn_thoatca.Click += Btn_thoatca_Click;
             btn_reload.Click += Btn_reload_Click;
-            cbo_tinhtrang.SelectedIndexChanged += Cbo_tinhtrang_SelectedIndexChanged;
-            list_dichvu.Click += List_dichvu_Click;
+            btn_doitrangthai.Click += Btn_doitrangthai_Click;
+            btn_thanhtoan.Click += Btn_thanhtoan_Click;
+            //Lọc phòng nhanh bằng nút bấm
+            btn_pTrong.Click += Loc_theo_trang_thai;
+            btn_pQuaHan.Click += Loc_theo_trang_thai;
+            btn_pChoXn.Click += Loc_theo_trang_thai;
+            btn_pDangdung.Click += Loc_theo_trang_thai;
+            btn_tatcaphong.Click += Loc_theo_trang_thai;
+            btn_chocheck.Click += Loc_theo_trang_thai;
+            btn_tatcaphong.Click += Loc_theo_trang_thai;
+            btn_dangsua.Click += Loc_theo_trang_thai;
+            btn_Dungdung.Click += Loc_theo_trang_thai;
+            btn_dangdon.Click += Loc_theo_trang_thai;
+            //Menu
+            btn_datphong.Click += Btn_datphong_Click;
+            btn_tracuukhachhang.Click += Btn_tracuukhachhang_Click;
+            btn_dangkykhachhang.Click += Btn_dangkykhachhang_Click;
+            btn_thongke.Click += DoiKhuVucLamViec;
+            btn_dangkythanhvien.Click += DoiKhuVucLamViec;
+            btn_danhsachhoadon.Click += DoiKhuVucLamViec;
+            btn_chatbot.Click += Btn_chatbot_Click;
+            btn_quanlyphong.Click += Btn_quanlyphong_Click;
+            btn_quanlydv.Click += Btn_quanlydv_Click;
         }
 
-       
+        private void Btn_quanlydv_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyDichVu qlp = new QuanLyDichVu
+                ();
+            qlp.ShowDialog();
+            this.Close();
+        }
+
+        private void Btn_quanlyphong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyPhong qlp = new QuanLyPhong
+                ();
+            qlp.ShowDialog();
+            this.Close();
+
+        }
+
+        private void Btn_chatbot_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Chat tc = new Chat();
+            tc.ShowDialog();
+            this.Close();
+        }
 
         private void DoiKhuVucLamViec(object sender, EventArgs e)
         {
             DialogResult rel = MessageBox.Show("Để thực hiện chức năng này cần phải đổi khu vực làm việc, Đồng ý ?", "Thông báo", MessageBoxButtons.YesNo);
-            if (rel == DialogResult.Yes)
-            {
-                DoiTrang();
-            }
-            else return;
-        }
-
-        private void Btn_doiKhuvuc_Click(object sender, EventArgs e)
-        {
-            DialogResult rel = MessageBox.Show("Xác nhận đổi khu vực làm việc ?", "Thông báo", MessageBoxButtons.YesNo);
             if (rel == DialogResult.Yes)
             {
                 DoiTrang();
@@ -108,82 +100,13 @@ namespace KhachSanSaoBang
             tc.ShowDialog();
             this.Close();
         }
-        private void Btn_reload_Click(object sender, EventArgs e)
+        private void Btn_tracuukhachhang_Click(object sender, EventArgs e)
         {
-            FormStart();
+            AcctionForm tracuu = new AcctionForm(1);
+            tracuu.ShowDialog();
         }
 
-        private void ToggleSubMenu(Panel submenu)
-        {
-            if (!submenu.Visible)
-            {
-                submenu.Visible = true;
-            }
-            else
-            {
-                submenu.Visible = false;
-            }
-        }
-        private void Btn_Toggle_menu_Click(object sender, EventArgs e)
-        {
-            if (pnl_menu.Visible) { pnl_menu.Visible = false; }
-            else pnl_menu.Visible = true;
-            if (isMenuCollapsed)
-            {
-                // Mở rộng lại menu
-                tableLayoutPanel1.ColumnStyles[0].Width = 15;
-                tableLayoutPanel1.ColumnStyles[1].Width = 70;
-            }
-            else
-            {
-                // Thu nhỏ menu
-                tableLayoutPanel1.ColumnStyles[0].Width = 1;
-                tableLayoutPanel1.ColumnStyles[1].Width = 84;
-            }
-            
-            isMenuCollapsed = !isMenuCollapsed;
-        }
-        private void btnKhachSan_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlKhachSanSub);
-        }
-
-        private void btnDichVu_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlDichVuSub);
-        }
-
-        private void pnlKhachhang_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlKhachHangSub);
-        }
-
-        private void btnDoanhThu_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlDoanhThuSub);
-        }
-
-        private void btnThongKe_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlThongKeSub);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ToggleSubMenu(pnlNhanVienSub);
-        }
-     
-
-        private void Btn_thoatca_Click(object sender, EventArgs e)
-        {
-            Session.Reset();
-            this.Hide();
-            Dangnhap dn = new Dangnhap();
-            dn.ShowDialog();
-            this.Close();
-        }
-
-        private void Btn_dangkyKH_Click(object sender, EventArgs e)
+        private void Btn_dangkykhachhang_Click(object sender, EventArgs e)
         {
             int acction = 3;//đăng ký tài khoản khách hàng
             Session.Acction_status = false;
@@ -191,256 +114,88 @@ namespace KhachSanSaoBang
             dk.ShowDialog();
         }
 
+        private void Btn_thoatca_Click1(object sender, EventArgs e)
+        {
+            DialogResult rels = MessageBox.Show("Xác nhận thoát ca ?", "Thông báo", MessageBoxButtons.YesNo);
+            if (rels == DialogResult.Yes)
+            {
+                Session.Reset();
+                this.Hide();
+                Dangnhap dn = new Dangnhap();
+                dn.ShowDialog();
+                this.Close();
+            }
+         }
+
         private void Btn_datphong_Click(object sender, EventArgs e)
         {
             int acction = 0;
             AcctionForm datp = new AcctionForm(acction);
             Session.Acction_status = false;
             datp.ShowDialog();
-            FormStart();
-            if(Session.Acction_status == false)
+            LoadData();
+            if (Session.Acction_status == false)
             {
                 MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
             }
         }
 
-        private void Btn_tracuu_Click(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            AcctionForm tracuu = new AcctionForm(1);
-            tracuu.ShowDialog();
-        }
-        private void List_dichvu_Click(object sender, EventArgs e)
-        {
-            if (list_dichvu.SelectedValue == null)
-                return;
-
-            string currentValue = list_dichvu.SelectedValue.ToString();
-
-            if (currentValue == lastSelectedValue)
+            lbl_timer.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            if (cb_lammoi5s.Checked)
             {
-                // Nếu chọn lại cùng item : tăng số lượng
-                clickCount++;
-            }
-            else
-            {
-                // Nếu chọn item khác : reset về 1
-                clickCount = 1;
-                lastSelectedValue = currentValue;
-            }
+                counter++;
 
-            txt_sl_goi.Text = clickCount.ToString();
-        }
-        private void Cbo_tinhtrang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (isLoading) return; //bỏ qua sự kiện nếu đang load thông tin phòng khác
-            else
-            {
-                if (Session.maphonghientai != 0)
+                // 5 giây (vì timer tick mỗi 0.5 giây)
+                if (counter >= 50)
                 {
-                    int new_values, old_values;
-                    old_values = xl.GetCodeRoomStatus(Session.maphonghientai);
-                    string trangthai_new = null, trangthai_old;
-                    new_values = (int)cbo_tinhtrang.SelectedValue;
-                    trangthai_old = xl.GetStringRoomStatus(old_values);
-                    if (cbo_tinhtrang.SelectedItem is tblTinhTrangPhong ttr)
-                    {
-                        trangthai_new = ttr.mo_ta;
-
-                    }
-
-                    Thongtinchung tt = xl.GetThongtinphong(Session.maphonghientai);
-                    DialogResult result = MessageBox.Show($"Bạn có chắc muốn thay đổi trạng thái của phòng {tt.Tenphong} \n từ '{trangthai_old}' thành '{trangthai_new}' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == DialogResult.Yes)
-                    {
-                        switch (xl.GetRoomCase(tt.Trangthai, new_values))
-                        {
-                            case 1:
-                                {
-                                    int acction = 1;
-                                    Session.Acction_status = false;
-                                    
-                                    AcctionForm thuep = new AcctionForm(acction);
-                                    thuep.ShowDialog();
-
-                                    if (Session.Acction_status)
-                                    {
-                        
-                                        MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo");
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Thay đổi trạng thái phòng thất bại, bạn đã hủy thuê phòng !", "THông báo");
-                                    }
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    /*thay đổi từ 2-3: Kiểm tra xem phòng có được thanh toán hay chưa, 
-                                             nếu đã thay toán thì cho phép đổi trạng thái trực tiếp
-                                             Nếu chưa thay toán thì thông báo "Phát hiện phòng này chưa thanh toán, 
-                                             bạn có muốn thanh toán hóa đơn cho phòng này không ?(Yes/No)*/
-                                    if (xl.CheckHoaDon(Session.maphonghientai))
-                                    {
-                                        if (xl.ChangeRoomStatus(Session.maphonghientai, new_values)) { MessageBox.Show("Thay đổi trạng thái phòng thành công !", "THông báo"); }
-                                        else
-                                        {
-                                            MessageBox.Show("Thay đổi trạng thái phòng thất bại, có lỗi xảy ra khi đổi trạng thái phòng !", "THông báo");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (Session.maphonghientai != 0)
-                                        {
-                                            DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {tt.Tenphong} ?", "Thông báo", MessageBoxButtons.YesNo);
-                                            if (rls == DialogResult.Yes)
-                                            {
-                                                ThanhToan pm = new ThanhToan(xl.GetThongtinThanhToan(Session.maphonghientai));
-                                                pm.ShowDialog(this);
-
-                                            }
-                                            else return;
-                                        }
-                                        else { MessageBox.Show("Bạn chưa chọn phòng để thanh toán!", "Thông báo"); }
-                                    }
-
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    //thay đổi từ 3-1: Thông báo hỏi xác nhận đã dọn phòng xong ?(Yes/No) Yes-> thay đổi trạng thái, No->return
-                                    DialogResult rls = MessageBox.Show("Xác nhận đã dọn phòng xong ?", "Thông báo", MessageBoxButtons.YesNo);
-                                    if (rls == DialogResult.Yes)
-                                    {
-                                        xl.ChangeRoomStatus(Session.maphonghientai, 1);//Chuyển thành trống
-                                    }
-                                    break;
-                                }
-                            case 4:
-                                {
-                                    //thay đổi từ 1-6: Đặt phòng để thay đổi trạng thái này
-
-                                    DialogResult rel =  MessageBox.Show("Mở cửa sổ đặt phòng mới có thể thay đổi sang trạng thái này, Bạn có đồng ý chuyển sang trang đặt phòng ? !", "Thông báo",MessageBoxButtons.YesNo);
-                                    if(rel == DialogResult.Yes)
-                                    {
-                                        Session.Acction_status = false;
-                                        int acction = 0;
-                                        AcctionForm dp = new AcctionForm(acction);
-                                        dp.ShowDialog();
-                                        if (!Session.Acction_status)
-                                        {
-                                            MessageBox.Show("Bạn đã hủy đặt phòng", "Thông báo");
-                                        }
-                                    }
-                                    break;
-                                }
-                            case 5:
-                                {
-                                    //thay đổi từ 6-7: Thông báo hỏi xác nhận phòng ? (Yes/No)
-                                    DialogResult rel = MessageBox.Show("Xác nhận nhận phòng khách đặt ?", "Thông báo", MessageBoxButtons.YesNo);
-                                    if (rel == DialogResult.Yes)
-                                    {
-                                        //Đổi trạng thái phòng, trạng thái phiếu đặt, tạo hóa đơn mới
-                                        if (xl.XacNhanPhong(Session.maphonghientai))
-                                        {
-                                  
-                                            MessageBox.Show("Đã thay đổi trạng thái phòng thành công !", "Thông báo");
-                                        }
-                                        else { MessageBox.Show("Lỗi khi thay đổi trạng thái phòng !", "Thông báo"); }
-                                    }
-                                    else
-                                    {
-                                        return;
-                                    }
-                                    break;
-                                }
-                            case 6:
-                                {
-                                    //đổi từ 7-2: Hiện cửa sổ nhập thông tin khách nhận phòng,Ghi lại ngày vào (ngay_vao) trong database thành ngày giờ hiện tại, Cập nhật dữ liệu trên db
-                                    Session.Acction_status = false;
-                                    int acction = 2;
-                                    AcctionForm ktc = new AcctionForm(acction);
-                                    ktc.ShowDialog();
-                                    string json = ktc.jsonstring;
-                                    if(xl.AddThongtinKhachHangThuePhong(Session.maphonghientai, json)) {
-                                        MessageBox.Show("Nhập thông tin khách thuê thành công!", "Thông báo");
-                                        xl.ChangeRoomStatus(Session.maphonghientai, new_values);
-                                        
-                                    }
-                                    break;
-                                }
-                            case 0:
-                                {
-                                    //Các trạng thái 4,5 của phòng chỉ có thể thay đổi khi phòng trống(1)
-                                    if (tt.Trangthai == 1)
-                                    {
-                                        xl.ChangeRoomStatus(Session.maphonghientai, new_values);
-                                    }
-                                    else MessageBox.Show("Phòng đang được sử dụng !", "Thông báo");
-                                    break;
-                                }
-                            case 7:
-                                {
-                                    DialogResult rel = MessageBox.Show("Xác nhận không nhận phòng khách đặt ?", "Thông báo", MessageBoxButtons.YesNo);
-                                    if (rel == DialogResult.Yes)
-                                    {
-                                        //Không xác nhận phiếu đặt phòng
-                                        int trangthaicu = 1;//Đang đặt và chờ xác nhận
-                                        int trangthaimoi = 3;//Đã hủy
-                                        if (xl.ChangeRoomFormStatus(Session.maphonghientai, trangthaicu, trangthaimoi) && xl.ChangeRoomStatus(Session.maphonghientai, 1))
-                                        {
-                                            MessageBox.Show("Hủy phiếu thành công!", "Thông báo");
-                                        }
-                                    }
-                                    else return;
-
-                                        break;
-                                }
-                            case 8:
-                                {
-                                    DialogResult rel = MessageBox.Show("Xác nhận hủy phòng khách đặt ?", "Thông báo", MessageBoxButtons.YesNo);
-                                    if (rel == DialogResult.Yes)
-                                    {
-                                        //Hủy phiếu đặt do khách không đến nhận phòng
-                                        int trangthaicu = 2;//Đã xác nhận
-                                        int trangthaimoi = 3;//Đã hủy
-                                        if (xl.ChangeRoomFormStatus(Session.maphonghientai, trangthaicu, trangthaimoi) && xl.ChangeRoomStatus(Session.maphonghientai, 1))
-                                        {
-                                            MessageBox.Show("Hủy phiếu thành công!", "Thông báo");
-                                            
-                                        }
-                                    }
-
-                                    else return;
-                                            break;
-                                }
-                            case -1:
-                                {
-                                    // Ngoài ra không chấp nhận thay đổi khác với luồng này
-                                    MessageBox.Show($"Không thể thay đổi trạng thái {tt.Tenphong} \n từ '{trangthai_old}' thành '{trangthai_new}' vì không hợp lệ !");
-                                    return;
-                                }
-                        }
-
-                    }
-                    else
-                    {
-                        isLoading = true;
-                        cbo_tinhtrang.SelectedValue = old_values;
-                        return;
-                    }
-                    FormStart();
-
+                    counter = 0; // reset
+                    LoadData();
                 }
             }
+            else
+            {
+                // Nếu tắt checkbox thì reset
+                counter = 0;
+            }
+
         }
+        private void Btn_reload_Click(object sender, EventArgs e)
+        {
+            Btn_clear_all_Click(sender, e);
+            LoadData();
+        }
+
+        private void Loc_theo_trang_thai(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                int trangthai = Convert.ToInt32(btn.Tag); // lấy giá trị từ Tag
+                if (trangthai > 0)
+                {
+                    var dsLoc = DanhsachPhong.Where(t => t.Trangthai == trangthai).ToList();
+                    LoadPhong(dsLoc);
+                }
+                else if (trangthai == 0) {
+                    LoadPhong(DanhsachPhong);
+                }
+                else {
+                    var dsLoc = DanhsachPhong.Where(t => t.Ngayra!= "-" && DateTime.Parse(t.Ngayra) < DateTime.Now).ToList();
+                    LoadPhong(dsLoc);
+                }
+            }
+            
+        }
+
         private void Btn_thanhtoan_Click(object sender, EventArgs e)
         {
-            //ẩn cửa sổ này và gọi cửa sổ thanh toán tại đây
             if (Session.maphonghientai != 0)
             {
                 if (Session.trangthaiphong != 2) { MessageBox.Show("Trạng thái phòng hiện tại không cho phép thanh toán !", "Thông báo"); }
-                else {
+                else
+                {
                     DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {Session.maphonghientai} ?", "Thông báo", MessageBoxButtons.YesNo);
                     if (rls == DialogResult.Yes)
                     {
@@ -457,7 +212,7 @@ namespace KhachSanSaoBang
                             }
                             else
                             {
-                                FormStart();
+                                LoadData();
                             }
                         }
                     }
@@ -465,228 +220,362 @@ namespace KhachSanSaoBang
                 }
             }
             else { MessageBox.Show("Bạn chưa chọn phòng để thanh toán!", "Thông báo"); }
+        }
+
+        private void Btn_doitrangthai_Click(object sender, EventArgs e)
+        {
+            int newtrangthai = (int)btn_doitrangthai.Tag;
+            int currenttrangthai = cbo_tinhtrang.SelectedIndex;
+
+            if (newtrangthai ==2 && currenttrangthai == 2)//Thanh toán
+            {
+                DialogResult rls = MessageBox.Show($"Xác nhận chuyển đến trang thanh toán phòng {Session.maphonghientai} ?", "Thông báo", MessageBoxButtons.YesNo);
+                if (rls == DialogResult.Yes)
+                {
+                    Session.Acction_status = false;
+                    var thanhtoans = xl.GetThongtinThanhToan(Session.maphonghientai);
+                    if (thanhtoans == null) { MessageBox.Show("Lấy thông tin thanh toán thất bại", "Lỗi"); return; }
+                    else
+                    {
+                        ThanhToan pm = new ThanhToan(thanhtoans);
+                        pm.ShowDialog(this);
+                        if (!Session.Acction_status)
+                        {
+                            MessageBox.Show("Bạn đã hủy thanh toán !", "Thông báo");
+                        }
+                        else
+                        {
+                            LoadPhong(DanhsachPhong);
+                            Loadbuttons();
+                        }
+                    }
+                }
+                else return;
+            }
+            else if(newtrangthai ==7 && currenttrangthai == 6) //Xác nhận phòng
+            {
+                DialogResult rel = MessageBox.Show("Xác nhận nhận phòng khách đặt ?", "Thông báo", MessageBoxButtons.YesNo);
+                if (rel == DialogResult.Yes)
+                {
+                    //Đổi trạng thái phòng, trạng thái phiếu đặt, tạo hóa đơn mới
+                    if (xl.XacNhanPhong(Session.maphonghientai))
+                    {
+
+                        MessageBox.Show("Đã thay đổi trạng thái phòng thành công !", "Thông báo");
+                    }
+                    else { MessageBox.Show("Lỗi khi thay đổi trạng thái phòng !", "Thông báo"); }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else if(newtrangthai==2 && currenttrangthai == 7)//Checkin
+            {
+                Session.Acction_status = false;
+                int acction = 2;
+                AcctionForm ktc = new AcctionForm(acction);
+                ktc.ShowDialog();
+                if (Session.Acction_status)
+                {
+                    string json = ktc.jsonstring;
+                    if (xl.AddThongtinKhachHangThuePhong(Session.maphonghientai, json))
+                    {
+                        MessageBox.Show("Nhập thông tin khách thuê thành công!", "Thông báo");
+                        xl.ChangeRoomStatus(Session.maphonghientai, newtrangthai);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn đã hủy nhập thông tin khách thuê !", "Thông báo");
+                }
+            }
+            else if (newtrangthai==6 && currenttrangthai ==1)//Đặt phòng
+            {
+               DialogResult Rels = MessageBox.Show("Mở cửa sổ đặt phòng ?", "Thông báo", MessageBoxButtons.YesNo);
+                if (Rels == DialogResult.Yes)
+                    Btn_datphong_Click(sender, e);
+                else return;
+            }    
+            //Dọn phòng xong & sửa chữa xong & sử dụng lại phòng
+            else
+            {
+                DialogResult rels = MessageBox.Show("Xác nhận đổi trạng thái phòng ?", "Thông báo", MessageBoxButtons.YesNo);
+                if (rels == DialogResult.No) return;
+                else
+                {
+                    if (xl.ChangeRoomStatus(Session.maphonghientai, newtrangthai))
+                    {
+                        MessageBox.Show("Đổi trạng thái phòng thành công !", "Thông báo");
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đổi trạng thái phòng thất bại !", "Thông báo");
+                    }
+                }
+            }
+            DanhsachPhong = xl.GetAllThongtinphong();
+            LoadPhong(DanhsachPhong);
+            Loadbuttons();
+            Btn_clear_all_Click(sender, e);
+        }
+
+        private void Btn_thoatca_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void Btn_goidv_Click(object sender, EventArgs e)
+        {
+            if (Session.maphonghientai == 0) { MessageBox.Show("Bạn chưa chọn phòng !", "Thông báo"); }
+            else
+            {
+                //Kiểm tra số lượng nhập vào:
+                if (nb_sl_goi.Value <= int.Parse(txt_sl_ton_dv.Text))
+                {
+                    if(nb_sl_goi.Value <= 0)
+                    {
+                        MessageBox.Show("Số lượng gọi phải lớn hơn 0", "Thông báo");
+                        return;
+                    }
+                    int so = (int)nb_sl_goi.Value;
+                    if (xl.GoiDichVu(Session.maphonghientai, Session.Madv,so))
+                    {
+                        MessageBox.Show("Gọi dịch vụ thành công !", "Thông báo");
+                        da_dv_su_dung.DataSource = xl.listdichvup(Session.maphonghientai);
+                        dsDichVu.TruSoLuong(Session.Madv, so);
+                        LoadDichVu(Session.Madv.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gọi dịch vụ thất bại do phòng chưa có khách đặt hoặc do lỗi không xác định !", "Thông báo");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Số lượng gọi không được vượt quá số lượng tồn", "Thông báo");
+                }
+            }
 
         }
-        private void Sophong_click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            if (btn != null)
-            {
-                int sophong = Convert.ToInt32(btn.Tag); // lấy giá trị từ Tag
-                loadingroom(sophong);
-            }
-        }
-        private void Btn_trahang_Click(object sender, EventArgs e)
+        private void Btn_tradv_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn trả hàng ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                if (list_dichvu.SelectedValue == null)
+                if (Session.Madv == 0)
                 {
                     MessageBox.Show("Vui lòng chọn một dịch vụ đã gọi để trả hàng.",
                                     "Chưa chọn dịch vụ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                // 2. Kiểm tra số lượng nhập vào (txt_sl_goi)
-                if (!int.TryParse(txt_sl_goi.Text.Trim(), out int soLuongTra) || soLuongTra < 1)
-                {
-                    MessageBox.Show("Số lượng trả phải là một số nguyên lớn hơn 0.",
-                                    "Số lượng không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_sl_goi.Focus();
-                    txt_sl_goi.SelectAll();
-                    return;
-                }
-                // 4. Xử lý logic nghiệp vụ
-                int soLuongSeTra = soLuongTra; 
-                bool seTraHang = false;      // Cờ để xác định có thực hiện trả hàng không
-                if (int.Parse(txt_sl_goi.Text) > int.Parse(da_dv_su_dung.CurrentRow.Cells["col_SL_dv"].Value.ToString())) {
-                   DialogResult Cnp =  MessageBox.Show("Số lượng bạn trả nhiều hơn số lượng đã gọi nên thao tác này sẽ trả hết bạn đồng ý chứ ?", "Thông báo", MessageBoxButtons.YesNo);
-                    if(Cnp == DialogResult.Yes)
-                    {
-                        soLuongSeTra = int.Parse(da_dv_su_dung.CurrentRow.Cells["col_SL_dv"].Value.ToString());
-                        seTraHang = true;
-                    }
-                    else
-                    {
-                        // Hủy trả hàng
-                        txt_sl_goi.Focus();
-                        txt_sl_goi.SelectAll();
-                        return;
-                    }
-                }
                 else
                 {
-                    soLuongSeTra = int.Parse(txt_sl_goi.Text);
-                    seTraHang = true;
-                }
-                // 5. Thực hiện trả hàng nếu cờ seTraHang là true
-                if (seTraHang)
-                {
-                    if (xl.Tradichvu(Session.maphonghientai, (int)list_dichvu.SelectedValue, soLuongSeTra))
+                    int soluongtra = (int)nb_sl_goi.Value;
+                    // 2. Kiểm tra số lượng nhập vào
+                    if (soluongtra < 1)
                     {
-                        MessageBox.Show("Trả hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Số lượng trả phải là một số nguyên lớn hơn 0.",
+                                        "Số lượng không hợp lệ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        nb_sl_goi.Focus();
 
-                        // Cập nhật CACHE: Cộng trả lại số lượng
-                        dsDichVu.TraLaiSoLuong((int)list_dichvu.SelectedValue, soLuongSeTra);
-
-                        // Tải lại grid "dịch vụ đã sử dụng"
-                        da_dv_su_dung.DataSource = xl.listdichvup(Session.maphonghientai);
-
-                        // Cập nhật lại số tồn kho đang hiển thị (nếu đang chọn đúng dịch vụ đó)
-                        if (list_dichvu.SelectedItem is tblDichVu dv)
-                        {
-                            txt_donvi_dv.Text = dv.don_vi.ToString();
-                            txt_sl_ton_dv.Text = dv.ton_kho.ToString();
-                            txt_gia_dv.Text = dv.gia.ToString();
-                            txt_sl_goi.Focus();
-                            txt_sl_goi.SelectAll();
-                        }
+                        return;
                     }
-                    else
+                    // 4. Xử lý logic nghiệp vụ
+                    int soLuongSeTra = soluongtra;
+                    bool seTraHang = false;      // Cờ để xác định có thực hiện trả hàng không
+                    if (soluongtra > int.Parse(da_dv_su_dung.CurrentRow.Cells["col_SL_dv"].Value.ToString()))
                     {
-                        MessageBox.Show("Trả hàng thất bại. Đã có lỗi xảy ra !.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-
-                // Đặt focus lại để dễ thao tác
-                txt_sl_goi.Focus();
-                txt_sl_goi.SelectAll();
-            }
-            else return;
-        }
-        private void Btn_goidv_Click(object sender, EventArgs e)
-        {
-
-            if (Session.maphonghientai == 0) { MessageBox.Show("Bạn chưa chọn phòng !", "Thông báo"); }
-            else
-            {
-                //Kiểm tra số lượng nhập vào:
-                if (int.TryParse(txt_sl_goi.Text.Trim(), out int so))
-                {
-                    if (so <= int.Parse(txt_sl_ton_dv.Text))
-                    {
-                        if (xl.GoiDichVu(Session.maphonghientai, (int)(list_dichvu.SelectedValue), so))
+                        DialogResult Cnp = MessageBox.Show("Số lượng bạn trả nhiều hơn số lượng đã gọi nên thao tác này sẽ trả hết bạn đồng ý chứ ?", "Thông báo", MessageBoxButtons.YesNo);
+                        if (Cnp == DialogResult.Yes)
                         {
-                            MessageBox.Show("Gọi dịch vụ thành công !", "Thông báo");
-                            da_dv_su_dung.DataSource = xl.listdichvup(Session.maphonghientai);
-                            dsDichVu.TruSoLuong((int)(list_dichvu.SelectedValue), so);
-                            if (list_dichvu.SelectedItem is tblDichVu dv)
-                            {
-                                txt_donvi_dv.Text = dv.don_vi.ToString();
-                                txt_sl_ton_dv.Text = dv.ton_kho.ToString();
-                                txt_gia_dv.Text = dv.gia.ToString();
-                                txt_sl_goi.Focus();
-                                txt_sl_goi.SelectAll();
-                            }
+                            soLuongSeTra = int.Parse(da_dv_su_dung.CurrentRow.Cells["col_SL_dv"].Value.ToString());
+                            seTraHang = true;
                         }
                         else
                         {
-                            MessageBox.Show("Gọi dịch vụ thất bại do phòng chưa có khách đặt hoặc do lỗi không xác định !", "Thông báo");
+                            // Hủy trả hàng
+                            nb_sl_goi.Focus();
+                            return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Số lượng gọi không được vượt quá số lượng tồn", "Thông báo");
+                        soLuongSeTra = (int)nb_sl_goi.Value;
+                        seTraHang = true;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Giá trị nhập vào không phải là số nguyên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_sl_goi.Focus();
-                    txt_sl_goi.SelectAll(); // Bôi đen toàn bộ nội dung
+                    // 5. Thực hiện trả hàng nếu cờ seTraHang là true
+                    if (seTraHang)
+                    {
+                        if (xl.Tradichvu(Session.maphonghientai, Session.Madv, soLuongSeTra))
+                        {
+                            MessageBox.Show("Trả hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Cập nhật CACHE: Cộng trả lại số lượng
+                            dsDichVu.TraLaiSoLuong(Session.Madv, soLuongSeTra);
+
+                            // Tải lại grid "dịch vụ đã sử dụng"
+                            da_dv_su_dung.DataSource = xl.listdichvup(Session.maphonghientai);
+
+                            // Cập nhật lại số tồn kho đang hiển thị (nếu đang chọn đúng dịch vụ đó)
+                            LoadDichVu(Session.Madv.ToString());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Trả hàng thất bại. Đã có lỗi xảy ra !.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                    // Đặt focus lại để dễ thao tác
+                    nb_sl_goi.Focus();
                 }
             }
+            else return;
+        }
+        private void Btn_clear_all_Click(object sender, EventArgs e)
+        {
+            Session.maphonghientai = 0;
+            Session.tenphonghientai = "Chưa chọn phòng";
+            da_dv_su_dung.DataSource = null;
+            lbl_phonghientai.Text = "Chưa chọn phòng";
+            txt_gia_dv.Text = txt_sl_ton_dv.Text = txt_tendv.Text = txt_donvi_dv.Text = "";
+            nb_sl_goi.Value = 0;
+            txt_diemtichluy.Text = txt_donvi_dv.Text = txt_giathue.Text = txt_Hang.Text = txt_LoaiP.Text = txt_ngayra.Text = txt_ngayvao.Text = txt_SoNguoi.Text = txt_tang.Text = txt_tenphong.Text = txt_tenkhach.Text = txt_tientamtinh.Text = "";
+            cbo_tinhtrang.SelectedIndex = 0;
+            btn_doitrangthai.Enabled = false;
+            btn_doitrangthai.Text = "Chờ chọn phòng";
+            btn_doitrangthai.Tag = 0;
 
         }
        
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void LoadDuLieuPhong(string maPhong)
         {
-            lbl_timer.Text = DateTime.Now.ToString("dd/MM/yyyy \nHH:mm:ss");
-            if (cb_lammoi5s.Checked)
-            {
-                counter++;
+            int maphong = int.Parse(maPhong);
+            string tenphong = xl.Gettenphong(maphong);
+            var thongtin = DanhsachPhong.FirstOrDefault(t => t.Maphong == maphong);
+            txt_giathue.Text = thongtin.Giathue.ToString("N0");
+            txt_LoaiP.Text = thongtin.Loaiphong;
+            txt_tang.Text = thongtin.Matang.ToString();
+            txt_tenkhach.Text = thongtin.Khachhang;
+            txt_ngayra.Text = thongtin.Ngayra;
+            txt_tientamtinh.Text = xl.TienTamTinh(maphong);
+            txt_SoNguoi.Text = thongtin.Sokhach.ToString();
+            txt_ngayvao.Text = thongtin.Ngayvao;
+            txt_Hang.Text = thongtin.Hangthanhvien;
+            txt_diemtichluy.Text = thongtin.Diemtichluy.ToString();
+            txt_tenphong.Text = thongtin.Tenphong;
+            cbo_tinhtrang.SelectedValue = thongtin.Trangthai;
+            btn_doitrangthai.Enabled = true;
+            var gannut = xl.GetCauhinhNutDoiTrangthai(thongtin.Trangthai);
+            btn_doitrangthai.Tag = gannut.tag;;
+            btn_doitrangthai.Text = gannut.text;
+            Session.maphonghientai = maphong;
+            Session.tenphonghientai = tenphong;
+            Session.trangthaiphong = thongtin.Trangthai;
+            da_dv_su_dung.DataSource = xl.listdichvup(maphong);
+            lbl_phonghientai.Text = $"Phòng {tenphong}";
+            
 
-                // 5 giây (vì timer tick mỗi 0.5 giây)
-                if (counter >= 50)
-                {
-                    counter = 0; // reset
-                    FormStart();
-                }
-            }
-            else
-            {
-                // Nếu tắt checkbox thì reset
-                counter = 0;
-            }
+        }
+
+        private void LoadDichVu(string madv)
+        {
+            tblDichVu dv = xl.GetDichVuTheoMa(int.Parse(madv));
+            txt_donvi_dv.Text = dv.don_vi;
+            txt_sl_ton_dv.Text = dv.ton_kho.ToString();
+            txt_tendv.Text = dv.ten_dv;
+            txt_gia_dv.Text = ((int)dv.gia).ToString("N0") ;
+            Session.Madv = dv.ma_dv;
+            nb_sl_goi.Value = 1;
 
         }
-        private void loadingroom(int ma_p)
+        private void Loadbuttons()
         {
-            isLoading = true;
-            try
-            {
-                Thongtinchung ttp = new Thongtinchung();
-                ttp = xl.GetThongtinphong(ma_p);
-                if (!Dataloader.loaddulieu(ttp, this)) { MessageBox.Show("Lấy thông tin phòng thất bại", "Thông báo"); return; }
-                cbo_tinhtrang.SelectedValue = ttp.Trangthai;
-                da_dv_su_dung.DataSource = xl.listdichvup(ma_p);
-                txt_TongTien.Text = xl.TienTamTinh(ma_p);
-                Session.trangthaiphong = ttp.Trangthai;
-            }
-            catch { MessageBox.Show("Lấy thông tin phòng thất bại", "Thông báo"); }
-            finally
-            {
-                isLoading = false; // Kết thúc nạp dữ liệu => cho phép thông báo
-            }
+            ThongkePhong ttp = xl.GetThongKePhong();
+            btn_pTrong.Text = $"Trống ({ttp.Trong})";
+            btn_pChoXn.Text = $"Chờ xác nhận ({ttp.ChoXacNhan})";
+            btn_tatcaphong.Text = $"Tất cả ({ttp.TatCa})";
+            btn_pDangdung.Text = $"Đang dùng ({ttp.DangDung})";
+            btn_pQuaHan.Text = $"Quá hạn ({ttp.QuaHan})";
+            btn_chocheck.Text = $"Chờ checkin ({ttp.ChoCheckIn})";
+            btn_dangsua.Text = $"Dang sửa ({ttp.BaoTri})";
+            btn_dangdon.Text = $"Đang dọn ({ttp.DangDon})";
+            btn_Dungdung.Text = $"Đừng sử dụng ({ttp.DungSuDung})";
         }
-        private void Mainform_Load(object sender, EventArgs e)
+        private void LoadData()
         {
-            FormStart();
-        }
-        private void FormStart()
-        {
-            isLoading = true;
-            dsDichVu.loaddata();
-            timer1.Start();
-            list_dichvu.DataSource = dsDichVu.dsDichVus;
-            list_dichvu.ValueMember = "ma_dv";
-            list_dichvu.DisplayMember = "ten_dv";
-            List<tblTinhTrangPhong> ttp = xl.tinhtrangp();
-            cbo_tinhtrang.DataSource = ttp;
+            Loadbuttons();
+            List<tblTinhTrangPhong> ttps = xl.tinhtrangp();
+            tblTinhTrangPhong nds = new tblTinhTrangPhong();
+            nds.ma_tinh_trang = 0;
+            nds.mo_ta = "Chọn trạng thái";
+            ttps.Insert(0, nds);
+            cbo_tinhtrang.DataSource = ttps;
             cbo_tinhtrang.ValueMember = "ma_tinh_trang";
             cbo_tinhtrang.DisplayMember = "mo_ta";
-            int countsophong = xl.GetSoPhongChoXacNhan();
-            string list = xl.GetListPhongChoXacNhan();
-            lbl_sophongchoxacnhan.Text = countsophong.ToString();
-            list_sophong_choxacnhan.Text = list;
-            if (countsophong > 0)
-            {
-                lbl_sophongchoxacnhan.ForeColor = Color.Red;
-            }
-                Drawitem();
-            isLoading = false;
+            
+            flow_ds_phong.Controls.Clear();
+            btn_doitrangthai.Enabled = false;
+            btn_doitrangthai.Text = "Chờ chọn phòng";
+            flow_ds_dich_vu.Controls.Clear();
+            LoadDichVu();
+            var dsPhong = xl.GetAllThongtinphong();
+            DanhsachPhong = dsPhong;
+            LoadPhong(dsPhong);
+            
         }
-        private void Drawitem()
+        private void LoadDichVu()
         {
-            if (!Dataloader.ToMauPhong(this)) MessageBox.Show("Lấy thông tin các phòng thất bại", "Thông báo");
-            main_left_bot_container.Paint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
-            main_right_top_container.Paint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
-            main_right_bot_container.Paint += (s, ev) => Dataloader.DrawTableCellBorder(s, ev, Color.DarkGoldenrod);
-        }
-        private void list_dichvu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (list_dichvu.SelectedItem is tblDichVu dv)
+            flow_ds_dich_vu.Controls.Clear();
+            var ttdv = xl.dsDichVu();
+            foreach (var item in ttdv)
             {
-                txt_donvi_dv.Text = dv.don_vi.ToString();
-                txt_sl_ton_dv.Text = dv.ton_kho.ToString();
-                txt_gia_dv.Text = dv.gia.ToString();
-                txt_sl_goi.Focus();
-                txt_sl_goi.SelectAll();
+                UCdichvu uc = new UCdichvu();
+                uc.Tag = item.ma_dv;
+                // Gán số thứ tự để nhìn cho rõ
+                uc.ServiceName = $"{item.ten_dv}";
+                uc.Price = ((int)item.gia).ToString("N0") + " VND";
+                uc.ServiceImage = PathHelper.LoadFromDb(item.anh);
+                uc.DichVuSelect += (madv) =>
+                {
+                    LoadDichVu(madv);
+                };
+                // Add vào flowlayout
+                flow_ds_dich_vu.Controls.Add(uc);
             }
         }
+        private void LoadPhong(List<Thongtinchung> dsPhong)
+        {
+            flow_ds_phong.Controls.Clear();
+            
+            
+            foreach (var item in dsPhong)
+            {
+                UCPhong uc = new UCPhong();
 
+                // Gán số thứ tự để nhìn cho rõ
+                uc.Tag = item.Maphong;
+                uc.TenPhong = $"Phòng {item.Tenphong}";
+                uc.BackColor = Dataloader.LayMauTheoTinhTrang(item.Trangthai);
+                uc.OnPhongSelect += (maPhong) =>
+                {
+
+                    LoadDuLieuPhong(maPhong);
+                };
+
+                // Add vào flowlayout
+                flow_ds_phong.Controls.Add(uc);
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadData();
+            lbl_chucvu.Text = Session.Role ?? "None";
+            lbl_tennb.Text = Session.UserName ?? "Chưa đăng nhập";
+            timer1.Start();
+        }
+        
         
     }
 }
-

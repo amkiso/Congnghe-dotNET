@@ -180,7 +180,7 @@ namespace KhachSanSaoBang
                 this.Close();
                 
             }
-            else { MessageBox.Show("Đặt phòng thất bại!", "Lỗi"); }
+            else { MessageBox.Show("Đặt phòng thất bại!, Vui lòng kiểm tra lại thông tin", "Lỗi"); }
         }
 
         private void Btn_inphieu_Click(object sender, EventArgs e)
@@ -364,7 +364,9 @@ namespace KhachSanSaoBang
             int maxstep;
             int thisstep = tab_container.SelectedIndex;
             void btn_acction(){
+                if (current_step == 0) { Btn_tracuu_Click(sender, e); }
                 tab_container.SelectedIndex = current_step + 1;
+                
                 if (current_step == maxstep) btn_next_step.Enabled = false;
                 btn_back_step.Enabled = true;
             }
@@ -373,17 +375,18 @@ namespace KhachSanSaoBang
             {
                 if (thisstep == 1) { pdp.ma_kh = makh; }
                 maxstep = tab_container.TabCount - 3;
-                btn_acction();
-               
+                btn_acction(); Session.Acction_status = true;
+
 
             }
             else if (acction==2){
                 jsonstring = xl.ThongtinKH_To_Json(danhSachKhach.ToList());
+                Session.Acction_status = true;
                 this.Close();
             }
             else if (acction == 1) { maxstep = 1;
                 btn_acction();
-                this.Close();
+                this.Close(); Session.Acction_status = true;
             }
                 
             

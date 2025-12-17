@@ -117,47 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="col_giaphong2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="modernToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <metadata name="col_ngayphuthu.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>268, 17</value>
   </metadata>
-  <metadata name="col_tilephuthu.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col_tienphuthu.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col_giaphong.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col_ngaythue.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col_tiendv.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col_thanhtien.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lbl_header_phai.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAuFJREFUeF7tzjGKYEEMQ8G5/6V3YSJToSzoge8HDl3o5+e6ruu6ruu6ruu6ruu6
-        ruu6/nz/7n7vWQ756j3LIV+9Zznkq/csh3z1nuWQr96zHNIYpJWa/qfOTKthrnJIY5BWavqfOjOthrnK
-        IY1BWqnpf+rMtBrmKoc0Bmmlpv+pM9NqmKsc0hiklZr+p85Mq2GuckhjkFZq+p86M62GucohjUFaqel/
-        6sy0GuYqhzQGaaWm/6kz02qYqxzSGKSVmv6nzkyrYa5ySGOQVmr6nzozrYa5yiGNQVqp6X/qzLQa5iqH
-        NAZppab/qTPTapirHNIYpJWa/qfOTKthrnJIY5BWavqfOjOthrnKIY1BWqnpf+rMtBrmKod89Z7lkK/e
-        sxzy1XuWQ756z3LIV+9ZDvnqPcshjUFaqel/6sy0GuYqhzQGaaWm/6kz02qYqxzSGKSVmv6nzkyrYa5y
-        SGOQVmr6nzozrYa5yiGNQVqp6X/qzLQa5iqHNAZppab/qTPTapirHNIYpJWa/qfOTKthrnJIY5BWavqf
-        OjOthrnKIY1BWqnpf+rMtBrmKoc0Bmmlpv+pM9NqmKsc0hiklZr+p85Mq2GuckhjkFZq+p86M62Gucoh
-        X71nOeSr9yyHfPWe5ZCv3rMc8tV7lkO+es9ySGOQVmr6nzozrYa5yiGNQVqp6X/qzLQa5iqHNAZppab/
-        qTPTapirHNIYpJWa/qfOTKthrnJIY5BWavqfOjOthrnKIY1BWqnpf+rMtBrmKoc0Bmmlpv+pM9NqmKsc
-        0hiklZr+p85Mq2GuckhjkFZq+p86M62GucohjUFaqel/6sy0GuYqhzQGaaWm/6kz02qYqxzSGKSVmv6n
-        zkyrYa5ySGOQVmr6nzozrYa5yiGNQVqp6X/qzLQa5iqHNAZppab/qTPTapirHPLVe5ZDvnrPcshX71kO
-        +eo9yyFfvWc55Kt3Xdd1Xdd1Xdd1Xdd1Xdd1XX+5/zPZFncnp+NVAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

@@ -192,7 +192,7 @@ namespace KhachSanSaoBang
         }
         private void Inhoadon(int loaihd)
         {
-            MauInHoaDon printer = new MauInHoaDon(data, "~/icon/gui_cancel.png", loaihd);
+            MauInHoaDon printer = new MauInHoaDon(data, "", loaihd);
             printer.PrintPreview();
             printer.Dispose();
         }

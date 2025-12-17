@@ -77,17 +77,11 @@
     <Compile Include="DoanhThu\QuanLyThongKe.Designer.cs">
       <DependentUpon>QuanLyThongKe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="TrangLamViec.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="TrangLamViec.Designer.cs">
+      <DependentUpon>TrangLamViec.cs</DependentUpon>
     </Compile>
     <Compile Include="KhachHang\DangKyKhachHang.cs">
       <SubType>Form</SubType>
@@ -129,6 +123,12 @@
     <Compile Include="Models\Client\UCdichvu.Designer.cs">
       <DependentUpon>UCdichvu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Client\UCMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Models\Client\UCMenu.Designer.cs">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client\UCPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +146,24 @@
     <Compile Include="KetNoi.Designer.cs">
       <DependentUpon>KetNoi.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyDichVu.Designer.cs">
+      <DependentUpon>QuanLyDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyPhong.Designer.cs">
+      <DependentUpon>QuanLyPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyTienIch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyTienIch.Designer.cs">
+      <DependentUpon>QuanLyTienIch.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,12 +175,6 @@
     </Compile>
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TrangLamViec.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TrangLamViec.Designer.cs">
-      <DependentUpon>TrangLamViec.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Client\imagebutton.cs">
       <SubType>Component</SubType>
@@ -234,17 +246,26 @@
     <EmbeddedResource Include="DoanhThu\QuanLyThongKe.resx">
       <DependentUpon>QuanLyThongKe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="QuanLyDichVu.resx">
+      <DependentUpon>QuanLyDichVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="QuanLyPhong.resx">
+      <DependentUpon>QuanLyPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyTienIch.resx">
+      <DependentUpon>QuanLyTienIch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrangLamViec.resx">
+      <DependentUpon>TrangLamViec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhachHang\DangKyKhachHang.resx">
       <DependentUpon>DangKyKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Client\UCdichvu.resx">
       <DependentUpon>UCdichvu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Models\Client\UCMenu.resx">
+      <DependentUpon>UCMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Client\UCPhong.resx">
       <DependentUpon>UCPhong.cs</DependentUpon>
@@ -257,9 +278,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TrangLamViec.resx">
-      <DependentUpon>TrangLamViec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVien\FormThemSuaNhanVien.resx">
       <DependentUpon>FormThemSuaNhanVien.cs</DependentUpon>
