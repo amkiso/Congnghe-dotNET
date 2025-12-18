@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.main_container = new System.Windows.Forms.TableLayoutPanel();
             this.modernToolStrip1 = new KhachSanSaoBang.ModernToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btn_quanlyloaiphong = new System.Windows.Forms.ToolStripDropDownButton();
             this.btn_Trangchu = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_datphong = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlyphong = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +72,7 @@
             this.txt_id = new System.Windows.Forms.TextBox();
             this.txt_name = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.quảnLýLoạiPhòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.main_container.SuspendLayout();
             this.modernToolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,7 +104,7 @@
             this.modernToolStrip1.IconSize = new System.Drawing.Size(32, 32);
             this.modernToolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.modernToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
+            this.btn_quanlyloaiphong,
             this.toolStripDropDownButton2,
             this.toolStripDropDownButton3,
             this.toolStripDropDownButton4,
@@ -123,40 +124,41 @@
             this.modernToolStrip1.TabIndex = 13;
             this.modernToolStrip1.Text = "modernToolStrip1";
             // 
-            // toolStripDropDownButton1
+            // btn_quanlyloaiphong
             // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_quanlyloaiphong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Trangchu,
             this.btn_datphong,
             this.btn_quanlyphong,
-            this.btn_quanlytang});
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(144, 34);
-            this.toolStripDropDownButton1.Text = "Khách sạn";
+            this.btn_quanlytang,
+            this.quảnLýLoạiPhòngToolStripMenuItem});
+            this.btn_quanlyloaiphong.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_quanlyloaiphong.Name = "btn_quanlyloaiphong";
+            this.btn_quanlyloaiphong.Size = new System.Drawing.Size(144, 34);
+            this.btn_quanlyloaiphong.Text = "Khách sạn";
             // 
             // btn_Trangchu
             // 
             this.btn_Trangchu.Name = "btn_Trangchu";
-            this.btn_Trangchu.Size = new System.Drawing.Size(307, 44);
+            this.btn_Trangchu.Size = new System.Drawing.Size(359, 44);
             this.btn_Trangchu.Text = "Trang chủ";
             // 
             // btn_datphong
             // 
             this.btn_datphong.Name = "btn_datphong";
-            this.btn_datphong.Size = new System.Drawing.Size(307, 44);
+            this.btn_datphong.Size = new System.Drawing.Size(359, 44);
             this.btn_datphong.Text = "Đặt phòng";
             // 
             // btn_quanlyphong
             // 
             this.btn_quanlyphong.Name = "btn_quanlyphong";
-            this.btn_quanlyphong.Size = new System.Drawing.Size(307, 44);
+            this.btn_quanlyphong.Size = new System.Drawing.Size(359, 44);
             this.btn_quanlyphong.Text = "Quản lý phòng";
             // 
             // btn_quanlytang
             // 
             this.btn_quanlytang.Name = "btn_quanlytang";
-            this.btn_quanlytang.Size = new System.Drawing.Size(307, 44);
+            this.btn_quanlytang.Size = new System.Drawing.Size(359, 44);
             this.btn_quanlytang.Text = "Quản Lý tầng";
             // 
             // toolStripDropDownButton2
@@ -495,6 +497,12 @@
             this.txt_name.Size = new System.Drawing.Size(295, 35);
             this.txt_name.TabIndex = 3;
             // 
+            // quảnLýLoạiPhòngToolStripMenuItem
+            // 
+            this.quảnLýLoạiPhòngToolStripMenuItem.Name = "quảnLýLoạiPhòngToolStripMenuItem";
+            this.quảnLýLoạiPhòngToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.quảnLýLoạiPhòngToolStripMenuItem.Text = "Quản lý loại phòng";
+            // 
             // QuanLyTienIch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -536,7 +544,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_matienich;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_tentienich;
         private ModernToolStrip modernToolStrip1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripDropDownButton btn_quanlyloaiphong;
         private System.Windows.Forms.ToolStripMenuItem btn_Trangchu;
         private System.Windows.Forms.ToolStripMenuItem btn_datphong;
         private System.Windows.Forms.ToolStripMenuItem btn_quanlyphong;
@@ -561,5 +569,6 @@
         private System.Windows.Forms.ToolStripLabel lbl_tennb;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripLabel lbl_chucvu;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýLoạiPhòngToolStripMenuItem;
     }
 }

@@ -17,10 +17,81 @@ namespace KhachSanSaoBang.Models
     public class Xuly
     {
         SQLDataDataContext db = new SQLDataDataContext();
+
         public Xuly()
         {
            
         }
+        public bool AddLoai(tblLoaiPhong lp)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try {
+                    db.tblLoaiPhongs.InsertOnSubmit(lp);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch (Exception e) { return false; }
+            }
+        }
+        public bool check_loai_phong(int maloai)
+        {
+            int count = 0;
+            using (var db = new SQLDataDataContext())
+            {
+                count = db.tblPhongs.Where(t => t.loai_phong == maloai).Count();
+            }
+            return count > 0;
+        }
+        public bool Delete_Loai_Phong(int maloai)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblLoaiPhongs.FirstOrDefault(x => x.loai_phong == maloai);
+                    if (t == null) return false;
+
+                    db.tblLoaiPhongs.DeleteOnSubmit(t);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool UpdateLoai(tblLoaiPhong lp)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var LoaiP = db.tblLoaiPhongs.FirstOrDefault(t => t.loai_phong == lp.loai_phong);
+                    if (LoaiP != null)
+                    {
+                        LoaiP.anh = lp.anh;
+                        LoaiP.ti_le_phu_thu = lp.ti_le_phu_thu;
+                        LoaiP.gia = lp.gia;
+                        LoaiP.mo_ta = lp.mo_ta;
+                        db.SubmitChanges();
+                    }
+
+                    else return false;
+                        return true;
+                }
+                catch (Exception e) { return false; }
+            }
+        }
+        public List<tblLoaiPhong> GetLoaiPhong()
+        {
+            using (var db = new SQLDataDataContext()) {
+                return db.tblLoaiPhongs.ToList();
+            }
+        }
+
         public bool AddTienIch(string ten)
         {
             using (var db = new SQLDataDataContext())

@@ -33,12 +33,24 @@ namespace KhachSanSaoBang
             btn_quanlytang.Click += Btn_quanlytang_Click;
             btn_quanlyphong.Click += Btn_quanlyphong_Click;
             btnQLDichVu.Click += BtnQLDichVu_Click;
-            btnQLTienIch.Click += BtnQLTienIch_Click;
+            btnQLTienIch.Click += BtnQLTienIch_Click; 
+            btn_quanlyloaiphong.Click += Btn_quanlyloaiphong_Click;
         }
-
+        private void Btn_quanlyloaiphong_Click(object sender, EventArgs e)
+        {
+            if (Session.Roleid != 1 && Session.Roleid != 2)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
+            this.Hide();
+            QuanLyLoaiPhong tienIch = new QuanLyLoaiPhong();
+            tienIch.ShowDialog();
+            this.Close();
+        }
         private void BtnQLTienIch_Click(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid !=2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
@@ -51,7 +63,7 @@ namespace KhachSanSaoBang
 
         private void BtnQLDichVu_Click(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid != 2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
@@ -63,7 +75,7 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlyphong_Click(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid != 2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
@@ -75,7 +87,7 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlytang_Click(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid != 2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
@@ -132,10 +144,9 @@ namespace KhachSanSaoBang
             pnl_main.Controls.Add(control);
         }
 
-        // =============== CLICK XỬ LÝ NGHIỆP VỤ (GIỮ NGUYÊN LOGIC) ===============
         private void BtnQLDoanhThu_Click1(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid != 2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
@@ -150,7 +161,7 @@ namespace KhachSanSaoBang
 
         private void BtnQLNhanVien_Click(object sender, EventArgs e)
         {
-            if (Session.Roleid != 1)
+            if (Session.Roleid != 1 && Session.Roleid != 2)
             {
                 MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
                 return;
