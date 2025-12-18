@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace KhachSanSaoBang
             // Gán các sự kiện
             this.Load += QuanLyLoaiPhong_Load;
             dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
-
+            timer1.Tick += Timer1_Tick;
             // Gán sự kiện click cho các nút (giả định bạn đã có các nút này trên giao diện)
             btn_add.Click += Btn_add_Click;
             btn_change.Click += Btn_change_Click;
@@ -44,7 +45,9 @@ namespace KhachSanSaoBang
             btn_Trangchu.Click += Btn_Trangchu_Click;
             
         }
+
         
+
         private void Btn_Trangchu_Click(object sender, EventArgs e)
         {
             TrangLamViec tlv = new TrangLamViec();
@@ -145,12 +148,7 @@ namespace KhachSanSaoBang
             dk.ShowDialog();
         }
 
-        private void QuanLyLoaiPhong_Load(object sender, EventArgs e)
-        {
-            LoadData();
-            LockText(true); // Khóa textbox khi mới load
-            btn_save.Enabled = false;
-        }
+        
 
         // Hàm khóa/mở khóa các textbox
         private void LockText(bool lockState)
@@ -172,33 +170,7 @@ namespace KhachSanSaoBang
             txt_anh.Text = "";
         }
 
-        private void LoadData()
-        {
-            try
-            {
-                var Loaiphong = xl.GetLoaiPhong();
-                dataGridView1.DataSource = Loaiphong;
-
-                // Xóa binding cũ để tránh lỗi trùng lặp
-                txt_maloai.DataBindings.Clear();
-                txt_mota.DataBindings.Clear();
-                txt_giathue.DataBindings.Clear();
-                txt_tilephuthu.DataBindings.Clear();
-                txt_anh.DataBindings.Clear();
-
-                // Tạo binding mới
-                // Cấu trúc: DataBindings.Add("Thuộc tính của Control", DataSource, "Tên cột trong DB")
-                txt_maloai.DataBindings.Add("Text", dataGridView1.DataSource, "loai_phong");
-                txt_mota.DataBindings.Add("Text", dataGridView1.DataSource, "mo_ta");
-                txt_giathue.DataBindings.Add("Text", dataGridView1.DataSource, "gia", true, DataSourceUpdateMode.Never, "", "N0"); // Format số
-                txt_tilephuthu.DataBindings.Add("Text", dataGridView1.DataSource, "ti_le_phu_thu");
-                txt_anh.DataBindings.Add("Text", dataGridView1.DataSource, "anh");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
-            }
-        }
+        
 
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -209,6 +181,15 @@ namespace KhachSanSaoBang
             btn_save.Enabled = false; // Chưa bấm thêm/sửa thì chưa cho lưu
             LockText(true);
             acction = 0;
+        }
+        private void QuanLyLoaiPhong_Load(object sender, EventArgs e)
+        {
+            LoadData();
+            LockText(true); // Khóa textbox khi mới load
+            btn_save.Enabled = false;
+            lbl_chucvu.Text = Session.Role ?? "None";
+            lbl_tennb.Text = Session.UserName ?? "Chưa đăng nhập";
+            timer1.Start();
         }
 
         private void Btn_add_Click(object sender, EventArgs e)
@@ -261,6 +242,33 @@ namespace KhachSanSaoBang
                 {
                     MessageBox.Show("Xóa thất bại!");
                 }
+            }
+        }
+        private void LoadData()
+        {
+            try
+            {
+                var Loaiphong = xl.GetLoaiPhong();
+                dataGridView1.DataSource = Loaiphong;
+
+                // Xóa binding cũ để tránh lỗi trùng lặp
+                txt_maloai.DataBindings.Clear();
+                txt_mota.DataBindings.Clear();
+                txt_giathue.DataBindings.Clear();
+                txt_tilephuthu.DataBindings.Clear();
+                txt_anh.DataBindings.Clear();
+
+                // Tạo binding mới
+                // Cấu trúc: DataBindings.Add("Thuộc tính của Control", DataSource, "Tên cột trong DB")
+                txt_maloai.DataBindings.Add("Text", dataGridView1.DataSource, "loai_phong");
+                txt_mota.DataBindings.Add("Text", dataGridView1.DataSource, "mo_ta");
+                txt_giathue.DataBindings.Add("Text", dataGridView1.DataSource, "gia", true, DataSourceUpdateMode.Never, "", "N0"); // Format số
+                txt_tilephuthu.DataBindings.Add("Text", dataGridView1.DataSource, "ti_le_phu_thu");
+                txt_anh.DataBindings.Add("Text", dataGridView1.DataSource, "anh");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load dữ liệu: " + ex.Message);
             }
         }
         private void ClearBindings()
@@ -362,6 +370,11 @@ namespace KhachSanSaoBang
             {
                 this.Close();
             }
+        }
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            lbl_timer.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
         }
     }
 }

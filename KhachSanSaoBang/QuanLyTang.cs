@@ -168,14 +168,9 @@ namespace KhachSanSaoBang
             dataGridView1.DataSource = tang;
             txt_id.DataBindings.Clear();
             txt_name.DataBindings.Clear();
-
             txt_id.DataBindings.Add("Text", dataGridView1.DataSource, "ma_tang");
             txt_name.DataBindings.Add("Text", dataGridView1.DataSource, "ten_tang");
-
             txt_name.Enabled = false;
-
-
-
         }
         private void QuanLyTang_Load(object sender, EventArgs e)
         {

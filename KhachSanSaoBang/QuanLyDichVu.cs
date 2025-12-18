@@ -398,6 +398,8 @@ namespace KhachSanSaoBang
         {
             
             LoadData();
+            lbl_chucvu.Text = Session.Role;
+            lbl_tennb.Text = Session.UserName;
             timer1.Start();
         }
     }

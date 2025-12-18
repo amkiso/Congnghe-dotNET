@@ -111,6 +111,14 @@ namespace KhachSanSaoBang.Models
                 }
             }
         }
+        public bool Check_tien_ich(int ma)
+        {
+            int count = 0;
+            using (var db = new SQLDataDataContext()) { 
+                count = db.tblPhongs.Where(t=>t.ma_tienich == ma).Count();
+            }
+            return count > 0;
+        }
         public bool AddTang(string ten)
         {
             using (var db = new SQLDataDataContext())
@@ -130,14 +138,6 @@ namespace KhachSanSaoBang.Models
                 }
             }
         }
-        public bool TienIchDangDuocSuDung(int ma)
-        {
-            int count = 0;
-            using (var db = new SQLDataDataContext()) { 
-                count = db.tblPhongs.Where(t=>t.ma_tienich == ma).Count();
-            }
-            return count > 0;
-        }
         public bool Check_tang(int ma)
         {
             int count = 0;
@@ -146,25 +146,6 @@ namespace KhachSanSaoBang.Models
                 count = db.tblPhongs.Where(t => t.ma_tang == ma).Count();
             }
             return count > 0;
-        }
-        public bool DeleteTienIch(int ma)
-        {
-            using (var db = new SQLDataDataContext())
-            {
-                try
-                {
-                    var t = db.tblTieniches.FirstOrDefault(x => x.ma_tienich == ma);
-                    if (t == null) return false;
-
-                    db.tblTieniches.DeleteOnSubmit(t);
-                    db.SubmitChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
         }
         public bool DeleteTang(int ma)
         {
@@ -195,6 +176,25 @@ namespace KhachSanSaoBang.Models
                     if (t == null) return false;
 
                     t.ten_tang = ten;
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool DeleteTienIch(int ma)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblTieniches.FirstOrDefault(x => x.ma_tienich == ma);
+                    if (t == null) return false;
+
+                    db.tblTieniches.DeleteOnSubmit(t);
                     db.SubmitChanges();
                     return true;
                 }

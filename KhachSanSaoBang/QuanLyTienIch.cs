@@ -166,18 +166,16 @@ namespace KhachSanSaoBang
             dataGridView1.DataSource = tienich;
             txt_id.DataBindings.Clear();
             txt_name.DataBindings.Clear();
-
             txt_id.DataBindings.Add("Text", dataGridView1.DataSource, "ma_tienich");
             txt_name.DataBindings.Add("Text", dataGridView1.DataSource, "ten_tienich");
-
             txt_name.Enabled = false;
-
-
-
         }
         private void QuanLyTienIch_Load(object sender, EventArgs e)
         {
             Loaddata();
+            timer1.Start();
+            lbl_tennb.Text= Session.UserName;
+            lbl_chucvu.Text = Session.Role;
         }
 
         private void Btn_delete_Click(object sender, EventArgs e)
@@ -186,7 +184,7 @@ namespace KhachSanSaoBang
 
             int ma = int.Parse(txt_id.Text);
 
-            if (xl.TienIchDangDuocSuDung(ma))
+            if (xl.Check_tien_ich(ma))
             {
                 MessageBox.Show("Tiện ích đang được sử dụng, không thể xóa");
                 return;
@@ -215,7 +213,7 @@ namespace KhachSanSaoBang
             switch (acction)
             {
                 case 1: // ADD
-                    kq = xl.AddTang(txt_name.Text.Trim());
+                    kq = xl.AddTienIch(txt_name.Text.Trim());
                     break;
 
                 case 2: // EDIT

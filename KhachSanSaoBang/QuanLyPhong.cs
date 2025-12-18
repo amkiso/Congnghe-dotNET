@@ -435,6 +435,8 @@ namespace KhachSanSaoBang
             LoadData();
             ActiveControl = null;
             timer1.Start();
+            lbl_chucvu.Text = Session.Role ?? "None";
+            lbl_tennb.Text = Session.UserName ?? "Chưa đăng nhập";
         }
         
         private void Btn_exit_Click(object sender, EventArgs e)

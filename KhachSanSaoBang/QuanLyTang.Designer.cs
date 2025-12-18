@@ -52,6 +52,7 @@
             this.btn_datphong = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlyphong = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlytang = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_quanlyloaiphong = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.btn_quanlydv = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlytienich = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,6 @@
             this.lbl_tennb = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.lbl_chucvu = new System.Windows.Forms.ToolStripLabel();
-            this.btn_quanlyloaiphong = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -355,6 +355,12 @@
             this.btn_quanlytang.Size = new System.Drawing.Size(360, 44);
             this.btn_quanlytang.Text = "Quản Lý tầng";
             // 
+            // btn_quanlyloaiphong
+            // 
+            this.btn_quanlyloaiphong.Name = "btn_quanlyloaiphong";
+            this.btn_quanlyloaiphong.Size = new System.Drawing.Size(360, 44);
+            this.btn_quanlyloaiphong.Text = "Quản Lý Loại Phòng";
+            // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -496,12 +502,6 @@
             this.lbl_chucvu.Name = "lbl_chucvu";
             this.lbl_chucvu.Size = new System.Drawing.Size(101, 32);
             this.lbl_chucvu.Text = "Chức vụ";
-            // 
-            // btn_quanlyloaiphong
-            // 
-            this.btn_quanlyloaiphong.Name = "btn_quanlyloaiphong";
-            this.btn_quanlyloaiphong.Size = new System.Drawing.Size(360, 44);
-            this.btn_quanlyloaiphong.Text = "Quản Lý Loại Phòng";
             // 
             // QuanLyTang
             // 

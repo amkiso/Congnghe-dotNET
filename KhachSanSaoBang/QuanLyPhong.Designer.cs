@@ -36,6 +36,7 @@
             this.btn_datphong = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlyphong = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlytang = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_quanlyloaiphong = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.btn_quanlydv = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_quanlytienich = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,6 @@
             this.txt_sohoadon = new System.Windows.Forms.TextBox();
             this.txt_sophieudat = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_quanlyloaiphong = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.modernToolStrip1.SuspendLayout();
             this.container_main.SuspendLayout();
@@ -169,26 +169,32 @@
             // btn_Trangchu
             // 
             this.btn_Trangchu.Name = "btn_Trangchu";
-            this.btn_Trangchu.Size = new System.Drawing.Size(359, 44);
+            this.btn_Trangchu.Size = new System.Drawing.Size(352, 44);
             this.btn_Trangchu.Text = "Trang chủ";
             // 
             // btn_datphong
             // 
             this.btn_datphong.Name = "btn_datphong";
-            this.btn_datphong.Size = new System.Drawing.Size(359, 44);
+            this.btn_datphong.Size = new System.Drawing.Size(352, 44);
             this.btn_datphong.Text = "Đặt phòng";
             // 
             // btn_quanlyphong
             // 
             this.btn_quanlyphong.Name = "btn_quanlyphong";
-            this.btn_quanlyphong.Size = new System.Drawing.Size(359, 44);
+            this.btn_quanlyphong.Size = new System.Drawing.Size(352, 44);
             this.btn_quanlyphong.Text = "Quản lý phòng";
             // 
             // btn_quanlytang
             // 
             this.btn_quanlytang.Name = "btn_quanlytang";
-            this.btn_quanlytang.Size = new System.Drawing.Size(359, 44);
+            this.btn_quanlytang.Size = new System.Drawing.Size(352, 44);
             this.btn_quanlytang.Text = "Quản Lý tầng";
+            // 
+            // btn_quanlyloaiphong
+            // 
+            this.btn_quanlyloaiphong.Name = "btn_quanlyloaiphong";
+            this.btn_quanlyloaiphong.Size = new System.Drawing.Size(352, 44);
+            this.btn_quanlyloaiphong.Text = "Quản lý loại phòng";
             // 
             // toolStripDropDownButton2
             // 
@@ -797,12 +803,6 @@
             this.txt_sophieudat.Name = "txt_sophieudat";
             this.txt_sophieudat.Size = new System.Drawing.Size(184, 35);
             this.txt_sophieudat.TabIndex = 3;
-            // 
-            // btn_quanlyloaiphong
-            // 
-            this.btn_quanlyloaiphong.Name = "btn_quanlyloaiphong";
-            this.btn_quanlyloaiphong.Size = new System.Drawing.Size(359, 44);
-            this.btn_quanlyloaiphong.Text = "Quản lý loại phòng";
             // 
             // QuanLyPhong
             // 
