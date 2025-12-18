@@ -55,6 +55,25 @@ namespace KhachSanSaoBang
             btn_chatbot.Click += Btn_chatbot_Click;
             btn_quanlyphong.Click += Btn_quanlyphong_Click;
             btn_quanlydv.Click += Btn_quanlydv_Click;
+            btn_quanlytienich.Click += Btn_quanlytienich_Click;
+            btn_quanlytang.Click += Btn_quanlytang_Click;
+        }
+
+        private void Btn_quanlytang_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyTang tienIch = new QuanLyTang();
+            tienIch.ShowDialog();
+            this.Close();
+        }
+
+        private void Btn_quanlytienich_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyTienIch tienIch = new QuanLyTienIch();
+            tienIch.ShowDialog();
+            this.Close();
+
         }
 
         private void Btn_quanlydv_Click(object sender, EventArgs e)

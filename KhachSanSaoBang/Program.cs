@@ -19,7 +19,7 @@ namespace KhachSanSaoBang
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLyDichVu());
+            Application.Run(new KetNoi());
         }
     }
 }

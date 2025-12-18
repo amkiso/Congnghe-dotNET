@@ -6,7 +6,7 @@ namespace KhachSanSaoBang.ThongKe.BaoCao
 {
     public class DBBaoCao
     {
-        private string _cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;";
+        private string _cnn = KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
         private SqlConnection sqlcnn;
 
         public DBBaoCao()

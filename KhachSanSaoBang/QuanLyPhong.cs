@@ -42,22 +42,11 @@ namespace KhachSanSaoBang
             btn_dangkythanhvien.Click += DoiKhuVucLamViec;
             btn_danhsachhoadon.Click += DoiKhuVucLamViec;
             btn_chatbot.Click += Btn_chatbot_Click;
+            btn_quanlydv.Click += Btn_quanlydv_Click;
+            btn_quanlytienich.Click += Btn_quanlytienich_Click;
+            btn_quanlytang.Click += Btn_quanlytang_Click;
             btn_Trangchu.Click += Btn_Trangchu_Click;
         }
-
-        private void Btn_exit_Click(object sender, EventArgs e)
-        {
-            DialogResult rels = MessageBox.Show("Xác nhận thoát?", "Thông báo", MessageBoxButtons.YesNo);
-            if (rels == DialogResult.Yes)
-            {
-                Session.Reset();
-                this.Hide();
-                Dangnhap dn = new Dangnhap();
-                dn.ShowDialog();
-                this.Close();
-            }
-        }
-
         private void Btn_Trangchu_Click(object sender, EventArgs e)
         {
             TrangLamViec tlv = new TrangLamViec();
@@ -65,6 +54,44 @@ namespace KhachSanSaoBang
             tlv.ShowDialog();
             this.Close();
         }
+        private void Btn_datphong_Click(object sender, EventArgs e)
+        {
+            int acction = 0;
+            AcctionForm datp = new AcctionForm(acction);
+            Session.Acction_status = false;
+            datp.ShowDialog();
+            LoadData();
+            if (Session.Acction_status == false)
+            {
+                MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
+            }
+        }
+        private void Btn_quanlytang_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyTang tienIch = new QuanLyTang();
+            tienIch.ShowDialog();
+            this.Close();
+        }
+
+        private void Btn_quanlytienich_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyTienIch tienIch = new QuanLyTienIch();
+            tienIch.ShowDialog();
+            this.Close();
+
+        }
+
+        private void Btn_quanlydv_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyDichVu qlp = new QuanLyDichVu
+                ();
+            qlp.ShowDialog();
+            this.Close();
+        }
+
 
         private void Btn_chatbot_Click(object sender, EventArgs e)
         {
@@ -102,32 +129,6 @@ namespace KhachSanSaoBang
             Session.Acction_status = false;
             AcctionForm dk = new AcctionForm(acction);
             dk.ShowDialog();
-        }
-
-        private void Btn_thoatca_Click1(object sender, EventArgs e)
-        {
-            DialogResult rels = MessageBox.Show("Xác nhận thoát ca ?", "Thông báo", MessageBoxButtons.YesNo);
-            if (rels == DialogResult.Yes)
-            {
-                Session.Reset();
-                this.Hide();
-                Dangnhap dn = new Dangnhap();
-                dn.ShowDialog();
-                this.Close();
-            }
-        }
-
-        private void Btn_datphong_Click(object sender, EventArgs e)
-        {
-            int acction = 0;
-            AcctionForm datp = new AcctionForm(acction);
-            Session.Acction_status = false;
-            datp.ShowDialog();
-            LoadData();
-            if (Session.Acction_status == false)
-            {
-                MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
-            }
         }
         private void Timer1_Tick(object sender, EventArgs e)
         {
@@ -406,6 +407,19 @@ namespace KhachSanSaoBang
             LoadData();
             ActiveControl = null;
             timer1.Start();
+        }
+        
+        private void Btn_exit_Click(object sender, EventArgs e)
+        {
+            DialogResult rels = MessageBox.Show("Xác nhận thoát?", "Thông báo", MessageBoxButtons.YesNo);
+            if (rels == DialogResult.Yes)
+            {
+                Session.Reset();
+                this.Hide();
+                Dangnhap dn = new Dangnhap();
+                dn.ShowDialog();
+                this.Close();
+            }
         }
     }
 }

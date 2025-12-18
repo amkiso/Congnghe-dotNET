@@ -1,4 +1,5 @@
-﻿using KhachSanSaoBang.Models.Data;
+﻿using KhachSanSaoBang.Models.Client;
+using KhachSanSaoBang.Models.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -8,9 +9,9 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 namespace KhachSanSaoBang.Models
 {
     public class Xuly
@@ -19,6 +20,191 @@ namespace KhachSanSaoBang.Models
         public Xuly()
         {
            
+        }
+        public bool AddTienIch(string ten)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    tblTienich t = new tblTienich();
+                    t.ten_tienich = ten;
+
+                    db.tblTieniches.InsertOnSubmit(t);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool AddTang(string ten)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    tblTang t = new tblTang();
+                    t.ten_tang = ten;
+
+                    db.tblTangs.InsertOnSubmit(t);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool TienIchDangDuocSuDung(int ma)
+        {
+            int count = 0;
+            using (var db = new SQLDataDataContext()) { 
+                count = db.tblPhongs.Where(t=>t.ma_tienich == ma).Count();
+            }
+            return count > 0;
+        }
+        public bool Check_tang(int ma)
+        {
+            int count = 0;
+            using (var db = new SQLDataDataContext())
+            {
+                count = db.tblPhongs.Where(t => t.ma_tang == ma).Count();
+            }
+            return count > 0;
+        }
+        public bool DeleteTienIch(int ma)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblTieniches.FirstOrDefault(x => x.ma_tienich == ma);
+                    if (t == null) return false;
+
+                    db.tblTieniches.DeleteOnSubmit(t);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool DeleteTang(int ma)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblTangs.FirstOrDefault(x => x.ma_tang == ma);
+                    if (t == null) return false;
+
+                    db.tblTangs.DeleteOnSubmit(t);
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool UpdateTang(int ma, string ten)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblTangs.FirstOrDefault(x => x.ma_tang == ma);
+                    if (t == null) return false;
+
+                    t.ten_tang = ten;
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool UpdateTienIch(int ma, string ten)
+        {
+            using (var db = new SQLDataDataContext())
+            {
+                try
+                {
+                    var t = db.tblTieniches.FirstOrDefault(x => x.ma_tienich == ma);
+                    if (t == null) return false;
+
+                    t.ten_tienich = ten;
+                    db.SubmitChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public bool AddDichVu(tblDichVu dichvu)
+        {
+            try
+            {
+                using (var db = new SQLDataDataContext())
+                {
+                    db.tblDichVus.InsertOnSubmit(dichvu);
+                    db.SubmitChanges();
+                    return true;
+                }
+            }
+            catch { return false; }
+        }
+        public bool Check_Delete_DichVu(int madv)
+        {
+            int count = db.tblDichVuDaDats.Where(t=>t.ma_dv==madv).Count();
+            if(count > 0) { return true; }
+            return false;
+        }
+        public bool DeleteDichVu(int madv)
+        {
+            try
+            {
+                using (var db = new SQLDataDataContext())
+                {
+                    tblDichVu dichvu = db.tblDichVus.Where(t => t.ma_dv == madv).FirstOrDefault();
+                    db.tblDichVus.DeleteOnSubmit(dichvu);
+                    db.SubmitChanges();
+                    return true;
+                }
+            }
+            catch { return false; }
+        }
+        public bool SuaThongTinDichVu(tblDichVu dichvu)
+        {
+            try
+            {
+                using (var db = new SQLDataDataContext())
+                {
+                    tblDichVu hientai = db.tblDichVus.Where(t => t.ma_dv == dichvu.ma_dv).FirstOrDefault();
+                    hientai.ten_dv = dichvu.ten_dv;
+                    hientai.gia = dichvu.gia;
+                    hientai.don_vi = dichvu.don_vi;
+                    hientai.ton_kho = dichvu.ton_kho;
+                    hientai.anh = dichvu.anh;
+                    db.SubmitChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
         public bool AddPhong(tblPhong newPhong)
         {

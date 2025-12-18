@@ -11,7 +11,7 @@ namespace KhachSanSaoBang.DoanhThu
     public class DBDoanhThu
     {
         // Chuỗi kết nối của bạn
-        string _cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;Persist Security Info=True;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;TrustServerCertificate=True;";
+        string _cnn = KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
 
         SqlConnection sqlcnn;
         SqlDataAdapter da;

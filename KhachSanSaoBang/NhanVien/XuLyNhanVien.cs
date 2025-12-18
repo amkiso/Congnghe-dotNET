@@ -8,7 +8,7 @@ namespace KhachSanSaoBang.NhanVien
     public class XuLyNhanVien
     {
         private readonly string cnn =
-            "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;";
+           KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
 
         // ============================================================
         // LOAD DANH SÁCH NHÂN VIÊN

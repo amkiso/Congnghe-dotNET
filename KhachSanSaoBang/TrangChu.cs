@@ -30,6 +30,34 @@ namespace KhachSanSaoBang
             btnDatPhong.Click += Btn_datphong_Click;
             btnTraCuuKhachHang.Click += Btn_TracuuKhachHang_Click;
             btnQLPhong.Click += btnDoiKhuVuc_Click;
+            btn_quanlytang.Click += Btn_quanlytang_Click;
+            btn_quanlyphong.Click += Btn_quanlyphong_Click;
+            btnQLDichVu.Click += BtnQLDichVu_Click;
+            btnQLTienIch.Click += BtnQLTienIch_Click;
+        }
+
+        private void BtnQLTienIch_Click(object sender, EventArgs e)
+        {
+            QuanLyTienIch tienIch = new QuanLyTienIch();
+            tienIch.Show();
+        }
+
+        private void BtnQLDichVu_Click(object sender, EventArgs e)
+        {
+           QuanLyDichVu dichvu = new QuanLyDichVu();
+            dichvu.Show();
+        }
+
+        private void Btn_quanlyphong_Click(object sender, EventArgs e)
+        {
+            QuanLyPhong phong = new QuanLyPhong();
+            phong.Show();
+        }
+
+        private void Btn_quanlytang_Click(object sender, EventArgs e)
+        {
+           QuanLyTang tang = new QuanLyTang();
+            tang.Show();
         }
 
         private void BtnNhanVien_Click(object sender, EventArgs e)

@@ -1,5 +1,0 @@
-﻿THÔNG TIN CHI TIẾT VỀ QUÁ TRÌNH THIẾT KẾ, CÁCH HOẠT ĐỘNG VÀ HƯỚNG DẪN SỬ DỤNG CỦA CỬA SỔ THANH TOÁN
-I. Thiết kế
-	- Hiển thị được đầy đủ thông tin khách hàng, ngày vào, ngày ra, ngày đặt, tiền phụ thu(nếu có), dịch vụ đã sử dụng, tiền phòng,...
-	- Tính toán được tiền thừa trả khách cho thu ngân
-	- Thao tác thu tiền nhanh bằng các nút mang mệnh giá tiền hiện hành, tự nhập đủ tiền bằng nút [vừa đủ]

@@ -10,7 +10,7 @@ namespace KhachSanSaoBang.KhachHang
 {
     public class DanhSachKhachHang
     {
-        private string cnn = "Data Source=hoangvux.database.windows.net;Initial Catalog=dataQLKS;User ID=ApplicationClient;Password=Abcd@123;Encrypt=True;";
+        private string cnn = KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
         private SqlConnection cn;
 
         public DanhSachKhachHang()

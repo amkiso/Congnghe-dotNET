@@ -130,6 +130,25 @@ namespace KhachSanSaoBang.Models
                     return dir?.FullName;
                 }
             }
+            public static string ContentRoot
+            {
+                get
+                {
+                    var dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+
+                    while (dir != null)
+                    {
+                        string contentPath = Path.Combine(dir.FullName, "Content");
+                        if (Directory.Exists(contentPath))
+                            return dir.FullName;
+
+                        dir = dir.Parent;
+                    }
+
+                    throw new DirectoryNotFoundException("Không tìm thấy thư mục Content");
+                }
+            }
+
             public static Image LoadFromDb(string dbPath)
             {
                 if (string.IsNullOrWhiteSpace(dbPath))

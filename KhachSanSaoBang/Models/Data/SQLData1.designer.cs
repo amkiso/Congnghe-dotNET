@@ -84,7 +84,7 @@ namespace KhachSanSaoBang.Models.Data
     #endregion
 		
 		public SQLDataDataContext() : 
-				base(global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString, mappingSource)
+				base(global::KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}

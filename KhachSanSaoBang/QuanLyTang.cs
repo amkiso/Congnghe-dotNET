@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace KhachSanSaoBang
 {
-    public partial class QuanLyTienIch : Form
+    public partial class QuanLyTang : Form
     {
         Xuly xl = new Xuly();
         int acction;
-        public QuanLyTienIch()
+        public QuanLyTang()
         {
             InitializeComponent();
             btn_add.Click += Btn_add_Click;
@@ -24,9 +24,8 @@ namespace KhachSanSaoBang
             btn_exit.Click += Btn_exit_Click;
             btn_save.Click += Btn_save_Click;
             btn_delete.Click += Btn_delete_Click;
-            this.Load += QuanLyTienIch_Load;
-            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
-            //Menu
+            this.Load += QuanLyTang_Load;
+            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;//Menu
             btn_datphong.Click += Btn_datphong_Click;
             btn_tracuukhachhang.Click += Btn_tracuukhachhang_Click;
             btn_dangkykhachhang.Click += Btn_dangkykhachhang_Click;
@@ -36,7 +35,7 @@ namespace KhachSanSaoBang
             btn_chatbot.Click += Btn_chatbot_Click;
             btn_quanlyphong.Click += Btn_quanlyphong_Click;
             btn_quanlydv.Click += Btn_quanlydv_Click;
-            btn_quanlytang.Click += Btn_quanlytang_Click;
+            btn_quanlytienich.Click += Btn_quanlytienich_Click;
             btn_Trangchu.Click += Btn_Trangchu_Click;
         }
         private void Btn_Trangchu_Click(object sender, EventArgs e)
@@ -58,15 +57,17 @@ namespace KhachSanSaoBang
                 MessageBox.Show("Bạn đã hủy đặt phòng !", "Thông báo");
             }
         }
-        private void Btn_quanlytang_Click(object sender, EventArgs e)
+ 
+
+        private void Btn_quanlytienich_Click(object sender, EventArgs e)
         {
             this.Hide();
-            QuanLyTang tienIch = new QuanLyTang();
+            QuanLyTienIch tienIch = new QuanLyTienIch();
             tienIch.ShowDialog();
             this.Close();
+
         }
 
-   
         private void Btn_quanlydv_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -124,7 +125,6 @@ namespace KhachSanSaoBang
             dk.ShowDialog();
         }
 
-
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             btn_add.Enabled = true;
@@ -134,20 +134,20 @@ namespace KhachSanSaoBang
 
         private void Loaddata()
         {
-            var tienich = xl.gettienich();
-            dataGridView1.DataSource = tienich;
+            var tang = xl.gettang();
+            dataGridView1.DataSource = tang;
             txt_id.DataBindings.Clear();
             txt_name.DataBindings.Clear();
 
-            txt_id.DataBindings.Add("Text", dataGridView1.DataSource, "ma_tienich");
-            txt_name.DataBindings.Add("Text", dataGridView1.DataSource, "ten_tienich");
+            txt_id.DataBindings.Add("Text", dataGridView1.DataSource, "ma_tang");
+            txt_name.DataBindings.Add("Text", dataGridView1.DataSource, "ten_tang");
 
             txt_name.Enabled = false;
 
 
 
         }
-        private void QuanLyTienIch_Load(object sender, EventArgs e)
+        private void QuanLyTang_Load(object sender, EventArgs e)
         {
             Loaddata();
         }
@@ -158,18 +158,18 @@ namespace KhachSanSaoBang
 
             int ma = int.Parse(txt_id.Text);
 
-            if (xl.TienIchDangDuocSuDung(ma))
+            if (xl.Check_tang(ma))
             {
-                MessageBox.Show("Tiện ích đang được sử dụng, không thể xóa");
+                MessageBox.Show("Tầng đã được sử dụng, không thể xóa");
                 return;
             }
 
-            if (MessageBox.Show("Xóa tiện ích này?", "Xác nhận",
+            if (MessageBox.Show("Xóa tầng này?", "Xác nhận",
                 MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                if (xl.DeleteTienIch(ma))
+                if (xl.DeleteTang(ma))
                 {
-                    MessageBox.Show("Đã xóa");
+                    MessageBox.Show("Đã xóa","Thông báo");
                     Loaddata();
                 }
                 else
@@ -191,7 +191,7 @@ namespace KhachSanSaoBang
                     break;
 
                 case 2: // EDIT
-                    kq = xl.UpdateTienIch(
+                    kq = xl.UpdateTang(
                         int.Parse(txt_id.Text),
                         txt_name.Text.Trim()
                     );
@@ -244,6 +244,5 @@ namespace KhachSanSaoBang
 
             btn_save.Enabled = true;
         }
-
     }
 }

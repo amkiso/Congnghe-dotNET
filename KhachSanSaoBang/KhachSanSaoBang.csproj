@@ -77,6 +77,12 @@
     <Compile Include="DoanhThu\QuanLyThongKe.Designer.cs">
       <DependentUpon>QuanLyThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyTang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyTang.Designer.cs">
+      <DependentUpon>QuanLyTang.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrangLamViec.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     <EmbeddedResource Include="QuanLyPhong.resx">
       <DependentUpon>QuanLyPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyTang.resx">
+      <DependentUpon>QuanLyTang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLyTienIch.resx">
       <DependentUpon>QuanLyTienIch.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,9 +354,6 @@
     <Content Include="Content\Images\DichVu\bia.jpg" />
     <Content Include="Content\Images\DichVu\default.png" />
     <Content Include="HuongDan\HuongDan.txt" />
-    <Content Include="Note\AcctionForm.txt" />
-    <Content Include="Note\MainForm.txt" />
-    <Content Include="Note\ThanhToan.txt" />
     <None Include="Resources\no_image.jpg" />
     <None Include="Resources\icons8-information-20.png" />
     <None Include="Resources\638283196125137654.jpg" />
