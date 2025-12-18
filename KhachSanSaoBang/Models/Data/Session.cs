@@ -13,6 +13,7 @@ namespace KhachSanSaoBang.Models
     /// </summary>
     public static class Session
     {
+        public static bool isdialog { get; set; }
         public static int Madv { get; set; }
         public static int UserId { get; set; }
         public static string UserName { get; set; }

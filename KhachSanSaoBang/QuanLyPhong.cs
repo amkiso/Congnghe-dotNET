@@ -414,6 +414,7 @@ namespace KhachSanSaoBang
             DialogResult rels = MessageBox.Show("Xác nhận thoát?", "Thông báo", MessageBoxButtons.YesNo);
             if (rels == DialogResult.Yes)
             {
+                
                 Session.Reset();
                 this.Hide();
                 Dangnhap dn = new Dangnhap();

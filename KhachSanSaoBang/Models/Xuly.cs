@@ -304,6 +304,7 @@ namespace KhachSanSaoBang.Models
         //Xử lý đăng nhập và lưu session
         public bool Dangnhap(tblNhanVien nv)
         {
+            nv.mat_khau = Sha256(nv.mat_khau);
             using (var db = new SQLDataDataContext())
             {
                 var user = db.tblNhanViens.FirstOrDefault(u =>
@@ -1575,6 +1576,22 @@ namespace KhachSanSaoBang.Models
                     return (0, "Chờ chọn phòng");
             }
 
+        }
+
+        // Băm mật khẩu
+        public  string Sha256(string input)
+        {
+            using (SHA256 sha = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(input);
+                byte[] hash = sha.ComputeHash(bytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hash)
+                    sb.Append(b.ToString("x2")); // hex
+
+                return sb.ToString();
+            }
         }
     }
 }

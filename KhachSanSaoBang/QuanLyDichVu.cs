@@ -37,7 +37,8 @@ namespace KhachSanSaoBang
             btn_add.Click += Btn_add_Click;
             btn_change.Click += Btn_change_Click;
             btn_delete.Click += Btn_delete_Click;
-            btn_save.Click += Btn_save_Click; 
+            btn_save.Click += Btn_save_Click;
+            btn_exit.Click += Btn_exit_Click;
             //Menu
             btn_datphong.Click += Btn_datphong_Click;
             btn_tracuukhachhang.Click += Btn_tracuukhachhang_Click;
@@ -49,7 +50,25 @@ namespace KhachSanSaoBang
             btn_quanlyphong.Click += Btn_quanlyphong_Click;
             btn_quanlytienich.Click += Btn_quanlytienich_Click;
             btn_quanlytang.Click += Btn_quanlytang_Click;
+            btn_Trangchu.Click += Btn_Trangchu_Click;
         }
+
+        private void Btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dangnhap dn = new Dangnhap();
+            dn.ShowDialog();
+            this.Close();
+        }
+
+        private void Btn_Trangchu_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TrangLamViec tlv = new TrangLamViec();
+            tlv.ShowDialog();
+            this.Close();
+        }
+
         private void Btn_datphong_Click(object sender, EventArgs e)
         {
             int acction = 0;

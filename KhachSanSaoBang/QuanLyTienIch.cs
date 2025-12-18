@@ -218,6 +218,9 @@ namespace KhachSanSaoBang
             DialogResult rel = MessageBox.Show("Bạn chắc muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo);
             if (rel == DialogResult.Yes)
             {
+                this.Hide();
+                Dangnhap dn = new Dangnhap();
+                dn.ShowDialog();
                 this.Close();
             }
         }

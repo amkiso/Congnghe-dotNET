@@ -25,7 +25,8 @@ namespace KhachSanSaoBang
             btn_save.Click += Btn_save_Click;
             btn_delete.Click += Btn_delete_Click;
             this.Load += QuanLyTang_Load;
-            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;//Menu
+            dataGridView1.SelectionChanged += DataGridView1_SelectionChanged;
+            //Menu
             btn_datphong.Click += Btn_datphong_Click;
             btn_tracuukhachhang.Click += Btn_tracuukhachhang_Click;
             btn_dangkykhachhang.Click += Btn_dangkykhachhang_Click;
@@ -218,6 +219,9 @@ namespace KhachSanSaoBang
             DialogResult rel = MessageBox.Show("Bạn chắc muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo);
             if (rel == DialogResult.Yes)
             {
+                this.Hide();
+                Dangnhap dn = new Dangnhap();
+                dn.ShowDialog();
                 this.Close();
             }
         }

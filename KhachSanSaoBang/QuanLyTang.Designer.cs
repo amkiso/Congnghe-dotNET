@@ -43,9 +43,9 @@
             this.txt_name = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.main_container = new System.Windows.Forms.TableLayoutPanel();
             this.col_matienich = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_tentienich = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.main_container = new System.Windows.Forms.TableLayoutPanel();
             this.modernToolStrip1 = new KhachSanSaoBang.ModernToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.btn_Trangchu = new System.Windows.Forms.ToolStripMenuItem();
@@ -257,6 +257,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(1323, 470);
             this.dataGridView1.TabIndex = 11;
             // 
+            // col_matienich
+            // 
+            this.col_matienich.DataPropertyName = "ma_tang";
+            this.col_matienich.HeaderText = "Mã tầng";
+            this.col_matienich.MinimumWidth = 10;
+            this.col_matienich.Name = "col_matienich";
+            this.col_matienich.ReadOnly = true;
+            // 
+            // col_tentienich
+            // 
+            this.col_tentienich.DataPropertyName = "ten_tang";
+            this.col_tentienich.HeaderText = "Tên Tầng";
+            this.col_tentienich.MinimumWidth = 10;
+            this.col_tentienich.Name = "col_tentienich";
+            this.col_tentienich.ReadOnly = true;
+            // 
             // main_container
             // 
             this.main_container.ColumnCount = 1;
@@ -274,22 +290,6 @@
             this.main_container.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.main_container.Size = new System.Drawing.Size(1329, 731);
             this.main_container.TabIndex = 1;
-            // 
-            // col_matienich
-            // 
-            this.col_matienich.DataPropertyName = "ma_tang";
-            this.col_matienich.HeaderText = "Mã tầng";
-            this.col_matienich.MinimumWidth = 10;
-            this.col_matienich.Name = "col_matienich";
-            this.col_matienich.ReadOnly = true;
-            // 
-            // col_tentienich
-            // 
-            this.col_tentienich.DataPropertyName = "ten_tang";
-            this.col_tentienich.HeaderText = "Tên Tầng";
-            this.col_tentienich.MinimumWidth = 10;
-            this.col_tentienich.Name = "col_tentienich";
-            this.col_tentienich.ReadOnly = true;
             // 
             // modernToolStrip1
             // 
@@ -332,25 +332,25 @@
             // btn_Trangchu
             // 
             this.btn_Trangchu.Name = "btn_Trangchu";
-            this.btn_Trangchu.Size = new System.Drawing.Size(359, 44);
+            this.btn_Trangchu.Size = new System.Drawing.Size(307, 44);
             this.btn_Trangchu.Text = "Trang chủ";
             // 
             // btn_datphong
             // 
             this.btn_datphong.Name = "btn_datphong";
-            this.btn_datphong.Size = new System.Drawing.Size(359, 44);
+            this.btn_datphong.Size = new System.Drawing.Size(307, 44);
             this.btn_datphong.Text = "Đặt phòng";
             // 
             // btn_quanlyphong
             // 
             this.btn_quanlyphong.Name = "btn_quanlyphong";
-            this.btn_quanlyphong.Size = new System.Drawing.Size(359, 44);
+            this.btn_quanlyphong.Size = new System.Drawing.Size(307, 44);
             this.btn_quanlyphong.Text = "Quản lý phòng";
             // 
             // btn_quanlytang
             // 
             this.btn_quanlytang.Name = "btn_quanlytang";
-            this.btn_quanlytang.Size = new System.Drawing.Size(359, 44);
+            this.btn_quanlytang.Size = new System.Drawing.Size(307, 44);
             this.btn_quanlytang.Text = "Quản Lý tầng";
             // 
             // toolStripDropDownButton2

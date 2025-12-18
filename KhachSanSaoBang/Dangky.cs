@@ -35,7 +35,7 @@ namespace KhachSanSaoBang
                     tblNhanVien nv = new tblNhanVien();
                     nv.ho_ten = txt_hoten.Text;
                     nv.tai_khoan = txt_tendangnhap.Text;
-                    nv.mat_khau = txt_matkhau.Text;
+                    nv.mat_khau = xl.Sha256(txt_matkhau.Text);
                     nv.ngay_sinh = dtp_ngsinh.Value;
                     nv.Email = txt_email.Text;
                     nv.gioi_tinh = gioitinh;

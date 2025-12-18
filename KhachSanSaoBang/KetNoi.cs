@@ -51,7 +51,7 @@ namespace KhachSanSaoBang
                     conn.Open();
                 }
                 Properties.Settings.Default.dataQLKSConnectionString1 = connString;
-                Properties.Settings.Default.Save(); // Lệnh quan trọng để lưu xuống ổ cứng
+                Properties.Settings.Default.Save(); 
 
                 MessageBox.Show("Lưu cấu hình thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Dangnhap dn = new Dangnhap();
@@ -85,7 +85,7 @@ namespace KhachSanSaoBang
             try
             {
                 // Lấy chuỗi kết nối hiện tại trong Settings
-                string currentConn = Properties.Settings.Default.dataQLKSConnectionString;
+                string currentConn = Properties.Settings.Default.dataQLKSConnectionString1;
 
                 if (!string.IsNullOrEmpty(currentConn))
                 {

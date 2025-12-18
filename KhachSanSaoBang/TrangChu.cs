@@ -39,25 +39,30 @@ namespace KhachSanSaoBang
         private void BtnQLTienIch_Click(object sender, EventArgs e)
         {
             QuanLyTienIch tienIch = new QuanLyTienIch();
-            tienIch.Show();
+            this.Hide();
+            tienIch.ShowDialog();
+            this.Close();
         }
 
         private void BtnQLDichVu_Click(object sender, EventArgs e)
         {
            QuanLyDichVu dichvu = new QuanLyDichVu();
-            dichvu.Show();
+            dichvu.ShowDialog();
+            this.Close();
         }
 
         private void Btn_quanlyphong_Click(object sender, EventArgs e)
         {
             QuanLyPhong phong = new QuanLyPhong();
-            phong.Show();
+            phong.ShowDialog();
+            this.Close();
         }
 
         private void Btn_quanlytang_Click(object sender, EventArgs e)
         {
            QuanLyTang tang = new QuanLyTang();
-            tang.Show();
+            tang.ShowDialog();
+            this.Close();
         }
 
         private void BtnNhanVien_Click(object sender, EventArgs e)

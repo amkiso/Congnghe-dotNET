@@ -61,7 +61,7 @@
             // 
             // btn_ketnoi
             // 
-            this.btn_ketnoi.Location = new System.Drawing.Point(192, 346);
+            this.btn_ketnoi.Location = new System.Drawing.Point(188, 346);
             this.btn_ketnoi.Name = "btn_ketnoi";
             this.btn_ketnoi.Size = new System.Drawing.Size(157, 47);
             this.btn_ketnoi.TabIndex = 2;

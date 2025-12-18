@@ -1,4 +1,5 @@
-﻿using KhachSanSaoBang.Models.Data;
+﻿using KhachSanSaoBang.Models;
+using KhachSanSaoBang.Models.Data;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace KhachSanSaoBang.NhanVien
     {
         private readonly string cnn =
            KhachSanSaoBang.Properties.Settings.Default.dataQLKSConnectionString1;
-
+        Xuly xl = new Xuly();
         // ============================================================
         // LOAD DANH SÁCH NHÂN VIÊN
         // ============================================================
@@ -48,6 +49,7 @@ namespace KhachSanSaoBang.NhanVien
         // ============================================================
         public bool ThemNhanVien(tblNhanVien nv)
         {
+            nv.mat_khau = xl.Sha256(nv.mat_khau);
             try
             {
                 using (SqlConnection cn = new SqlConnection(cnn))
@@ -84,6 +86,7 @@ namespace KhachSanSaoBang.NhanVien
         // ============================================================
         public bool SuaNhanVien(tblNhanVien nv)
         {
+            nv.mat_khau = xl.Sha256(nv.mat_khau);
             try
             {
                 using (SqlConnection cn = new SqlConnection(cnn))
