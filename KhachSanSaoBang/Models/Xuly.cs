@@ -317,10 +317,11 @@ namespace KhachSanSaoBang.Models
                     var obj = (from u in db.tblNhanViens
                                join cv in db.tblChucVus on u.ma_chuc_vu equals cv.ma_chuc_vu
                                where u.tai_khoan == nv.tai_khoan && u.mat_khau == nv.mat_khau
-                               select new { u.ho_ten, u.ma_nv, cv.chuc_vu }).FirstOrDefault();
+                               select new { u.ho_ten, u.ma_nv, cv.chuc_vu ,u.ma_chuc_vu}).FirstOrDefault();
                     Session.Role = obj.chuc_vu;
                     Session.UserId = obj.ma_nv;
                     Session.UserName = obj.ho_ten;
+                    Session.Roleid = obj.ma_chuc_vu ?? 2;
                     return true;
                 }
             }

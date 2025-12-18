@@ -38,6 +38,11 @@ namespace KhachSanSaoBang
 
         private void BtnQLTienIch_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             QuanLyTienIch tienIch = new QuanLyTienIch();
             this.Hide();
             tienIch.ShowDialog();
@@ -46,13 +51,23 @@ namespace KhachSanSaoBang
 
         private void BtnQLDichVu_Click(object sender, EventArgs e)
         {
-           QuanLyDichVu dichvu = new QuanLyDichVu();
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
+            QuanLyDichVu dichvu = new QuanLyDichVu();
             dichvu.ShowDialog();
             this.Close();
         }
 
         private void Btn_quanlyphong_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             QuanLyPhong phong = new QuanLyPhong();
             phong.ShowDialog();
             this.Close();
@@ -60,7 +75,12 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlytang_Click(object sender, EventArgs e)
         {
-           QuanLyTang tang = new QuanLyTang();
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
+            QuanLyTang tang = new QuanLyTang();
             tang.ShowDialog();
             this.Close();
         }
@@ -115,6 +135,11 @@ namespace KhachSanSaoBang
         // =============== CLICK XỬ LÝ NGHIỆP VỤ (GIỮ NGUYÊN LOGIC) ===============
         private void BtnQLDoanhThu_Click1(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             LoadFormToPanel(new QuanLyThongKe());
         }
 
@@ -125,6 +150,11 @@ namespace KhachSanSaoBang
 
         private void BtnQLNhanVien_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             LoadFormToPanel(new DanhSachNhanVien());
         }
 

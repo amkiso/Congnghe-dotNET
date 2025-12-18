@@ -61,6 +61,11 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlytang_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             this.Hide();
             QuanLyTang tienIch = new QuanLyTang();
             tienIch.ShowDialog();
@@ -69,6 +74,11 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlytienich_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             this.Hide();
             QuanLyTienIch tienIch = new QuanLyTienIch();
             tienIch.ShowDialog();
@@ -78,6 +88,11 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlydv_Click(object sender, EventArgs e)
         {
+            if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             this.Hide();
             QuanLyDichVu qlp = new QuanLyDichVu
                 ();
@@ -87,7 +102,11 @@ namespace KhachSanSaoBang
 
         private void Btn_quanlyphong_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Hide(); if (Session.Roleid != 1)
+            {
+                MessageBox.Show("Bạn không có quyền thức hiện thao tác này !", "Thông báo");
+                return;
+            }
             QuanLyPhong qlp = new QuanLyPhong
                 ();
             qlp.ShowDialog();

@@ -18,6 +18,7 @@ namespace KhachSanSaoBang.Models
         public static int UserId { get; set; }
         public static string UserName { get; set; }
         public static string Role { get; set; }
+        public static int Roleid { get; set; }
         public static string UserEmail { get; set; }
         public static int maphonghientai { get; set; }
         public static int trangthaiphong { get; set; }
